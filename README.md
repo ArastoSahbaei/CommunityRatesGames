@@ -1,11 +1,9 @@
 # <ProjectName?>
 Tba
 
-
 <br />
 
-
-#Developers:
+# Developers:
 Arasto Sahbaei <br />
 Robin Svensson <br />
 Daniel Ivestig <br />
