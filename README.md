@@ -5,4 +5,5 @@ tba
 Arasto Sahbaei
 Robin Svensson 
 Björn Kristenssen
-Ivestig
+Daniel Ivestig
+Gustaf gurkan larsborg
