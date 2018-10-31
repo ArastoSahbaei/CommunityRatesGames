@@ -1,13 +1,5 @@
-# toberenamed
-tba
-
-# Developers
 Arasto Sahbaei
-
-Robin Svensson
-
+Robin Svensson 
 Björn Kristenssen
-
-Ivestig
-
-Gurra
+Daniel Ivestig
+Gustaf gurkan larsborg
