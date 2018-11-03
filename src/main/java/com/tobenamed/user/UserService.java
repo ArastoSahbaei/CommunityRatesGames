@@ -1,11 +1,15 @@
 package com.tobenamed.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserService implements UserServiceInterface {
+public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Autowired
     private final UserRepository userRepository;
@@ -40,6 +44,20 @@ public class UserService implements UserServiceInterface {
     public UserEntity FindUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserEntity userEntity = FindUserByUserName(username);
 
+        org.springframework.security.core.userdetails.User.UserBuilder builder = null;
+        if (userEntity != null) {
+            builder = org.springframework.security.core.userdetails.User.withUsername(username);
+            builder.password(new BCryptPasswordEncoder().encode(userEntity.getPassword()));
+            builder.roles(userEntity.getRole());
+        } else {
+            throw new UsernameNotFoundException("User not found.");
+        }
+
+        return builder.build();
+    }
 
 }
