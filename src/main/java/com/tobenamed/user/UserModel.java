@@ -14,6 +14,16 @@ public class UserModel implements Serializable {
     private String password;
     private String role;
 
+    public UserModel(UserEntity userEntity) {
+        this.id = userEntity.getId();
+        this.userName = userEntity.getUserName();
+        this.email = userEntity.getEmail();
+        this.firstName = userEntity.getFirstName();
+        this.lastName = userEntity.getLastName();
+        this.password = userEntity.getPassword();
+        this.role = userEntity.getRole();
+    }
+
     public Long getId() {
         return id;
     }

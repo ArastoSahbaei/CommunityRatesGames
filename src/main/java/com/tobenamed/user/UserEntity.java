@@ -1,9 +1,6 @@
 package com.tobenamed.user;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -12,18 +9,27 @@ public class UserEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String userName;
+    @Column(unique = true)
+    private String email;
     private String firstName;
     private String lastName;
-    private String email;
     private String password;
     private String role;
 
     public UserEntity(UserModel userModel) {
         this.id = userModel.getId();
+        this.userName = userModel.getUserName();
+        this.email = userModel.getEmail();
+        this.firstName = userModel.getFirstName();
+        this.lastName = userModel.getLastName();
+        this.password = userModel.getPassword();
+        this.role = userModel.getRole();
     }
 
-    public UserEntity() {}
+    public UserEntity() {
+    }
 
     public Long getId() {
         return id;
