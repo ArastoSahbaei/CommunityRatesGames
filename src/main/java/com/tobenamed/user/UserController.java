@@ -1,4 +1,4 @@
 package com.tobenamed.user;
 
-public class userEntity {
+public class UserController {
 }
