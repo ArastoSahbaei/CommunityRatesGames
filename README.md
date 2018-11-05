@@ -1,4 +1,4 @@
-# <ProjectName?>
+# Community Rates Games
 Tba
 
 <br />
