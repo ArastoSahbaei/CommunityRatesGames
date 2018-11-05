@@ -1,5 +1,5 @@
 
-package com.tobenamed.platform;
+package com.communityratesgames.platform;
 
 import java.io.Serializable;
 import javax.persistence.*;

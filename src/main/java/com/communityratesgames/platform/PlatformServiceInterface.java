@@ -1,5 +1,5 @@
 
-package com.tobenamed.platform;
+package com.communityratesgames.platform;
 
 public interface PlatformServiceInterface {
 	public Platform getPlatformById(int id);

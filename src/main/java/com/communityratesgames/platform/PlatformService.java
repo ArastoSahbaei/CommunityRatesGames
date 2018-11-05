@@ -1,5 +1,5 @@
 
-package com.tobenamed.platform;
+package com.communityratesgames.platform;
 
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;

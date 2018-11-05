@@ -1,5 +1,5 @@
 
-package com.tobenamed.platform;
+package com.communityratesgames.platform;
 
 import org.springframework.data.repository.*;
 import org.springframework.stereotype.*;
