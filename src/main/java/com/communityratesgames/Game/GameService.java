@@ -1,4 +1,4 @@
-package com.tobenamed.Game;
+package com.communityratesgames.Game;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.tobenamed.Company;
+package com.communityratesgames.Company;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

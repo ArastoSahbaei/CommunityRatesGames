@@ -1,4 +1,4 @@
-package com.tobenamed.Game;
+package com.communityratesgames.Game;
 
 import java.util.List;
 
