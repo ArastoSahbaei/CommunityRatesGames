@@ -5,7 +5,6 @@ Five unemployed dudes with one given goal, one destination, to create a communit
 This quest meant a long distance from society and human interraction, but since none of them were familiar with it anyway they took their equipment and settled in a deep dark dungeon in the rainy forest of Scandanavia.
 <br />
 
-<br />
 ###### ....legend says that they are stil in that dungeon
 
 
