@@ -8,7 +8,6 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-application.properties
 
 # compiled output
 /dist
@@ -54,4 +53,4 @@ Thumbs.db
 !/.mvn/wrapper/maven-wrapper.jar
 debug.log
 debug.log
-application.properties
+
