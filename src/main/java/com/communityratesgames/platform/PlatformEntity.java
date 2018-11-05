@@ -20,6 +20,12 @@ public class PlatformEntity implements Serializable {
 		this.releaseYear = releaseYear;
 	}
 
+	public PlatformEntity(PlatformModel model) {
+		this.id = model.getId();
+		this.name = model.getName();
+		this.releaseYear = model.getReleaseYear();
+	}
+
 	protected PlatformEntity() { }
 
 	public Integer getId() {

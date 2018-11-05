@@ -26,4 +26,10 @@ public class PlatformController {
 		return new ResponseEntity(platforms, HttpStatus.OK);
 	}
 
+	@PostMapping("/platform")
+	public ResponseEntity<List<PlatformModel>> postPlatform(@RequestBody PlatformModel payload) {
+		service.insertPlatform(payload);
+		return getPlatforms();
+	}
+
 }
