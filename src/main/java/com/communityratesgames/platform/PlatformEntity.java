@@ -5,22 +5,22 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-public class Platform implements Serializable {
+public class PlatformEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Integer id;
+	private Integer id;
 
 	@Column(length=80)
-	String name;
+	private String name;
 
-	int releaseYear;
+	private int releaseYear;
 
-	public Platform(String name, int releaseYear) {
+	public PlatformEntity(String name, int releaseYear) {
 		this.name = name;
 		this.releaseYear = releaseYear;
 	}
 
-	protected Platform() { }
+	protected PlatformEntity() { }
 
 	public Integer getId() {
 		return this.id;
