@@ -44,7 +44,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     }
 
     public UserEntity findUserByUserName(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository.findByUserName(username);
     }
 
     @Override
