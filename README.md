@@ -10,7 +10,7 @@ This quest meant a long distance from society and human interraction, but since 
 
 <br />
 
-# Developers:
+# Developers
 Arasto Sahbaei <br />
 Robin Svensson <br />
 Daniel Ivestig <br />
