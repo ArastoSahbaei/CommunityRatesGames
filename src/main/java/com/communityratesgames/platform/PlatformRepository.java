@@ -2,9 +2,8 @@
 package com.communityratesgames.platform;
 
 import org.springframework.data.repository.*;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Repository;
 
-// Conflicts with org.springframework.data.repository.Repository, so be explicit.
-@org.springframework.stereotype.Repository
+@Repository
 public interface PlatformRepository extends CrudRepository<Platform, Integer> {
 }
