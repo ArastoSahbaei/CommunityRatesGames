@@ -31,8 +31,8 @@ public class PlatformService implements PlatformServiceInterface {
 		return convertEntityListToModelList(repo.findAll());
 	}
 
-	public void insertPlatform(PlatformEntity platform) {
-		repo.save(platform);
+	public void insertPlatform(PlatformModel platform) {
+		repo.save(new PlatformEntity(platform));
 	}
 
 	public void deletePlatform(PlatformEntity platform) {
