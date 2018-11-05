@@ -1,4 +1,4 @@
-package com.communityratesgames.Company;
+package com.communityratesgames.company;
 
 import lombok.Getter;
 import lombok.Setter;
