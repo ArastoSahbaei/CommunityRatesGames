@@ -1,4 +1,4 @@
-package com.tobenamed.rating;
+package com.communityratesgames.rating;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

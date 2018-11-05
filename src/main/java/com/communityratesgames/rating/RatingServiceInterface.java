@@ -1,4 +1,4 @@
-package com.tobenamed.rating;
+package com.communityratesgames.rating;
 
 import java.util.List;
 
