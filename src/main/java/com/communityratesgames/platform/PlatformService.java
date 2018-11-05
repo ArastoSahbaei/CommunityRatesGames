@@ -10,8 +10,16 @@ public class PlatformService implements PlatformServiceInterface {
 	@Autowired
 	private PlatformRepository repo;
 
-	public Platform getPlatformById(int id) {
-		Optional<Platform> opt = repo.findById((Integer)id);
+	private List<PlatformModel> convertEntityListToModelList(List<PlatformEntity> list) {
+		List<PlatformModel> out = new ArrayList<>();
+		for (PlatformEntity entity : list) {
+			out.add(new PlatformModel(entity));
+		}
+		return out;
+	}
+
+	public PlatformEntity getPlatformById(int id) {
+		Optional<PlatformEntity> opt = repo.findById((Integer)id);
 		if (opt.isPresent()) {
 			return opt.get();
 		} else {
@@ -19,11 +27,15 @@ public class PlatformService implements PlatformServiceInterface {
 		}
 	}
 
-	public void insertPlatform(Platform platform) {
+	public List<PlatformModel> getPlatforms() {
+		return convertEntityListToModelList(repo.findAll());
+	}
+
+	public void insertPlatform(PlatformEntity platform) {
 		repo.save(platform);
 	}
 
-	public void deletePlatform(Platform platform) {
+	public void deletePlatform(PlatformEntity platform) {
 		repo.delete(platform);
 	}
 }

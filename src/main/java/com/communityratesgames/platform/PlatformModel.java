@@ -1,26 +1,33 @@
 
 package com.communityratesgames.platform;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
 
-@Entity
-public class PlatformEntity implements Serializable {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+@Getter
+@AllArgsConstructor
+public class PlatformModel {
 	private Integer id;
-
-	@Column(length=80)
 	private String name;
-
 	private int releaseYear;
 
-	public PlatformEntity(String name, int releaseYear) {
+	public PlatformModel(String name, int releaseYear) {
 		this.name = name;
 		this.releaseYear = releaseYear;
 	}
 
-	protected PlatformEntity() { }
+	public PlatformModel(PlatformEntity entity) {
+		this.id = entity.getId();
+		this.name = entity.getName();
+		this.releaseYear = entity.getReleaseYear();
+	}
+
+	protected PlatformModel() { }
 
 	public Integer getId() {
 		return this.id;
