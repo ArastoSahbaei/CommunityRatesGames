@@ -38,17 +38,18 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         return convertUserListToUserModelList(ListWithAllUsers);
     }
 
-    public UserModel FindUserById(Long id) {
+    public UserModel findUserById(Long id) {
         UserEntity userEntity = userRepository.getOne(id);
         return new UserModel(userEntity);
     }
 
-    public UserEntity FindUserByUserName(String username) {
+    public UserEntity findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = FindUserByUserName(username);
+        UserEntity userEntity = findUserByUserName(username);
 
         org.springframework.security.core.userdetails.User.UserBuilder builder = null;
         if (userEntity != null) {

@@ -33,11 +33,11 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<UserModel> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.FindUserById(id), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
     }
 
     @GetMapping("/user/{username}")
     public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
-        return new ResponseEntity(userService.FindUserByUserName(username), HttpStatus.OK);
+        return new ResponseEntity(userService.findUserByUserName(username), HttpStatus.OK);
     }
 }
