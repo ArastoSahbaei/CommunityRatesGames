@@ -19,7 +19,6 @@ public class CompanyEntity {
     @Column(name = "location")
     private String location;
 
-    private String test;
 
     public CompanyEntity(){}
 
