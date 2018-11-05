@@ -19,6 +19,7 @@ public class CompanyEntity {
     @Column(name = "location")
     private String location;
 
+
     public CompanyEntity(){}
 
     public CompanyEntity(CompanyModel companyModel){
@@ -28,7 +29,6 @@ public class CompanyEntity {
         this.country = companyModel.getCountry();
         this.location = companyModel.getLocation();
     }
-
 
 
     public Long getId() {
