@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 
 @Service
-public class PlatformService {
+public class PlatformService implements PlatformServiceInterface {
 	@Autowired
 	private PlatformRepository repo;
 
