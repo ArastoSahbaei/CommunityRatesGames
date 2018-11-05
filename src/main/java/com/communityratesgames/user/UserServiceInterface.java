@@ -6,9 +6,9 @@ public interface UserServiceInterface {
 
     List<UserModel> findAllUsers();
 
-    UserModel FindUserById(Long id);
+    UserModel findUserById(Long id);
 
-    UserEntity FindUserByUserName(String username);
+    UserEntity findUserByUserName(String username);
 
     UserModel createNewUser(UserModel userModel);
 
