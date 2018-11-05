@@ -1,6 +1,9 @@
 package com.tobenamed.Company;
 
+
+
 import javax.persistence.*;
+
 
 @Entity
 public class CompanyEntity {
