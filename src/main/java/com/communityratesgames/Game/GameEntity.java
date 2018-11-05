@@ -1,9 +1,8 @@
-package com.tobenamed.Game;
+package com.communityratesgames.game;
 
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Entity
@@ -19,8 +18,8 @@ public class GameEntity {
     @Column
     private Integer company;
 
-    @Column
-    private List<String> platforms;
+   // @Column
+ //   private List<String> platforms;
 
     public GameEntity() {}
 

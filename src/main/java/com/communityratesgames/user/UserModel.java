@@ -1,34 +1,25 @@
-package com.tobenamed.user;
+package com.communityratesgames.user;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-public class UserEntity implements Serializable {
+public class UserModel implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
     private String userName;
-    @Column(unique = true)
-    private String email;
     private String firstName;
     private String lastName;
+    private String email;
     private String password;
     private String role;
 
-    public UserEntity(UserModel userModel) {
-        this.id = userModel.getId();
-        this.userName = userModel.getUserName();
-        this.email = userModel.getEmail();
-        this.firstName = userModel.getFirstName();
-        this.lastName = userModel.getLastName();
-        this.password = userModel.getPassword();
-        this.role = userModel.getRole();
-    }
-
-    public UserEntity() {
+    public UserModel(UserEntity userEntity) {
+        this.id = userEntity.getId();
+        this.userName = userEntity.getUserName();
+        this.email = userEntity.getEmail();
+        this.firstName = userEntity.getFirstName();
+        this.lastName = userEntity.getLastName();
+        this.password = userEntity.getPassword();
+        this.role = userEntity.getRole();
     }
 
     public Long getId() {
@@ -86,5 +77,6 @@ public class UserEntity implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
+
 
 }

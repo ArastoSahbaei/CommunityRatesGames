@@ -1,4 +1,4 @@
-package com.tobenamed.Game;
+package com.communityratesgames.game;
 
 
 import lombok.AllArgsConstructor;
@@ -23,6 +23,6 @@ public class GameModel implements Serializable {
         this.id = gameEntity.getId();
         this.title = gameEntity.getTitle();
         this.company = gameEntity.getCompany();
-        this.platforms = gameEntity.getPlatforms();
+      //  this.platforms = gameEntity.getPlatforms();
     }
 }

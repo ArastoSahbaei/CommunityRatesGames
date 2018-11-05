@@ -1,4 +1,4 @@
-package com.tobenamed;
+package com.communityratesgames;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
