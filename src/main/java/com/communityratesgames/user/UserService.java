@@ -11,7 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+<<<<<<< HEAD
 public class UserService implements UserServiceInterface/*, UserDetailsService*/ {
+=======
+public class UserService implements UserServiceInterface {
+>>>>>>> 91b484ad53b90ee9896e71c3bb4171263e67c0c5
 
     @Autowired
     private final UserRepository userRepository;
@@ -64,5 +68,4 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         return builder.build();
     }
 	*/
-
 }
