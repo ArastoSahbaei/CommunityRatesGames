@@ -30,10 +30,12 @@ public class RatingService implements RatingServiceInterface {
         return new RatingModel(ratingEntity);
     }
 
+/*
     public Long getRatingAverage(Long gameId){
         //TODO: Query for averages in one game
         return null;
     }
+*/
 
 
     private List<RatingModel> convertEntityListToModelList(List<RatingEntity> entityList) {
