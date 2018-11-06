@@ -22,6 +22,8 @@ public class UserModel implements Serializable {
         this.role = userEntity.getRole();
     }
 
+    public UserModel() {}
+
     public Long getId() {
         return id;
     }
