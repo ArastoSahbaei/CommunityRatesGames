@@ -29,11 +29,13 @@ public class RatingService implements RatingServiceInterface {
         RatingEntity ratingEntity = ratingRepository.findByGameIdAndUserId(gameId, userId);
         return new RatingModel(ratingEntity);
     }
+/*
 
     public Long getRatingAverage(Long gameId){
         //TODO: Query for averages in one game
         return null;
     }
+*/
 
 
     private List<RatingModel> convertEntityListToModelList(List<RatingEntity> entityList) {

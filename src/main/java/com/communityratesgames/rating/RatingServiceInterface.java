@@ -10,6 +10,8 @@ public interface RatingServiceInterface {
 
     RatingModel findByGameIdAndUserId(Long gameId, Long userId);
 
+/*
     Long getRatingAverage(Long gameId);
+*/
 
 }
