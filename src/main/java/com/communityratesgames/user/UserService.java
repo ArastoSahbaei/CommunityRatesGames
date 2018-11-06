@@ -1,17 +1,17 @@
 package com.communityratesgames.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface, UserDetailsService {
+public class UserService implements UserServiceInterface {
 
     @Autowired
     private final UserRepository userRepository;
@@ -47,7 +47,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         return userRepository.findByUserName(username);
     }
 
-    @Override
+ /*   @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = findUserByUserName(username);
 
@@ -62,5 +62,5 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
         return builder.build();
     }
-
+*/
 }

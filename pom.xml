@@ -45,10 +45,15 @@
     </dependency>
 
     <!--  Starter for using Spring Security -->
+
+    <!---
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+
+    -->
+
 
     <!-- Starter for testing Spring Boot applications with libraries including
     JUnit, Hamcrest and Mockito -->
