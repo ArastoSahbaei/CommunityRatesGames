@@ -13,7 +13,6 @@ public interface RatingServiceInterface {
     */
 
 /*    Long getRatingAverage(Long gameId);*/
-=======
 /*
     Long getRatingAverage(Long gameId);
 */

@@ -16,3 +16,4 @@ public interface RatingRepository extends JpaRepository<RatingEntity, Long> {
     RatingEntity findByGameAndUser(GameEntity game, UserEntity user);
 
 /*    Long getRatingAverage(Long gameId);*/
+}

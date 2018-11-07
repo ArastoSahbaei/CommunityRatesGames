@@ -42,8 +42,6 @@ public class RatingService implements RatingServiceInterface {
     }
 */
 
-*/
-
     private List<RatingModel> convertEntityListToModelList(List<RatingEntity> entityList) {
         return entityList.stream().map(RatingModel::new).collect((Collectors.toList()));
     }
