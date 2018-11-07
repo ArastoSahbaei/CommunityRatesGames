@@ -4,3 +4,15 @@ VALUES
 (2, '2user@user.user', 'Robin', 'Svensson', 'power', 'admin', 'RobinLiquid'),
 (3, '3user@user.user', 'Daniel', 'Ivestig', 'power', 'admin', 'Daniel'),
 (4, '4user@user.user', 'Gustaf', 'Cyborg', 'power', 'admin', 'HighQualityGurka');
+
+INSERT INTO company_entity(id, company_name, country, location)
+VALUES
+(1, 'Microsoft', 'US', '???');
+
+INSERT INTO game_entity(id, title, company_id)
+VALUES
+(1, 'Halo', 1);
+
+INSERT INTO platform_entity(id, name, release_year, company_id)
+VALUES
+(1, 'XBox', 2001, 1);

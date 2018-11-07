@@ -3,6 +3,7 @@ package com.communityratesgames.game;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class GameService implements GameServiceInterface {
@@ -13,6 +14,14 @@ public class GameService implements GameServiceInterface {
         this.gameRepository = gameRepository;
     }
 
+    private List<GameModel> convertEntityListToModelList(List<GameEntity> list) {
+        List<GameModel> out = new ArrayList<>();
+        for (GameEntity entity : list) {
+            out.add(new GameModel(entity));
+        }
+        return out;
+    }
+
     @Override
     public GameModel createGame(GameModel gameModel) {
         GameEntity gameEntity = new GameEntity(gameModel);
@@ -21,7 +30,7 @@ public class GameService implements GameServiceInterface {
 
     @Override
     public List<GameModel> findAllGames() {
-        return null;
+        return convertEntityListToModelList(gameRepository.findAll());
     }
 
     public GameModel findGameById(Long id) {
