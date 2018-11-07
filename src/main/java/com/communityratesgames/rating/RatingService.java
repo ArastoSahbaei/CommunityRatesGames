@@ -3,6 +3,8 @@ package com.communityratesgames.rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,7 @@ public class RatingService implements RatingServiceInterface {
 
     public RatingModel createNewRating(RatingModel ratingModel) {
         RatingEntity rating = new RatingEntity(ratingModel);
+        rating.setCreationDate(Timestamp.from(Instant.now()));
         return new RatingModel(ratingRepository.save(rating));
     }
 
