@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
 
     public UserModel createNewUser(UserModel userModel) {
         UserEntity user = new UserEntity(userModel);
+        user.setUserCreated(Timestamp.from(Instant.now()));
         return new UserModel(userRepository.save(user));
     }
 
