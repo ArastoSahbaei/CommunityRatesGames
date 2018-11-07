@@ -1,6 +1,7 @@
 package com.communityratesgames.game;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ import com.communityratesgames.company.CompanyModel;
 public class GameModel implements Serializable {
 
     private Long id;
+    private Timestamp releaseDate;
     private String title;
     private CompanyModel company;
     private List<PlatformModel> platforms;
@@ -24,6 +26,7 @@ public class GameModel implements Serializable {
 
     public GameModel(GameEntity gameEntity) {
         this.id = gameEntity.getId();
+        this.releaseDate = gameEntity.getReleaseDate();
         this.title = gameEntity.getTitle();
         this.company = new CompanyModel(gameEntity.getCompany());
         this.platforms = new ArrayList<PlatformModel>();
@@ -60,5 +63,13 @@ public class GameModel implements Serializable {
 
     public void setPlatforms(List<PlatformModel> platforms) {
         this.platforms = platforms;
+    }
+
+    public Timestamp getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Timestamp releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }

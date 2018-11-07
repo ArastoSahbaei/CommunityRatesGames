@@ -1,6 +1,7 @@
 package com.communityratesgames.game;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class GameEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private Timestamp releaseDate;
     @Column
     private String title;
 
@@ -31,6 +32,7 @@ public class GameEntity {
 
     public GameEntity(GameModel gameModel) {
         this.id = gameModel.getId();
+        this.releaseDate = gameModel.getReleaseDate();
         this.title = gameModel.getTitle();
         this.company = new CompanyEntity(gameModel.getCompany());
         this.platforms = new ArrayList<PlatformEntity>();
@@ -65,5 +67,13 @@ public class GameEntity {
 
     public void setPlatforms(List<PlatformEntity> platforms) {
         this.platforms = platforms;
+    }
+
+    public Timestamp getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Timestamp releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
