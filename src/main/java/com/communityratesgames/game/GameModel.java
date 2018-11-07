@@ -61,36 +61,4 @@ public class GameModel implements Serializable {
     public void setPlatforms(List<PlatformModel> platforms) {
         this.platforms = platforms;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Integer getCompany() {
-        return company;
-    }
-
-    public void setCompany(Integer company) {
-        this.company = company;
-    }
-
-    public List<String> getPlatforms() {
-        return platforms;
-    }
-
-    public void setPlatforms(List<String> platforms) {
-        this.platforms = platforms;
-    }
 }

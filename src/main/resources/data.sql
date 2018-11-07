@@ -5,7 +5,7 @@ VALUES
 (3, '3user@user.user', 'Daniel', 'Ivestig', 'power', 'admin', 'Daniel'),
 (4, '4user@user.user', 'Gustaf', 'Cyborg', 'power', 'admin', 'HighQualityGurka');
 
-INSERT INTO company_entity(id, company_name, country, location)
+INSERT INTO company_entity(id, company_name, country, city)
 VALUES
 (1, 'Microsoft', 'US', '???');
 
