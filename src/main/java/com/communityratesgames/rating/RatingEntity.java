@@ -10,7 +10,9 @@ public class RatingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @ManyToOne
     private Long userId;
+    @ManyToOne
     private Long gameId;
     private int rating;
     private Timestamp creationDate;
