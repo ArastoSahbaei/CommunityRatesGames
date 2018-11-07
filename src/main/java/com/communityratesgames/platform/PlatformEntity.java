@@ -3,7 +3,12 @@ package com.communityratesgames.platform;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import lombok.*;
 
+import com.communityratesgames.company.CompanyEntity;
+
+@Getter
+@Setter
 @Entity
 public class PlatformEntity implements Serializable {
 	@Id
@@ -15,36 +20,22 @@ public class PlatformEntity implements Serializable {
 
 	private int releaseYear;
 
-	public PlatformEntity(String name, int releaseYear) {
+	@ManyToOne
+	@JoinColumn
+	private CompanyEntity company;
+
+	public PlatformEntity(String name, int releaseYear, CompanyEntity company) {
 		this.name = name;
 		this.releaseYear = releaseYear;
+		this.company = company;
 	}
 
 	public PlatformEntity(PlatformModel model) {
 		this.id = model.getId();
 		this.name = model.getName();
 		this.releaseYear = model.getReleaseYear();
+		this.company = new CompanyEntity(model.getCompany());
 	}
 
 	protected PlatformEntity() { }
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public int getReleaseYear() {
-		return this.releaseYear;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void setReleaseYear(int releaseYear) {
-		this.releaseYear = releaseYear;
-	}
 }
