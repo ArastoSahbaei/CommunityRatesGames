@@ -7,7 +7,6 @@ This quest meant a long distance from society and human interraction, but since 
 
 ###### ....legend says that they are stil in that dungeon
 
-
 <br />
 
 # Developers
