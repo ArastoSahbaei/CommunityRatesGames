@@ -3,19 +3,24 @@ package com.communityratesgames.rating;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.communityratesgames.game.GameEntity;
+import com.communityratesgames.game.GameModel;
+import com.communityratesgames.user.UserEntity;
+import com.communityratesgames.user.UserModel;
+
 public class RatingModel implements Serializable {
 
     private Long id;
-    private Long userId;
-    private Long gameId;
+    private UserModel user;
+    private GameModel game;
     private int rating;
     private Timestamp creationDate;
 
 
     public RatingModel(RatingEntity ratingEntity) {
         this.id = ratingEntity.getId();
-        this.userId = ratingEntity.getUserId();
-        this.gameId = ratingEntity.getGameId();
+        this.user = new UserModel(ratingEntity.getUser());
+        this.game = new GameModel(ratingEntity.getGame());
         this.rating = ratingEntity.getRating();
         this.creationDate = ratingEntity.getCreationDate();
     }
@@ -29,20 +34,20 @@ public class RatingModel implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserModel getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
-    public Long getGameId() {
-        return gameId;
+    public GameModel getGame() {
+        return game;
     }
 
-    public void setGameId(Long gameId) {
-        this.gameId = gameId;
+    public void setGame(GameModel game) {
+        this.game = game;
     }
 
     public int getRating() {

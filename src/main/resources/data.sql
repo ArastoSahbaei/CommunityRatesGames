@@ -16,3 +16,7 @@ VALUES
 INSERT INTO platform_entity(id, name, release_year, company_id)
 VALUES
 (1, 'XBox', 2001, 1);
+
+INSERT INTO rating_entity(id, user_id, game_id, rating)
+VALUES
+(1, 1, 1, 5);
