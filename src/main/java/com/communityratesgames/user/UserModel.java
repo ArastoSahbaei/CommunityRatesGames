@@ -1,10 +1,12 @@
 package com.communityratesgames.user;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class UserModel implements Serializable {
 
     private Long id;
+    private Timestamp userCreated;
     private String userName;
     private String firstName;
     private String lastName;
@@ -20,6 +22,7 @@ public class UserModel implements Serializable {
         this.lastName = userEntity.getLastName();
         this.password = userEntity.getPassword();
         this.role = userEntity.getRole();
+        this.userCreated = userEntity.getUserCreated();
     }
 
     public UserModel() {}
@@ -30,6 +33,14 @@ public class UserModel implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Timestamp getUserCreated() {
+        return userCreated;
+    }
+
+    public void setUserCreated(Timestamp userCreated) {
+        this.userCreated = userCreated;
     }
 
     public String getUserName() {
