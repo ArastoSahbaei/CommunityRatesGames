@@ -5,12 +5,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import com.communityratesgames.game.GameEntity;
+import com.communityratesgames.user.UserEntity;
+
 @Repository
 public interface RatingRepository extends JpaRepository<RatingEntity, Long> {
 
-    List<RatingEntity> findAllByGameId(Long gameId);
+    List<RatingEntity> findAllByGame(GameEntity game);
 
-    RatingEntity findByGameIdAndUserId(Long gameId, Long userId);
+    RatingEntity findByGameAndUser(GameEntity game, UserEntity user);
 
 /*    Long getRatingAverage(Long gameId);*/
 }

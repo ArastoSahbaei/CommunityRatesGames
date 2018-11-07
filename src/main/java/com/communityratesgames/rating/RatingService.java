@@ -14,12 +14,16 @@ public class RatingService implements RatingServiceInterface {
 
     public RatingService(RatingRepository ratingRepository) {this.ratingRepository = ratingRepository;}
 
-    @Override
     public RatingModel createNewRating(RatingModel ratingModel) {
         RatingEntity rating = new RatingEntity(ratingModel);
         return new RatingModel(ratingRepository.save(rating));
     }
 
+    public List<RatingModel> getAllRatings() {
+        return convertEntityListToModelList(ratingRepository.findAll());
+    }
+
+    /*
     @Override
     public List<RatingModel> findRatingsByGameId(Long gameId) {
         return convertEntityListToModelList(ratingRepository.findAllByGameId(gameId));
@@ -35,8 +39,8 @@ public class RatingService implements RatingServiceInterface {
         //TODO: Query for averages in one game
         return null;
     }
-*/
 
+*/
 
     private List<RatingModel> convertEntityListToModelList(List<RatingEntity> entityList) {
         return entityList.stream().map(RatingModel::new).collect((Collectors.toList()));
