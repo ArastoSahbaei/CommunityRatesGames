@@ -9,6 +9,6 @@ public class Application {
     public static void main(String[] args) {
 
         SpringApplication.run(Application.class, args);
-        System.out.println("Hallå eller gubbar!");
+        System.out.println("###Code Compiled Sucessfully###");
     }
 }
