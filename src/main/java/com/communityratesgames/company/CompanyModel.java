@@ -1,8 +1,6 @@
 package com.communityratesgames.company;
 
-
 import java.io.Serializable;
-
 
 public class CompanyModel implements Serializable {
 
@@ -47,8 +45,31 @@ public class CompanyModel implements Serializable {
     public String getCity() {
         return city;
     }
-
-    public void setCity(String city) {
+      public void setCity(String city) {
         this.city = city;
+    }
+  
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

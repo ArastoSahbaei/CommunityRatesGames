@@ -1,10 +1,7 @@
 package com.communityratesgames.game;
 
-import lombok.Getter;
-
 import javax.persistence.*;
 
-@Getter
 @Entity
 public class GameEntity {
 
@@ -25,5 +22,29 @@ public class GameEntity {
 
     public GameEntity(GameModel gameModel) {
         this.id = gameModel.getId();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getCompany() {
+        return company;
+    }
+
+    public void setCompany(Integer company) {
+        this.company = company;
     }
 }
