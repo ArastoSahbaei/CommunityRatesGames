@@ -14,6 +14,5 @@ This quest meant a long distance from society and human interraction, but since 
 Arasto Sahbaei <br />
 Robin Svensson <br />
 Daniel Ivestig <br />
-Björn Kristensson <br />
 Gustaf Lé Cyborg
 
