@@ -7,7 +7,7 @@ public class CompanyModel implements Serializable {
     private Long id;
     private String companyName;
     private String country;
-    private String location;
+    private String city;
 
     public CompanyModel(){}
 
@@ -15,7 +15,35 @@ public class CompanyModel implements Serializable {
         this.id = companyEntity.getId();
         this.companyName = companyEntity.getCompanyName();
         this.country = companyEntity.getCountry();
-        this.location = companyEntity.getLocation();
+        this.city = companyEntity.getCity();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public Long getId() {
@@ -48,5 +76,9 @@ public class CompanyModel implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
