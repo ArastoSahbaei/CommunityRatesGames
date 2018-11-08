@@ -20,9 +20,8 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<UserModel> RegisterNewUser(@RequestBody UserModel userModel) {
-        UserModel newUserModel = userService.createNewUser(userModel);
-        return new ResponseEntity<>(newUserModel, HttpStatus.OK);
+    public ResponseEntity<String> RegisterNewUser(@RequestBody UserModel userModel) {
+        return userService.validateUserConstraints(userModel);
     }
 
     @GetMapping("/user")

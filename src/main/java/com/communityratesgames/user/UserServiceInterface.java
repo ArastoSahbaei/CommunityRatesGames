@@ -10,6 +10,8 @@ public interface UserServiceInterface {
 
     UserEntity findUserByUserName(String username);
 
+    UserEntity findUserByEmail(String email);
+
     UserModel createNewUser(UserModel userModel);
 
 }
