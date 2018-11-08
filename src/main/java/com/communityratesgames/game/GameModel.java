@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import com.communityratesgames.platform.PlatformEntity;
 import com.communityratesgames.platform.PlatformModel;
-import com.communityratesgames.company.CompanyEntity;
 import com.communityratesgames.company.CompanyModel;
 
 public class GameModel implements Serializable {

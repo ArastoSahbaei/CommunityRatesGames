@@ -5,9 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.communityratesgames.game.GameEntity;
-import com.communityratesgames.game.GameModel;
 import com.communityratesgames.user.UserEntity;
-import com.communityratesgames.user.UserModel;
 
 @Entity
 public class RatingEntity implements Serializable {
