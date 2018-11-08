@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import com.communityratesgames.platform.PlatformEntity;
 import com.communityratesgames.platform.PlatformModel;
 import com.communityratesgames.company.CompanyEntity;
-import com.communityratesgames.company.CompanyModel;
 
 @Entity
 public class GameEntity {

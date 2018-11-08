@@ -57,3 +57,6 @@ debug.log
 # Temporary files
 *.tmp
 *.swp
+
+#Client
+/client/node_modules/
