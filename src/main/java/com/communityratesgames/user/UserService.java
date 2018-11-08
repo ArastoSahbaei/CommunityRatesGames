@@ -1,17 +1,19 @@
 package com.communityratesgames.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface, UserDetailsService {
+public class UserService implements UserServiceInterface/*, UserDetailsService*/ {
 
     @Autowired
     private final UserRepository userRepository;
@@ -30,6 +32,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     public UserModel createNewUser(UserModel userModel) {
         UserEntity user = new UserEntity(userModel);
+        user.setUserCreated(Timestamp.from(Instant.now()));
         return new UserModel(userRepository.save(user));
     }
 
@@ -47,6 +50,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         return userRepository.findByUserName(username);
     }
 
+	/*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity userEntity = findUserByUserName(username);
@@ -62,5 +66,5 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
         return builder.build();
     }
-
+	*/
 }

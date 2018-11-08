@@ -13,23 +13,23 @@ import java.util.List;
 @RequestMapping("/api")
 public class PlatformController {
 
-	@Autowired
-	private final PlatformService service;
+    @Autowired
+    private final PlatformService service;
 
-	public PlatformController(PlatformService service) {
-		this.service = service;
-	}
+    public PlatformController(PlatformService service) {
+        this.service = service;
+    }
 
-	@GetMapping("/platform")
-	public ResponseEntity<List<PlatformModel>> getPlatforms() {
-		List<PlatformModel> platforms = service.getPlatforms();
-		return new ResponseEntity(platforms, HttpStatus.OK);
-	}
+    @GetMapping("/platform")
+    public ResponseEntity<List<PlatformModel>> getPlatforms() {
+        List<PlatformModel> platforms = service.getPlatforms();
+        return new ResponseEntity(platforms, HttpStatus.OK);
+    }
 
-	@PostMapping("/platform")
-	public ResponseEntity<List<PlatformModel>> postPlatform(@RequestBody PlatformModel payload) {
-		service.insertPlatform(payload);
-		return getPlatforms();
-	}
+    @PostMapping("/platform")
+    public ResponseEntity<List<PlatformModel>> postPlatform(@RequestBody PlatformModel payload) {
+        service.insertPlatform(payload);
+        return getPlatforms();
+    }
 
 }

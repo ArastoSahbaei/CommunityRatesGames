@@ -1,51 +1,68 @@
 
 package com.communityratesgames.platform;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.List;
+import java.util.ArrayList;
 
+import com.communityratesgames.company.CompanyModel;
+import com.communityratesgames.company.CompanyEntity;
+import com.communityratesgames.game.GameModel;
+import com.communityratesgames.game.GameEntity;
 
-@Getter
-@AllArgsConstructor
-public class PlatformModel {
-	private Integer id;
-	private String name;
-	private int releaseYear;
+public class PlatformModel implements Serializable {
+    private Integer id;
+    private String name;
+    private int releaseYear;
+    private CompanyModel company;
+    private List<GameModel> games;
 
-	public PlatformModel(String name, int releaseYear) {
-		this.name = name;
-		this.releaseYear = releaseYear;
-	}
+    public PlatformModel(PlatformEntity entity) {
+        this.id = entity.getId();
+        this.name = entity.getName();
+        this.releaseYear = entity.getReleaseYear();
+        this.company = new CompanyModel(entity.getCompany());
+        this.games = new ArrayList();
+        for (GameEntity game : entity.getGames()) {
+            this.games.add(new GameModel(game));
+        }
+    }
 
-	public PlatformModel(PlatformEntity entity) {
-		this.id = entity.getId();
-		this.name = entity.getName();
-		this.releaseYear = entity.getReleaseYear();
-	}
+    protected PlatformModel() { }
 
-	protected PlatformModel() { }
+    public Integer getId() {
+        return this.id;
+    }
 
-	public Integer getId() {
-		return this.id;
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public int getReleaseYear() {
+        return this.releaseYear;
+    }
 
-	public int getReleaseYear() {
-		return this.releaseYear;
-	}
+    public CompanyModel getCompany() {
+        return this.company;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public List<GameModel> getGames() {
+        return this.games;
+    }
 
-	public void setReleaseYear(int releaseYear) {
-		this.releaseYear = releaseYear;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setCompany(CompanyModel company) {
+        this.company = company;
+    }
+
+    public void setGames(List<GameModel> games) {
+        this.games = games;
+    }
 }

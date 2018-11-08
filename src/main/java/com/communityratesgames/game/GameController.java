@@ -19,6 +19,12 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    @GetMapping("/game")
+    public ResponseEntity<List<GameModel>> getGames() {
+        List<GameModel> games = gameService.findAllGames();
+        return new ResponseEntity(games, HttpStatus.OK);
+    }
+
     @PostMapping("/game")
     public ResponseEntity<List<GameModel>> createGame(@RequestBody GameModel gameModel) {
         GameModel newGameModel = gameService.createGame(gameModel);

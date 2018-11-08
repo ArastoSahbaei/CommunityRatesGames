@@ -10,7 +10,7 @@ public class CompanyEntity {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "companyName")
@@ -19,8 +19,8 @@ public class CompanyEntity {
     @Column(name = "country")
     private String country;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "city")
+    private String city;
 
 
     public CompanyEntity(){}
@@ -30,7 +30,7 @@ public class CompanyEntity {
         this.id = companyModel.getId();
         this.companyName = companyModel.getCompanyName();
         this.country = companyModel.getCountry();
-        this.location = companyModel.getLocation();
+        this.city = companyModel.getCity();
     }
 
 
@@ -58,11 +58,11 @@ public class CompanyEntity {
         this.country = country;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
     }
 }

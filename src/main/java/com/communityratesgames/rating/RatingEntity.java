@@ -4,21 +4,32 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.communityratesgames.game.GameEntity;
+import com.communityratesgames.game.GameModel;
+import com.communityratesgames.user.UserEntity;
+import com.communityratesgames.user.UserModel;
+
 @Entity
 public class RatingEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    private Long gameId;
+
+    @JoinColumn
+    @ManyToOne
+    private UserEntity user;
+
+    @JoinColumn
+    @ManyToOne
+    private GameEntity game;
     private int rating;
     private Timestamp creationDate;
 
     public RatingEntity(RatingModel ratingModel) {
         this.id = ratingModel.getId();
-        this.userId = ratingModel.getUserId();
-        this.gameId = ratingModel.getGameId();
+        this.user = new UserEntity(ratingModel.getUser());
+        this.game = new GameEntity(ratingModel.getGame());
         this.rating = ratingModel.getRating();
         this.creationDate = ratingModel.getCreationDate();
     }
@@ -32,20 +43,20 @@ public class RatingEntity implements Serializable {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public Long getGameId() {
-        return gameId;
+    public GameEntity getGame() {
+        return game;
     }
 
-    public void setGameId(Long gameId) {
-        this.gameId = gameId;
+    public void setGame(GameEntity game) {
+        this.game = game;
     }
 
     public int getRating() {
