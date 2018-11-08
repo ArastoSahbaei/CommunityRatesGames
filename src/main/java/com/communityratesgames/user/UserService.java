@@ -56,7 +56,9 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
     public UserEntity findUserByUserName(String username) {
         return userRepository.findUserByUserName(username);
     }
-    public UserEntity findUserByEmail(String email){return userRepository.findUserByEmail(email); }
+    public UserEntity findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 	/*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
