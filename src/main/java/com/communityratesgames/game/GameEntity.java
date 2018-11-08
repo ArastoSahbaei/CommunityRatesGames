@@ -14,7 +14,7 @@ import com.communityratesgames.company.CompanyModel;
 public class GameEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp releaseDate;
     @Column

@@ -13,7 +13,7 @@ import com.communityratesgames.user.UserModel;
 public class RatingEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JoinColumn

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class UserEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp userCreated;
     @Column(unique = true)
