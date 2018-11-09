@@ -10,6 +10,9 @@ import { CompanyComponent } from './company/company.component';
 import { PlatformComponent } from './platform/platform.component';
 import { RatingComponent } from './rating/rating.component';
 import { UserComponent } from './user/user.component';
+import { MainNavigationComponent } from './main-navigation/main-navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,19 @@ import { UserComponent } from './user/user.component';
     CompanyComponent,
     PlatformComponent,
     RatingComponent,
-    UserComponent
+    UserComponent,
+    MainNavigationComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
