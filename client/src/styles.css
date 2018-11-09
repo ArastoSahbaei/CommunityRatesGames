@@ -6,3 +6,6 @@ body {
   margin: 0;
 }
 
+nav a.profile {
+  color: #2ecc71;
+}
