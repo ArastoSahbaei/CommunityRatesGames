@@ -10,9 +10,9 @@ import { CompanyComponent } from './company/company.component';
 import { PlatformComponent } from './platform/platform.component';
 import { RatingComponent } from './rating/rating.component';
 import { UserComponent } from './user/user.component';
-import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MainNavComponent } from './main-nav/main-nav.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     PlatformComponent,
     RatingComponent,
     UserComponent,
-    MainNavigationComponent
+    MainNavComponent,
   ],
   imports: [
     BrowserModule,

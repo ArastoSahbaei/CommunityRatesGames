@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <!-- #routerLink is ok -->
+      <a mat-list-item href="#">Profile</a>
+      <a mat-list-item href="#">My Ratings</a>
+      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item href="#">Report a bug</a>
+      <a mat-list-item href="#">Add a game</a>
+      <a mat-list-item href="#">Contact</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Community Rated Games</span>
+      <span class="mainTitles"></span>
+      <a href="#">Top 100</a>
+      <a href="#">Recentley Released</a>
+      <a href="#">Test</a>
+      <span class="loginRegister"></span>
+      <a href="#">Login</a>
+      <a href="#">Register</a>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
