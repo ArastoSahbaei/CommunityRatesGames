@@ -9,6 +9,7 @@ import {RatingComponent} from "./rating/rating.component";
 import {ReportBugComponent} from "./report-bug/report-bug.component";
 import {AddGameComponent} from "./add-game/add-game.component";
 import {ContactComponent} from "./contact/contact.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'report-a-bug', component: ReportBugComponent},
   {path: 'add-a-game', component: AddGameComponent},
   {path: 'contact', component: ContactComponent},
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

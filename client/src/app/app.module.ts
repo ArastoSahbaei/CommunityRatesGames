@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { ReportBugComponent } from './report-bug/report-bug.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ContactComponent } from './contact/contact.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ContactComponent } from './contact/contact.component';
     ReportBugComponent,
     AddGameComponent,
     ContactComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
