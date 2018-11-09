@@ -1,0 +1,16 @@
+.btn {
+  background: #2ecc71;
+  width:100px;
+  padding-top:3px;
+  padding-bottom:3px;
+  border-radius:4px;
+  border: #27ae60 1px solid;
+}
+
+.btn1 {
+  background: #2ecc71;
+  width: 50px;
+  padding-top:5px;
+  border: #27ae60 1px solid;
+  border-radius:4px;
+}

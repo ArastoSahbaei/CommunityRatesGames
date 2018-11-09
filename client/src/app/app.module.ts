@@ -13,6 +13,7 @@ import { UserComponent } from './user/user.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
+import {AppRoutingModule, routingComponents} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     RatingComponent,
     UserComponent,
     MainNavComponent,
+    routingComponents
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
