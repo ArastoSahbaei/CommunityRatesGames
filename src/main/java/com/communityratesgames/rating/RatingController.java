@@ -30,13 +30,16 @@ public class RatingController {
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
 
-    /*
     @GetMapping("/rating/{gameid}")
-    public ResponseEntity<List<RatingModel>> getRatingsByGame (@PathVariable Long game){
-        List<RatingModel> ratingList = ratingService.findRatingsByGame(game);
+    public ResponseEntity<List<RatingModel>> getRatingsByGameId (@PathVariable Long gameId){
+        List<RatingModel> ratingList = ratingService.findRatingsByGameId(gameId);
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
-    */
+
+    @GetMapping("/rating/average/{gameid}")
+    public ResponseEntity<Long> getRatingAverageByGameId (@PathVariable Long gameId){
+        return new ResponseEntity<>(ratingService.getAverageOfGame(gameId), HttpStatus.OK);
+    }
 
     /*
     //TODO: Refactor when needed
