@@ -107,6 +107,14 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mail -->
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-mail</artifactId>
+      <version>5.1.0.RELEASE</version>
+    </dependency>
+
+
     <!-- JSTL tag lib -->
     <dependency>
       <groupId>javax.servlet.jsp.jstl</groupId>
