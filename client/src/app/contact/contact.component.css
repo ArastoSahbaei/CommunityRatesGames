@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 89%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 50px;
+  margin-left: 200px;
+}
+
+input[type=submit] {
+  background-color: #2ecc71;
+  color: white;
+  padding: 12px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn3 {
+  background: #2ecc71;
+  width: 100px;
+  padding-top:5px;
+  border: #27ae60 1px solid;
+  border-radius:4px;
+}
