@@ -3,6 +3,9 @@ package com.communityratesgames.user;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.math.BigInteger;
 
 @Entity
 public class UserEntity implements Serializable {
@@ -17,6 +20,7 @@ public class UserEntity implements Serializable {
     private String email;
     private String firstName;
     private String lastName;
+    private String passwordHash;
     private String password;
     private String role;
 
@@ -26,7 +30,7 @@ public class UserEntity implements Serializable {
         this.email = userModel.getEmail();
         this.firstName = userModel.getFirstName();
         this.lastName = userModel.getLastName();
-        this.password = userModel.getPassword();
+        this.setPassword(userModel.getPassword());
         this.role = userModel.getRole();
         this.userCreated = userModel.getUserCreated();
     }
@@ -87,7 +91,22 @@ public class UserEntity implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        // Use hashed SHA-256.
+        byte[] hash = new byte[4];
+        SecureRandom rand = new SecureRandom();
+        rand.setSeed(rand.generateSeed(4));
+        rand.nextBytes(hash);
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            this.passwordHash = Integer.toHexString(((int)hash[0] << 24) | ((int)hash[1] << 16) | ((int)hash[2] << 8) | (int)hash[3]);
+            password += passwordHash;
+            md.update(password.getBytes(StandardCharsets.UTF_8));
+            hash = md.digest();
+            this.password = String.format("%064x", new BigInteger(1, hash));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getRole() {
