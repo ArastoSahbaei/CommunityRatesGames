@@ -3,15 +3,17 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Username</mat-toolbar>
     <mat-nav-list>
-      <!-- #routerLink is ok -->
-      <a  mat-list-item routerLink="/profile" routerLinkActive="x">Profile</a>
-      <a  mat-list-item routerLink="/rating" routerLinkActive="x">My Ratings</a>
-      <a mat-list-item href="#">Saved Games</a>
-      <a  mat-list-item routerLink="/report-a-bug" routerLinkActive="x">Report a bug</a>
-      <a  mat-list-item routerLink="/add-a-game" routerLinkActive="x">Add a game</a>
-      <a  mat-list-item routerLink="/contact" routerLinkActive="x">Contact</a>
+      <a mat-list-item routerLink="/profile" routerLinkActive="x">Profile</a>
+      <a mat-list-item routerLink="/rating" routerLinkActive="x">My Ratings</a>
+      <a mat-list-item routerLink="/#TBA" routerLinkActive="x">My Saved Games</a>
+      <div class="inner-content" id="botNav" mat-list-item>
+        <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">Report a Bug</a>
+        <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">Add a Game</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="x">Contact</a>
+        <a mat-list-item routerLink="/logout" routerLinkActive="x">Logout</a>
+      </div>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -24,15 +26,14 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Community Rated Games</span>
+      <span>COMMUNITY RATED GAMES</span>
       <span class="mainTitles"></span>
-      <a  mat-list-item routerLink="/home" routerLinkActive="x">Home</a>
-      <a  mat-list-item routerLink="/game" routerLinkActive="x">Game</a>
+      <a mat-list-item routerLink="/home" routerLinkActive="x">Home</a>
+      <a mat-list-item routerLink="/game" routerLinkActive="x">Game</a>
       <a href="#">Recentley Released</a>
-      <a href="#">Test</a>
       <span class="loginRegister"></span>
-      <a  mat-list-item routerLink="/login" routerLinkActive="x">Login</a>
-      <a  mat-list-item routerLink="/register" routerLinkActive="x">Register</a>
+      <a mat-list-item routerLink="/login" routerLinkActive="x">Login</a>
+      <a mat-list-item routerLink="/register" routerLinkActive="x">Register</a>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
