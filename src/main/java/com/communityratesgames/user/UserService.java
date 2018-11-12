@@ -96,11 +96,13 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
             return new ResponseEntity<String>("Password not valid" +
                     "Password must be between 8 to 30 characters", HttpStatus.NOT_ACCEPTABLE);
         }
-        if (username.equalsIgnoreCase(findUserByUserName(username).getUserName())){
-            return new ResponseEntity<String>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
-        }
-        if (user.getEmail().equals(findUserByUserName(username).getUserName())){
-            return new ResponseEntity<String>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
+        if (findUserByUserName(username) != null){
+            if (username.equalsIgnoreCase(findUserByUserName(username).getUserName())){
+                return new ResponseEntity<String>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
+            }
+            if (user.getEmail().equals(findUserByUserName(username).getUserName())){
+                return new ResponseEntity<String>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
+            }
         }
         createNewUser(user);
         return new ResponseEntity<String>("New user created", HttpStatus.OK);
