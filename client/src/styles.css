@@ -3,12 +3,11 @@
 
 
 body {
-  background: url("assets/images/home.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-color: #dcdcdc;
+  height: 100%;
+  background-color: #3B3E3D; /* For browsers that do not support gradients */
+  background-image: linear-gradient(#3B3E3D, #7F8181); /* Standard syntax (must be last) */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
 }
 img.bg {
