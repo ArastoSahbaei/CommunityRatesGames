@@ -7,11 +7,18 @@ VALUES
 
 INSERT INTO company_entity(id, company_name, country, city)
 VALUES
-(1, 'Microsoft', 'US', '???');
+(1, 'Microsoft', 'US', '???'),
+(2, 'Nintendo', 'Japan', 'GloriousNippon');
 
 INSERT INTO game_entity(id, title, company_id)
 VALUES
-(1, 'Halo', 1);
+(1, 'Halo', 1),
+(2, 'Hallå', 1),
+(3, 'Hallon', 1),
+(4, 'Haloeller', 1),
+(5, 'Halloes', 1),
+(6, 'Hajro II', 1),
+(7, 'Mario cart', 2);
 
 INSERT INTO platform_entity(id, name, release_year, company_id)
 VALUES
