@@ -25,9 +25,16 @@ public class GameController {
         return new ResponseEntity(games, HttpStatus.OK);
     }
 
+    //TODO: Security And/Or userrequired
     @PostMapping("/game")
     public ResponseEntity<List<GameModel>> createGame(@RequestBody GameModel gameModel) {
         GameModel newGameModel = gameService.createGame(gameModel);
         return new ResponseEntity(newGameModel, HttpStatus.OK);
     }
+
+    @GetMapping("/game/search/{searchstring}")
+    public ResponseEntity<List<String>> searchGame(@PathVariable String searchString) {
+        return new ResponseEntity(gameService.searchGame(searchString),HttpStatus.OK);
+    }
+
 }
