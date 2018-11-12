@@ -3,7 +3,6 @@ package com.communityratesgames.game;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -32,7 +31,8 @@ public class GameService implements GameServiceInterface {
     }
 
     public List<String> searchGame(String searchString){
-        return gameRepository.findFirst5ByTitle(searchString, Sort.unsorted()).stream().map(GameEntity::getTitle).collect((Collectors.toList()));
+        return gameRepository.findFirst5ByTitleContaining(searchString, Sort.unsorted()).stream()
+                .map(GameEntity::getTitle).collect((Collectors.toList()));
 
     }
 

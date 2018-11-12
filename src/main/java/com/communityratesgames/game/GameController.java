@@ -32,7 +32,7 @@ public class GameController {
         return new ResponseEntity(newGameModel, HttpStatus.OK);
     }
 
-    @GetMapping("/game/search/{searchstring}")
+    @GetMapping("/game/search/{searchString}")
     public ResponseEntity<List<String>> searchGame(@PathVariable String searchString) {
         return new ResponseEntity(gameService.searchGame(searchString),HttpStatus.OK);
     }
