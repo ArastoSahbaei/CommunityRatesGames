@@ -1,14 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
 <div class="container">
-<form>
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+  <h1>Contact</h1>
+  <p>Please fill in all forms to send us an email</p>
 
-    <label>Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-    <label>Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+  <label for="firstname"><b>Name</b></label>
+  <input type="text" placeholder="Enter Name" name="firstname" required>
 
-  <button type="submit" class="btn3">Send message</button>
-</form>
+  <label for="lastname"><b>Last Name</b></label>
+  <input type="text" placeholder="Enter Last Name" name="lastname" required>
+
+  <label for="subject"><b>Message</b></label>
+  <textarea id="subject" name="subject"></textarea>
+
+  <div class="clearfix">
+    <button type="submit" class="sendbutton">Send Message</button>
+  </div>
+
 </div>
+</body>
+</html>
+
 
