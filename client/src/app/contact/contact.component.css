@@ -1,28 +1,49 @@
-* {
-  box-sizing: border-box;
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: white;
 }
 
-input[type=text], select, textarea {
-  width: 89%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-  margin-bottom: 50px;
-  margin-left: 200px;
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
 }
-
-input[type=submit] {
-  background-color: #2ecc71;
+label{
   color: white;
-  padding: 12px 10px;
+}
+
+textarea {
+  width: 750px;
+  height: 150px;
+}
+h1{
+  color: white;
+}
+p{
+  color: white;
+}
+
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
   border: none;
   cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+hr {
+  width: 100px;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
 }
 
-.btn3 {
-  background: #2ecc71;
-  width: 100px;
-  padding-top:5px;
-  border: #27ae60 1px solid;
-  border-radius:4px;
+.container {
+  width: 50%;
+  padding-left: 320px;
 }
