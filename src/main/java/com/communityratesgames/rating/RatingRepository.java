@@ -17,7 +17,6 @@ public interface RatingRepository extends JpaRepository<RatingEntity, Long> {
 
     RatingEntity findByGameAndUser(GameEntity game, UserEntity user);
 
-    //TODO: Test decimals
-    @Query(value = "SELECT AVG(rating) FROM rating_entity WHERE rating_entity.game_id = :game;")
-    long getGameAverageRating(@Param("game") long gameId);
+    @Query(value = "SELECT AVG(r.rating) FROM RatingEntity r WHERE r.game = :gameId")
+    long getGameAverageRating(@Param("gameId") long gameId);
 }
