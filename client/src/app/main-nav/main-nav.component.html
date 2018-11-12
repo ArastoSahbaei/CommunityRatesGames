@@ -5,6 +5,7 @@
                [opened]="!(isHandset$ | async)">
     <mat-toolbar>Username</mat-toolbar>
     <mat-nav-list>
+
       <a mat-list-item routerLink="/profile" routerLinkActive="x">Profile</a>
       <a mat-list-item routerLink="/rating" routerLinkActive="x">My Ratings</a>
       <a mat-list-item routerLink="/#TBA" routerLinkActive="x">My Saved Games</a>
@@ -28,9 +29,29 @@
       </button>
       <span>COMMUNITY RATED GAMES</span>
       <span class="mainTitles"></span>
+
+
+
+      <div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 400px)" fxLayout="column" style="padding: 10px;">
+
+        <mat-form-field>
+          <mat-label><mat-icon>search</mat-icon> search game...</mat-label>
+          <input [formControl]="autoCompleteControl"
+                                                       aria-label="Number" matInput [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
+              {{ item.name | titlecase}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+      </div>
+
+
+
+
       <a mat-list-item routerLink="/home" routerLinkActive="x">Home</a>
       <a mat-list-item routerLink="/game" routerLinkActive="x">Game</a>
-      <a href="#">Recentley Released</a>
       <span class="loginRegister"></span>
       <a mat-list-item routerLink="/login" routerLinkActive="x">Login</a>
       <a mat-list-item routerLink="/register" routerLinkActive="x">Register</a>
@@ -38,4 +59,5 @@
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <router-outlet></router-outlet>
