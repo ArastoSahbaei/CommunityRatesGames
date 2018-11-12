@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.math.BigInteger;
 
 @Service
 public class UserService implements UserServiceInterface/*, UserDetailsService*/ {
@@ -58,6 +61,31 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
     }
     public UserEntity findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    public UserEntity findUserByUserNameAndPassword(String username, String password) {
+        UserEntity user = findUserByUserName(username);
+        if (user == null) {
+            return null;
+        }
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            password += user.getPasswordHash();
+            md.update(password.getBytes(StandardCharsets.UTF_8));
+            byte[] hash = md.digest();
+            String pwd = String.format("%064x", new BigInteger(1, hash));
+            System.out.printf("Comparing %s with %s\n", pwd, user.getPassword());
+            if (!pwd.equals(user.getPassword())) {
+                System.out.println("fail");
+                return null;
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("success");
+        return user;
     }
 	/*
     @Override

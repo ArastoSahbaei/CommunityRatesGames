@@ -86,6 +86,10 @@ public class UserEntity implements Serializable {
         this.email = email;
     }
 
+    public String getPasswordHash() {
+        return this.passwordHash;
+    }
+
     public String getPassword() {
         return password;
     }
