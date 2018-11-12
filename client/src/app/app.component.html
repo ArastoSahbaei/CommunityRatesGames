@@ -7,6 +7,17 @@
     <!-- content should be inserted here -->
   </app-main-nav>
 
+  <!--TODO## Remove this once everything is up and running on the main-nav html -->
+</div>
+<div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 300px)" fxLayout="column" style="padding: 10px;">
+  <mat-form-field>
+    <input [formControl]="autoCompleteControl" type="text" placeholder="Pick one" aria-label="Number" matInput [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
+        {{ item.name | titlecase}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 </div>
 <router-outlet></router-outlet>
 

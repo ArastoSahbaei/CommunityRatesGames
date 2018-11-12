@@ -3,39 +3,91 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="!(isHandset$ | async)">
+
     <mat-toolbar>Username</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/profile" routerLinkActive="x">Profile</a>
-      <a mat-list-item routerLink="/rating" routerLinkActive="x">My Ratings</a>
-      <a mat-list-item routerLink="/#TBA" routerLinkActive="x">My Saved Games</a>
-      <div class="inner-content" id="botNav" mat-list-item>
-        <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">Report a Bug</a>
-        <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">Add a Game</a>
-        <a mat-list-item routerLink="/contact" routerLinkActive="x">Contact</a>
-        <a mat-list-item routerLink="/logout" routerLinkActive="x">Logout</a>
+
+      <a mat-list-item routerLink="/profile" routerLinkActive="x">
+      <mat-icon>account_circle</mat-icon>
+      Profile</a>
+
+      <a mat-list-item routerLink="/rating" routerLinkActive="x">
+      <mat-icon>star_half</mat-icon>
+      My Ratings</a>
+
+      <a mat-list-item routerLink="/#TBA" routerLinkActive="x">
+      <mat-icon>favorite_border</mat-icon>
+       My Saved Games</a>
+
+              <div class="inner-content" id="botNav" mat-list-item>
+              <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">
+                <mat-icon>bug_report</mat-icon>
+
+                Report a Bug</a>
+                <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">
+                <mat-icon>thumb_up</mat-icon>
+
+                Add a Game</a>
+                <a mat-list-item routerLink="/contact" routerLinkActive="x">
+                <mat-icon>contact_support</mat-icon>
+
+                Contact</a>
+                <a mat-list-item routerLink="/logout" routerLinkActive="x">
+                <mat-icon>lock</mat-icon>
+                Logout</a>
+              </div>
+
+      </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+          <span>COMMUNITY RATED GAMES</span>
+          <span class="mainTitles"></span>
+
+      <div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 400px)" fxLayout="column"
+           style="padding: 10px;">
+
+        <mat-form-field>
+          <mat-label>
+            <mat-icon>search</mat-icon>
+            search game...
+          </mat-label>
+          <input [formControl]="autoCompleteControl"
+                 aria-label="Number" matInput [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
+              {{ item.name | titlecase}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
       </div>
 
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>COMMUNITY RATED GAMES</span>
-      <span class="mainTitles"></span>
-      <a mat-list-item routerLink="/home" routerLinkActive="x">Home</a>
-      <a mat-list-item routerLink="/game" routerLinkActive="x">Game</a>
-      <a href="#">Recentley Released</a>
+
+      <a mat-list-item routerLink="/home" routerLinkActive="x">
+        <mat-icon>home</mat-icon>
+        Home</a>
+      <a mat-list-item routerLink="/game" routerLinkActive="x">
+        <mat-icon>games</mat-icon>
+        Game</a>
       <span class="loginRegister"></span>
-      <a mat-list-item routerLink="/login" routerLinkActive="x">Login</a>
-      <a mat-list-item routerLink="/register" routerLinkActive="x">Register</a>
+      <a mat-list-item routerLink="/login" routerLinkActive="x">
+        <mat-icon>how_to_reg</mat-icon>
+        Login</a>
+      <a mat-list-item routerLink="/register" routerLinkActive="x">
+        <mat-icon>fingerprint</mat-icon>
+        Register</a>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <router-outlet></router-outlet>
