@@ -55,6 +55,17 @@ public class UserController {
         logins.add(new AuthToken((Integer)loginIndex, user.getId()));
         return new ResponseEntity<>(new LoginResponse(loginIndex), HttpStatus.OK);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<LoginResponse> login(@RequestParam("token") Integer token) {
+        for (int i = 0; i < logins.size(); i++) {
+            if (logins.get(i).token == token) {
+                logins.remove(i);
+                return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(new LoginResponse(0), HttpStatus.NOT_FOUND);
+    }
 }
 
 class AuthToken {
