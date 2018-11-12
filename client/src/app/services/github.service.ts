@@ -11,7 +11,7 @@ export class GithubService {
   constructor(private http: HttpClient) {}
 
   search(query: string): Observable<GithubResponse> {
-    const url = 'localhost:8080/api/user';
+    const url = 'https://api.github.com/search/repositories';
     return this.http
       .get<GithubResponse>(url, {
         observe: 'response',
