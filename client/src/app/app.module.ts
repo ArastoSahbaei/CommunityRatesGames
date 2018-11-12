@@ -10,7 +10,14 @@ import {PlatformComponent} from './platform/platform.component';
 import {RatingComponent} from './rating/rating.component';
 import {UserComponent} from './user/user.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule} from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatInputModule, MatAutocompleteModule, MatFormFieldModule
+} from '@angular/material';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {AppRoutingModule, routingComponents} from "./app-routing.module";
 import { RegisterComponent } from './register/register.component';
@@ -19,6 +26,8 @@ import { ReportBugComponent } from './report-bug/report-bug.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { ContactComponent } from './contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -47,7 +56,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
