@@ -7,13 +7,17 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import com.communityratesgames.rating.RatingRepository;
+
 @Service
 public class GameService implements GameServiceInterface {
 
     private final GameRepository gameRepository;
+    private final RatingRepository ratingRepository;
 
-    public GameService(GameRepository gameRepository) {
+    public GameService(GameRepository gameRepository, RatingRepository ratingRepository) {
         this.gameRepository = gameRepository;
+        this.ratingRepository = ratingRepository;
     }
 
     private List<GameModel> convertEntityListToModelList(List<GameEntity> list) {
@@ -30,9 +34,9 @@ public class GameService implements GameServiceInterface {
         return new GameModel(gameRepository.save(gameEntity));
     }
 
-    public List<String> searchGame(String searchString){
-        return gameRepository.findFirst5ByTitleContaining(searchString, Sort.unsorted()).stream()
-                .map(GameEntity::getTitle).collect((Collectors.toList()));
+    public List<GameModel> searchGame(String searchString){
+        return convertEntityListToModelList(gameRepository.findFirst5ByTitleContaining(searchString,
+            Sort.unsorted()));
 
     }
 
@@ -42,8 +46,9 @@ public class GameService implements GameServiceInterface {
     }
 
     public GameModel findGameById(Long id) {
-        GameEntity gameEntity = gameRepository.getOne(id);
-        return new GameModel(gameEntity);
+        GameEntity gameEntity = gameRepository.findGameById(id);
+        Float average = ratingRepository.getGameAverageRating(gameEntity.getId());
+        return new GameModel(gameEntity, average);
     }
 
     @Override
