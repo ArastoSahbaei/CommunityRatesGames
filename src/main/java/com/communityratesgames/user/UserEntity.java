@@ -1,5 +1,4 @@
 package com.communityratesgames.user;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -18,8 +17,6 @@ public class UserEntity implements Serializable {
     private String userName;
     @Column(unique = true)
     private String email;
-    private String firstName;
-    private String lastName;
     private String passwordHash;
     private String password;
     private String role;
@@ -28,8 +25,6 @@ public class UserEntity implements Serializable {
         this.id = userModel.getId();
         this.userName = userModel.getUserName();
         this.email = userModel.getEmail();
-        this.firstName = userModel.getFirstName();
-        this.lastName = userModel.getLastName();
         this.setPassword(userModel.getPassword());
         this.role = userModel.getRole();
         this.userCreated = userModel.getUserCreated();
@@ -60,22 +55,6 @@ public class UserEntity implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

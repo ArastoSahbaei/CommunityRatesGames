@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,20 +30,14 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<List<UserModel>> getAllUsers() {
-        List<UserModel> resultList = userService.findAllUsers();
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
-    }
-
-    @GetMapping("/user/{id}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+    public ResponseEntity<Account> getUserById(@RequestParam("id") Long id) {
+        return new ResponseEntity<>(new Account(userService.findUserById(id)), HttpStatus.OK);
     }
 
     @GetMapping("/user/{username}")
-    public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
+    public ResponseEntity<Account> getUserByUsername(@PathVariable String username) {
         UserModel user = userService.findUserByUserName(username);
-        return new ResponseEntity(user, HttpStatus.OK);
+        return new ResponseEntity(new Account(user), HttpStatus.OK);
     }
 
     @PostMapping("/login")
@@ -58,7 +53,7 @@ public class UserController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<LoginResponse> login(@RequestParam("token") Integer token) {
+    public ResponseEntity<LoginResponse> logout(@RequestParam("token") Integer token) {
         for (int i = 0; i < logins.size(); i++) {
             if (logins.get(i).token == token) {
                 logins.remove(i);
@@ -66,6 +61,18 @@ public class UserController {
             }
         }
         return new ResponseEntity<>(new LoginResponse(0), HttpStatus.NOT_FOUND);
+    }
+}
+
+class Account {
+    public Long id;
+    public Timestamp userCreated;
+    public String userName;
+
+    public Account(UserModel model) {
+        this.id = model.getId();
+        this.userCreated = model.getUserCreated();
+        this.userName = model.getUserName();
     }
 }
 

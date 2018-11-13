@@ -8,8 +8,6 @@ public class UserModel implements Serializable {
     private Long id;
     private Timestamp userCreated;
     private String userName;
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private String role;
@@ -18,8 +16,6 @@ public class UserModel implements Serializable {
         this.id = userEntity.getId();
         this.userName = userEntity.getUserName();
         this.email = userEntity.getEmail();
-        this.firstName = userEntity.getFirstName();
-        this.lastName = userEntity.getLastName();
         this.password = userEntity.getPassword();
         this.role = userEntity.getRole();
         this.userCreated = userEntity.getUserCreated();
@@ -49,22 +45,6 @@ public class UserModel implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
