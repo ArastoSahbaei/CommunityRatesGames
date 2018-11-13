@@ -37,7 +37,7 @@ public class RatingController {
     }
 
     @GetMapping("/rating/average/{gameid}")
-    public ResponseEntity<Long> getRatingAverageByGameId (@PathVariable Long gameId){
+    public ResponseEntity<Float> getRatingAverageByGameId (@PathVariable Long gameId){
         return new ResponseEntity<>(ratingService.getAverageOfGame(gameId), HttpStatus.OK);
     }
 

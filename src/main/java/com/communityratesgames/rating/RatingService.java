@@ -26,7 +26,7 @@ public class RatingService implements RatingServiceInterface {
         return convertEntityListToModelList(ratingRepository.findAll());
     }
 
-    public Long getAverageOfGame(Long gameId) {
+    public float getAverageOfGame(Long gameId) {
         return ratingRepository.getGameAverageRating(gameId);
     }
 
