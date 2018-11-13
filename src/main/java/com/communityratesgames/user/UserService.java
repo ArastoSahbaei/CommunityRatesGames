@@ -25,7 +25,7 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
 
     static {
         passwordPattern = Pattern.compile("^[a-zA-Z0-9!#$*+-<>^~_]+$");
-        usernamePattern = Pattern.compile("^[-_]+$");
+        usernamePattern = Pattern.compile("^[a-zA-Z0-9-_]+$");
     }
 
     public UserService(UserRepository userRepository) {
@@ -59,7 +59,11 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
 
     public UserModel findUserByUserName(String username) {
         UserEntity userEntity = userRepository.findUserByUserName(username);
-        return new UserModel(userEntity);
+        if (userEntity == null) {
+            return null;
+        } else {
+            return new UserModel(userEntity);
+        }
     }
     public UserEntity findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);

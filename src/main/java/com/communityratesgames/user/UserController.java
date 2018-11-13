@@ -30,7 +30,18 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<Account> getUserById(@RequestParam("id") Long id) {
+    public ResponseEntity<Account> getUserById(
+            @RequestParam(value="token",required=false) Long token,
+            @RequestParam(value="id", required=false) Long id) {
+        if (token != null) {
+            id = AuthToken.getUserId(token);
+            if (id == -1) {
+                return new ResponseEntity("not found", HttpStatus.NOT_FOUND);
+            }
+        }
+        if (id == null) {
+            return new ResponseEntity("no id given", HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(new Account(userService.findUserById(id)), HttpStatus.OK);
     }
 
@@ -44,23 +55,20 @@ public class UserController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginModel login) {
         UserEntity user = userService.findUserByUserNameAndPassword(login.getUsername(), login.getPassword());
         if (user == null) {
-            return new ResponseEntity<>(new LoginResponse(0), HttpStatus.I_AM_A_TEAPOT);
+            return new ResponseEntity<>(new LoginResponse(0L), HttpStatus.I_AM_A_TEAPOT);
         }
 
-        loginIndex++;
-        logins.add(new AuthToken((Integer)loginIndex, user.getId()));
-        return new ResponseEntity<>(new LoginResponse(loginIndex), HttpStatus.OK);
+        Long token = AuthToken.generateNewToken(user.getId());
+        return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<LoginResponse> logout(@RequestParam("token") Integer token) {
-        for (int i = 0; i < logins.size(); i++) {
-            if (logins.get(i).token == token) {
-                logins.remove(i);
-                return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
-            }
+    public ResponseEntity<LoginResponse> logout(@RequestParam("token") Long token) {
+        if (!AuthToken.close(token)) {
+            return new ResponseEntity<>(new LoginResponse(0L), HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(new LoginResponse(token), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new LoginResponse(0), HttpStatus.NOT_FOUND);
     }
 }
 
@@ -73,15 +81,5 @@ class Account {
         this.id = model.getId();
         this.userCreated = model.getUserCreated();
         this.userName = model.getUserName();
-    }
-}
-
-class AuthToken {
-    public Integer token;
-    public Long userId;
-
-    public AuthToken(Integer token, Long userId) {
-        this.token = token;
-        this.userId = userId;
     }
 }
