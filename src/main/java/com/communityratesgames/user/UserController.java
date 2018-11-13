@@ -41,7 +41,8 @@ public class UserController {
 
     @GetMapping("/user/{username}")
     public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
-        return new ResponseEntity(userService.findUserByUserName(username), HttpStatus.OK);
+        UserModel user = userService.findUserByUserName(username);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
     @PostMapping("/login")
