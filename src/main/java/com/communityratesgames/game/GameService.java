@@ -3,6 +3,7 @@ package com.communityratesgames.game;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -33,11 +34,16 @@ public class GameService implements GameServiceInterface {
         GameEntity gameEntity = new GameEntity(gameModel);
         return new GameModel(gameRepository.save(gameEntity));
     }
+    public List<HashMap<String,Object>> searchForFiveGames(String searchString){
+        return gameRepository.findFirst5ByTitleContaining(searchString, Sort.unsorted()
+        ).stream().map(this::reduceGameToIdAndTitle).collect(Collectors.toList());
+    }
 
-    public List<GameModel> searchGame(String searchString){
-        return convertEntityListToModelList(gameRepository.findFirst5ByTitleContaining(searchString,
-            Sort.unsorted()));
-
+    private HashMap<String, Object> reduceGameToIdAndTitle(GameEntity game){
+        HashMap<String, Object> reducedGame = new HashMap<>();
+        reducedGame.put("id", game.getId());
+        reducedGame.put("title", game.getTitle());
+        return reducedGame;
     }
 
     @Override
