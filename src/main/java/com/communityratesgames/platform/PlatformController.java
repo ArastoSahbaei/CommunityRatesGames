@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class PlatformController {
 
-    @Autowired
     private final PlatformService service;
 
+    @Autowired
     public PlatformController(PlatformService service) {
         this.service = service;
     }
@@ -23,7 +23,7 @@ public class PlatformController {
     @GetMapping("/platform")
     public ResponseEntity<List<PlatformModel>> getPlatforms() {
         List<PlatformModel> platforms = service.getPlatforms();
-        return new ResponseEntity(platforms, HttpStatus.OK);
+        return new ResponseEntity<>(platforms, HttpStatus.OK);
     }
 
     @PostMapping("/platform")

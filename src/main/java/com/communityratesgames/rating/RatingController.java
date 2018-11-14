@@ -11,9 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class RatingController {
-    @Autowired
+
     private final RatingService ratingService;
 
+    @Autowired
     public RatingController(RatingService ratingService) {
         this.ratingService = ratingService;
     }

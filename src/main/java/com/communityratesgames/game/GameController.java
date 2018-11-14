@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class GameController {
 
-    @Autowired
     private final GameService gameService;
 
+    @Autowired
     public GameController(GameService gameService) {
         this.gameService = gameService;
     }
@@ -28,9 +28,9 @@ public class GameController {
 
     //TODO: Security And/Or userrequired
     @PostMapping("/game")
-    public ResponseEntity<List<GameModel>> createGame(@RequestBody GameModel gameModel) {
+    public ResponseEntity<GameModel> createGame(@RequestBody GameModel gameModel) {
         GameModel newGameModel = gameService.createGame(gameModel);
-        return new ResponseEntity(newGameModel, HttpStatus.OK);
+        return new ResponseEntity<>(newGameModel, HttpStatus.OK);
     }
 
     @GetMapping("/game/search")
