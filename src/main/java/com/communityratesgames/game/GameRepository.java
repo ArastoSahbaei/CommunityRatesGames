@@ -14,5 +14,4 @@ public interface GameRepository extends JpaRepository<GameEntity, Long> {
     GameEntity findGameByTitle(String title);
 
     List<GameEntity> findFirst5ByTitleContaining(String searchString, Sort sort);
-
 }
