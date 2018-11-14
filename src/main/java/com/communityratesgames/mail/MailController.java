@@ -1,20 +1,32 @@
 package com.communityratesgames.mail;
 
+import com.communityratesgames.user.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.mail.MessagingException;
 
 @RestController
 public class MailController {
 
     @Autowired
-    private SmptMailSender smptMailSender;
+    private MailService mailService;
 
     @RequestMapping("/send")
-    public void sendMail() throws MessagingException {
-        smptMailSender.send("communityratesgames@gmail.com", "test mail from our app", "Robin");
+    public String sendMail(){
+
+        UserModel user = new UserModel();
+        user.setEmail("communityratesgames@gmail.com");
+        user.setEmailText("detta fungerar ju också");
+        user.setEmailSubject("Test");
+        //Send notiser
+        try{
+            mailService.sendNotification(user);
+        }catch(MailException e){
+            e.getMessage();
+        }
+
+        return "Tack för ditt mail";
     }
 
 }

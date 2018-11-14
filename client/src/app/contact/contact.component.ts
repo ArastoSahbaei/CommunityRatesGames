@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private http : HttpClientModule) {
+
+  }
 
   ngOnInit() {
   }
-
 }
