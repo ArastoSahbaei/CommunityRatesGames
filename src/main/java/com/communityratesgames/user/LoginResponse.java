@@ -1,19 +1,19 @@
 package com.communityratesgames.user;
 
 public class LoginResponse {
-    private Integer token;
+    private Long token;
 
     protected LoginResponse() { }
 
-    public LoginResponse(Integer token) {
+    public LoginResponse(Long token) {
         this.token = token;
     }
 
-    public Integer getToken() {
+    public Long getToken() {
         return this.token;
     }
 
-    public void setCode(Integer token) {
+    public void setCode(Long token) {
         this.token = token;
     }
 }
