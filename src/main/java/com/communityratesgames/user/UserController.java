@@ -17,9 +17,9 @@ public class UserController {
     private static int loginIndex = 0;
     private static List<AuthToken> logins = new ArrayList<AuthToken>();
 
-    @Autowired
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -30,17 +30,17 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<Account> getUserById(
+    public ResponseEntity<Object> getUserById(
             @RequestParam(value="token",required=false) Long token,
             @RequestParam(value="id", required=false) Long id) {
         if (token != null) {
             id = AuthToken.getUserId(token);
             if (id == -1) {
-                return new ResponseEntity("not found", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("not found", HttpStatus.NOT_FOUND);
             }
         }
         if (id == null) {
-            return new ResponseEntity("no id given", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("no id given", HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(new Account(userService.findUserById(id)), HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/user/{username}")
     public ResponseEntity<Account> getUserByUsername(@PathVariable String username) {
         UserModel user = userService.findUserByUserName(username);
-        return new ResponseEntity(new Account(user), HttpStatus.OK);
+        return new ResponseEntity<>(new Account(user), HttpStatus.OK);
     }
 
     @PostMapping("/login")

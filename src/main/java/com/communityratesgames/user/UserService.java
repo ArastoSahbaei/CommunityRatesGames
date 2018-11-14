@@ -143,8 +143,5 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         } catch (Exception e){
             return new ResponseEntity<>("Failure when creating user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
-
-    }
+	}
 }

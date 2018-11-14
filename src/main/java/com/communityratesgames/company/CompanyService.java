@@ -21,8 +21,8 @@ public class CompanyService implements CompanyServiceInterface {
         return new CompanyModel(companyRepository.save(companyEntity));
     }
 
-    public CompanyEntity findCompanyByCompanyName(String companyName) {
-        return companyRepository.findCompanyByCompanyName(companyName);
+    public CompanyModel findCompanyByCompanyName(String companyName) {
+        return new CompanyModel( companyRepository.findCompanyByCompanyName(companyName));
     }
 
     public List<CompanyModel> findAllCompanies() {

@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class CompanyController {
 
-    @Autowired
     private final CompanyService companyService;
 
+    @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
@@ -38,7 +38,7 @@ public class CompanyController {
 
     @GetMapping("/company/{companyName}")
     public ResponseEntity<CompanyModel> getCompanyByCompanyName(@PathVariable String companyName) {
-        return new ResponseEntity(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
+        return new ResponseEntity<>(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
     }
 
 }
