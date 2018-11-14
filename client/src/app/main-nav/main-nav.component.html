@@ -8,49 +8,49 @@
     <mat-nav-list>
 
       <a mat-list-item routerLink="/profile" routerLinkActive="x">
-      <mat-icon>account_circle</mat-icon>
-      Profile</a>
+        <mat-icon>account_circle</mat-icon>
+        Profile</a>
 
       <a mat-list-item routerLink="/rating" routerLinkActive="x">
-      <mat-icon>star_half</mat-icon>
-      My Ratings</a>
+        <mat-icon>star_half</mat-icon>
+        My Ratings</a>
 
       <a mat-list-item routerLink="/#TBA" routerLinkActive="x">
-      <mat-icon>favorite_border</mat-icon>
-       My Saved Games</a>
+        <mat-icon>favorite_border</mat-icon>
+        My Saved Games</a>
 
-              <div class="inner-content" id="botNav" mat-list-item>
-              <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">
-                <mat-icon>bug_report</mat-icon>
+      <div class="inner-content" id="botNav" mat-list-item>
+        <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">
+          <mat-icon>bug_report</mat-icon>
 
-                Report a Bug</a>
-                <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">
-                <mat-icon>thumb_up</mat-icon>
+          Report a Bug</a>
+        <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">
+          <mat-icon>thumb_up</mat-icon>
 
-                Add a Game</a>
-                <a mat-list-item routerLink="/contact" routerLinkActive="x">
-                <mat-icon>contact_support</mat-icon>
+          Add a Game</a>
+        <a mat-list-item routerLink="/contact" routerLinkActive="x">
+          <mat-icon>contact_support</mat-icon>
 
-                Contact</a>
-                <a mat-list-item routerLink="/logout" routerLinkActive="x">
-                <mat-icon>lock</mat-icon>
-                Logout</a>
-              </div>
+          Contact</a>
+        <a mat-list-item routerLink="/logout" routerLinkActive="x">
+          <mat-icon>lock</mat-icon>
+          Logout</a>
+      </div>
 
-      </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
 
-          <span>COMMUNITY RATED GAMES</span>
-          <span class="mainTitles"></span>
+      <span>COMMUNITY RATED GAMES</span>
+      <span class="mainTitles"></span>
 
       <div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 400px)" fxLayout="column"
            style="padding: 10px;">
@@ -71,7 +71,6 @@
 
       </div>
 
-
       <a mat-list-item routerLink="/home" routerLinkActive="x">
         <mat-icon>home</mat-icon>
         Home</a>
@@ -89,5 +88,14 @@
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+<!-- FOOTER --> <!-- FOOTER --> <!-- FOOTER -->
+<mat-toolbar class="footer">
+  <span class="footer">©Four Dudes in a Dungeon | Terms | Privacy | Security | API</span>
+
+  <!-- This fills the remaining space of the current row -->
+
+</mat-toolbar>
 
 <router-outlet></router-outlet>

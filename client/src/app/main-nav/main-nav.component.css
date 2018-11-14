@@ -41,3 +41,14 @@ mat-toolbar a {
   position: absolute;
   bottom: 10%;
 }
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #7F8181;
+  text-align: center;
+  opacity: 0.7;
+}
