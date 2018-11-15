@@ -1,8 +1,15 @@
 package com.communityratesgames.game;
 
+import com.communityratesgames.platform.PlatformEntity;
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -60,5 +67,33 @@ public class GameService implements GameServiceInterface {
     @Override
     public GameEntity findGameByTitle(String title) {
         return null;
+    }
+
+    public String streamAllGames() throws IOException {
+        List<GameEntity> games = gameRepository.findAll();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        JsonFactory jfactory = new JsonFactory();
+        JsonGenerator jGenerator = jfactory
+                .createGenerator(stream, JsonEncoding.UTF8);
+
+        jGenerator.writeStartArray();
+        for (GameEntity game:games
+             ) {
+            jGenerator.writeStartObject();
+            jGenerator.writeNumberField("id", game.getId());
+            jGenerator.writeStringField("title", game.getTitle());
+            jGenerator.writeFieldName("platform");
+            jGenerator.writeStartArray();
+            for (PlatformEntity platform:game.getPlatforms()
+                 ) {
+                jGenerator.writeString(platform.getName());
+            }
+            jGenerator.writeEndArray();
+            jGenerator.writeStringField("company", game.getCompany().getCompanyName());
+            jGenerator.writeEndObject();
+        }
+        jGenerator.writeEndArray();
+        jGenerator.close();
+        return new String(stream.toByteArray(), StandardCharsets.UTF_8);
     }
 }
