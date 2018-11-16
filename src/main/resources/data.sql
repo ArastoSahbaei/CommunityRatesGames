@@ -10,7 +10,8 @@ INSERT INTO company_entity(id, company_name, country, city)
 VALUES
 (1, 'Microsoft', 'US', '???'),
 (2, 'Nintendo', 'Japan', 'GloriousNippon'),
-(3, 'BasementDudes', 'Antarktis', 'North Pole');
+(3, 'BasementDudes', 'Antarktis', 'North Pole'),
+(4, 'Danielcraft', 'MotherlandAfrica', 'Southern Lamp');
 
 INSERT INTO game_entity(id, title, company_id)
 VALUES
@@ -20,14 +21,14 @@ VALUES
 (4, 'Haloeller', 2),
 (5, 'Halloes', 2),
 (6, 'Hajro II', 1),
-(7, 'Mario cart', 4);
-(8, 'Mario party', 4)
-(9, 'Final Fantasy 1337', 3)
+(7, 'Mario cart', 4),
+(8, 'Mario party', 4),
+(9, 'Final Fantasy 1337', 3);
 
 INSERT INTO platform_entity(id, name, release_year, company_id)
 VALUES
 (1, 'XBox', 2001, 1),
-(2, 'PC', NULL, NULL),
+(2, 'PC', 2002, 4),
 (3, 'Playstation', 1998, 2),
 (4, 'Nintendo', 1984, 3);
 
