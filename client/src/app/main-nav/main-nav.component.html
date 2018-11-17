@@ -1,3 +1,6 @@
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
@@ -92,10 +95,17 @@
 
 <!-- FOOTER --> <!-- FOOTER --> <!-- FOOTER -->
 <mat-toolbar class="footer">
-  <span class="footer">©Four Dudes in a Dungeon | Terms | Privacy | Security | API</span>
+  <ul>
+
+    <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+    <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+    <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+    <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+    <div class="bottomFooter">
+      <span class="footer">©Four Dudes in a Dungeon | Terms | Privacy | Security | API</span>
+    </div>
+  </ul>
 
   <!-- This fills the remaining space of the current row -->
-
 </mat-toolbar>
-
 <router-outlet></router-outlet>
