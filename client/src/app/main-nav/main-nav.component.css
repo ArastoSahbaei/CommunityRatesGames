@@ -42,6 +42,9 @@ mat-toolbar a {
   bottom: 10%;
 }
 
+/**
+FOOTER
+**/
 .footer {
   position: absolute;
   right: 0;
@@ -53,14 +56,10 @@ mat-toolbar a {
   opacity: 0.7;
 }
 
-/**
-FOOTER
-**/
-
 ul {
   display: flex;
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -126,13 +125,28 @@ ul li:nth-child(3) a:before {
 }
 
 ul li:nth-child(4) a:before {
-  background: orange;
+  background: #333;
 }
 
 .bottomFooter {
+  font-size: 0.9em;
   position: relative;
   width: 100%;
   height: 110px;
-  right: 450px;
   color: #ffffff;
+}
+.bottomFooter {
+  font-size: 0.9em;
+  position: relative;
+  width: 100%;
+  height: 110px;
+  right: -10px;
+  color: #ffffff;
+}
+
+.rightCorner {
+  flex: 1 1 auto;
+}
+.middle {
+  flex: 1 1 0;
 }
