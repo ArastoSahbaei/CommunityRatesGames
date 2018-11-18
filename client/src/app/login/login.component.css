@@ -44,6 +44,6 @@ hr {
 }
 
 .container {
-  width: 50%;
-  padding-left: 320px;
+  max-width: 500px;
+  margin: auto;
 }
