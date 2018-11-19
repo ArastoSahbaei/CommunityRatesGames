@@ -34,9 +34,11 @@ public class GameController {
         return new ResponseEntity<>(newGameModel, HttpStatus.OK);
     }
 
-    @GetMapping("/game/rating")
-    public ResponseEntity<List<Map<String,Object>>> getGamesWithRating() {
-        List<Map<String,Object>> out = gameService.getGamesWithRating();
+    @GetMapping("/game/top")
+    public ResponseEntity<List<Map<String,Object>>> getTopRatedGames(
+            @RequestParam(value="limit",defaultValue="10") Integer limit,
+            @RequestParam(value="page",defaultValue="1") Integer page) {
+        List<Map<String,Object>> out = gameService.getTopRatedGames(limit, page);
         return new ResponseEntity<>(out, HttpStatus.OK);
     }
 

@@ -1,6 +1,7 @@
 package com.communityratesgames.game;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -47,8 +48,9 @@ public class GameService implements GameServiceInterface {
         return reducedGame;
     }
 
-    public List<Map<String, Object>> getGamesWithRating() {
-        List<Map<String, Object>> items = gameRepository.getGamesWithRating();
+    public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
+        PageRequest request = PageRequest.of(page-1, limit);
+        List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
         return items;
     }
 
