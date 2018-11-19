@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <body>
+<form ng-controller="MailController" ng-submit="createMail()">
 <div class="container">
   <h1>Contact</h1>
   <p>Please fill in all forms to send us an email</p>
 
-  <label for="firstname"><b>Name</b></label>
-  <input type="text" placeholder="Enter Name" name="firstname" required>
-
-  <label for="lastname"><b>Last Name</b></label>
-  <input type="text" placeholder="Enter Last Name" name="lastname" required>
+  <label for="email"><b>Email Address</b></label>
+  <input type="text" placeholder="Please submit your Email Address" name="emailaddress" required>
 
   <label for="subject"><b>Message</b></label>
   <textarea id="subject" name="subject"></textarea>
 
   <div class="clearfix">
-    <button type="submit" class="sendbutton">Send Message</button>
+    <button ng-click="sendMail()" type="submit" class="sendbutton">Send Message</button>
   </div>
 
 </div>
+</form>
 </body>
 </html>
 
