@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 @CrossOrigin
@@ -31,6 +32,12 @@ public class GameController {
     public ResponseEntity<GameModel> createGame(@RequestBody GameModel gameModel) {
         GameModel newGameModel = gameService.createGame(gameModel);
         return new ResponseEntity<>(newGameModel, HttpStatus.OK);
+    }
+
+    @GetMapping("/game/rating")
+    public ResponseEntity<List<Map<String,Object>>> getGamesWithRating() {
+        List<Map<String,Object>> out = gameService.getGamesWithRating();
+        return new ResponseEntity<>(out, HttpStatus.OK);
     }
 
     @GetMapping("/game/search")
