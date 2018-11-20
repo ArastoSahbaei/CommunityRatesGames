@@ -1,112 +1,34 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<mat-toolbar color="primary" class="mat-elevation-z8 header">
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="login">Login</button>
+  <mat-menu #login="matMenu">
+    <button mat-menu-item="">Login</button>
+    <button mat-menu-item="">Register</button>
+  </mat-menu>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="!(isHandset$ | async)">
+  <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">User</span></button>
+  <mat-menu #user="matMenu">
+    <button mat-menu-item routerLink="user/add-a-game">Add game</button>
+    <button mat-menu-item routerLink="user/report-a-bug">Report a bug</button>
+    <button mat-menu-item routerLink="user/my-games">My games</button>
+    <button mat-menu-item routerLink="user/profile">Profile</button>
+    <button mat-menu-item routerLink="user/contact">Contact us</button>
+  </mat-menu>
 
-    <mat-toolbar>Username</mat-toolbar>
-    <mat-nav-list>
+  <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
 
-      <a mat-list-item routerLink="/profile" routerLinkActive="x">
-        <mat-icon>account_circle</mat-icon>
-        Profile</a>
+  <button mat-button [matMenuTriggerFor]="games"><mat-icon>games</mat-icon></button>
+  <mat-menu #games="matMenu">
+    <button mat-menu-item routerLink="game/rating">Rating</button>
+    <button mat-menu-item routerLink="game/platform">Platform</button>
+    <button mat-menu-item routerLink="game/top100">Top 100</button>
+  </mat-menu>
 
-      <a mat-list-item routerLink="/rating" routerLinkActive="x">
-        <mat-icon>star_half</mat-icon>
-        My Ratings</a>
+  <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
 
-      <a mat-list-item routerLink="/#TBA" routerLinkActive="x">
-        <mat-icon>favorite_border</mat-icon>
-        My Saved Games</a>
+  <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+  <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+  <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+  <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
 
-      <div class="inner-content" id="botNav" mat-list-item>
-        <a mat-list-item routerLink="/report-a-bug" routerLinkActive="x">
-          <mat-icon>bug_report</mat-icon>
-
-          Report a Bug</a>
-        <a mat-list-item routerLink="/add-a-game" routerLinkActive="x">
-          <mat-icon>thumb_up</mat-icon>
-
-          Add a Game</a>
-        <a mat-list-item routerLink="/contact" routerLinkActive="x">
-          <mat-icon>contact_support</mat-icon>
-
-          Contact</a>
-        <a mat-list-item routerLink="/logout" routerLinkActive="x">
-          <mat-icon>lock</mat-icon>
-          Logout</a>
-      </div>
-
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-
-      <span>COMMUNITY RATED GAMES</span>
-      <span class="mainTitles"></span>
-
-      <div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 400px)" fxLayout="column"
-           style="padding: 10px;">
-
-        <mat-form-field>
-          <mat-label>
-            <mat-icon>search</mat-icon>
-            search game...
-          </mat-label>
-          <input [formControl]="autoCompleteControl"
-                 aria-label="Number" matInput [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
-              {{ item.name | titlecase}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-
-      </div>
-
-      <a mat-list-item routerLink="/home" routerLinkActive="x">
-        <mat-icon>home</mat-icon>
-        Home</a>
-      <a mat-list-item routerLink="/game" routerLinkActive="x">
-        <mat-icon>games</mat-icon>
-        Game</a>
-      <span class="loginRegister"></span>
-      <a mat-list-item routerLink="/login" routerLinkActive="x">
-        <mat-icon>how_to_reg</mat-icon>
-        Login</a>
-      <a mat-list-item routerLink="/register" routerLinkActive="x">
-        <mat-icon>fingerprint</mat-icon>
-        Register</a>
-    </mat-toolbar>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-<!-- FOOTER --> <!-- FOOTER --> <!-- FOOTER -->
-<mat-toolbar class="footer">
-  <span>©2018 Four Dudes in a Dungeon, All rights reserved.</span>
-
-  <span class="middle"></span>
-
-  <span>    <ul>
-      <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-      <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-      <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-      <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-    </ul></span>
-
-  <span>Terms | Privacy | Security | API</span>
-
+  <span id="logo">Community Rates Games Logo</span>
 </mat-toolbar>
-<router-outlet></router-outlet>

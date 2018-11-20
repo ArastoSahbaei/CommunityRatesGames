@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Items, Item, GithubResponse } from './interface';
 import { Observable, observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import {
   startWith,
   map,
   debounceTime,
-  mergeMapTo,
-  mergeMap,
   switchMap,
   catchError
 } from 'rxjs/operators';
 import {GithubService} from "./services/github.service";
+import {Items} from "./shared/interface/item.interface";
 
 @Component({
   selector: 'app-root',

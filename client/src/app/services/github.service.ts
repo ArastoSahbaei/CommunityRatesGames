@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { GithubResponse, Items } from '../interface';
+import { GithubResponse, Items } from '../shared/interface/item.interface';
 
 @Injectable({
   providedIn: 'root'
