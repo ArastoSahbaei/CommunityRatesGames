@@ -1,9 +1,11 @@
 package com.communityratesgames.game;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -44,6 +46,12 @@ public class GameService implements GameServiceInterface {
         reducedGame.put("id", game.getId());
         reducedGame.put("title", game.getTitle());
         return reducedGame;
+    }
+
+    public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
+        PageRequest request = PageRequest.of(page-1, limit);
+        List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
+        return items;
     }
 
     @Override

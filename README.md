@@ -1,7 +1,7 @@
 # Community Rates Games
 This project was born on 31/10-18
 
-Four unemployed dudes with one given goal, one destination, to create a community for devoted video-game admirers to share their their thoughts and opinions.
+Five unemployed dudes with one given goal, one destination, to create a community for devoted video-game admirers to share their their thoughts and opinions.
 This quest meant a long distance from society and human interraction, but since none of them were familiar with it anyway they took their equipment and settled in a deep dark dungeon in the dank forest of Scandanavia.
 <br />
 
@@ -11,7 +11,8 @@ This quest meant a long distance from society and human interraction, but since 
 
 # Developers
 Arasto Sahbaei <br />
-Robin Svensson <br />
+Robin Svensson - No not feed cheese after midnight<br />
 Daniel Ivestig <br />
-Gustaf Lé Cyborg
+Gustaf Lé Cyborg <br />
+Björn Kristensson
 
