@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
   MatButtonModule,
+  MatCardModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -31,7 +32,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule
   ],
 })
 export class MaterialModule { }

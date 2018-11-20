@@ -11,6 +11,8 @@ export class ApiService {
   constructor(private httpClient: HttpClient,
               private url:UrlService) { }
 
+
+// normal get / post / put / delete method, nasty way, lots of code to be changed
   getGames() {
     const headers = new HttpHeaders();
 
@@ -22,8 +24,14 @@ export class ApiService {
 
   }
 
+//  Cleaner way
+
   getRating() {
     this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON() } )
+  }
+
+  checkCredentials() {
+    this.httpClient.post(this.url.getBaseUrl() + this.url.getLogin(), {}, {headers: Headers.HeaderJSON() } );
   }
 
 }

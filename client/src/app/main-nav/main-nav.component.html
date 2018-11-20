@@ -2,15 +2,9 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
-  <button mat-raised-button color="primary" [matMenuTriggerFor]="login">Login</button>
-  <mat-menu #login="matMenu">
-    <button mat-menu-item="">Login</button>
-    <button mat-menu-item="">Register</button>
-  </mat-menu>
+  <button mat-raised-button color="primary" routerLink="login/loginform">{{buttonText ? "Sign Out" : "Sign In"}}</button>
 
-  <button mat-button [matMenuTriggerFor]="user">
-    <mat-icon>face</mat-icon>
-    <span class="aligned-with-icon">User</span></button>
+  <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
   <mat-menu #user="matMenu">
     <button mat-menu-item routerLink="user/add-a-game">Add game</button>
     <button mat-menu-item routerLink="user/report-a-bug">Report a bug</button>
