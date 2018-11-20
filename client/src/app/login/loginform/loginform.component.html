@@ -3,17 +3,17 @@
     <mat-card-title>Sign In</mat-card-title>
 
     <mat-card-content>
-      <form [formGroup]="loginForm" class="layout" novalidate>
+      <form [formGroup]="loginForm" class="layout">
 
-         <input matInput placeholder="Email" formControlName="email" id="email" type="email" required>
+         <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
           <span *ngIf="(email.dirty || email.touched) && email.invalid">Email required</span>
 
-         <input matInput placeholder="Password" type="password" formControlName="password" required>
+         <input id="password" matInput placeholder="Password" type="password" formControlName="password" class="form-control" required >
           <span *ngIf="(password.dirty || password.touched) && password.invalid">Password required</span>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary">Sign in</button>
+      <button mat-raised-button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" color="primary">Sign in</button>
     </mat-card-actions>
   </mat-card>
 </div>

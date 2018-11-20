@@ -26,6 +26,7 @@ import { MygamesComponent } from './user/mygames/mygames.component';
 import { ApiService } from "./shared/service/api.service";
 import { UrlService } from "./shared/service/url.service";
 import { LoginformComponent } from './login/loginform/loginform.component';
+import {StorageService} from "./shared/service/storage.service";
 
 @NgModule({
   declarations: [
@@ -56,10 +57,9 @@ import { LoginformComponent } from './login/loginform/loginform.component';
     LayoutModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService, UrlService],
+  providers: [ApiService, UrlService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
