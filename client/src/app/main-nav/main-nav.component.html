@@ -1,9 +1,10 @@
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
   <button mat-raised-button color="primary" [matMenuTriggerFor]="login">Login</button>
   <mat-menu #login="matMenu">
-    <button mat-menu-item="">Login</button>
+    <button mat-menu-item routerLink="login/loginform">Login</button>
     <button mat-menu-item="">Register</button>
   </mat-menu>
+
 
   <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">User</span></button>
   <mat-menu #user="matMenu">
