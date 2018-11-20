@@ -1,3 +1,6 @@
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
   <button mat-raised-button color="primary" [matMenuTriggerFor]="login">Login</button>
   <mat-menu #login="matMenu">
@@ -5,7 +8,9 @@
     <button mat-menu-item="">Register</button>
   </mat-menu>
 
-  <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">User</span></button>
+  <button mat-button [matMenuTriggerFor]="user">
+    <mat-icon>face</mat-icon>
+    <span class="aligned-with-icon">User</span></button>
   <mat-menu #user="matMenu">
     <button mat-menu-item routerLink="user/add-a-game">Add game</button>
     <button mat-menu-item routerLink="user/report-a-bug">Report a bug</button>
@@ -14,9 +19,13 @@
     <button mat-menu-item routerLink="user/contact">Contact us</button>
   </mat-menu>
 
-  <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
+  <button mat-button routerLink="">
+    <mat-icon>home</mat-icon>
+  </button>
 
-  <button mat-button [matMenuTriggerFor]="games"><mat-icon>games</mat-icon></button>
+  <button mat-button [matMenuTriggerFor]="games">
+    <mat-icon>games</mat-icon>
+  </button>
   <mat-menu #games="matMenu">
     <button mat-menu-item routerLink="game/rating">Rating</button>
     <button mat-menu-item routerLink="game/platform">Platform</button>
@@ -24,11 +33,15 @@
   </mat-menu>
 
   <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
-
-  <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-  <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-  <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-  <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-
+  <span>
+    <ul>
+        <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+        <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+    </ul>
+  </span>
   <span id="logo">Community Rates Games Logo</span>
+
+
 </mat-toolbar>
