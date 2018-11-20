@@ -1,51 +1,14 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-  background-color: #7F8181;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: #3B3E3D;
-}
-
-.loginRegister {
+.fill-remaining-space {
   flex: 1 1 auto;
 }
-
-.mainTitles {
-  text-align: center;
-  display: inline-block;
-  margin: 0 150px;
-  text-decoration: none;
-}
-
-mat-toolbar a {
-  display: inline-block;
-  margin: 0 10px;
-  color: #f5f5f5;
-  text-decoration: none;
-}
-
-.inner-content {
-  color: white;
+.aligned-with-icon{
   position: absolute;
-  bottom: 10%;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 10px;
 }
 
-/**
-FOOTER
-**/
-.footer {
+.socialmedia {
   position: absolute;
   right: 0;
   bottom: 0;

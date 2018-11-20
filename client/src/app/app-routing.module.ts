@@ -1,26 +1,39 @@
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
-import {ProfileComponent} from "./profile/profile.component";
+import {ProfileComponent} from "./user/profile/profile.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomeComponent} from "./home/home.component";
 import {GameComponent} from "./game/game.component";
-import {RatingComponent} from "./rating/rating.component";
-import {ReportBugComponent} from "./report-bug/report-bug.component";
-import {AddGameComponent} from "./add-game/add-game.component";
-import {ContactComponent} from "./contact/contact.component";
+import {RatingComponent} from "./game/rating/rating.component";
+import {ReportBugComponent} from "./user/report-bug/report-bug.component";
+import {AddGameComponent} from "./user/add-game/add-game.component";
+import {ContactComponent} from "./user/contact/contact.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {UserComponent} from "./user/user.component";
+import {SearchgameComponent} from "./searchgame/searchgame.component";
+import {Top100Component} from "./game/top100/top100.component";
+import {PlatformComponent} from "./game/platform/platform.component";
+import {MygamesComponent} from "./user/mygames/mygames.component";
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'game', component: GameComponent},
-  {path: 'rating', component: RatingComponent},
-  {path: 'report-a-bug', component: ReportBugComponent},
-  {path: 'add-a-game', component: AddGameComponent},
-  {path: 'contact', component: ContactComponent},
+  {path: '', component: HomeComponent, children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'user', component: UserComponent, children: [
+          {path: 'profile', component: ProfileComponent},
+          {path: 'report-a-bug', component: ReportBugComponent},
+          {path: 'my-games', component: MygamesComponent},
+          {path: 'add-a-game', component: AddGameComponent},
+          {path: 'contact', component: ContactComponent},
+        ]},
+      {path: 'register', component: RegisterComponent},
+      {path: 'game', component: GameComponent, children: [
+          {path: 'rating', component: RatingComponent},
+          {path: 'platform', component: PlatformComponent},
+          {path: 'top100', component: Top100Component}
+        ]},
+      {path: 'search', component: SearchgameComponent}
+    ]},
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -29,4 +42,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, ProfileComponent]
