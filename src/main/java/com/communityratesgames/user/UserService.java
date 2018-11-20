@@ -112,6 +112,7 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
 	*/
 	public ResponseEntity<String> validateUserConstraints(UserModel user){
         String username = user.getUserName();
+        /*
         String password = user.getPassword();
         if (!usernamePattern.matcher(username).matches()){
             return new ResponseEntity<>("Username not valid" +
@@ -128,15 +129,14 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         if (password.length() < 8 || password.length() > 30){
             return new ResponseEntity<>("Password not valid" +
                     "Password must be between 8 to 30 characters", HttpStatus.NOT_ACCEPTABLE);
-        }
-        if (findUserByUserName(username) != null){
-            if (username.equalsIgnoreCase(findUserByUserName(username).getUserName())){
+        }*/
+            if (findUserByUserName(username) != null){
                 return new ResponseEntity<>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
             }
-            if (user.getEmail().equals(findUserByEmail(user.getEmail()).getEmail())){
+            if (findUserByEmail(user.getEmail()) != null){
                 return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
             }
-        }
+
         try {
             createNewUser(user);
             return new ResponseEntity<>("New user created", HttpStatus.OK);

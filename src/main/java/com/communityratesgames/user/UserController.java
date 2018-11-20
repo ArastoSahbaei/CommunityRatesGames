@@ -3,8 +3,11 @@ package com.communityratesgames.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
@@ -24,8 +27,9 @@ public class UserController {
         this.userService = userService;
     }
 
+    @Validated
     @PostMapping("/user")
-    public ResponseEntity<String> RegisterNewUser(@RequestBody UserModel userModel) {
+    public ResponseEntity<String> RegisterNewUser(@Validated @RequestBody UserModel userModel) {
         return userService.validateUserConstraints(userModel);
     }
 

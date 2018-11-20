@@ -1,5 +1,7 @@
 package com.communityratesgames.user;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.nio.charset.StandardCharsets;
@@ -13,10 +15,16 @@ public class UserEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp userCreated;
+
     @Column(unique = true)
+    @Size(min = 4, max = 30)
+    @Pattern(regexp = "^[a-zA-Z0-9-_]+$")
     private String userName;
+
     @Column(unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9_]+@$")
     private String email;
+    //"^[a-zA-Z0-9!#$*+-<>^~_]+$"
     private String passwordHash;
     private String password;
     private String role;
