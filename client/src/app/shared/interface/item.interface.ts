@@ -1,4 +1,5 @@
 export interface Item {
+  title: string;
   id: number;
   node_id: string;
   name: string;
@@ -40,5 +41,9 @@ export declare type Items = Item[];
 export interface GithubResponse {
   total_count: number;
   incomplete_results: boolean;
+  items: Items;
+}
+export interface SearchGameResponse {
+  title: string;
   items: Items;
 }
