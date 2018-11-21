@@ -1,14 +1,12 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {session} from "webdriver-js-extender/built/spec/mock-server/commands";
-import {share} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  private storage = new Subject<any>();
+  private storage = new Subject<boolean>();
 
   watchStorage(): Observable<any> {
     return this.storage.asObservable();

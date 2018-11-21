@@ -25,8 +25,7 @@ import { Top100Component } from './game/top100/top100.component';
 import { MygamesComponent } from './user/mygames/mygames.component';
 import { ApiService } from "./shared/service/api.service";
 import { UrlService } from "./shared/service/url.service";
-import { LoginformComponent } from './login/loginform/loginform.component';
-import {StorageService} from "./shared/service/storage.service";
+import { StorageService } from "./shared/service/storage.service";
 
 @NgModule({
   declarations: [
@@ -47,8 +46,7 @@ import {StorageService} from "./shared/service/storage.service";
     LoginComponent,
     ProfileComponent,
     Top100Component,
-    MygamesComponent,
-    LoginformComponent
+    MygamesComponent
   ],
   imports: [
     BrowserModule,
