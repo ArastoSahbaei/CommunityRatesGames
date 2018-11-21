@@ -10,7 +10,7 @@ import com.communityratesgames.game.GameModel;
 import com.communityratesgames.game.GameEntity;
 
 public class PlatformModel implements Serializable {
-    private Integer id;
+    private Long id;
     private String name;
     private int releaseYear;
     private CompanyModel company;
@@ -21,7 +21,7 @@ public class PlatformModel implements Serializable {
         this.name = entity.getName();
         this.releaseYear = entity.getReleaseYear();
         this.company = new CompanyModel(entity.getCompany());
-        this.games = new ArrayList();
+        this.games = new ArrayList<>();
         for (GameEntity game : entity.getGames()) {
             this.games.add(new GameModel(game));
         }
@@ -29,7 +29,7 @@ public class PlatformModel implements Serializable {
 
     protected PlatformModel() { }
 
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 
