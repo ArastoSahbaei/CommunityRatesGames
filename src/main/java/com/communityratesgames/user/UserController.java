@@ -29,7 +29,7 @@ public class UserController {
         return userService.validateUserConstraints(userModel);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/")
     public ResponseEntity<Object> getUserById(
             @RequestParam(value="token",required=false) Long token,
             @RequestParam(value="id", required=false) Long id) {
@@ -45,7 +45,7 @@ public class UserController {
         return new ResponseEntity<>(new Account(userService.findUserById(id)), HttpStatus.OK);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/byname")
     public ResponseEntity<Account> getUserByUsername(@RequestParam("name") String username) {
         UserModel user = userService.findUserByUserName(username);
         return new ResponseEntity<>(new Account(user), HttpStatus.OK);

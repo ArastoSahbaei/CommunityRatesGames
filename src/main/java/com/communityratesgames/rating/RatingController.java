@@ -31,14 +31,14 @@ public class RatingController {
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
 
-    @GetMapping("/rating")
+    @GetMapping("/rating/list")
     public ResponseEntity<List<RatingModel>> getRatingsByGameId (@RequestParam("gameId") Long gameId){
         List<RatingModel> ratingList = ratingService.findRatingsByGameId(gameId);
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
 
     @GetMapping("/rating/average")
-    public ResponseEntity<Float> getRatingAverageByGameId (@RequestParam("q") Long gameId){
+    public ResponseEntity<Float> getRatingAverageByGameId (@RequestParam("gameId") Long gameId){
         return new ResponseEntity<>(ratingService.getAverageOfGame(gameId), HttpStatus.OK);
     }
 

@@ -37,7 +37,7 @@ public class GameController {
     }
 
     @RequestMapping(
-            value = "/shitface",
+            value = "/game/all",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE
     )
