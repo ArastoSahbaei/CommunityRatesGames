@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../shared/service/storage.service";
+import {Router} from "@angular/router";
+import {AuthService} from "../shared/service/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,10 +13,10 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public errorMessage: string = "Sorry, your credentials was not found!";
-  public isLoggedIn: boolean = false;
+  public failedLogin: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private storage: StorageService) { }
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -24,13 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    let user = this.loginForm.value.email;
-    let pass = this.loginForm.value.password;
-    if ( user === 'test@test.com' && pass === 'test') {
-      this.storage.setItem('name', 'Test');
-    }
-    else {
-      this.isLoggedIn = true;
+    if (!this.auth.login(this.loginForm.value)) {
+      this.failedLogin = true;
     }
   }
 

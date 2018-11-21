@@ -12,7 +12,7 @@
         <span *ngIf="(password.dirty || password.touched) && password.invalid">Password required</span>
       </form>
     </mat-card-content>
-    <span *ngIf="isLoggedIn">{{errorMessage}}</span>
+    <span *ngIf="failedLogin">{{errorMessage}}</span>
     <mat-card-actions>
       <button mat-raised-button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" color="primary">Sign in</button>
     </mat-card-actions>
