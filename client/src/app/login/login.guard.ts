@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginformGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
   private loggedIn: boolean = false;
 

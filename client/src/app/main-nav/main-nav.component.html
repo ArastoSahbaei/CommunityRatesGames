@@ -2,7 +2,7 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
-  <button mat-raised-button color="primary" routerLink="login/loginform">{{buttonText ? "Sign Out" : "Sign In"}}</button>
+  <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
 
   <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
   <mat-menu #user="matMenu">

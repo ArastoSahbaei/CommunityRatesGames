@@ -15,15 +15,12 @@ import {SearchgameComponent} from "./searchgame/searchgame.component";
 import {Top100Component} from "./game/top100/top100.component";
 import {PlatformComponent} from "./game/platform/platform.component";
 import {MygamesComponent} from "./user/mygames/mygames.component";
-import {LoginformComponent} from "./login/loginform/loginform.component";
-import {LoginformGuard} from "./login/loginform/loginform.guard";
+import {LoginGuard} from "./login/login.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, children: [
-      {path: 'login', component: LoginComponent, children: [
-          {path: 'loginform', component: LoginformComponent}
-        ]},
-      {path: 'user', component: UserComponent, canActivate: [LoginformGuard], children: [
+      {path: 'login', component: LoginComponent},
+      {path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
           {path: 'profile', component: ProfileComponent},
           {path: 'report-a-bug', component: ReportBugComponent},
           {path: 'my-games', component: MygamesComponent},
