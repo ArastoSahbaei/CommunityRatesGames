@@ -4,7 +4,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
 
-  <button mat-button [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+  <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
   <mat-menu #user="matMenu">
     <button mat-menu-item routerLink="user/add-a-game">Add game</button>
     <button mat-menu-item routerLink="user/report-a-bug">Report a bug</button>
