@@ -16,7 +16,7 @@ export class SearchgameService {
     /** TODO WORKS ON URL: https://api.github.com/search/repositories
      *  NEEDS TO WORK ON THE LOCALHOST
      */
-    const url = 'http://localhost:8080/api/game/search';
+    const url = 'https://api.github.com/search/repositories';
     return this.http
       .get<SearchGameResponse>(url, {
         observe: 'response',
