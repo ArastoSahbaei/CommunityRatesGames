@@ -68,32 +68,4 @@ public class GameService implements GameServiceInterface {
     public GameEntity findGameByTitle(String title) {
         return null;
     }
-
-    public String streamAllGames() throws IOException {
-        List<GameEntity> games = gameRepository.findAll();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        JsonFactory jfactory = new JsonFactory();
-        JsonGenerator jGenerator = jfactory
-                .createGenerator(stream, JsonEncoding.UTF8);
-
-        jGenerator.writeStartArray();
-        for (GameEntity game:games
-             ) {
-            jGenerator.writeStartObject();
-            jGenerator.writeNumberField("id", game.getId());
-            jGenerator.writeStringField("title", game.getTitle());
-            jGenerator.writeFieldName("platform");
-            jGenerator.writeStartArray();
-            for (PlatformEntity platform:game.getPlatforms()
-                 ) {
-                jGenerator.writeString(platform.getName());
-            }
-            jGenerator.writeEndArray();
-            jGenerator.writeStringField("company", game.getCompany().getCompanyName());
-            jGenerator.writeEndObject();
-        }
-        jGenerator.writeEndArray();
-        jGenerator.close();
-        return new String(stream.toByteArray(), StandardCharsets.UTF_8);
-    }
 }
