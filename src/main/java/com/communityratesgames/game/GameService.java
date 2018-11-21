@@ -2,7 +2,6 @@ package com.communityratesgames.game;
 
 import com.communityratesgames.company.CompanyModel;
 import com.communityratesgames.company.CompanyRepository;
-import com.communityratesgames.platform.PlatformEntity;
 import com.communityratesgames.platform.PlatformModel;
 import com.communityratesgames.platform.PlatformRepository;
 import org.springframework.data.domain.Sort;
