@@ -11,14 +11,12 @@ export class GithubService {
   constructor(private http: HttpClient) {}
 
   search(query: string): Observable<GithubResponse> {
-    const url = 'https://api.github.com/search/repositories';
+    const url = 'http://localhost:8080/api/game/search';
     return this.http
       .get<GithubResponse>(url, {
         observe: 'response',
         params: {
-          q: query,
-          sort: 'stars',
-          order: 'desc'
+          q: query
         }
       })
       .pipe(
