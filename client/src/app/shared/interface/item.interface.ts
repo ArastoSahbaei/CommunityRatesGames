@@ -4,12 +4,15 @@ export interface Item {
   node_id: string;
   name: string;
   full_name: string;
+  items: Items;
 }
 
 export declare type Items = Item[];
 
+/*
 export interface SearchGameResponse {
   title: string;
   id: number;
   items: Items;
 }
+*/
