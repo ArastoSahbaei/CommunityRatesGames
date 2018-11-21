@@ -22,7 +22,7 @@ public class GameController {
     }
 
     @GetMapping("/game")
-    public ResponseEntity<GameModel> getGameById(@RequestParam("id") Long id) {
+    public ResponseEntity<GameModel> getGameById(@RequestParam("q") Long id) {
         GameModel game = gameService.findGameById(id);
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
