@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Item} from "../interface/item.interface";
+import {SearchGameResponse} from "../interface/item.interface";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -12,13 +12,13 @@ export class SearchgameService {
   constructor(private http: HttpClient) {
   }
 
-  search(query: string): Observable<Item> {
+  search(query: string): Observable<SearchGameResponse> {
     /** TODO WORKS ON URL: https://api.github.com/search/repositories
      *  NEEDS TO WORK ON THE LOCALHOST
      */
-    const url = 'http://localhost:8080/api/game/search';
+    const url = 'https://api.github.com/search/repositories';
     return this.http
-      .get<Item>(url, {
+      .get<SearchGameResponse>(url, {
         observe: 'response',
         params: {
           q: query

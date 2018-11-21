@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {Items} from "../shared/interface/item.interface";
@@ -14,12 +14,10 @@ export class SearchgameComponent implements OnInit {
   public githubAutoComplete$: Observable<Items> = null;
   public autoCompleteControl = new FormControl();
 
-  constructor(private searchGameService: SearchgameService) {
-  }
-
+  constructor(private searchGameService: SearchgameService) { }
   lookup(value: string): Observable<Items> {
     return this.searchGameService.search(value.toLowerCase()).pipe(
-      // map the item property of the results as our return object
+      // map the item property of the github results as our return object
       map(results => results.items),
       // catch errors
       catchError(_ => {
