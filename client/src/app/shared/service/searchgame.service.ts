@@ -13,6 +13,9 @@ export class SearchgameService {
   }
 
   search(query: string): Observable<SearchGameResponse> {
+    /** TODO WORKS ON URL: https://api.github.com/search/repositories
+     *  NEEDS TO WORK ON THE LOCALHOST
+     */
     const url = 'http://localhost:8080/api/game/search';
     return this.http
       .get<SearchGameResponse>(url, {
