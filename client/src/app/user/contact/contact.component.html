@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html>
-<body>
-<form ng-controller="MailController" ng-submit="createMail()">
 <div class="container">
-  <h1>Contact</h1>
-  <p>Please fill in all forms to send us an email</p>
-
-  <label for="email"><b>Email Address</b></label>
-  <input type="text" placeholder="Please submit your Email Address" name="emailaddress" required>
-
-  <label for="subject"><b>Message</b></label>
-  <textarea id="subject" name="subject"></textarea>
-
-  <div class="clearfix">
-    <button ng-click="sendMail()" type="submit" class="sendbutton">Send Message</button>
-  </div>
-
+  <mat-card>
+    <mat-card-title>Contact Us</mat-card-title>
+    <mat-card-content>
+    <form [formGroup]="contact" class="layout">
+      <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+      <span *ngIf="(email.dirty || email.touched) && email.invalid">Email required</span>
+      <input id="username" matInput placeholder="Username" formControlName="username" class="form-control" type="username">
+      <mat-form-field>
+        <textarea matInput rows="6" cols="70" placeholder="Please type your message below"></textarea>
+      </mat-form-field>
+    </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="button" (click)="onSubmit()" color="primary">Send Message</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
-</form>
-</body>
-</html>
+
 
 
