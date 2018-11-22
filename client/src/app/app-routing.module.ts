@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginComponent} from "./login/login.component";
 import {ProfileComponent} from "./user/profile/profile.component";
-import {RegisterComponent} from "./register/register.component";
+import {RegisterComponent} from "./login/register/register.component";
 import {HomeComponent} from "./home/home.component";
 import {GameComponent} from "./game/game.component";
 import {RatingComponent} from "./game/rating/rating.component";
@@ -27,7 +27,6 @@ const routes: Routes = [
           {path: 'add-a-game', component: AddGameComponent},
           {path: 'contact', component: ContactComponent},
         ]},
-      {path: 'register', component: RegisterComponent},
       {path: 'game', component: GameComponent, children: [
           {path: 'rating', component: RatingComponent},
           {path: 'platform', component: PlatformComponent},
@@ -35,6 +34,7 @@ const routes: Routes = [
         ]},
       {path: 'search', component: SearchgameComponent}
     ]},
+  {path: 'register', component: RegisterComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

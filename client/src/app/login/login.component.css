@@ -22,3 +22,8 @@ mat-card {
 span {
   color: red;
 }
+
+#register {
+  background-color: white;
+  color: black;
+}
