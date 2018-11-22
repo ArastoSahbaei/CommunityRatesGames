@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class NewGameModel implements Serializable {
+    
     private String title;
     private Long companyId;
     private List<Long> allPlatformId;

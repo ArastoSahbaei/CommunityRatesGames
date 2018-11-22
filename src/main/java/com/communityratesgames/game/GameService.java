@@ -2,16 +2,15 @@ package com.communityratesgames.game;
 
 import com.communityratesgames.company.CompanyModel;
 import com.communityratesgames.company.CompanyRepository;
+import com.communityratesgames.platform.PlatformEntity;
 import com.communityratesgames.platform.PlatformModel;
 import com.communityratesgames.platform.PlatformRepository;
+import org.apache.taglibs.standard.tag.el.sql.SetDataSourceTag;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.communityratesgames.rating.RatingRepository;
@@ -46,18 +45,21 @@ public class GameService implements GameServiceInterface {
 
     @Override
     public GameModel createGame(NewGameModel inputGame) {
-        System.out.println(inputGame.toString());
-        List<PlatformModel> allPlatforms = inputGame.getAllPlatformId()
-                .stream().map(
-                        platform -> new PlatformModel(platformRepository.findById(platform))
-                ).collect(Collectors.toList());
-        CompanyModel company = new CompanyModel(companyRepository.findCompanyById(inputGame.getCompanyId()));
         GameModel newGame = new GameModel(
                 inputGame.getTitle(),
-                company,
-                allPlatforms
+                findCompanyAsModel(inputGame.getCompanyId()),
+                findAllPlatformsAsModel(inputGame.getAllPlatformId())
         );
         return new GameModel(gameRepository.save(new GameEntity(newGame)));
+    }
+    private List<PlatformModel> findAllPlatformsAsModel(List<Long> id){
+        return platformRepository.findByIdIn(id)
+                .stream().map(
+                        PlatformModel::new
+                ).collect(Collectors.toList());
+    }
+    private CompanyModel findCompanyAsModel(Long id){
+        return new CompanyModel(companyRepository.findCompanyById(id));
     }
 
     public List<HashMap<String,Object>> searchForFiveGames(String searchString){
@@ -74,8 +76,7 @@ public class GameService implements GameServiceInterface {
 
     public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
         PageRequest request = PageRequest.of(page-1, limit);
-        List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
-        return items;
+        return gameRepository.getTopRatedGames(request);
     }
 
     @Override
