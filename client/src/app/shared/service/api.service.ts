@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   registerUser(body: Register) {
-    console.log(body);
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser(), body, {headers: Headers.HeaderJSON() } );
   }
 
 }

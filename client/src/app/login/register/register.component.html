@@ -12,8 +12,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input id="password" type="password" matInput formControlName="password" placeholder="Password" />
-    <mat-hint>Minimum six characters long</mat-hint>
+    <input id="password" type="password" matInput minlength="8" maxlength="32" formControlName="password" placeholder="Password" />
+    <mat-hint>Minimum eight characters long</mat-hint>
     <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
   </mat-form-field>
 
