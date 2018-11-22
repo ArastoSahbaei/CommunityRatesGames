@@ -17,7 +17,7 @@ export class SearchgameComponent implements OnInit {
   constructor(private searchGameService: SearchgameService) { }
   lookup(value: string): Observable<Items> {
     return this.searchGameService.search(value.toLowerCase()).pipe(
-      // map the item property of the github results as our return object
+      // map the item property of the backend results as our return object
       //map(results => results.items),
       // catch errors
       catchError(_ => {
