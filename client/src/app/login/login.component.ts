@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   public failedLogin: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,5 +38,10 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  register() {
+    this.router.navigate(['/register']);
+//    this.router.navigateByUrl('/');
   }
 }

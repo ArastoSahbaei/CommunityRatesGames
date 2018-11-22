@@ -11,7 +11,7 @@ import { UserComponent } from './user/user.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './login/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ReportBugComponent } from './user/report-bug/report-bug.component';
 import { AddGameComponent } from './user/add-game/add-game.component';
