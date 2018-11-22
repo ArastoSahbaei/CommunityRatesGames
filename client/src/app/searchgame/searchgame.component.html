@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput [formControl]="autoCompleteControl" type="text" placeholder="Search game" [matAutocomplete]="auto">
+  <input matInput [formControl]="autoCompleteControl" type="text" placeholder="Search Games" [matAutocomplete]="auto">
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
     <mat-option *ngFor="let item of searchGameAutoComplete$ | async; let index = index" [value]="item">
       {{ item.title | titlecase}}
