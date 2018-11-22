@@ -11,7 +11,7 @@ import {SearchgameService} from "../shared/service/searchgame.service";
   styleUrls: ['./searchgame.component.css']
 })
 export class SearchgameComponent implements OnInit {
-  public githubAutoComplete$: Observable<Items> = null;
+  public searchGameAutoComplete$: Observable<Items> = null;
   public autoCompleteControl = new FormControl();
 
   constructor(private searchGameService: SearchgameService) { }
@@ -27,7 +27,7 @@ export class SearchgameComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.githubAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
+    this.searchGameAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
       startWith(''),
       // delay emits
       debounceTime(300),
