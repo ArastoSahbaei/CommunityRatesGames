@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-contact',
@@ -8,11 +8,24 @@ import {HttpClientModule} from "@angular/common/http";
 })
 export class ContactComponent implements OnInit {
 
+  contact: FormGroup;
 
-  constructor(private http : HttpClientModule) {
+  constructor(private formBuilder: FormBuilder) {
 
   }
 
   ngOnInit() {
+    this.contact = this.formBuilder.group({
+      'email': ['', [Validators.required, Validators.email]],
+      'messages': ['', Validators.required]
+    });
+  }
+
+  get email(){
+    return this.contact.get('email')
+  }
+
+  get messages(){
+   return this.contact.get('messages')
   }
 }
