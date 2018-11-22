@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {LoginGuard} from "../login/login.guard";
 import {StorageService} from "../shared/service/storage.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../shared/service/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-main-nav',
@@ -12,33 +14,37 @@ import {Router} from "@angular/router";
 export class MainNavComponent implements OnInit{
 
   private name: string = "";
-  public buttonText: string = "Log In";
+  public buttonText: string = "Sign In";
+  public isLoggedIn: boolean = false;
+  public isLoggedIn$: Observable<boolean>;
 
   constructor(private storage: StorageService,
+              private auth: AuthService,
               private route: Router) {}
 
   ngOnInit() {
     this.storage.watchStorage().subscribe((data:string) => {
-      this.checkLoggedIn();
+      if ( this.isLoggedIn == false ) {
+        this.name = this.storage.getItem('name');
+        this.isLoggedIn = true;
+        this.buttonText = "Sign Out";
+      } else {
+        this.isLoggedIn = false;
+        this.buttonText = "Sign In";
+      }
     });
+    this.isLoggedIn$ = this.auth.isLoggedIn;
   }
 
   public logInOut() {
-    if (this.buttonText === "Log In" ) {
+    if (this.isLoggedIn === false ) {
       this.route.navigateByUrl('/login');
     }
     else {
       this.storage.removeItem('name');
-    }
-  }
-
-  private checkLoggedIn() {
-    if ( this.buttonText === "Log In" ) {
-      this.name = this.storage.getItem('name');
-      this.buttonText = "Sign Out";
-    } else {
+      this.route.navigateByUrl('/');
+      this.auth.logout();
       this.name = "";
-      this.buttonText = "Sign In";
     }
   }
 }
