@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
-import {Items} from "../shared/interface/item.interface";
 import {FormControl} from "@angular/forms";
 import {SearchgameService} from "../shared/service/searchgame.service";
+import {SearchGames} from "../shared/interface/search-game.interface";
 
 @Component({
   selector: 'app-searchgame',
@@ -11,14 +11,16 @@ import {SearchgameService} from "../shared/service/searchgame.service";
   styleUrls: ['./searchgame.component.css']
 })
 export class SearchgameComponent implements OnInit {
-  public searchGameAutoComplete$: Observable<Items> = null;
+  public searchGameAutoComplete$: Observable<SearchGames> = null;
   public autoCompleteControl = new FormControl();
 
-  constructor(private searchGameService: SearchgameService) { }
-  lookup(value: string): Observable<Items> {
+  constructor(private searchGameService: SearchgameService) {
+  }
+
+  lookup(value: string): Observable<SearchGames> {
     return this.searchGameService.search(value.toLowerCase()).pipe(
       // map the item property of the backend results as our return object
-      map(results => results.items),
+      // map(results => results.items),
       // catch errors
       catchError(_ => {
         return of(null);
@@ -37,7 +39,7 @@ export class SearchgameComponent implements OnInit {
           // lookup from github
           return this.lookup(value);
         } else {
-          // if no value is pressent, return null
+          // if no value is present, return null
           return of(null);
         }
       })
