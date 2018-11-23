@@ -3,6 +3,7 @@ import {BehaviorSubject} from "rxjs";
 import {User} from "../interface/user.interface";
 import {Router} from "@angular/router";
 import {StorageService} from "./storage.service";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,17 @@ export class AuthService {
   }
 
   public login(user : User) {
-    if ( user.email === "test@test.com" && user.password === "test") {
+/*
+Dont forget to let the return true / false be outside of the observable to avoid errors
+ */
+    this.api.checkCredentials(user).subscribe(response => {
+      console.log(response)
+      },
+      error => { this.router.navigate(['/error']);
+    });
+
+
+    if ( user.email === "test@test.com" && user.password === "testardetta") {
       this.loggedIn.next(true);
       this.router.navigate(['/']);
       //Change 'Test' to name from backend
