@@ -110,7 +110,13 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         return builder.build();
     }
 	*/
-	public ResponseEntity<String> validateUserConstraints(UserModel user){
+
+	public ResponseEntity<?> checkCredentials(UserModel userModel) {
+	    System.out.println("IN HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe");
+	    return null;
+    }
+
+	public ResponseEntity<?> validateUserConstraints(UserModel user){
         String username = user.getUserName();
         String password = user.getPassword();
         if (!usernamePattern.matcher(username).matches()){
@@ -139,9 +145,9 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         }
         try {
             createNewUser(user);
-            return new ResponseEntity<>("New user created", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e){
-            return new ResponseEntity<>("Failure when creating user", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
 	}
 }

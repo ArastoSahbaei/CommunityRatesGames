@@ -25,11 +25,16 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<String> RegisterNewUser(@RequestBody UserModel userModel) {
+    public ResponseEntity<?> RegisterNewUser(@RequestBody UserModel userModel) {
         return userService.validateUserConstraints(userModel);
     }
 
-    @GetMapping("/user/")
+    @GetMapping("/credential")
+    public ResponseEntity<?> checkCredentials(@RequestBody UserModel userModel) {
+        System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        return userService.checkCredentials(userModel);
+    }
+    @GetMapping("/user")
     public ResponseEntity<Object> getUserById(
             @RequestParam(value="token",required=false) Long token,
             @RequestParam(value="id", required=false) Long id) {

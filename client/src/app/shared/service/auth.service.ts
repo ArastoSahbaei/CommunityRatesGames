@@ -13,6 +13,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private router : Router,
+              private api: ApiService,
               private storage: StorageService) {}
 
   get isLoggedIn() {
