@@ -8,8 +8,10 @@ public interface UserServiceInterface {
 
     UserModel findUserById(Long id);
 
-    UserEntity findUserByUserName(String username);
+    UserModel findUserByUserName(String username);
 
-    UserModel createNewUser(UserModel userModel);
+    UserEntity findUserByEmail(String email);
+
+    void createNewUser(UserModel userModel);
 
 }

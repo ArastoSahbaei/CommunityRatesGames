@@ -26,22 +26,18 @@ public class RatingService implements RatingServiceInterface {
         return convertEntityListToModelList(ratingRepository.findAll());
     }
 
-    /*
-    @Override
+    public float getAverageOfGame(Long gameId) {
+        return ratingRepository.getGameAverageRating(gameId);
+    }
+
     public List<RatingModel> findRatingsByGameId(Long gameId) {
         return convertEntityListToModelList(ratingRepository.findAllByGameId(gameId));
     }
 
+    /*
     public RatingModel findByGameIdAndUserId(Long gameId, Long userId){
         RatingEntity ratingEntity = ratingRepository.findByGameIdAndUserId(gameId, userId);
         return new RatingModel(ratingEntity);
-    }
-/*
-
-/*
-    public Long getRatingAverage(Long gameId){
-        //TODO: Query for averages in one game
-        return null;
     }
 */
 

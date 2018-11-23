@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.communityratesgames.company.CompanyModel;
-import com.communityratesgames.company.CompanyEntity;
 import com.communityratesgames.game.GameModel;
 import com.communityratesgames.game.GameEntity;
 

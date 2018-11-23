@@ -21,11 +21,11 @@ public class CompanyService implements CompanyServiceInterface {
         return new CompanyModel(companyRepository.save(companyEntity));
     }
 
-    public CompanyEntity findCompanyByCompanyName(String companyName){
-        return companyRepository.findCompanyByCompanyName(companyName);
+    public CompanyModel findCompanyByCompanyName(String companyName) {
+        return new CompanyModel( companyRepository.findCompanyByCompanyName(companyName));
     }
 
-    public List<CompanyModel> findAllCompanies(){
+    public List<CompanyModel> findAllCompanies() {
         List<CompanyEntity> listWithAllCompanies = companyRepository.findAll();
         return convertCompanyListToModelList(listWithAllCompanies);
     }
@@ -37,7 +37,7 @@ public class CompanyService implements CompanyServiceInterface {
     }
 
 
-    private List<CompanyModel> convertCompanyListToModelList (List<CompanyEntity> companyList){
+    private List<CompanyModel> convertCompanyListToModelList(List<CompanyEntity> companyList) {
         List<CompanyModel> companyModelList = new ArrayList<>();
         for (CompanyEntity companyEntity : companyList) {
             companyModelList.add(new CompanyModel(companyEntity));

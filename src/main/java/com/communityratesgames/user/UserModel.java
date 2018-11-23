@@ -8,24 +8,33 @@ public class UserModel implements Serializable {
     private Long id;
     private Timestamp userCreated;
     private String userName;
-    private String firstName;
-    private String lastName;
     private String email;
     private String password;
     private String role;
+    private String emailSubject;
+    private String emailText;
 
     public UserModel(UserEntity userEntity) {
         this.id = userEntity.getId();
         this.userName = userEntity.getUserName();
         this.email = userEntity.getEmail();
-        this.firstName = userEntity.getFirstName();
-        this.lastName = userEntity.getLastName();
         this.password = userEntity.getPassword();
         this.role = userEntity.getRole();
         this.userCreated = userEntity.getUserCreated();
     }
 
-    public UserModel() {}
+    public UserModel(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public UserModel(String emailSubject, String emailText) {
+        this.emailSubject = emailSubject;
+        this.emailText = emailText;
+    }
+
+    public UserModel(){}
 
     public Long getId() {
         return id;
@@ -49,22 +58,6 @@ public class UserModel implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -91,5 +84,33 @@ public class UserModel implements Serializable {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", userCreated=" + userCreated +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", emailSubject='" + emailSubject + '\'' +
+                ", emailText='" + emailText + '\'' +
+                '}';
+    }
 
+    public String getEmailSubject() {
+        return emailSubject;
+    }
+
+    public void setEmailSubject(String emailSubject) {
+        this.emailSubject = emailSubject;
+    }
+
+    public String getEmailText() {
+        return emailText;
+    }
+
+    public void setEmailText(String emailText) {
+        this.emailText = emailText;
+    }
 }

@@ -12,9 +12,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class CompanyController {
 
-    @Autowired
     private final CompanyService companyService;
 
+    @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
@@ -31,14 +31,14 @@ public class CompanyController {
         return new ResponseEntity<>(resultList, HttpStatus.OK);
     }
 
-    @GetMapping("/company/{id}")
-    public ResponseEntity<CompanyModel> getCompanyById(@PathVariable Long id) {
+    @GetMapping("/company/byid")
+    public ResponseEntity<CompanyModel> getCompanyById(@RequestParam("id") Long id) {
         return new ResponseEntity<>(companyService.findCompanyById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/company/{companyName}")
-    public ResponseEntity<CompanyModel> getCompanyByCompanyName(@PathVariable String companyName) {
-        return new ResponseEntity(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
+    @GetMapping("/company/byname")
+    public ResponseEntity<CompanyModel> getCompanyByCompanyName(@RequestParam("name") String companyName) {
+        return new ResponseEntity<>(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
     }
 
 }

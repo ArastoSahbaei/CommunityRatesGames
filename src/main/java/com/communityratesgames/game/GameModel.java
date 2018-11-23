@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import com.communityratesgames.platform.PlatformEntity;
 import com.communityratesgames.platform.PlatformModel;
-import com.communityratesgames.company.CompanyEntity;
 import com.communityratesgames.company.CompanyModel;
 
 public class GameModel implements Serializable {
@@ -17,6 +16,7 @@ public class GameModel implements Serializable {
     private String title;
     private CompanyModel company;
     private List<PlatformModel> platforms;
+    private float averageRating;
 
     public GameModel(String title, CompanyModel company, List<PlatformModel> platforms) {
         this.title = title;
@@ -25,6 +25,10 @@ public class GameModel implements Serializable {
     }
 
     public GameModel(GameEntity gameEntity) {
+        this(gameEntity, 0.0f);
+    }
+
+    public GameModel(GameEntity gameEntity, float average) {
         this.id = gameEntity.getId();
         this.releaseDate = gameEntity.getReleaseDate();
         this.title = gameEntity.getTitle();
@@ -33,6 +37,7 @@ public class GameModel implements Serializable {
         for (PlatformEntity platform : gameEntity.getPlatforms()) {
             this.platforms.add(new PlatformModel(platform));
         }
+        this.averageRating = average;
     }
 
     protected GameModel() { }
@@ -71,5 +76,13 @@ public class GameModel implements Serializable {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public float getAverageRating() {
+        return this.averageRating;
+    }
+
+    public void setAverageRating(float average) {
+        this.averageRating = average;
     }
 }

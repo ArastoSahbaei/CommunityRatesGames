@@ -1,8 +1,10 @@
 package com.communityratesgames.user;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.math.BigInteger;
 
 @Entity
 public class UserEntity implements Serializable {
@@ -15,8 +17,7 @@ public class UserEntity implements Serializable {
     private String userName;
     @Column(unique = true)
     private String email;
-    private String firstName;
-    private String lastName;
+    private String passwordHash;
     private String password;
     private String role;
 
@@ -24,9 +25,7 @@ public class UserEntity implements Serializable {
         this.id = userModel.getId();
         this.userName = userModel.getUserName();
         this.email = userModel.getEmail();
-        this.firstName = userModel.getFirstName();
-        this.lastName = userModel.getLastName();
-        this.password = userModel.getPassword();
+        this.setPassword(userModel.getPassword());
         this.role = userModel.getRole();
         this.userCreated = userModel.getUserCreated();
     }
@@ -58,22 +57,6 @@ public class UserEntity implements Serializable {
         this.userName = userName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -82,12 +65,31 @@ public class UserEntity implements Serializable {
         this.email = email;
     }
 
+    public String getPasswordHash() {
+        return this.passwordHash;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        // Use hashed SHA-256.
+        byte[] hash = new byte[4];
+        SecureRandom rand = new SecureRandom();
+        rand.setSeed(rand.generateSeed(4));
+        rand.nextBytes(hash);
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            this.passwordHash = Integer.toHexString(((int)hash[0] << 24) | ((int)hash[1] << 16) | ((int)hash[2] << 8) | (int)hash[3]);
+            password += passwordHash;
+            md.update(password.getBytes(StandardCharsets.UTF_8));
+            hash = md.digest();
+            this.password = String.format("%064x", new BigInteger(1, hash));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getRole() {

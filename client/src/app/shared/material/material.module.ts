@@ -1,9 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatMenuModule
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [],
@@ -13,7 +24,18 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
   exports: [
     CommonModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    FlexLayoutModule,
+    MatCardModule
   ],
 })
 export class MaterialModule { }

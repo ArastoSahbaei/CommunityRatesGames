@@ -11,9 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class RatingController {
-    @Autowired
+
     private final RatingService ratingService;
 
+    @Autowired
     public RatingController(RatingService ratingService) {
         this.ratingService = ratingService;
     }
@@ -30,13 +31,16 @@ public class RatingController {
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
 
-    /*
-    @GetMapping("/rating/{gameid}")
-    public ResponseEntity<List<RatingModel>> getRatingsByGame (@PathVariable Long game){
-        List<RatingModel> ratingList = ratingService.findRatingsByGame(game);
+    @GetMapping("/rating/list")
+    public ResponseEntity<List<RatingModel>> getRatingsByGameId (@RequestParam("gameId") Long gameId){
+        List<RatingModel> ratingList = ratingService.findRatingsByGameId(gameId);
         return new ResponseEntity<>(ratingList, HttpStatus.OK);
     }
-    */
+
+    @GetMapping("/rating/average")
+    public ResponseEntity<Float> getRatingAverageByGameId (@RequestParam("gameId") Long gameId){
+        return new ResponseEntity<>(ratingService.getAverageOfGame(gameId), HttpStatus.OK);
+    }
 
     /*
     //TODO: Refactor when needed
