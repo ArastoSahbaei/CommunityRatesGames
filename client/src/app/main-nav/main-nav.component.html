@@ -5,36 +5,37 @@
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
 
   <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+
   <mat-menu #user="matMenu">
-    <button mat-menu-item routerLink="user/add-a-game">Add game</button>
-    <button mat-menu-item routerLink="user/report-a-bug">Report a bug</button>
-    <button mat-menu-item routerLink="user/my-games">My games</button>
-    <button mat-menu-item routerLink="user/profile">Profile</button>
-    <button mat-menu-item routerLink="user/contact">Contact us</button>
+    <span>ACCOUNT</span>
+    <button mat-menu-item routerLink="user/profile">       <mat-icon>account_circle</mat-icon>             Profile</button>
+    <button mat-menu-item routerLink="user/my-games">      <mat-icon>favorite</mat-icon>                   My Games</button>
+    <span>COMMUNITY</span>
+    <button mat-menu-item routerLink="user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add Game</button>
+    <button mat-menu-item routerLink="user/report-a-bug">  <mat-icon>bug_report</mat-icon>                 Report a Bug</button>
+    <button mat-menu-item routerLink="user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
   </mat-menu>
 
-  <button mat-button routerLink="">
-    <mat-icon>home</mat-icon><span class="aligned-with-icon">Home</span>
-  </button>
+  <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
 
   <button mat-button [matMenuTriggerFor]="games">
     <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
   </button>
   <mat-menu #games="matMenu">
-    <button mat-menu-item routerLink="game/rating">Rating</button>
-    <button mat-menu-item routerLink="game/platform">Platform</button>
-    <button mat-menu-item routerLink="game/top100">Top 100</button>
+    <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
+    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             Platform</button>
+    <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
   </mat-menu>
 
   <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
-  <span>
-    <ul>
-        <li><a href="/404"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-        <li><a href="/404"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-        <li><a href="/404"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-        <li><a href="/404"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-    </ul>
-  </span>
+      <span>
+        <ul>
+            <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-instagram"    aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-github"       aria-hidden="true"></i></a></li>
+        </ul>
+      </span>
   <span id="logo">Community Rates Games Logo</span>
 
 
