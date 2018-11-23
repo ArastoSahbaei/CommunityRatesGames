@@ -8,7 +8,7 @@ export class UrlService {
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/api";
   private rating: string = "/rating";
-  private games: string = "/games";
+  private games: string = "/game";
   private login: string ="/login";
 
 

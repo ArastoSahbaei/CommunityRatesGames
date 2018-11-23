@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AddGame} from "../../shared/interface/add-game.interface";
+import {ApiService} from "../../shared/service/api.service";
 
 @Component({
   selector: 'app-add-game',
@@ -8,20 +10,40 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AddGameComponent implements OnInit {
 
-  title: String = '';
+  addGames : FormGroup;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.addGames = this.formBuilder.group({
+      'title': ['', [Validators.required]],
+      'companyId': ['', Validators.required],
+     'allPlatformId': ['', Validators.required]
+    });
   }
 
-  postGame(){
-    this.httpClient.post('http://localhost:8080/api/company',{
-      title: 'Spyro'
-    }).subscribe(
-      (data:any) => {
-        console.log(data);
-      }
-    )
+  addGame(){
+    const game = {} as AddGame;
+    game.title = this.addGames.value.title;
+    game.companyId = this.addGames.value.companyId;
+    game.allPlatformId = [];
+
+    this.api.postGame(game).subscribe((response) =>{
+      console.log(response);
+
+    });
+
+  }
+
+  get title(){
+    return this.addGames.get('title')
+  }
+
+  get companyId(){
+    return this.addGames.get('companyId')
+  }
+
+  get allPlatformId(){
+    return this.addGames.get('allPlatformId')
   }
 }

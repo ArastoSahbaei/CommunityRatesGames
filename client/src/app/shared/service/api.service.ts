@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Headers} from "./headers";
 import {UrlService} from "./url.service";
+import {AddGame} from "../interface/add-game.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,12 @@ export class ApiService {
 
   checkCredentials() {
     this.httpClient.post(this.url.getBaseUrl() + this.url.getLogin(), {}, {headers: Headers.HeaderJSON() } );
+  }
+
+  postGame(body: AddGame){
+    console.log(body);
+  return this.httpClient.post(this.url.getBaseUrl()+ this.url.getGames(), body, {headers: Headers.HeaderJSON()}
+    );
   }
 
 }
