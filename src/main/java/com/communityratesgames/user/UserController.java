@@ -29,6 +29,7 @@ public class UserController {
         return userService.validateUserConstraints(userModel);
     }
 
+    @CrossOrigin
     @GetMapping("/credential")
     public ResponseEntity<?> checkCredentials(@RequestBody UserModel userModel) {
         System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
