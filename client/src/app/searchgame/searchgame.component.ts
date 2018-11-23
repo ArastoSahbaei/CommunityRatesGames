@@ -4,6 +4,8 @@ import {Observable, of} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {SearchgameService} from "../shared/service/searchgame.service";
 import {SearchGames} from "../shared/interface/search-game.interface";
+import {Router} from "@angular/router";
+import {StorageService} from "../shared/service/storage.service";
 
 @Component({
   selector: 'app-searchgame',
@@ -14,7 +16,8 @@ export class SearchgameComponent implements OnInit {
   public searchGameAutoComplete$: Observable<SearchGames> = null;
   public autoCompleteControl = new FormControl();
 
-  constructor(private searchGameService: SearchgameService) {
+  constructor(private searchGameService: SearchgameService, private router: Router, private storage: StorageService) {
+
   }
 
   lookup(value: string): Observable<SearchGames> {
@@ -26,6 +29,11 @@ export class SearchgameComponent implements OnInit {
         return of(null);
       })
     );
+  }
+
+  openGamePage() {
+    this.storage.setItem('currentGame', this.autoCompleteControl.value);
+    this.router.navigate(['/game/gamepage']);
   }
 
   ngOnInit() {
@@ -44,4 +52,5 @@ export class SearchgameComponent implements OnInit {
       })
     );
   }
+
 }
