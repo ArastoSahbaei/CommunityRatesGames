@@ -1,4 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable, observable, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import {
+  startWith,
+  map,
+  debounceTime,
+  switchMap,
+  catchError
+} from 'rxjs/operators';
+import {GithubService} from "./services/github.service";
+import {Items} from "./shared/interface/item.interface";
 
 @Component({
   selector: 'app-root',
@@ -6,11 +17,37 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  public githubAutoComplete$: Observable<Items> = null;
+  public autoCompleteControl = new FormControl();
 
-  constructor() {
+  constructor(private githubService: GithubService) {}
+
+  lookup(value: string): Observable<Items> {
+    return this.githubService.search(value.toLowerCase()).pipe(
+      // map the item property of the github results as our return object
+      map(results => results.items),
+      // catch errors
+      catchError(_ => {
+        return of(null);
+      })
+    );
   }
 
-
   ngOnInit() {
+    this.githubAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
+      startWith(''),
+      // delay emits
+      debounceTime(300),
+      // use switch map so as to cancel previous subscribed events, before creating new once
+      switchMap(value => {
+        if (value !== '') {
+          // lookup from github
+          return this.lookup(value);
+        } else {
+          // if no value is pressent, return null
+          return of(null);
+        }
+      })
+    );
   }
 }

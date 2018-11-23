@@ -1,0 +1,27 @@
+<mat-card [formGroup]="registerForm" novalidate>
+  <mat-card-title>Register</mat-card-title>
+
+  <mat-form-field>
+    <input id="user" formControlName="user" matInput placeholder="Name" />
+    <mat-error *ngIf="(user.dirty || user.touched) && user.invalid">Name required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="email" formControlName="email" matInput placeholder="Email" />
+    <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="password" type="password" matInput minlength="8" maxlength="32" formControlName="password" placeholder="Password" />
+    <mat-hint>Minimum eight characters long</mat-hint>
+    <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
+  </mat-form-field>
+
+  <p>
+    <mat-checkbox id="login" formControlName="login" color="primary">
+      Log in
+    </mat-checkbox>
+  </p>
+  <button mat-stroked-button [disabled]="!registerForm.valid" (click)="register()">Register</button>
+
+</mat-card>

@@ -10,6 +10,7 @@ export class UrlService {
   private rating: string = "/rating";
   private games: string = "/games";
   private login: string ="/login";
+  private user: string ="/user";
 
 
   constructor() { }
@@ -28,5 +29,9 @@ export class UrlService {
 
   getLogin() {
     return this.login;
+  }
+
+  getUser() {
+    return this.user;
   }
 }

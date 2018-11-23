@@ -45,5 +45,4 @@ export class SearchgameComponent implements OnInit {
       })
     );
   }
-
 }

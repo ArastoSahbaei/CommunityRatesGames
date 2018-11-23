@@ -14,11 +14,11 @@
   </mat-menu>
 
   <button mat-button routerLink="">
-    <mat-icon>home</mat-icon>
+    <mat-icon>home</mat-icon><span class="aligned-with-icon">Home</span>
   </button>
 
   <button mat-button [matMenuTriggerFor]="games">
-    <mat-icon>games</mat-icon>
+    <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
   </button>
   <mat-menu #games="matMenu">
     <button mat-menu-item routerLink="game/rating">Rating</button>
