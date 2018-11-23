@@ -15,15 +15,14 @@ export class ApiService {
 
 
   getGames() {
-    this.httpClient.get(this.url.getBaseUrl()+this.url.getGames(), {headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl()+this.url.getGames(), {headers: Headers.HeaderJSON()});
   }
 
   getRating() {
-    this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON() } )
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON() } )
   }
 
   checkCredentials(body: User) {
-    console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getCredential(), body, {headers: Headers.HeaderJSON() } );
   }
 

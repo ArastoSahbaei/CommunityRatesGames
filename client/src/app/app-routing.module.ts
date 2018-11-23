@@ -35,8 +35,8 @@ const routes: Routes = [
         ]},
       {path: 'search', component: SearchgameComponent}
     ]},
-  {path: 'register', component: RegisterComponent},
   {path: 'error', component: ErrorComponent},
+  {path: 'register', component: RegisterComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

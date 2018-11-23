@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
-@CrossOrigin(allowCredentials = "true")
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -29,14 +29,12 @@ public class UserController {
         return userService.validateUserConstraints(userModel);
     }
 
-    @CrossOrigin
     @GetMapping("/credential")
     public ResponseEntity<?> checkCredentials(@RequestBody UserModel userModel) {
         System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return userService.checkCredentials(userModel);
     }
-
-    @GetMapping("/user/")
+    @GetMapping("/user")
     public ResponseEntity<Object> getUserById(
             @RequestParam(value="token",required=false) Long token,
             @RequestParam(value="id", required=false) Long id) {

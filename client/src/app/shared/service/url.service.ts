@@ -9,14 +9,19 @@ export class UrlService {
   private baseUrl: string = "http://localhost:8080/api";
   private rating: string = "/rating";
   private games: string = "/games";
-  private login: string = "/login";
-  private user: string = "/user";
+  private login: string ="/login";
+  private user: string ="/user";
   private credential: string = "/credential";
+
 
   constructor() { }
 
   getBaseUrl() {
     return this.baseUrl;
+  }
+
+  getCredential() {
+    return this.credential;
   }
 
   getRating() {
@@ -33,9 +38,5 @@ export class UrlService {
 
   getUser() {
     return this.user;
-  }
-
-  getCredential() {
-    return this.credential;
   }
 }

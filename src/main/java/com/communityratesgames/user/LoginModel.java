@@ -2,13 +2,13 @@
 package com.communityratesgames.user;
 
 public class LoginModel {
-    private String userName;
+    private String username;
     private String password;
 
     protected LoginModel() { }
 
     public String getUsername() {
-        return this.userName;
+        return this.username;
     }
 
     public String getPassword() {
@@ -16,7 +16,7 @@ public class LoginModel {
     }
 
     public void setUsername(String username) {
-        this.userName = username;
+        this.username = username;
     }
 
     public void setPassword(String password) {
