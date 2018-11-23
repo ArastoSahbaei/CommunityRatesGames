@@ -69,19 +69,12 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         return userRepository.findUserByEmail(email);
     }
 
-    public ResponseEntity<?> checkCredentials(UserModel userModel) {
-        String email = userModel.getEmail();
-        String password = userModel.getPassword();
-
-        System.out.println(email + " " + password);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     public UserEntity findUserByUserNameAndPassword(String username, String password) {
         UserEntity user = userRepository.findUserByUserName(username);
         if (user == null) {
             return null;
         }
+
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             password += user.getPasswordHash();
@@ -117,7 +110,7 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
         return builder.build();
     }
 	*/
-	public ResponseEntity<?> validateUserConstraints(UserModel user){
+	public ResponseEntity<String> validateUserConstraints(UserModel user){
         String username = user.getUserName();
         String password = user.getPassword();
         if (!usernamePattern.matcher(username).matches()){
@@ -132,23 +125,23 @@ public class UserService implements UserServiceInterface/*, UserDetailsService*/
             return new ResponseEntity<>("Password not valid" +
                     "Password may only be alpha numeric or contain !#$*+-<>^~_", HttpStatus.NOT_ACCEPTABLE);
         }
-        if (password.length() < 8 || password.length() > 32){
+        if (password.length() < 8 || password.length() > 30){
             return new ResponseEntity<>("Password not valid" +
                     "Password must be between 8 to 30 characters", HttpStatus.NOT_ACCEPTABLE);
         }
         if (findUserByUserName(username) != null){
             if (username.equalsIgnoreCase(findUserByUserName(username).getUserName())){
-                return new ResponseEntity<>( HttpStatus.CONFLICT);
+                return new ResponseEntity<>("Username already exists", HttpStatus.NOT_ACCEPTABLE);
             }
             if (user.getEmail().equals(findUserByEmail(user.getEmail()).getEmail())){
-                return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+                return new ResponseEntity<>("Email already exists", HttpStatus.NOT_ACCEPTABLE);
             }
         }
         try {
             createNewUser(user);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("New user created", HttpStatus.OK);
         } catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+            return new ResponseEntity<>("Failure when creating user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 	}
 }

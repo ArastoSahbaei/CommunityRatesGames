@@ -4,7 +4,6 @@ import {User} from "../interface/user.interface";
 import {Router} from "@angular/router";
 import {StorageService} from "./storage.service";
 import {ApiService} from "./api.service";
-import {isSuccess} from "@angular/http/src/http_utils";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private router : Router,
-              private storage: StorageService,
-              private api: ApiService) {}
+              private storage: StorageService) {}
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();

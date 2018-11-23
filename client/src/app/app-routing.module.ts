@@ -16,7 +16,6 @@ import {Top100Component} from "./game/top100/top100.component";
 import {PlatformComponent} from "./game/platform/platform.component";
 import {MygamesComponent} from "./user/mygames/mygames.component";
 import {LoginGuard} from "./login/login.guard";
-import {ErrorComponent} from "./error/error.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, children: [
@@ -36,7 +35,6 @@ const routes: Routes = [
       {path: 'search', component: SearchgameComponent}
     ]},
   {path: 'register', component: RegisterComponent},
-  {path: 'error', component: ErrorComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
