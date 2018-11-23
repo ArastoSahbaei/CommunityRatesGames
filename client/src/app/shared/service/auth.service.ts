@@ -27,8 +27,8 @@ Dont forget to let the return true / false be outside of the observable to avoid
     this.api.checkCredentials(user).subscribe(response => {
       console.log(response)
       },
-      error => { this.router.navigate(['/error']);
-    });
+      //error => { this.router.navigate(['/error']); }
+    );
 
 
     if ( user.email === "test@test.com" && user.password === "testardetta") {
