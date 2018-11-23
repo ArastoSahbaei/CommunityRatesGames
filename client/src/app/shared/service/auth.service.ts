@@ -4,6 +4,7 @@ import {User} from "../interface/user.interface";
 import {Router} from "@angular/router";
 import {StorageService} from "./storage.service";
 import {ApiService} from "./api.service";
+import {isSuccess} from "@angular/http/src/http_utils";
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +22,24 @@ export class AuthService {
   }
 
   public login(user : User) {
-    console.log(user);
-    this.api.checkCredentials(user).subscribe(result => {
-      console.log(result)
-    },
-      error =>{ console.log(error);
-      });
+/*
+Dont forget to let the return true / false be outside of the observable to avoid errors
+ */
+    this.api.checkCredentials(user).subscribe(response => {
+      console.log(response)
+      },
+      error => { this.router.navigate(['/error']);
+    });
 
+
+    if ( user.email === "test@test.com" && user.password === "testardetta") {
+      this.loggedIn.next(true);
+      this.router.navigate(['/']);
+      //Change 'Test' to name from backend
+      this.storage.setItem('name', 'Test');
+    } else {
+      return false;
+    }
   }
 
   public logout() {
