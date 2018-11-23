@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ApiService } from "../../shared/service/api.service";
 import {Register} from "../../shared/interface/register.interface";
-import {AuthService} from "../../shared/service/auth.service";
-import {User} from "../../shared/interface/user.interface";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -16,9 +13,7 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private api: ApiService,
-              private auth: AuthService,
-              private router: Router) { }
+              private api: ApiService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -35,15 +30,11 @@ export class RegisterComponent implements OnInit {
     user.userName = this.registerForm.value.user;
     user.password = this.registerForm.value.password;
 
-    this.api.registerUser(user).subscribe(response => {
-      console.log(response) },
-      error => { this.router.navigate(['/error']);
+    this.api.registerUser(user).subscribe((response) => {
+      console.log(response);
     });
     if ( this.registerForm.value.login === true ) {
-      const user = {} as User;
-      user.email = this.registerForm.value.email;
-      user.password = this.registerForm.value.password;
-      this.auth.login(user);
+      console.log("login");
     }
   }
 

@@ -29,16 +29,11 @@ public class UserModel implements Serializable {
         this.password = password;
     }
 
-    public UserModel(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-  /*  public UserModel(String emailSubject, String emailText) {
+    public UserModel(String emailSubject, String emailText) {
         this.emailSubject = emailSubject;
         this.emailText = emailText;
     }
-*/
+
     public UserModel(){}
 
     public Long getId() {
