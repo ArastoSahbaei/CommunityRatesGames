@@ -36,7 +36,6 @@ export class SearchgameComponent implements OnInit {
       // use switch map so as to cancel previous subscribed events, before creating new once
       switchMap(value => {
         if (value !== '') {
-          // lookup from github
           return this.lookup(value);
         } else {
           // if no value is present, return null
