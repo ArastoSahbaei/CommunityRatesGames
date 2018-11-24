@@ -1,12 +1,14 @@
 package com.communityratesgames.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.communityratesgames.model.RatingModel;
 
 @Entity
+@XmlRootElement
 public class RatingEntity implements Serializable {
 
     @Id

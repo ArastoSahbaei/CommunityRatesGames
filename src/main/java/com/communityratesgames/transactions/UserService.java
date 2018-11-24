@@ -1,6 +1,28 @@
 package com.communityratesgames.transactions;
 
-public class UserService  {
+import com.communityratesgames.domain.UserEntity;
+
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
+
+@Stateless
+@Default
+public class UserService implements UserDataAccess {
+
+    @PersistenceContext(unitName = "communityratesgames")
+    private EntityManager em;
+
+    @Override
+    public List<UserEntity> showAllUsers() {
+        Query q = em.createNativeQuery("SELECT * FROM user_entity", UserEntity.class);
+        List<UserEntity> users = ((Query) q).getResultList();
+        return users;
+    }
 /*
     @Autowired
     private final UserRepository userRepository;

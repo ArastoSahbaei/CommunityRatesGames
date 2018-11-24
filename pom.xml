@@ -5,12 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.communityratesgames</groupId>
-  <artifactId>Community_Rates_Games</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>CommunityRatesGames</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <dependencies>
-
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
@@ -116,21 +115,6 @@
       <artifactId>javaee-web-api</artifactId>
       <version>8.0</version>
       <scope>provided</scope>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.9.7</version>
-    </dependency>
-
-    <!-- JJWT aims to be the easiest to use and understand library for creating
-    and verifying JSON Web Tokens (JWTs) on the JVM and Android. -->
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt</artifactId>
-      <version>0.9.0</version>
     </dependency>
 
   </dependencies>

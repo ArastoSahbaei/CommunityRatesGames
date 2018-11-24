@@ -1,7 +1,35 @@
 package com.communityratesgames.rest;
 
+import com.communityratesgames.dao.DataAccessLocal;
+import com.communityratesgames.domain.UserEntity;
+import lombok.NoArgsConstructor;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+@NoArgsConstructor
+@Stateless
+@Path("/user")
 public class UserController {
+
+    @Inject
+    private DataAccessLocal dal;
+
+    @GET
+    @Produces({"application/JSON"})
+    public Response showAllUsers() {
+        try {
+            List<UserEntity> result = dal.showAllUsers();
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
 /*
     private static int loginIndex = 0;
     private static List<AuthToken> logins = new ArrayList<AuthToken>();

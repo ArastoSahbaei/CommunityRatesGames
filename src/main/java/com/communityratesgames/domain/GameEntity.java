@@ -1,6 +1,7 @@
 package com.communityratesgames.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.PlatformModel;
 
 @Entity
+@XmlRootElement
 public class GameEntity {
 
     @Id

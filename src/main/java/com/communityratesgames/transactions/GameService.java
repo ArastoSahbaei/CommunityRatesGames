@@ -1,7 +1,27 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.GameEntity;
 
-public class GameService {
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
+
+@Stateless
+@Default
+public class GameService implements GameDataAccess {
+
+    @PersistenceContext(unitName = "communityratesgames")
+    private EntityManager em;
+
+    @Override
+    public List<GameEntity> showAllGames() {
+        Query q = em.createNativeQuery("SELECT * FROM game_entity", GameEntity.class);
+        List<GameEntity> result = q.getResultList();
+        return result;
+    }
 /*
     private final GameRepository gameRepository;
     private final RatingRepository ratingRepository;

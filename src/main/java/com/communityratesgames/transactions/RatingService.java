@@ -1,7 +1,27 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.RatingEntity;
 
-public class RatingService  {
+import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
+
+@Stateless
+@Default
+public class RatingService implements RatingDataAccess {
+
+    @PersistenceContext(unitName = "communityratesgames")
+    private EntityManager em;
+
+    @Override
+    public List<RatingEntity> showAllRatings() {
+        Query q = em.createNativeQuery("SELECT * FROM rating_entity", RatingEntity.class);
+        List<RatingEntity> rating = q.getResultList();
+        return rating;
+    }
 /*
     @Autowired
     private final RatingRepository ratingRepository;

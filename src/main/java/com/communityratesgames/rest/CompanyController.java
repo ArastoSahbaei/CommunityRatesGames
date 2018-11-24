@@ -1,13 +1,14 @@
 package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
+import com.communityratesgames.domain.CompanyEntity;
 import com.communityratesgames.model.CompanyModel;
-import com.communityratesgames.transactions.CompanyService;
 import lombok.NoArgsConstructor;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @NoArgsConstructor
 @Stateless
@@ -24,9 +25,20 @@ public class CompanyController {
         try {
             dal.registerNewCompany(companyModel);
         } catch (ServiceUnavailableException e ) {
-            e.printStackTrace();
+            return Response.status(410).build();
         }
         return Response.status(200).build();
+    }
+
+    @GET
+    @Produces({"application/JSON"})
+    public Response showAllCompanies() {
+        try {
+            List<CompanyEntity> result = dal.showAllCompanies();
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
     }
 /*
     public ResponseEntity<List<CompanyModel>> getAllCompanies() {

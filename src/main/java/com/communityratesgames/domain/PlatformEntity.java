@@ -3,6 +3,7 @@ package com.communityratesgames.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.PlatformModel;
 
 @Entity
+@XmlRootElement
 public class PlatformEntity implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

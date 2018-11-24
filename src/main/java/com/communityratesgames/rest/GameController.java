@@ -1,6 +1,35 @@
 package com.communityratesgames.rest;
 
+import com.communityratesgames.dao.DataAccessLocal;
+import com.communityratesgames.domain.GameEntity;
+import lombok.NoArgsConstructor;
+
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import java.util.List;
+
+@NoArgsConstructor
+@Stateless
+@Path("/game")
 public class GameController {
+
+    @Inject
+    private DataAccessLocal dal;
+
+    @GET
+    @Produces({"application/JSON"})
+    public Response showAllGames() {
+        try {
+            List<GameEntity> result = dal.showAllGames();
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
 /*
     private final GameService gameService;
 

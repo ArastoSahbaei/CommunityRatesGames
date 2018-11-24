@@ -7,14 +7,15 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.core.Response;
+import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 @Default
 public class CompanyService implements CompanyDataAccess {
 
 
-    @PersistenceContext()
+    @PersistenceContext(unitName = "communityratesgames")
     private EntityManager em;
 
     @Override
@@ -24,6 +25,13 @@ public class CompanyService implements CompanyDataAccess {
         em.flush();
 
         return companyEntity;
+    }
+
+    @Override
+    public List<CompanyEntity> showAllCompanies() {
+        Query q = em.createNativeQuery("SELECT * FROM company_entity", CompanyEntity.class);
+        List<CompanyEntity> companies = q.getResultList();
+        return companies;
     }
 
 

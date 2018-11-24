@@ -2,10 +2,12 @@ package com.communityratesgames.domain;
 
 import com.communityratesgames.model.CompanyModel;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 
 @Entity
+@XmlRootElement
 public class CompanyEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
