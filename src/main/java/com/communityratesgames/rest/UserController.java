@@ -21,7 +21,7 @@ public class UserController {
     private DataAccessLocal dal;
 
     @GET
-    @Produces({"application/JSON"})
+    @Produces({"application/json"})
     public Response showAllUsers() {
         try {
             List<User> result = dal.showAllUsers();

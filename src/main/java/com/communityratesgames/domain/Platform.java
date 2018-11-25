@@ -13,6 +13,7 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @XmlRootElement
+@Table(name = "platform_entity")
 public class Platform implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

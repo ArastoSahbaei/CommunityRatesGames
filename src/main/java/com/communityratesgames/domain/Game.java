@@ -11,6 +11,7 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @XmlRootElement
+@Table(name = "game_entity")
 public class Game {
 
     @Id

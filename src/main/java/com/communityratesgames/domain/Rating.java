@@ -9,6 +9,7 @@ import com.communityratesgames.model.RatingModel;
 
 @Entity
 @XmlRootElement
+@Table(name = "rating_entity")
 public class Rating implements Serializable {
 
     @Id

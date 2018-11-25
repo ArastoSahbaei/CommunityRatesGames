@@ -11,6 +11,7 @@ import java.math.BigInteger;
 
 @Entity
 @XmlRootElement
+@Table(name = "user_entity")
 public class User implements Serializable {
 
     @Id

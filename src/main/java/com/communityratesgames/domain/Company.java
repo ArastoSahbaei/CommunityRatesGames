@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @XmlRootElement
+@Table(name = "company_entity")
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -19,7 +19,7 @@ public class UserService implements UserDataAccess {
     @Override
     public List<User> showAllUsers() {
         Query q = em.createNativeQuery("SELECT * FROM user_entity", User.class);
-        List<User> users = ((Query) q).getResultList();
+        List<User> users = q.getResultList();
         return users;
     }
 /*
