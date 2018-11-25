@@ -1,7 +1,7 @@
 
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.PlatformEntity;
+import com.communityratesgames.domain.Platform;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -18,25 +18,25 @@ public class PlatformService implements PlatformDataAccess {
     private EntityManager em;
 
     @Override
-    public List<PlatformEntity> showAllPlatforms() {
-        Query q = em.createNativeQuery("SELECT * FROM platform_entity", PlatformEntity.class);
-        List<PlatformEntity> platforms = q.getResultList();
+    public List<Platform> showAllPlatforms() {
+        Query q = em.createNativeQuery("SELECT * FROM platform_entity", Platform.class);
+        List<Platform> platforms = q.getResultList();
         return platforms;
     }
 /*
     @Autowired
     private PlatformRepository repo;
 
-    private List<PlatformModel> convertEntityListToModelList(List<PlatformEntity> list) {
+    private List<PlatformModel> convertEntityListToModelList(List<Platform> list) {
         List<PlatformModel> out = new ArrayList<>();
-        for (PlatformEntity entity : list) {
+        for (Platform entity : list) {
             out.add(new PlatformModel(entity));
         }
         return out;
     }
 
-    public PlatformEntity getPlatformById(int id) {
-        Optional<PlatformEntity> opt = repo.findById((Integer)id);
+    public Platform getPlatformById(int id) {
+        Optional<Platform> opt = repo.findById((Integer)id);
         if (opt.isPresent()) {
             return opt.get();
         } else {
@@ -49,10 +49,10 @@ public class PlatformService implements PlatformDataAccess {
     }
 
     public void insertPlatform(PlatformModel platform) {
-        repo.save(new PlatformEntity(platform));
+        repo.save(new Platform(platform));
     }
 
-    public void deletePlatform(PlatformEntity platform) {
+    public void deletePlatform(Platform platform) {
         repo.delete(platform);
     }*/
 }

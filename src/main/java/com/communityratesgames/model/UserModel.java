@@ -1,6 +1,6 @@
 package com.communityratesgames.model;
 
-import com.communityratesgames.domain.UserEntity;
+import com.communityratesgames.domain.User;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,13 +16,13 @@ public class UserModel implements Serializable {
     private String emailSubject;
     private String emailText;
 
-    public UserModel(UserEntity userEntity) {
-        this.id = userEntity.getId();
-        this.userName = userEntity.getUserName();
-        this.email = userEntity.getEmail();
-        this.password = userEntity.getPassword();
-        this.role = userEntity.getRole();
-        this.userCreated = userEntity.getUserCreated();
+    public UserModel(User user) {
+        this.id = user.getId();
+        this.userName = user.getUserName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.role = user.getRole();
+        this.userCreated = user.getUserCreated();
     }
 
     public UserModel(String userName, String email, String password) {

@@ -2,14 +2,13 @@
 package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
-import com.communityratesgames.domain.PlatformEntity;
+import com.communityratesgames.domain.Platform;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -26,7 +25,7 @@ public class PlatformController {
     @Produces
     public Response showAllPlatforms() {
         try {
-            List<PlatformEntity> result = dal.showAllPlatforms();
+            List<Platform> result = dal.showAllPlatforms();
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();

@@ -9,7 +9,7 @@ import com.communityratesgames.model.RatingModel;
 
 @Entity
 @XmlRootElement
-public class RatingEntity implements Serializable {
+public class Rating implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,22 +17,22 @@ public class RatingEntity implements Serializable {
 
     @JoinColumn
     @ManyToOne
-    private UserEntity user;
+    private User user;
 
     @JoinColumn
     @ManyToOne
-    private GameEntity game;
+    private Game game;
     private int rating;
     private Timestamp creationDate;
 
-    public RatingEntity(RatingModel ratingModel) {
+    public Rating(RatingModel ratingModel) {
         this.id = ratingModel.getId();
-        this.user = new UserEntity(ratingModel.getUser());
-        this.game = new GameEntity(ratingModel.getGame());
+        this.user = new User(ratingModel.getUser());
+        this.game = new Game(ratingModel.getGame());
         this.rating = ratingModel.getRating();
         this.creationDate = ratingModel.getCreationDate();
     }
-    public RatingEntity(){}
+    public Rating(){}
 
     public Long getId() {
         return id;
@@ -42,19 +42,19 @@ public class RatingEntity implements Serializable {
         this.id = id;
     }
 
-    public UserEntity getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public GameEntity getGame() {
+    public Game getGame() {
         return game;
     }
 
-    public void setGame(GameEntity game) {
+    public void setGame(Game game) {
         this.game = game;
     }
 

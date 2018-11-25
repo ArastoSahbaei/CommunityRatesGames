@@ -1,6 +1,6 @@
 package com.communityratesgames.model;
 
-import com.communityratesgames.domain.CompanyEntity;
+import com.communityratesgames.domain.Company;
 
 import java.io.Serializable;
 
@@ -13,11 +13,11 @@ public class CompanyModel implements Serializable {
 
     public CompanyModel(){}
 
-    public CompanyModel(CompanyEntity companyEntity){
-        this.id = companyEntity.getId();
-        this.companyName = companyEntity.getCompanyName();
-        this.country = companyEntity.getCountry();
-        this.city = companyEntity.getCity();
+    public CompanyModel(Company company){
+        this.id = company.getId();
+        this.companyName = company.getCompanyName();
+        this.country = company.getCountry();
+        this.city = company.getCity();
     }
 
     public Long getId() {

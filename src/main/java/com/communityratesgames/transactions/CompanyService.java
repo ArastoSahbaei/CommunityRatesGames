@@ -1,6 +1,6 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.CompanyEntity;
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.model.CompanyModel;
 
 import javax.ejb.Stateless;
@@ -19,18 +19,18 @@ public class CompanyService implements CompanyDataAccess {
     private EntityManager em;
 
     @Override
-    public CompanyEntity registerNewCompany(CompanyModel companyModel) {
-        CompanyEntity companyEntity = new CompanyEntity(companyModel);
-        em.persist(companyEntity);
+    public Company registerNewCompany(CompanyModel companyModel) {
+        Company company = new Company(companyModel);
+        em.persist(company);
         em.flush();
 
-        return companyEntity;
+        return company;
     }
 
     @Override
-    public List<CompanyEntity> showAllCompanies() {
-        Query q = em.createNativeQuery("SELECT * FROM company_entity", CompanyEntity.class);
-        List<CompanyEntity> companies = q.getResultList();
+    public List<Company> showAllCompanies() {
+        Query q = em.createNativeQuery("SELECT * FROM company_entity", Company.class);
+        List<Company> companies = q.getResultList();
         return companies;
     }
 
@@ -41,20 +41,20 @@ public class CompanyService implements CompanyDataAccess {
     }
 
     public List<CompanyModel> findAllCompanies() {
-        List<CompanyEntity> listWithAllCompanies = companyRepository.findAll();
+        List<Company> listWithAllCompanies = companyRepository.findAll();
         return convertCompanyListToModelList(listWithAllCompanies);
     }
 
     @Override
     public CompanyModel findCompanyById(Long id) {
-        CompanyEntity companyEntity = companyRepository.getOne(id);
+        Company companyEntity = companyRepository.getOne(id);
         return new CompanyModel(companyEntity);
     }
 
 
-    private List<CompanyModel> convertCompanyListToModelList(List<CompanyEntity> companyList) {
+    private List<CompanyModel> convertCompanyListToModelList(List<Company> companyList) {
         List<CompanyModel> companyModelList = new ArrayList<>();
-        for (CompanyEntity companyEntity : companyList) {
+        for (Company companyEntity : companyList) {
             companyModelList.add(new CompanyModel(companyEntity));
         }
         return companyModelList;

@@ -13,7 +13,7 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @XmlRootElement
-public class PlatformEntity implements Serializable {
+public class Platform implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -25,30 +25,30 @@ public class PlatformEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn
-    private CompanyEntity company;
+    private Company company;
 
     @ManyToMany
-    private List<GameEntity> games;
+    private List<Game> games;
 
-    public PlatformEntity(String name, int releaseYear, CompanyEntity company, List<GameEntity> games) {
+    public Platform(String name, int releaseYear, Company company, List<Game> games) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.company = company;
         this.games = games;
     }
 
-    public PlatformEntity(PlatformModel model) {
+    public Platform(PlatformModel model) {
         this.id = model.getId();
         this.name = model.getName();
         this.releaseYear = model.getReleaseYear();
-        this.company = new CompanyEntity(model.getCompany());
-        this.games = new ArrayList<GameEntity>();
+        this.company = new Company(model.getCompany());
+        this.games = new ArrayList<Game>();
         for (GameModel game : model.getGames()) {
-            this.games.add(new GameEntity(game));
+            this.games.add(new Game(game));
         }
     }
 
-    protected PlatformEntity() { }
+    protected Platform() { }
 
     public Integer getId() {
         return this.id;
@@ -62,11 +62,11 @@ public class PlatformEntity implements Serializable {
         return this.releaseYear;
     }
 
-    public CompanyEntity getCompany() {
+    public Company getCompany() {
         return this.company;
     }
 
-    public List<GameEntity> getGames() {
+    public List<Game> getGames() {
         return this.games;
     }
 
@@ -78,11 +78,11 @@ public class PlatformEntity implements Serializable {
         this.releaseYear = releaseYear;
     }
 
-    public void setCompany(CompanyEntity company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
-    public void setGames(List<GameEntity> games) {
+    public void setGames(List<Game> games) {
         this.games = games;
     }
 }

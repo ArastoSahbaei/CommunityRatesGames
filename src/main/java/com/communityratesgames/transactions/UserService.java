@@ -1,10 +1,9 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.UserEntity;
+import com.communityratesgames.domain.User;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -18,9 +17,9 @@ public class UserService implements UserDataAccess {
     private EntityManager em;
 
     @Override
-    public List<UserEntity> showAllUsers() {
-        Query q = em.createNativeQuery("SELECT * FROM user_entity", UserEntity.class);
-        List<UserEntity> users = ((Query) q).getResultList();
+    public List<User> showAllUsers() {
+        Query q = em.createNativeQuery("SELECT * FROM user_entity", User.class);
+        List<User> users = ((Query) q).getResultList();
         return users;
     }
 /*
@@ -39,45 +38,45 @@ public class UserService implements UserDataAccess {
         this.userRepository = userRepository;
     }
 
-    private List<UserModel> convertUserListToUserModelList(List<UserEntity> userList) {
+    private List<UserModel> convertUserListToUserModelList(List<User> userList) {
         List<UserModel> userModelList = new ArrayList<>();
-        for (UserEntity userEntity : userList) {
+        for (User userEntity : userList) {
             userModelList.add(new UserModel(userEntity));
         }
         return userModelList;
     }
 
     public void createNewUser(UserModel userModel) {
-        UserEntity user = new UserEntity(userModel);
+        User user = new User(userModel);
         user.setUserCreated(Timestamp.from(Instant.now()));
         user.setRole("user");
         userRepository.save(user);
     }
 
     public List<UserModel> findAllUsers() {
-        List<UserEntity> ListWithAllUsers = userRepository.findAll();
+        List<User> ListWithAllUsers = userRepository.findAll();
         return convertUserListToUserModelList(ListWithAllUsers);
     }
 
     public UserModel findUserById(Long id) {
-        UserEntity userEntity = userRepository.getOne(id);
+        User userEntity = userRepository.getOne(id);
         return new UserModel(userEntity);
     }
 
     public UserModel findUserByUserName(String username) {
-        UserEntity userEntity = userRepository.findUserByUserName(username);
+        User userEntity = userRepository.findUserByUserName(username);
         if (userEntity == null) {
             return null;
         } else {
             return new UserModel(userEntity);
         }
     }
-    public UserEntity findUserByEmail(String email) {
+    public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
 
-    public UserEntity findUserByUserNameAndPassword(String username, String password) {
-        UserEntity user = userRepository.findUserByUserName(username);
+    public User findUserByUserNameAndPassword(String username, String password) {
+        User user = userRepository.findUserByUserName(username);
         if (user == null) {
             return null;
         }
@@ -103,7 +102,7 @@ public class UserService implements UserDataAccess {
 	/*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = findUserByUserName(username);
+        User userEntity = findUserByUserName(username);
 
         org.springframework.security.core.userdetails.User.UserBuilder builder = null;
         if (userEntity != null) {

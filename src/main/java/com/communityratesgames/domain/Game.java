@@ -11,7 +11,7 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @XmlRootElement
-public class GameEntity {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,22 +22,22 @@ public class GameEntity {
 
     @JoinColumn
     @ManyToOne
-    private CompanyEntity company;
+    private Company company;
 
     @JoinColumn
     @ManyToMany
-    private List<PlatformEntity> platforms;
+    private List<Platform> platforms;
 
-    protected GameEntity() {}
+    protected Game() {}
 
-    public GameEntity(GameModel gameModel) {
+    public Game(GameModel gameModel) {
         this.id = gameModel.getId();
         this.releaseDate = gameModel.getReleaseDate();
         this.title = gameModel.getTitle();
-        this.company = new CompanyEntity(gameModel.getCompany());
-        this.platforms = new ArrayList<PlatformEntity>();
+        this.company = new Company(gameModel.getCompany());
+        this.platforms = new ArrayList<Platform>();
         for (PlatformModel platform : gameModel.getPlatforms()) {
-            this.platforms.add(new PlatformEntity(platform));
+            this.platforms.add(new Platform(platform));
         }
     }
 
@@ -49,11 +49,11 @@ public class GameEntity {
         return this.title;
     }
 
-    public CompanyEntity getCompany() {
+    public Company getCompany() {
         return this.company;
     }
 
-    public List<PlatformEntity> getPlatforms() {
+    public List<Platform> getPlatforms() {
         return this.platforms;
     }
 
@@ -61,11 +61,11 @@ public class GameEntity {
         this.title = title;
     }
 
-    public void setCompany(CompanyEntity company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
-    public void setPlatforms(List<PlatformEntity> platforms) {
+    public void setPlatforms(List<Platform> platforms) {
         this.platforms = platforms;
     }
 

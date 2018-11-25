@@ -5,10 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.communityratesgames.model.CompanyModel;
-import com.communityratesgames.domain.PlatformEntity;
-import com.communityratesgames.model.GameModel;
-import com.communityratesgames.domain.GameEntity;
+import com.communityratesgames.domain.Platform;
+import com.communityratesgames.domain.Game;
 
 public class PlatformModel implements Serializable {
     private Integer id;
@@ -17,13 +15,13 @@ public class PlatformModel implements Serializable {
     private CompanyModel company;
     private List<GameModel> games;
 
-    public PlatformModel(PlatformEntity entity) {
+    public PlatformModel(Platform entity) {
         this.id = entity.getId();
         this.name = entity.getName();
         this.releaseYear = entity.getReleaseYear();
         this.company = new CompanyModel(entity.getCompany());
         this.games = new ArrayList();
-        for (GameEntity game : entity.getGames()) {
+        for (Game game : entity.getGames()) {
             this.games.add(new GameModel(game));
         }
     }

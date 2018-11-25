@@ -1,7 +1,7 @@
 package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
-import com.communityratesgames.domain.CompanyEntity;
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.model.CompanyModel;
 import lombok.NoArgsConstructor;
 import javax.ejb.Stateless;
@@ -34,7 +34,7 @@ public class CompanyController {
     @Produces({"application/JSON"})
     public Response showAllCompanies() {
         try {
-            List<CompanyEntity> result = dal.showAllCompanies();
+            List<Company> result = dal.showAllCompanies();
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();

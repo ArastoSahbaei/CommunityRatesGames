@@ -1,7 +1,7 @@
 package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
-import com.communityratesgames.domain.UserEntity;
+import com.communityratesgames.domain.User;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
@@ -24,7 +24,7 @@ public class UserController {
     @Produces({"application/JSON"})
     public Response showAllUsers() {
         try {
-            List<UserEntity> result = dal.showAllUsers();
+            List<User> result = dal.showAllUsers();
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -75,7 +75,7 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginModel login) {
-        UserEntity user = userService.findUserByUserNameAndPassword(login.getUsername(), login.getPassword());
+        User user = userService.findUserByUserNameAndPassword(login.getUsername(), login.getPassword());
         if (user == null) {
             return new ResponseEntity<>(new LoginResponse(0L), HttpStatus.I_AM_A_TEAPOT);
         }

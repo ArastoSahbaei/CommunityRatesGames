@@ -1,6 +1,6 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.RatingEntity;
+import com.communityratesgames.domain.Rating;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -17,9 +17,9 @@ public class RatingService implements RatingDataAccess {
     private EntityManager em;
 
     @Override
-    public List<RatingEntity> showAllRatings() {
-        Query q = em.createNativeQuery("SELECT * FROM rating_entity", RatingEntity.class);
-        List<RatingEntity> rating = q.getResultList();
+    public List<Rating> showAllRatings() {
+        Query q = em.createNativeQuery("SELECT * FROM rating_entity", Rating.class);
+        List<Rating> rating = q.getResultList();
         return rating;
     }
 /*
@@ -29,7 +29,7 @@ public class RatingService implements RatingDataAccess {
     public RatingService(RatingRepository ratingRepository) {this.ratingRepository = ratingRepository;}
 
     public RatingModel createNewRating(RatingModel ratingModel) {
-        RatingEntity rating = new RatingEntity(ratingModel);
+        Rating rating = new Rating(ratingModel);
         rating.setCreationDate(Timestamp.from(Instant.now()));
         return new RatingModel(ratingRepository.save(rating));
     }
@@ -48,12 +48,12 @@ public class RatingService implements RatingDataAccess {
 
     /*
     public RatingModel findByGameIdAndUserId(Long gameId, Long userId){
-        RatingEntity ratingEntity = ratingRepository.findByGameIdAndUserId(gameId, userId);
+        Rating ratingEntity = ratingRepository.findByGameIdAndUserId(gameId, userId);
         return new RatingModel(ratingEntity);
     }
 
 
-    private List<RatingModel> convertEntityListToModelList(List<RatingEntity> entityList) {
+    private List<RatingModel> convertEntityListToModelList(List<Rating> entityList) {
         return entityList.stream().map(RatingModel::new).collect((Collectors.toList()));
     }*/
 }

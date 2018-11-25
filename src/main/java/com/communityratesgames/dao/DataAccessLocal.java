@@ -9,10 +9,10 @@ import java.util.List;
 @Local
 public interface DataAccessLocal {
 
-    public CompanyEntity registerNewCompany(CompanyModel companyModel);
-    public List<GameEntity> showAllGames();
-    public List<PlatformEntity> showAllPlatforms();
-    public List<UserEntity> showAllUsers();
-    public List<RatingEntity> showAllRatings();
-    public List<CompanyEntity> showAllCompanies();
+    public Company registerNewCompany(CompanyModel companyModel);
+    public List<Game> showAllGames();
+    public List<Platform> showAllPlatforms();
+    public List<User> showAllUsers();
+    public List<Rating> showAllRatings();
+    public List<Company> showAllCompanies();
 }

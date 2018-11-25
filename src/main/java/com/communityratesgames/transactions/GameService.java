@@ -1,6 +1,6 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.GameEntity;
+import com.communityratesgames.domain.Game;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -17,9 +17,9 @@ public class GameService implements GameDataAccess {
     private EntityManager em;
 
     @Override
-    public List<GameEntity> showAllGames() {
-        Query q = em.createNativeQuery("SELECT * FROM game_entity", GameEntity.class);
-        List<GameEntity> result = q.getResultList();
+    public List<Game> showAllGames() {
+        Query q = em.createNativeQuery("SELECT * FROM game_entity", Game.class);
+        List<Game> result = q.getResultList();
         return result;
     }
 /*
@@ -31,9 +31,9 @@ public class GameService implements GameDataAccess {
         this.ratingRepository = ratingRepository;
     }
 
-    private List<GameModel> convertEntityListToModelList(List<GameEntity> list) {
+    private List<GameModel> convertEntityListToModelList(List<Game> list) {
         List<GameModel> out = new ArrayList<>();
-        for (GameEntity entity : list) {
+        for (Game entity : list) {
             out.add(new GameModel(entity));
         }
         return out;
@@ -41,7 +41,7 @@ public class GameService implements GameDataAccess {
 
     @Override
     public GameModel createGame(GameModel gameModel) {
-        GameEntity gameEntity = new GameEntity(gameModel);
+        Game gameEntity = new Game(gameModel);
         return new GameModel(gameRepository.save(gameEntity));
     }
     public List<HashMap<String,Object>> searchForFiveGames(String searchString){
@@ -49,7 +49,7 @@ public class GameService implements GameDataAccess {
         ).stream().map(this::reduceGameToIdAndTitle).collect(Collectors.toList());
     }
 
-    private HashMap<String, Object> reduceGameToIdAndTitle(GameEntity game){
+    private HashMap<String, Object> reduceGameToIdAndTitle(Game game){
         HashMap<String, Object> reducedGame = new HashMap<>();
         reducedGame.put("id", game.getId());
         reducedGame.put("title", game.getTitle());
@@ -68,13 +68,13 @@ public class GameService implements GameDataAccess {
     }
 
     public GameModel findGameById(Long id) {
-        GameEntity gameEntity = gameRepository.findGameById(id);
+        Game gameEntity = gameRepository.findGameById(id);
         Float average = ratingRepository.getGameAverageRating(gameEntity.getId());
         return new GameModel(gameEntity, average);
     }
 
     @Override
-    public GameEntity findGameByTitle(String title) {
+    public Game findGameByTitle(String title) {
         return null;
     }*/
 }

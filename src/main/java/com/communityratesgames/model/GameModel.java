@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.communityratesgames.domain.GameEntity;
-import com.communityratesgames.domain.PlatformEntity;
+import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
 
 public class GameModel implements Serializable {
 
@@ -23,17 +23,17 @@ public class GameModel implements Serializable {
         this.platforms = platforms;
     }
 
-    public GameModel(GameEntity gameEntity) {
-        this(gameEntity, 0.0f);
+    public GameModel(Game game) {
+        this(game, 0.0f);
     }
 
-    public GameModel(GameEntity gameEntity, float average) {
-        this.id = gameEntity.getId();
-        this.releaseDate = gameEntity.getReleaseDate();
-        this.title = gameEntity.getTitle();
-        this.company = new CompanyModel(gameEntity.getCompany());
+    public GameModel(Game game, float average) {
+        this.id = game.getId();
+        this.releaseDate = game.getReleaseDate();
+        this.title = game.getTitle();
+        this.company = new CompanyModel(game.getCompany());
         this.platforms = new ArrayList<PlatformModel>();
-        for (PlatformEntity platform : gameEntity.getPlatforms()) {
+        for (Platform platform : game.getPlatforms()) {
             this.platforms.add(new PlatformModel(platform));
         }
         this.averageRating = average;

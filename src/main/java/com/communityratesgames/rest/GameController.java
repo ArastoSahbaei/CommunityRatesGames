@@ -1,7 +1,7 @@
 package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
-import com.communityratesgames.domain.GameEntity;
+import com.communityratesgames.domain.Game;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
@@ -24,10 +24,10 @@ public class GameController {
     @Produces({"application/JSON"})
     public Response showAllGames() {
         try {
-            List<GameEntity> result = dal.showAllGames();
+            List<Game> result = dal.showAllGames();
             return Response.ok(result).build();
         } catch ( Exception e ) {
-            return Response.status(404).build();
+            return Response.status(414).build();
         }
     }
 /*

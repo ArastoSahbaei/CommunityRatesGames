@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 @Entity
 @XmlRootElement
-public class UserEntity implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class UserEntity implements Serializable {
     private String password;
     private String role;
 
-    public UserEntity(UserModel userModel) {
+    public User(UserModel userModel) {
         this.id = userModel.getId();
         this.userName = userModel.getUserName();
         this.email = userModel.getEmail();
@@ -34,7 +34,7 @@ public class UserEntity implements Serializable {
         this.userCreated = userModel.getUserCreated();
     }
 
-    public UserEntity() {
+    public User() {
     }
 
     public Long getId() {

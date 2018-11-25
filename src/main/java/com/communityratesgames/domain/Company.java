@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @XmlRootElement
-public class CompanyEntity implements Serializable {
+public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,9 +26,9 @@ public class CompanyEntity implements Serializable {
     private String city;
 
 
-    public CompanyEntity(){}
+    public Company(){}
 
-    public CompanyEntity(CompanyModel companyModel){
+    public Company(CompanyModel companyModel){
 
         this.id = companyModel.getId();
         this.companyName = companyModel.getCompanyName();

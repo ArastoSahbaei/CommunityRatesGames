@@ -28,10 +28,10 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     @Inject
     private UserDataAccess userDataAccess;
 
-    public CompanyEntity registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
-    public List<GameEntity> showAllGames() {return gameDataAccess.showAllGames();}
-    public List<PlatformEntity> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
-    public List<UserEntity> showAllUsers() {return userDataAccess.showAllUsers();}
-    public List<RatingEntity> showAllRatings() {return  ratingDataAccess.showAllRatings();}
-    public List<CompanyEntity> showAllCompanies() {return companyDataAccess.showAllCompanies();}
+    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
+    public List<Game> showAllGames() {return gameDataAccess.showAllGames();}
+    public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
+    public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
+    public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
+    public List<Company> showAllCompanies() {return companyDataAccess.showAllCompanies();}
 }

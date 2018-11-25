@@ -3,9 +3,7 @@ package com.communityratesgames.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import com.communityratesgames.domain.RatingEntity;
-import com.communityratesgames.model.GameModel;
-import com.communityratesgames.model.UserModel;
+import com.communityratesgames.domain.Rating;
 
 public class RatingModel implements Serializable {
 
@@ -16,12 +14,12 @@ public class RatingModel implements Serializable {
     private Timestamp creationDate;
 
 
-    public RatingModel(RatingEntity ratingEntity) {
-        this.id = ratingEntity.getId();
-        this.user = new UserModel(ratingEntity.getUser());
-        this.game = new GameModel(ratingEntity.getGame());
-        this.rating = ratingEntity.getRating();
-        this.creationDate = ratingEntity.getCreationDate();
+    public RatingModel(Rating rating) {
+        this.id = rating.getId();
+        this.user = new UserModel(rating.getUser());
+        this.game = new GameModel(rating.getGame());
+        this.rating = rating.getRating();
+        this.creationDate = rating.getCreationDate();
     }
     public RatingModel(){}
 
