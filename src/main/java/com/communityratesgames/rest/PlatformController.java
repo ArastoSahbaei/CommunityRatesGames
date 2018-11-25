@@ -22,7 +22,7 @@ public class PlatformController {
     private DataAccessLocal dal;
 
     @GET
-    @Produces
+    @Produces({"application/JSON"})
     public Response showAllPlatforms() {
         try {
             List<Platform> result = dal.showAllPlatforms();
