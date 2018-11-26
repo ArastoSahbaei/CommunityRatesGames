@@ -16,7 +16,7 @@ export class ApiService {
               private url:UrlService) { }
 
   searchGameByTitle() {
-    return this.httpClient.get(this.url.getBaseUrl()+this.url.getSearchForGame);
+    return this.httpClient.get(this.url.getBaseUrl()+this.url.getSearchForGame(), {headers: Headers.HeaderJSON()});
   }
 
   getGames() {

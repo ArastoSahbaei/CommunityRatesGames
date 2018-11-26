@@ -27,7 +27,7 @@ export class GamePageComponent implements OnInit {
      *  4. GLOBAL VARIABLE SHOULD BE REMOVED AFTER EVERY UPDATE(?) IF SAVED IN BROWSERB
      */
 
-
+  this.getData();
     console.log(this.storage.getItem('currentGame'));
     this.storage.removeItem('currentGame');
   }
