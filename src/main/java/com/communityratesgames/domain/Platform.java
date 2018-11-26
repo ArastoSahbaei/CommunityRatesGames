@@ -28,7 +28,7 @@ public class Platform implements Serializable {
     @JoinColumn
     private Company company;
 
-    @ManyToMany
+    @ManyToMany(mappedBy="platforms")
     private List<Game> games;
 
     public Platform(String name, int releaseYear, Company company, List<Game> games) {

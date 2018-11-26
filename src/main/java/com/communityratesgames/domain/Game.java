@@ -25,8 +25,11 @@ public class Game {
     @ManyToOne
     private Company company;
 
-    @JoinColumn
-    @ManyToMany
+    @JoinTable(name="game_platform",
+        joinColumns={ @JoinColumn(name="game_id") },
+        inverseJoinColumns={ @JoinColumn(name="platform_id") }
+    )
+    @ManyToMany(cascade={ CascadeType.ALL })
     private List<Platform> platforms;
 
     protected Game() {}
