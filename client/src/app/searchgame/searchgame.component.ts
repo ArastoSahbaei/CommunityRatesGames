@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {catchError, debounceTime, map, startWith, switchMap} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {FormControl} from "@angular/forms";
@@ -6,6 +6,7 @@ import {SearchgameService} from "../shared/service/searchgame.service";
 import {SearchGames} from "../shared/interface/search-game.interface";
 import {Router} from "@angular/router";
 import {StorageService} from "../shared/service/storage.service";
+import {ApiService} from "../shared/service/api.service";
 
 @Component({
   selector: 'app-searchgame',
@@ -33,13 +34,9 @@ export class SearchgameComponent implements OnInit {
 
   openGamePage() {
     this.storage.setItem('currentGame', this.autoCompleteControl.value);
-    this.router.navigate(['/gamepage'], { queryParams: { game: this.autoCompleteControl.value } });
+    this.router.navigate(['game/gamepage'], { queryParams: { title: this.autoCompleteControl.value } });
+    window.location.reload();
   }
-
- /**  this.router.navigate(['/game/gamepage']);
-  }
-
-  */
 
   ngOnInit() {
     this.searchGameAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
