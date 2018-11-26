@@ -1,8 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Headers} from "./headers";
-import {UrlService} from "./url.service";
 import {AddGame} from "../interface/add-game.interface";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Headers } from "./headers";
+import { UrlService } from "./url.service";
+import { Register } from "../interface/register.interface";
+import {User} from "../interface/user.interface";
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,26 +16,20 @@ export class ApiService {
               private url:UrlService) { }
 
 
-// normal get / post / put / delete method, nasty way, lots of code to be changed
   getGames() {
-    const headers = new HttpHeaders();
-
-    headers.append('Accept', 'application/json');
-    headers.append('Content-Type', 'application/json');
-    headers.append('observe' , 'response');
-
-    this.httpClient.get("http://localhost:8080/games", {headers: headers});
-
+    return this.httpClient.get(this.url.getBaseUrl()+this.url.getGames(), {headers: Headers.HeaderJSON()});
   }
-
-//  Cleaner way
 
   getRating() {
-    this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON() } )
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON() } )
   }
 
-  checkCredentials() {
-    this.httpClient.post(this.url.getBaseUrl() + this.url.getLogin(), {}, {headers: Headers.HeaderJSON() } );
+  checkCredentials(body: User) {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getCredential(), body, {headers: Headers.HeaderJSON() } );
+  }
+
+  registerUser(body: Register) {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser(), body, {headers: Headers.HeaderJSON() } );
   }
 
   postGame(body: AddGame){

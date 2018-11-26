@@ -1,9 +1,19 @@
-  <!--<mat-form-field>
-    <input matInput [formControl]="autoCompleteControl" type="text" placeholder="Search game" [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
-        {{ item.name | titlecase}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
--->
+<mat-form-field>
+              <mat-label>
+                         <mat-icon>search</mat-icon> search game...
+              </mat-label>
+
+              <input matInput [formControl]="autoCompleteControl"
+                     type="text"
+                     aria-label="Number"
+                     [matAutocomplete]="auto"/>
+
+
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option
+                      *ngFor="let item of searchGameAutoComplete$ | async; let index = index" [value]="item.title">
+                      {{ item.title | titlecase}}
+                    </mat-option>
+              </mat-autocomplete>
+</mat-form-field>
+

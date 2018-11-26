@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {StorageService} from "../shared/service/storage.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../shared/service/auth.service";
 
@@ -16,7 +15,8 @@ export class LoginComponent implements OnInit {
   public failedLogin: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,5 +37,10 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  register() {
+    this.router.navigate(['/register']);
+//    this.router.navigateByUrl('/');
   }
 }

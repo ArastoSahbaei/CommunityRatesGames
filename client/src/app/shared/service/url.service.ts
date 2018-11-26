@@ -10,12 +10,18 @@ export class UrlService {
   private rating: string = "/rating";
   private games: string = "/game";
   private login: string ="/login";
+  private user: string ="/user";
+  private credential: string = "/credential";
 
 
   constructor() { }
 
   getBaseUrl() {
     return this.baseUrl;
+  }
+
+  getCredential() {
+    return this.credential;
   }
 
   getRating() {
@@ -28,5 +34,9 @@ export class UrlService {
 
   getLogin() {
     return this.login;
+  }
+
+  getUser() {
+    return this.user;
   }
 }

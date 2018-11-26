@@ -1,20 +1,21 @@
-<div class="main-container">
-  <mat-card>
-    <mat-card-title>Sign In</mat-card-title>
+<mat-card [formGroup]="loginForm" novalidate>
+  <mat-card-title>Login</mat-card-title>
 
-    <mat-card-content>
-      <form [formGroup]="loginForm" class="layout">
+  <mat-form-field>
+    <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+    <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+  </mat-form-field>
 
-        <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
-        <span *ngIf="(email.dirty || email.touched) && email.invalid">Email required</span>
+  <mat-form-field>
+    <input id="password" matInput placeholder="Password" type="password" formControlName="password" class="form-control" required >
+    <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
+  </mat-form-field>
 
-        <input id="password" matInput placeholder="Password" type="password" formControlName="password" class="form-control" required >
-        <span *ngIf="(password.dirty || password.touched) && password.invalid">Password required</span>
-      </form>
-    </mat-card-content>
-    <span *ngIf="failedLogin">{{errorMessage}}</span>
-    <mat-card-actions>
-      <button mat-raised-button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" color="primary">Sign in</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+  <span *ngIf="failedLogin">{{errorMessage}}</span>
+
+  <mat-card-actions>
+    <button mat-raised-button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" color="primary">Sign in</button>
+    <button mat-raised-button type="button" (click)="register()" id="register">Register</button>
+  </mat-card-actions>
+</mat-card>
+

@@ -4,12 +4,3 @@ mat-card {
   width: 30%;
   margin: 0 auto;
 }
-
-span {
-  color: red;
-}
-
-#register {
-  background-color: white;
-  color: black;
-}
