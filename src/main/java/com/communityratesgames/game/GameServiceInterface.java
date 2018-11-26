@@ -6,6 +6,6 @@ public interface GameServiceInterface {
 
     List<GameModel> findAllGames();
     GameModel findGameById(Long id);
-    GameModel createGame(GameModel gameModel);
-    GameEntity findGameByTitle(String title);
+    GameModel createGame(NewGameModel inputGame);
+    GameModel findGameByTitle(String title);
 }

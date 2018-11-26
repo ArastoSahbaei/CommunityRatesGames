@@ -15,7 +15,7 @@ import com.communityratesgames.game.GameModel;
 public class PlatformEntity implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length=80)
     private String name;
@@ -49,7 +49,7 @@ public class PlatformEntity implements Serializable {
 
     protected PlatformEntity() { }
 
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 

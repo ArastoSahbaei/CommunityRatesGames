@@ -1,16 +1,13 @@
 package com.communityratesgames.game;
 
-import com.communityratesgames.platform.PlatformEntity;
-import com.fasterxml.jackson.core.JsonEncoding;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
+import com.communityratesgames.company.CompanyModel;
+import com.communityratesgames.company.CompanyRepository;
+import com.communityratesgames.platform.PlatformModel;
+import com.communityratesgames.platform.PlatformRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -24,10 +21,19 @@ public class GameService implements GameServiceInterface {
 
     private final GameRepository gameRepository;
     private final RatingRepository ratingRepository;
+    private final PlatformRepository platformRepository;
+    private final CompanyRepository companyRepository;
 
-    public GameService(GameRepository gameRepository, RatingRepository ratingRepository) {
+    public GameService(
+            GameRepository gameRepository,
+            RatingRepository ratingRepository,
+            PlatformRepository platformRepository,
+            CompanyRepository companyRepository)
+    {
         this.gameRepository = gameRepository;
         this.ratingRepository = ratingRepository;
+        this.platformRepository = platformRepository;
+        this.companyRepository = companyRepository;
     }
 
     private List<GameModel> convertEntityListToModelList(List<GameEntity> list) {
@@ -39,10 +45,21 @@ public class GameService implements GameServiceInterface {
     }
 
     @Override
-    public GameModel createGame(GameModel gameModel) {
-        GameEntity gameEntity = new GameEntity(gameModel);
-        return new GameModel(gameRepository.save(gameEntity));
+    public GameModel createGame(NewGameModel inputGame) {
+        System.out.println(inputGame.toString());
+        List<PlatformModel> allPlatforms = inputGame.getAllPlatformId()
+                .stream().map(
+                        platform -> new PlatformModel(platformRepository.findById(platform))
+                ).collect(Collectors.toList());
+        CompanyModel company = new CompanyModel(companyRepository.findCompanyById(inputGame.getCompanyId()));
+        GameModel newGame = new GameModel(
+                inputGame.getTitle(),
+                company,
+                allPlatforms
+        );
+        return new GameModel(gameRepository.save(new GameEntity(newGame)));
     }
+
     public List<HashMap<String,Object>> searchForFiveGames(String searchString){
         return gameRepository.findFirst5ByTitleContaining(searchString, Sort.unsorted()
         ).stream().map(this::reduceGameToIdAndTitle).collect(Collectors.toList());
@@ -72,8 +89,9 @@ public class GameService implements GameServiceInterface {
         return new GameModel(gameEntity, average);
     }
 
-    @Override
-    public GameEntity findGameByTitle(String title) {
-        return null;
+    public GameModel findGameByTitle(String title) {
+        GameEntity gameEntity = gameRepository.findGameByTitle(title);
+        Float average = ratingRepository.getGameAverageRating(gameEntity.getId());
+        return new GameModel(gameEntity, average);
     }
 }

@@ -27,9 +27,15 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
-    //TODO: Security And/Or userrequired
+    @GetMapping("/game/title")
+    public ResponseEntity<GameModel> getGameByTitle(@RequestParam("q") String title) {
+        GameModel game = gameService.findGameByTitle(title);
+        return new ResponseEntity<>(game, HttpStatus.OK);
+    }
+
+    //TODO: Security And/Or user required. Probably should not return a GameModel
     @PostMapping("/game")
-    public ResponseEntity<GameModel> createGame(@RequestBody GameModel gameModel) {
+    public ResponseEntity<GameModel> createGame(@RequestBody NewGameModel gameModel) {
         GameModel newGameModel = gameService.createGame(gameModel);
         return new ResponseEntity<>(newGameModel, HttpStatus.OK);
     }

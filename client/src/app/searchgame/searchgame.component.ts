@@ -33,8 +33,13 @@ export class SearchgameComponent implements OnInit {
 
   openGamePage() {
     this.storage.setItem('currentGame', this.autoCompleteControl.value);
-    this.router.navigate(['/game/gamepage']);
+    this.router.navigate(['/gamepage'], { queryParams: { game: this.autoCompleteControl.value } });
   }
+
+ /**  this.router.navigate(['/game/gamepage']);
+  }
+
+  */
 
   ngOnInit() {
     this.searchGameAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(

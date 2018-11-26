@@ -6,4 +6,13 @@
       {{ item.title | titlecase}}
     </mat-option>
   </mat-autocomplete>
+              <mat-label>
+                         <mat-icon>search</mat-icon> search game...
+              </mat-label>
+
+              <input matInput [formControl]="autoCompleteControl"
+                     type="text"
+                     aria-label="Number"
+                     [matAutocomplete]="auto"/>
 </mat-form-field>
+

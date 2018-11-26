@@ -1,6 +1,13 @@
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+.titleForLoggedInUsers {
+  font-family:arial;
+  font-size: 17px;
+  letter-spacing: 3px;
+  text-shadow: 0.2px 0.2px whitesmoke;
+  text-align: center;
+}
 
 ul {
   display: flex;
