@@ -22,8 +22,6 @@ export class GamePageComponent implements OnInit {
 
     console.log(this.storage.getItem('currentGame'));
     this.storage.removeItem('currentGame');
-    //TODO Fetch this motherfucking shit. ask beärn.
-        //http.get(this.storage.getItem('currentGame'))
   }
 
 }
