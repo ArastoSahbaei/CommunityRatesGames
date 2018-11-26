@@ -34,9 +34,9 @@ public class UserController {
 
     @GET
     @Produces({"application/json"})
-    public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
+    public Response login(@QueryParam("email") String email) {
         try {
-            User user = dal.login(email, password);
+            User user = dal.login(email);
             return Response.ok(user).build();
         } catch ( Exception e ) {
             return Response.status(413).build();

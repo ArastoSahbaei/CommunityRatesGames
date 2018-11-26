@@ -3,6 +3,8 @@ package com.communityratesgames.dao;
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.transactions.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Stateless
 public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
+
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.dao.CRGDataAccess.class);
 
     //Injects to all interfaces for each entity
 
@@ -28,11 +32,35 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     @Inject
     private UserDataAccess userDataAccess;
 
-    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
+    public Company registerNewCompany(CompanyModel companyModel){
+        System.out.println("HEJ HEJ HEJ");
+        logger.debug("My Debug Log");
+        logger.info("My Info Log");
+        logger.warn("My Warn Log");
+        logger.error("My error log");
+        logger.fatal("My fatal log");
+        return companyDataAccess.registerNewCompany(companyModel);
+    }
     public List<Game> showAllGames() {return gameDataAccess.showAllGames();}
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
-    public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User login(String email, String password) {return userDataAccess.login(email, password);}
+    public List<User> showAllUsers() {
+        System.out.println("HEJ HEJ HEJ");
+        logger.debug("My Debug Log");
+        logger.info("My Info Log");
+        logger.warn("My Warn Log");
+        logger.error("My error log");
+        logger.fatal("My fatal log");
+        return userDataAccess.showAllUsers();
+    }
+    public User login(String user) {return userDataAccess.login(user);}
     public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
-    public List<Company> showAllCompanies() {return companyDataAccess.showAllCompanies();}
+    public List<Company> showAllCompanies() {
+        System.out.println("HEJ HEJ HEJ");
+        logger.debug("My Debug Log");
+        logger.info("My Info Log");
+        logger.warn("My Warn Log");
+        logger.error("My error log");
+        logger.fatal("My fatal log");
+        return companyDataAccess.showAllCompanies();
+    }
 }
