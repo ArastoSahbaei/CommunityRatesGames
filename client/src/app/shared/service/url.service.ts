@@ -9,15 +9,20 @@ export class UrlService {
   private baseUrl: string = "http://localhost:8080/api";
   private rating: string = "/rating";
   private games: string = "/game";
-  private login: string ="/login";
-  private user: string ="/user";
+  private login: string = "/login";
+  private user: string = "/user";
   private credential: string = "/credential";
+  private searchGameByTitle: string = "/game/title?q=halo"
 
-
-  constructor() { }
+  constructor() {
+  }
 
   getBaseUrl() {
     return this.baseUrl;
+  }
+
+  getSearchForGame() {
+    return this.searchGameByTitle;
   }
 
   getCredential() {

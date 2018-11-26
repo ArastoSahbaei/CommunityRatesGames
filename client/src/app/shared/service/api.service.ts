@@ -15,6 +15,9 @@ export class ApiService {
   constructor(private httpClient: HttpClient,
               private url:UrlService) { }
 
+  searchGameByTitle() {
+    return this.httpClient.get(this.url.getBaseUrl()+this.url.getSearchForGame);
+  }
 
   getGames() {
     return this.httpClient.get(this.url.getBaseUrl()+this.url.getGames(), {headers: Headers.HeaderJSON()});
