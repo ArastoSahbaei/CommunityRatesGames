@@ -11,7 +11,13 @@ import {HttpClient} from "@angular/common/http";
 })
 export class GamePageComponent implements OnInit {
   public game: Game;
-  constructor(private storage: StorageService, api: ApiService, private http: HttpClient) { }
+  constructor(private storage: StorageService, private api: ApiService) { }
+
+  getData() {
+     this.api.searchGameByTitle().subscribe((data)=> console.log(data));
+  }
+
+
 
   ngOnInit() {
     /**   TODO:
@@ -20,6 +26,7 @@ export class GamePageComponent implements OnInit {
      *  3. JSON SHOULD BE RETRIEVED USING THE GLOBAL VARIABLE (FROM THE SEARCH FIELD)
      *  4. GLOBAL VARIABLE SHOULD BE REMOVED AFTER EVERY UPDATE(?) IF SAVED IN BROWSERB
      */
+
 
     console.log(this.storage.getItem('currentGame'));
     this.storage.removeItem('currentGame');
