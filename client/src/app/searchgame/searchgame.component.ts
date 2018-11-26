@@ -32,10 +32,16 @@ export class SearchgameComponent implements OnInit {
     );
   }
 
+
   openGamePage() {
     this.storage.setItem('currentGame', this.autoCompleteControl.value);
     this.router.navigate(['game/gamepage'], { queryParams: { title: this.autoCompleteControl.value } });
     window.location.reload();
+    /**
+     *   window.location.reload is used for reloading the page to send
+     *   through the global variable to the 'gamePage' component
+     *   If the page is not reloaded, the variable can only be sent through once
+     */
   }
 
   ngOnInit() {
