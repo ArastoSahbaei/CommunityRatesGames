@@ -129,7 +129,6 @@
 
     <build>
         <finalName>communityratesgames</finalName>
-        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

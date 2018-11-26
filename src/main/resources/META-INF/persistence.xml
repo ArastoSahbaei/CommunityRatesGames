@@ -3,9 +3,13 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="communityratesgames" transaction-type="JTA">
         <jta-data-source>java:/communityratesgames</jta-data-source>
+        <class>com.communityratesgames.domain.Company</class>
         <properties>
-            <property name="hibernate.archive.autodetection" value="class, hbm" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <!-- <property name="hibernate.archive.autodetection" value="class, hbm" /> -->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
         </properties>
     </persistence-unit>
 </persistence>
