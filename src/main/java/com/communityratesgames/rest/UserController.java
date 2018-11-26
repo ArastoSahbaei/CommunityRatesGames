@@ -31,7 +31,7 @@ public class UserController {
             return Response.status(404).build();
         }
     }
-
+/*
     @GET
     @Produces({"application/json"})
     public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
@@ -42,7 +42,7 @@ public class UserController {
             return Response.status(413).build();
         }
     }
-/*
+
     private static int loginIndex = 0;
     private static List<AuthToken> logins = new ArrayList<AuthToken>();
 

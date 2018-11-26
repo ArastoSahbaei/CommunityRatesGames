@@ -22,6 +22,21 @@ public class GameService implements GameDataAccess {
         List<Game> result = q.getResultList();
         return result;
     }
+
+    @Override
+    public Game gameByTitle(String title) {
+        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE title = :title",Game.class);
+        q.setParameter("title", title);
+        Game game = (Game)q.getSingleResult();
+        return game;
+    }
+/*
+    public Game gameByTitle(String title){
+        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE title = :title",Game.class);
+        q.setParameter("title", title);
+        Game game = (Game)q.getSingleResult();
+        return game;
+    }
 /*
     private final GameRepository gameRepository;
     private final RatingRepository ratingRepository;
