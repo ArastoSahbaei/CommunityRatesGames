@@ -1,6 +1,7 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.User;
+import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -12,6 +13,8 @@ import java.util.List;
 @Stateless
 @Default
 public class UserService implements UserDataAccess {
+
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.transactions.UserService.class);
 
     @PersistenceContext(unitName = "communityratesgames")
     private EntityManager em;
@@ -25,6 +28,7 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User login(String email) {
+
 //        Query q = em.createNativeQuery("SELECT * FROM user_entity WHERE email = :email AND password = :password");
         return null;
     }
