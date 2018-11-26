@@ -2,12 +2,10 @@ package com.communityratesgames.domain;
 
 import com.communityratesgames.model.CompanyModel;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 
 @Entity
-@XmlRootElement
 @Table(name = "company_entity")
 public class Company implements Serializable {
 

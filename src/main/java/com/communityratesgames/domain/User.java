@@ -2,7 +2,6 @@ package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.nio.charset.StandardCharsets;
@@ -10,7 +9,6 @@ import java.security.*;
 import java.math.BigInteger;
 
 @Entity
-@XmlRootElement
 @Table(name = "user_entity")
 public class User implements Serializable {
 
