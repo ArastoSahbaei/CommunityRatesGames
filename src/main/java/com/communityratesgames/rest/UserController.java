@@ -7,10 +7,12 @@ import lombok.NoArgsConstructor;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 @NoArgsConstructor
@@ -32,14 +34,31 @@ public class UserController {
         }
     }
 /*
+
+    @POST
+    @Path("/register")
+    @Produces("application/json")
+    public Response register(
+            @QueryParam("username") String username,
+            @QueryParam("password") String password,
+            @QueryParam("email") String email) {
+        try {
+            User user = dal.register(username, email, password);
+            return Response.ok(user).build();
+        } catch ( Exception e ) {
+            return Response.status(413).entity(e.getMessage()).build();
+        }
+    }
+
     @GET
+    @Path("/login")
     @Produces({"application/json"})
     public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
         try {
             User user = dal.login(email, password);
             return Response.ok(user).build();
         } catch ( Exception e ) {
-            return Response.status(413).build();
+            return Response.status(413).entity(e.getMessage()).build();
         }
     }
 
