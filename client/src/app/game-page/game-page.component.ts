@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StorageService} from "../shared/service/storage.service";
 import {Game} from "../shared/interface/game";
 import {ApiService} from "../shared/service/api.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-game-page',
@@ -10,7 +11,7 @@ import {ApiService} from "../shared/service/api.service";
 })
 export class GamePageComponent implements OnInit {
   public game: Game;
-  constructor(private storage: StorageService, api:ApiService) { }
+  constructor(private storage: StorageService, api: ApiService, private http: HttpClient) { }
 
   ngOnInit() {
     /**   TODO:
