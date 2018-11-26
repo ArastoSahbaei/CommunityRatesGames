@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -28,6 +29,17 @@ public class UserController {
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
+        }
+    }
+
+    @GET
+    @Produces({"application/json"})
+    public Response login(@QueryParam("email") String email, @QueryParam("password") String password) {
+        try {
+            User user = dal.login(email, password);
+            return Response.ok(user).build();
+        } catch ( Exception e ) {
+            return Response.status(413).build();
         }
     }
 /*
@@ -51,6 +63,7 @@ public class UserController {
         System.out.println("HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return userService.checkCredentials(userModel);
     }
+
     @GetMapping("/user")
     public ResponseEntity<Object> getUserById(
             @RequestParam(value="token",required=false) Long token,

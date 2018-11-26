@@ -8,4 +8,5 @@ import java.util.List;
 @Local
 public interface UserDataAccess {
     public abstract List<User> showAllUsers();
+    public abstract User login(String email, String password);
 }

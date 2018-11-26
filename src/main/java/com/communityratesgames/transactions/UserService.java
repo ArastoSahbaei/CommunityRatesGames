@@ -22,6 +22,12 @@ public class UserService implements UserDataAccess {
         List<User> users = q.getResultList();
         return users;
     }
+
+    @Override
+    public User login(String email, String password) {
+        Query q = em.createNativeQuery("SELECT * FROM user_entity WHERE email = :email AND password = :password");
+        return null;
+    }
 /*
     @Autowired
     private final UserRepository userRepository;
