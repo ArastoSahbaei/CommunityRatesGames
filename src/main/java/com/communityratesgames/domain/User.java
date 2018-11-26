@@ -78,23 +78,32 @@ public class User implements Serializable {
         return password;
     }
 
+    public static String hashPassword(String password, String hash) {
+        try {
+            // Use hashed SHA-256.
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            password += hash;
+            md.update(password.getBytes(StandardCharsets.UTF_8));
+            byte[] data = md.digest();
+            return String.format("%064x", new BigInteger(1, data));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void setPassword(String password) {
-        // Use hashed SHA-256.
         byte[] hash = new byte[4];
         SecureRandom rand = new SecureRandom();
         rand.setSeed(rand.generateSeed(4));
         rand.nextBytes(hash);
+        this.passwordHash = Integer.toHexString(
+                ((int)hash[0] << 24) |
+                ((int)hash[1] << 16) |
+                ((int)hash[2] << 8) |
+                (int)hash[3]);
 
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            this.passwordHash = Integer.toHexString(((int)hash[0] << 24) | ((int)hash[1] << 16) | ((int)hash[2] << 8) | (int)hash[3]);
-            password += passwordHash;
-            md.update(password.getBytes(StandardCharsets.UTF_8));
-            hash = md.digest();
-            this.password = String.format("%064x", new BigInteger(1, hash));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        this.password = hashPassword(password, this.passwordHash);
     }
 
     public String getRole() {
