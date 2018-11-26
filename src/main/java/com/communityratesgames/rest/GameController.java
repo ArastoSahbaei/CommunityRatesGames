@@ -33,11 +33,35 @@ public class GameController {
     }
 
     @GET
-    @Path("/derp")
+    @Path("/title")
     @Produces({"application/JSON"})
     public Response getOneGamebyTitle(@QueryParam("title") String title){
         try {
             Game result = dal.gameByTitle(title);
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(414).build();
+        }
+    }
+
+    @GET
+    @Path("/id")
+    @Produces({"application/JSON"})
+    public Response getOneGamebyId(@QueryParam("id") Long id){
+        try {
+            Game result = dal.gameById(id);
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(414).build();
+        }
+    }
+
+    @GET
+    @Path("/search")
+    @Produces({"application/JSON"})
+    public Response searchFiveGames(@QueryParam("q") String q){
+        try {
+            String result = dal.searchFiveGames(q);
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(414).build();

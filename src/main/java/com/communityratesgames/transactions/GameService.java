@@ -1,12 +1,17 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.Game;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Stateless
@@ -25,18 +30,48 @@ public class GameService implements GameDataAccess {
 
     @Override
     public Game gameByTitle(String title) {
-        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE title = :title",Game.class);
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class);
         q.setParameter("title", title);
-        Game game = (Game)q.getSingleResult();
-        return game;
+        return (Game)q.getSingleResult();
     }
-/*
-    public Game gameByTitle(String title){
-        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE title = :title",Game.class);
-        q.setParameter("title", title);
-        Game game = (Game)q.getSingleResult();
-        return game;
+
+    @Override
+    public Game gameById(Long id) {
+        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE id = :id",Game.class);
+        q.setParameter("id", id);
+        return (Game)q.getSingleResult();
     }
+
+    @Override
+    public String searchFiveGames(String query) {
+        Query q = em.createQuery("SELECT g FROM Game g WHERE title LIKE :query",Game.class)
+                .setParameter("query", query)
+                .setMaxResults(5);
+        return reduceGameToTitleAndId(q.getResultList());
+    }
+
+    private String reduceGameToTitleAndId(List<Game> gameList) {
+        JsonFactory factory = new JsonFactory();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        try {
+            JsonGenerator jgen = factory.createGenerator(outputStream);
+            jgen.writeStartObject();
+            for (Game game:gameList
+                 ) {
+                jgen.writeStartObject();
+                jgen.writeObjectField("id",game.getId());
+                jgen.writeObjectField("title", game.getTitle());
+                jgen.writeEndObject();
+            }
+            jgen.writeEndObject();
+            jgen.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return outputStream.toString();
+    }
+
 /*
     private final GameRepository gameRepository;
     private final RatingRepository ratingRepository;
