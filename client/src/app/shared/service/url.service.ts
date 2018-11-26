@@ -11,12 +11,17 @@ export class UrlService {
   private games: string = "/games";
   private login: string ="/login";
   private user: string ="/user";
+  private credential: string = "/credential";
 
 
   constructor() { }
 
   getBaseUrl() {
     return this.baseUrl;
+  }
+
+  getCredential() {
+    return this.credential;
   }
 
   getRating() {
