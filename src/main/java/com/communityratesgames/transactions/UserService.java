@@ -8,6 +8,7 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
@@ -27,10 +28,25 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User login(String email) {
+    public User register(String username, String email, String password) {
+        User u = new User();
+        u.setUserCreated(new Timestamp(System.currentTimeMillis()));
+        u.setUserName(username);
+        u.setEmail(email);
+        u.setPassword(password);
+        u.setRole("user");
+        em.persist(u);
+        return u;
+    }
 
-//        Query q = em.createNativeQuery("SELECT * FROM user_entity WHERE email = :email AND password = :password");
-        return null;
+    @Override
+    public User login(String email, String password) {
+        User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
+            .setParameter("email", email)
+            .getSingleResult();
+
+        return (u.getPassword() == User.hashPassword(password, u.getPasswordHash())) ?
+                u : null;
     }
 /*
     @Autowired
