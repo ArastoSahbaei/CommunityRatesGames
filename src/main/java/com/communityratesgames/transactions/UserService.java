@@ -31,15 +31,11 @@ public class UserService implements UserDataAccess {
     @Override
     public User register(User user) {
         User u = new User();
-        logger.info(user);
-
         u.setUserCreated(new Timestamp(System.currentTimeMillis()));
         u.setRole("user");
         u.setEmail(user.getEmail());
         u.setPassword(user.getPassword());
         u.setUserName(user.getUserName());
-
-        logger.info(u);
 
         em.persist(u);
 
@@ -52,11 +48,8 @@ public class UserService implements UserDataAccess {
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
             .setParameter("email", user.getEmail())
             .getSingleResult();
-
-        System.out.println(u.toString());
-        u.setUserName(u.getUserName());
-        return (u.getPassword() == User.hashPassword(password, u.getPasswordHash())) ?
-                u : null;
+        System.out.println(u.getPasswordHash());
+        return (u.getPassword()==(User.hashPassword(password, u.getPasswordHash()))) ? u : null;
     }
 /*
     @Autowired

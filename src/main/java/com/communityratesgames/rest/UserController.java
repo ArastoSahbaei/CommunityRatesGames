@@ -56,10 +56,9 @@ public class UserController {
         try {
             ObjectMapper mapper = new ObjectMapper();
             User user = mapper.readValue(credentials, User.class);
-            dal.login(user);
-            System.out.println("IN CONTROLLER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
-            System.out.println("IN CONTROLLER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + user.toString());
-            return Response.ok(user).build();
+            User u = dal.login(user);
+            String temp = mapper.writeValueAsString(u);
+            return Response.ok(temp).build();
         } catch ( Exception e ) {
             return Response.status(413).entity(e.getMessage()).build();
         }
