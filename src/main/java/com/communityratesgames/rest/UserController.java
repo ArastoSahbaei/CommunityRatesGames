@@ -2,23 +2,22 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
+import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import javax.persistence.PersistenceException;
 import java.util.List;
 
 @NoArgsConstructor
 @Stateless
 @Path("/user")
 public class UserController {
+
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
 
     @Inject
     private DataAccessLocal dal;
@@ -33,34 +32,39 @@ public class UserController {
             return Response.status(404).build();
         }
     }
-/*
 
     @POST
     @Path("/register")
     @Produces("application/json")
-    public Response register(
-            @QueryParam("username") String username,
-            @QueryParam("password") String password,
-            @QueryParam("email") String email) {
+    @Consumes("application/json")
+    public Response register(String temp) {
         try {
-            User user = dal.register(username, email, password);
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.readValue(temp, User.class);
+            dal.register(user);
             return Response.ok(user).build();
         } catch ( Exception e ) {
             return Response.status(413).entity(e.getMessage()).build();
         }
     }
 
-    @GET
+    @POST
     @Path("/login")
     @Produces({"application/json"})
-    public Response login(@QueryParam("email") String email) {
+    @Consumes({"application/JSON"})
+    public Response login(String credentials) {
         try {
-            User user = dal.login(email);
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.readValue(credentials, User.class);
+            dal.login(user);
+            System.out.println("IN CONTROLLER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
+            System.out.println("IN CONTROLLER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + user.toString());
             return Response.ok(user).build();
         } catch ( Exception e ) {
             return Response.status(413).entity(e.getMessage()).build();
         }
     }
+    /*
 
     private static int loginIndex = 0;
     private static List<AuthToken> logins = new ArrayList<AuthToken>();

@@ -6,15 +6,20 @@ import {Injectable} from "@angular/core";
 export class UrlService {
 
   //private strings with base url and extensions
-  private baseUrl: string = "http://localhost:8080/api";
+  private baseUrl: string = "http://localhost:8080/communityratesgames";
   private rating: string = "/rating";
   private games: string = "/games";
   private login: string ="/login";
+  private register: string ="/register";
   private user: string ="/user";
   private credential: string = "/credential";
 
 
   constructor() { }
+
+  getRegister() {
+    return this.register;
+  }
 
   getBaseUrl() {
     return this.baseUrl;

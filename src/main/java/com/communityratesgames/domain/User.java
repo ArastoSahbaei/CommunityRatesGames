@@ -1,5 +1,6 @@
 package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.math.BigInteger;
 
+@ToString
 @Entity
 @Table(name = "user_entity")
 public class User implements Serializable {
@@ -34,6 +36,12 @@ public class User implements Serializable {
     }
 
     public User() {
+    }
+
+    public User(String email, String password, String userName) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
     }
 
     public Long getId() {

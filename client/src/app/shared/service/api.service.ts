@@ -23,11 +23,12 @@ export class ApiService {
   }
 
   checkCredentials(body: User) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getCredential(), body, {headers: Headers.HeaderJSON() } );
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON() } );
   }
 
   registerUser(body: Register) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser(), body, {headers: Headers.HeaderJSON() } );
+    console.log(body);
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getRegister(), body, {headers: Headers.HeaderJSON() } );
   }
 
 }

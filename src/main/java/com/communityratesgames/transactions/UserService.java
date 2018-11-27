@@ -1,6 +1,7 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
@@ -28,23 +29,32 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User register(String username, String email, String password) {
+    public User register(User user) {
         User u = new User();
+        logger.info(user);
+
         u.setUserCreated(new Timestamp(System.currentTimeMillis()));
-        u.setUserName(username);
-        u.setEmail(email);
-        u.setPassword(password);
         u.setRole("user");
+        u.setEmail(user.getEmail());
+        u.setPassword(user.getPassword());
+        u.setUserName(user.getUserName());
+
+        logger.info(u);
+
         em.persist(u);
+
         return u;
     }
 
     @Override
-    public User login(String email, String password) {
+    public User login(User user) {
+        String password = user.getPassword();
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
-            .setParameter("email", email)
+            .setParameter("email", user.getEmail())
             .getSingleResult();
 
+        System.out.println(u.toString());
+        u.setUserName(u.getUserName());
         return (u.getPassword() == User.hashPassword(password, u.getPasswordHash())) ?
                 u : null;
     }
