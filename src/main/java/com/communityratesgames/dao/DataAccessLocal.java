@@ -16,5 +16,8 @@ public interface DataAccessLocal {
     public List<Rating> showAllRatings();
     public List<Company> showAllCompanies();
     public User login(String login, String password);
+    public Game gameByTitle(String title);
+    public Game gameById(Long id);
+    public String searchFiveGames(String query);
     public User register(String username, String email, String password);
 }

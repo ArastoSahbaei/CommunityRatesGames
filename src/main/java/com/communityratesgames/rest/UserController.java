@@ -33,6 +33,7 @@ public class UserController {
             return Response.status(404).build();
         }
     }
+/*
 
     @POST
     @Path("/register")
@@ -60,7 +61,7 @@ public class UserController {
             return Response.status(413).entity(e.getMessage()).build();
         }
     }
-/*
+
     private static int loginIndex = 0;
     private static List<AuthToken> logins = new ArrayList<AuthToken>();
 
