@@ -30,26 +30,17 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User register(User user) {
-        User u = new User();
-        u.setUserCreated(new Timestamp(System.currentTimeMillis()));
-        u.setRole("user");
-        u.setEmail(user.getEmail());
-        u.setPassword(user.getPassword());
-        u.setUserName(user.getUserName());
-
-        em.persist(u);
-
-        return u;
+        em.persist(user);
+        return user;
     }
 
     @Override
-    public User login(User user) {
-        String password = user.getPassword();
+    public User login(String email, String password) {
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
-            .setParameter("email", user.getEmail())
+            .setParameter("email", email)
             .getSingleResult();
-        System.out.println(u.getPasswordHash());
-        return (u.getPassword()==(User.hashPassword(password, u.getPasswordHash()))) ? u : null;
+        password = User.hashPassword(password, u.getPasswordHash());
+        return (u.getPassword().equals(password)) ? u : null;
     }
 /*
     @Autowired

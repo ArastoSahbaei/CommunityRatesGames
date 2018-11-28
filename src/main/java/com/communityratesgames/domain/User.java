@@ -35,13 +35,15 @@ public class User implements Serializable {
         this.userCreated = userModel.getUserCreated();
     }
 
-    public User() {
+    public User(String username, String email, String password) {
+        this.userCreated = new Timestamp(System.currentTimeMillis());
+        this.userName = username;
+        this.email = email;
+        this.encryptPassword(password);
+        this.role = "user";
     }
 
-    public User(String email, String password, String userName) {
-        this.email = email;
-        this.password = password;
-        this.userName = userName;
+    public User() {
     }
 
     public Long getId() {
@@ -98,7 +100,7 @@ public class User implements Serializable {
         }
     }
 
-    public void setPassword(String password) {
+    public void encryptPassword(String password) {
         byte[] hash = new byte[4];
         SecureRandom rand = new SecureRandom();
         rand.setSeed(rand.generateSeed(4));
@@ -110,6 +112,10 @@ public class User implements Serializable {
                 (int)hash[3]);
 
         this.password = hashPassword(password, this.passwordHash);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {
