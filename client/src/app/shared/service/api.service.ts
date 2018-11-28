@@ -1,9 +1,11 @@
+import {AddGame} from "../interface/add-game.interface";
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Headers } from "./headers";
 import { UrlService } from "./url.service";
 import { Register } from "../interface/register.interface";
 import {User} from "../interface/user.interface";
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,12 @@ export class ApiService {
   registerUser(body: Register) {
     console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getRegister(), body, {headers: Headers.HeaderJSON() } );
+  }
+
+  postGame(body: AddGame){
+    console.log(body);
+  return this.httpClient.post(this.url.getBaseUrl()+ this.url.getGames(), body, {headers: Headers.HeaderJSON()}
+    );
   }
 
 }
