@@ -49,6 +49,7 @@ public class UserService implements UserDataAccess {
             .setParameter("email", user.getEmail())
             .getSingleResult();
         System.out.println(u.getPasswordHash());
+        System.out.println("Login: " + u.toString());
         return (u.getPassword()==(User.hashPassword(password, u.getPasswordHash()))) ? u : null;
     }
 /*

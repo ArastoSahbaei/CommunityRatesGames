@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.model.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
 import org.apache.log4j.Logger;
@@ -18,6 +19,7 @@ import java.util.List;
 public class UserController {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
+    private UserModel userModel = new UserModel();
 
     @Inject
     private DataAccessLocal dal;
@@ -54,13 +56,16 @@ public class UserController {
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            User user = mapper.readValue(credentials, User.class);
+
+            System.out.println("In login method: " + credentials);
+            User user = userModel.toEntity(credentials);
+            System.out.println("TO POJO:::::::::::::::::::::::::::::::::: " + user);
             User u = dal.login(user);
-            String temp = mapper.writeValueAsString(u);
-            return Response.ok(temp).build();
+            System.out.println("USER:::: " + u);
+//            String temp = mapper.writeValueAsString(u);
+            return null; // Response.ok(temp).build();
         } catch ( Exception e ) {
-            return Response.status(413).entity(e.getMessage()).build();
+            return Response.status(401).entity(e.getMessage()).build();
         }
     }
     /*
