@@ -9,6 +9,8 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+            <property name="openjpa.Log" value="SQL=TRACE" />
+            <property name="openjpa.ConnectionFactoryProperties" value="printParameters=true" />
         </properties>
     </persistence-unit>
 </persistence>

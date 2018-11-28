@@ -34,7 +34,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User login(User user) {return userDataAccess.login(user);}
+    public User login(String email, String password) {return userDataAccess.login(email, password);}
 
     //Game Access
     public List<Game> showAllGames() {return gameDataAccess.showAllGames();}

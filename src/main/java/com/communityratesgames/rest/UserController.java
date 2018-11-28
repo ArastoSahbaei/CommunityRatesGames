@@ -4,6 +4,7 @@ import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
 import com.communityratesgames.model.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.NoArgsConstructor;
 import org.apache.log4j.Logger;
 
@@ -39,10 +40,26 @@ public class UserController {
     @Path("/register")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response register(String temp) {
+    public Response register(String credentials) {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            User user = mapper.readValue(temp, User.class);
+            JsonNode node = mapper.readTree(credentials);
+            JsonNode uname = node.findValue("username");
+            if (uname == null) {
+                return Response.status(400).entity("{\"error\":\"Username not specified.\"}").build();
+            }
+
+            JsonNode email = node.findValue("email");
+            if (email == null) {
+                return Response.status(400).entity("{\"error\":\"Email not specified.\"}").build();
+            }
+
+            JsonNode password = node.findValue("password");
+            if (password == null) {
+                return Response.status(400).entity("{\"error\":\"Password not specified.\"}").build();
+            }
+
+            User user = new User(uname.asText(), email.asText(), password.asText());
             dal.register(user);
             return Response.ok(user).build();
         } catch ( Exception e ) {
@@ -56,14 +73,20 @@ public class UserController {
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
         try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readTree(credentials);
+            JsonNode email = node.findValue("email");
+            if (email == null) {
+                return Response.status(400).entity("{\"error\":\"Email not specified.\"}").build();
+            }
+            JsonNode password = node.findValue("password");
+            if (password == null) {
+                return Response.status(400).entity("{\"error\":\"Password not specified.\"}").build();
+            }
 
-            System.out.println("In login method: " + credentials);
-            User user = userModel.toEntity(credentials);
-            System.out.println("TO POJO:::::::::::::::::::::::::::::::::: " + user);
-            User u = dal.login(user);
-            System.out.println("USER:::: " + u);
-//            String temp = mapper.writeValueAsString(u);
-            return null; // Response.ok(temp).build();
+            User u = dal.login(email.asText(), password.asText());
+            String temp = mapper.writeValueAsString(u);
+            return Response.ok(temp).build();
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();
         }
