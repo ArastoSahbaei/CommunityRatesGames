@@ -23,9 +23,8 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> showAllGames() {
-        Query q = em.createNativeQuery("SELECT * FROM game_entity", Game.class);
-        List<Game> result = q.getResultList();
-        return result;
+        Query q = em.createQuery("SELECT g FROM Game g", Game.class);
+        return (List<Game>) q.getResultList();
     }
 
     @Override
@@ -37,17 +36,22 @@ public class GameService implements GameDataAccess {
 
     @Override
     public Game gameById(Long id) {
-        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE id = :id",Game.class);
-        q.setParameter("id", id);
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
+                .setParameter("id", id);
         return (Game)q.getSingleResult();
     }
 
     @Override
     public String searchFiveGames(String query) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE title LIKE :query",Game.class)
-                .setParameter("query", query)
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :query",Game.class)
+                .setParameter("query", query+'%')
                 .setMaxResults(5);
         return reduceGameToTitleAndId(q.getResultList());
+    }
+
+    @Override
+    public Game createNewGame(Game newGame) {
+        return null;
     }
 
     private String reduceGameToTitleAndId(List<Game> gameList) {
@@ -55,15 +59,15 @@ public class GameService implements GameDataAccess {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             JsonGenerator jgen = factory.createGenerator(outputStream);
-            jgen.writeStartObject();
+            jgen.writeStartArray();
             for (Game game:gameList
-                 ) {
+            ) {
                 jgen.writeStartObject();
                 jgen.writeObjectField("id",game.getId());
                 jgen.writeObjectField("title", game.getTitle());
                 jgen.writeEndObject();
             }
-            jgen.writeEndObject();
+            jgen.writeEndArray();
             jgen.close();
             outputStream.close();
         } catch (IOException e) {
@@ -73,37 +77,10 @@ public class GameService implements GameDataAccess {
     }
 
 /*
-    private final GameRepository gameRepository;
-    private final RatingRepository ratingRepository;
-
-    public GameService(GameRepository gameRepository, RatingRepository ratingRepository) {
-        this.gameRepository = gameRepository;
-        this.ratingRepository = ratingRepository;
-    }
-
-    private List<GameModel> convertEntityListToModelList(List<Game> list) {
-        List<GameModel> out = new ArrayList<>();
-        for (Game entity : list) {
-            out.add(new GameModel(entity));
-        }
-        return out;
-    }
-
     @Override
     public GameModel createGame(GameModel gameModel) {
         Game gameEntity = new Game(gameModel);
         return new GameModel(gameRepository.save(gameEntity));
-    }
-    public List<HashMap<String,Object>> searchForFiveGames(String searchString){
-        return gameRepository.findFirst5ByTitleContaining(searchString, Sort.unsorted()
-        ).stream().map(this::reduceGameToIdAndTitle).collect(Collectors.toList());
-    }
-
-    private HashMap<String, Object> reduceGameToIdAndTitle(Game game){
-        HashMap<String, Object> reducedGame = new HashMap<>();
-        reducedGame.put("id", game.getId());
-        reducedGame.put("title", game.getTitle());
-        return reducedGame;
     }
 
     public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
@@ -111,20 +88,5 @@ public class GameService implements GameDataAccess {
         List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
         return items;
     }
-
-    @Override
-    public List<GameModel> findAllGames() {
-        return convertEntityListToModelList(gameRepository.findAll());
-    }
-
-    public GameModel findGameById(Long id) {
-        Game gameEntity = gameRepository.findGameById(id);
-        Float average = ratingRepository.getGameAverageRating(gameEntity.getId());
-        return new GameModel(gameEntity, average);
-    }
-
-    @Override
-    public Game findGameByTitle(String title) {
-        return null;
-    }*/
+*/
 }
