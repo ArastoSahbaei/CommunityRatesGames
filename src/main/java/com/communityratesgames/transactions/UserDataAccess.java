@@ -9,5 +9,5 @@ import java.util.List;
 public interface UserDataAccess {
     public abstract List<User> showAllUsers();
     public abstract User register(User user);
-    public abstract User login(User user);
+    public abstract User login(String email, String password);
 }
