@@ -1,14 +1,8 @@
 package com.communityratesgames.mail;
 
-import com.communityratesgames.user.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
+//@RestController
 public class MailController {
-
+/*
     @Autowired
     private MailService mailService;
 
@@ -28,5 +22,5 @@ public class MailController {
 
         return "Tack för ditt mail";
     }
-
+*/
 }

@@ -1,4 +1,4 @@
-INSERT INTO user_entity(id, email, password, role, user_name)
+INSERT INTO user_entity(id, email, password, role, userName)
 VALUES
 (1, '1user@user.user', 'power', 'admin', 'Harastio'),
 (2, '2user@user.user', 'power', 'admin', 'RobinLiquid'),
@@ -6,7 +6,7 @@ VALUES
 (4, '4user@user.user', 'power', 'admin', 'BostonGurka'),
 (5, 'that@dude.user', 'whut', 'user', 'Whatdude');
 
-INSERT INTO company_entity(id, company_name, country, city)
+INSERT INTO company_entity(id, companyName, country, city)
 VALUES
 (1, 'Microsoft', 'US', '???'),
 (2, 'Nintendo', 'Japan', 'GloriousNippon'),
