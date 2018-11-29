@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   register() {
     const user = {} as Register;
     user.email = this.registerForm.value.email;
-    user.userName = this.registerForm.value.user;
+    user.username = this.registerForm.value.user;
     user.password = this.registerForm.value.password;
 
     this.api.registerUser(user).subscribe((response) => {
