@@ -47,7 +47,12 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public String searchFiveGames(String query) {
         return gameDataAccess.searchFiveGames(query);
     }
-
+    public Game createNewGame(Game newGame) {
+        return gameDataAccess.createNewGame(newGame);
+    }
+    public List<Game> getTopRatedGames(Integer limit, Integer page) {
+        return gameDataAccess.getTopRatedGames(limit, page);
+    }
 
     public User register(User user) {
         return userDataAccess.register(user);
