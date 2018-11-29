@@ -8,5 +8,6 @@ import java.util.List;
 @Local
 public interface PlatformDataAccess {
 
-    public abstract List<Platform> showAllPlatforms();
+    public List<Platform> showAllPlatforms();
+    public Platform createPlatform(String name, int releaseYear, Long companyId);
 }

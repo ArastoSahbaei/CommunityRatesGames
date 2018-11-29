@@ -1,6 +1,7 @@
 
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.domain.Platform;
 
 import javax.ejb.Stateless;
@@ -22,6 +23,25 @@ public class PlatformService implements PlatformDataAccess {
         Query q = em.createNativeQuery("SELECT * FROM platform_entity", Platform.class);
         List<Platform> platforms = q.getResultList();
         return platforms;
+    }
+
+    @Override
+    public Platform createPlatform(String name, int releaseYear, Long companyId) {
+        Platform platform;
+        if (companyId != null) {
+            Company company = (Company)em.createQuery("SELECT c FROM Company c WHERE c.id = :id")
+                .setParameter("id", companyId)
+                .getSingleResult();
+            if (company == null) {
+                return null;
+            }
+            platform = new Platform(name, releaseYear, company, null);
+        } else {
+            platform = new Platform(name, releaseYear, null, null);
+        }
+
+        em.persist(platform);
+        return platform;
     }
 /*
     @Autowired
