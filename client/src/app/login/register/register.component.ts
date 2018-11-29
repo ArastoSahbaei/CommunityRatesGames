@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { ApiService } from "../../shared/service/api.service";
 import {Register} from "../../shared/interface/register.interface";
+import {AuthService} from "../../shared/service/auth.service";
+import {User} from "../../shared/interface/user.interface";
 
 @Component({
   selector: 'app-register',
@@ -11,9 +13,11 @@ import {Register} from "../../shared/interface/register.interface";
 export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
+  private failedLogin: boolean = false;
 
   constructor(private fb: FormBuilder,
-              private api: ApiService) { }
+              private api: ApiService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -30,12 +34,25 @@ export class RegisterComponent implements OnInit {
     user.username = this.registerForm.value.user;
     user.password = this.registerForm.value.password;
 
+    const person = {} as User ;
+
+    console.log(this.registerForm.value.email);
+    console.log(person.email);
+    person.email = this.registerForm.value.email;
+
+    person.password = this.registerForm.value.password;
+
+    console.log(this.registerForm.value.email);
+    console.log(person.email);
+
     this.api.registerUser(user).subscribe((response) => {
-      console.log(response);
+      if ( this.registerForm.value.login === true ) {
+        if (!this.auth.login(person)) {
+          this.failedLogin = true;
+        }
+      }
     });
-    if ( this.registerForm.value.login === true ) {
-      console.log("login");
-    }
+
   }
 
   get email() {

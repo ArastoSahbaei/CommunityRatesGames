@@ -46,7 +46,7 @@ public class UserController {
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(credentials);
-            JsonNode uname = node.findValue("userName");
+            JsonNode uname = node.findValue("username");
             if (uname == null) {
                 return Response.status(400).entity("{\"error\":\"Username not specified.\"}").build();
             }

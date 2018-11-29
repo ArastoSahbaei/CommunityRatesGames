@@ -31,7 +31,7 @@ public class UserService implements UserDataAccess {
     @Override
     public User register(User user) {
         System.out.println("IN HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-//        em.persist(user);
+        em.persist(user);
         return user;
     }
 
