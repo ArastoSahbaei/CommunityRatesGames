@@ -25,11 +25,15 @@ export class AuthService {
   public login(user : User) {
 
     this.api.checkCredentials(user).subscribe(response => {
-        this.credentials = Object.values(response);
-        this.loggedIn.next(true);
-        this.router.navigate(['/']);
-        this.storage.setItem('name', this.credentials[2]);
-        this.logged = true;
+      if (response == undefined || null ) {
+        this.router.navigate(['/error']);
+      } else {
+          this.credentials = Object.values(response);
+          this.loggedIn.next(true);
+          this.router.navigate(['/']);
+          this.storage.setItem('name', this.credentials[2]);
+          this.logged = true;
+        }
       },
       error => {
         console.log(error);
