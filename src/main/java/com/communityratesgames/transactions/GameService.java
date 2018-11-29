@@ -54,6 +54,11 @@ public class GameService implements GameDataAccess {
         return null;
     }
 
+    @Override
+    public List<Game> getTopRatedGames(Integer limit, Integer page) {
+        return null;
+    }
+
     private String reduceGameToTitleAndId(List<Game> gameList) {
         JsonFactory factory = new JsonFactory();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

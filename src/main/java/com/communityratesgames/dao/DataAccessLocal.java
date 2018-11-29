@@ -27,4 +27,5 @@ public interface DataAccessLocal {
     public Game gameById(Long id);
     public String searchFiveGames(String query);
     public Game createNewGame(Game newGame);
+    public List<Game> getTopRatedGames(Integer limit, Integer page);
 }

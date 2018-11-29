@@ -12,4 +12,5 @@ public interface GameDataAccess {
     public abstract Game gameById(Long id);
     public abstract String searchFiveGames(String query);
     public abstract Game createNewGame(Game newGame);
+    public abstract List<Game> getTopRatedGames(Integer limit, Integer page);
 }
