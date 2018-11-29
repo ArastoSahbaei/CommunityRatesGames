@@ -11,8 +11,14 @@ public interface DataAccessLocal {
 
     public Company registerNewCompany(CompanyModel companyModel);
     public List<Platform> showAllPlatforms();
-    public List<Rating> showAllRatings();
     public List<Company> showAllCompanies();
+
+
+    //RatingController
+    public List<Rating> showAllRatings();
+    public List<Rating> findRatingsByGameId(Long gameId);
+    public float getAverageOfGame(Long gameId);
+    public Rating findByGameIdAndUserId(Long gameId, Long userId);
 
 
     //UserController

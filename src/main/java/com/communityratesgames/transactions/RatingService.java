@@ -22,39 +22,26 @@ public class RatingService implements RatingDataAccess {
         List<Rating> rating = q.getResultList();
         return rating;
     }
-/*
-    @Autowired
-    private final RatingRepository ratingRepository;
 
-    public RatingService(RatingRepository ratingRepository) {this.ratingRepository = ratingRepository;}
-
-    public RatingModel createNewRating(RatingModel ratingModel) {
-        Rating rating = new Rating(ratingModel);
-        rating.setCreationDate(Timestamp.from(Instant.now()));
-        return new RatingModel(ratingRepository.save(rating));
-    }
-
-    public List<RatingModel> getAllRatings() {
-        return convertEntityListToModelList(ratingRepository.findAll());
-    }
-
+    @Override
     public float getAverageOfGame(Long gameId) {
-        return ratingRepository.getGameAverageRating(gameId);
+        Long derp = (Long)em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.id = :gameId")
+                .setParameter("gameId",gameId).getSingleResult();
+        return derp.floatValue();
     }
 
-    public List<RatingModel> findRatingsByGameId(Long gameId) {
-        return convertEntityListToModelList(ratingRepository.findAllByGameId(gameId));
+    @Override
+    public List<Rating> findRatingsByGameId(Long gameId) {
+        return em.createQuery("SELECT r FROM Rating r WHERE r.game.id = :gameId")
+                .setParameter("gameId",gameId).getResultList();
     }
 
-    /*
-    public RatingModel findByGameIdAndUserId(Long gameId, Long userId){
-        Rating ratingEntity = ratingRepository.findByGameIdAndUserId(gameId, userId);
-        return new RatingModel(ratingEntity);
+    @Override
+    public Rating findByGameIdAndUserId(Long gameId, Long userId) {
+        return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game = :gameId AND r.user = :userId")
+                .setParameter("gameId",gameId)
+                .setParameter("userId",userId)
+                .getSingleResult();
     }
-
-
-    private List<RatingModel> convertEntityListToModelList(List<Rating> entityList) {
-        return entityList.stream().map(RatingModel::new).collect((Collectors.toList()));
-    }*/
 }
 

@@ -31,9 +31,11 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     @Inject
     private UserDataAccess userDataAccess;
 
-    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
-    public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
+    //User Access
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
+    public User register(User user) {
+        return userDataAccess.register(user);
+    }
     public User login(String email, String password) {return userDataAccess.login(email, password);}
 
     //Game Access
@@ -54,11 +56,24 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
         return gameDataAccess.getTopRatedGames(limit, page);
     }
 
-    public User register(User user) {
-        return userDataAccess.register(user);
+    //Rating Access
+    public List<Rating> showAllRatings() {return ratingDataAccess.showAllRatings();}
+    public List<Rating> findRatingsByGameId(Long gameId) {
+        return ratingDataAccess.findRatingsByGameId(gameId);
     }
-    public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
+    public float getAverageOfGame(Long gameId) {
+        return ratingDataAccess.getAverageOfGame(gameId);
+    }
+    public Rating findByGameIdAndUserId(Long gameId, Long userId) {
+        return ratingDataAccess.findByGameIdAndUserId( gameId, userId);
+    }
+
+    //Company Access
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();
     }
+    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
+
+    //Platform Access
+    public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
 }

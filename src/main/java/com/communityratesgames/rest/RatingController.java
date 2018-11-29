@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -25,6 +26,39 @@ public class RatingController {
     public Response showAllRatings() {
         try {
             List<Rating> result = dal.showAllRatings();
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+    @GET
+    @Path("/bygame")
+    @Produces({"application/JSON"})
+    public Response findRatingsByGameId(@QueryParam("id") Long gameId) {
+        try {
+            List<Rating> result = dal.findRatingsByGameId(gameId);
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+    @GET
+    @Path("/average")
+    @Produces({"application/JSON"})
+    public Response getAverageOfGame(@QueryParam("id") Long gameId) {
+        try {
+            float result = dal.getAverageOfGame(gameId);
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+    @GET
+    @Path("/one")
+    @Produces({"application/JSON"})
+    public Response findByGameIdAndUserId(@QueryParam("gameid") Long gameId, @QueryParam("userid") Long userId) {
+        try {
+            Rating result = dal.findByGameIdAndUserId(gameId, userId);
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();

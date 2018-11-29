@@ -9,4 +9,7 @@ import java.util.List;
 public interface RatingDataAccess {
 
     public abstract List<Rating> showAllRatings();
+    public abstract float getAverageOfGame(Long gameId);
+    public abstract List<Rating> findRatingsByGameId(Long gameId);
+    public abstract Rating findByGameIdAndUserId(Long gameId, Long userId);
 }
