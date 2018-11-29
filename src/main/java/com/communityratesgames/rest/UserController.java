@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.model.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 public class UserController {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
+    private UserModel userModel = new UserModel();
 
     @Inject
     private DataAccessLocal dal;
@@ -39,6 +41,8 @@ public class UserController {
     @Produces("application/json")
     @Consumes("application/json")
     public Response register(String credentials) {
+        System.out.println("IN HERE::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
+        logger.info("Register Method:" + credentials);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(credentials);
@@ -70,6 +74,7 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
+        System.out.println("IN LOGIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(credentials);
@@ -86,7 +91,7 @@ public class UserController {
             String temp = mapper.writeValueAsString(u);
             return Response.ok(temp).build();
         } catch ( Exception e ) {
-            return Response.status(413).entity(e.getMessage()).build();
+            return Response.status(401).entity(e.getMessage()).build();
         }
     }
     /*
