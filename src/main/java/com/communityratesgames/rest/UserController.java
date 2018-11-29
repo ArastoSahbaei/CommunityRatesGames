@@ -41,10 +41,12 @@ public class UserController {
     @Produces("application/json")
     @Consumes("application/json")
     public Response register(String credentials) {
+        System.out.println("IN HERE::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
+        logger.info("Register Method:" + credentials);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(credentials);
-            JsonNode uname = node.findValue("username");
+            JsonNode uname = node.findValue("userName");
             if (uname == null) {
                 return Response.status(400).entity("{\"error\":\"Username not specified.\"}").build();
             }
@@ -72,6 +74,7 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
+        System.out.println("IN LOGIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(credentials);

@@ -30,7 +30,8 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User register(User user) {
-        em.persist(user);
+        System.out.println("IN HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+//        em.persist(user);
         return user;
     }
 
@@ -42,22 +43,7 @@ public class UserService implements UserDataAccess {
         password = User.hashPassword(password, u.getPasswordHash());
         return (u.getPassword().equals(password)) ? u : null;
     }
-/*
-    @Autowired
-    private final UserRepository userRepository;
-
-    private static Pattern passwordPattern;
-    private static Pattern usernamePattern;
-
-    static {
-        passwordPattern = Pattern.compile("^[a-zA-Z0-9!#$*+-<>^~_]+$");
-        usernamePattern = Pattern.compile("^[a-zA-Z0-9-_]+$");
-    }
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
+    /*
     private List<UserModel> convertUserListToUserModelList(List<User> userList) {
         List<UserModel> userModelList = new ArrayList<>();
         for (User userEntity : userList) {
