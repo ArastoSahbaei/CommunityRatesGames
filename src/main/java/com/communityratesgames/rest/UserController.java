@@ -2,8 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.communityratesgames.util.json.*;
 import lombok.NoArgsConstructor;
 import org.apache.log4j.Logger;
 
@@ -11,7 +10,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.util.List;
+import java.util.HashMap;
+import java.text.ParseException;
 
 @NoArgsConstructor
 @Stateless
@@ -40,28 +42,18 @@ public class UserController {
     @Consumes("application/json")
     public Response register(String credentials) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode node = mapper.readTree(credentials);
-            JsonNode uname = node.findValue("username");
-            if (uname == null) {
-                return Response.status(400).entity("{\"error\":\"Username not specified.\"}").build();
-            }
+            JsonObject object = new JsonObject(credentials);
+            String uname = object.getString("username");
+            String email = object.getString("email");
+            String password = object.getString("password");
 
-            JsonNode email = node.findValue("email");
-            if (email == null) {
-                return Response.status(400).entity("{\"error\":\"Email not specified.\"}").build();
-            }
-
-            JsonNode password = node.findValue("password");
-            if (password == null) {
-                return Response.status(400).entity("{\"error\":\"Password not specified.\"}").build();
-            }
-
-            User user = new User(uname.asText(), email.asText(), password.asText());
+            User user = new User(uname, email, password);
             dal.register(user);
             return Response.ok(user).build();
-        } catch ( Exception e ) {
+        } catch (ParseException | IOException e) {
             return Response.status(413).entity(e.getMessage()).build();
+        } catch (JsonGetException e) {
+            return Response.status(400).entity(e.getMessage()).build();
         }
     }
 
@@ -71,22 +63,31 @@ public class UserController {
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode node = mapper.readTree(credentials);
-            JsonNode email = node.findValue("email");
-            if (email == null) {
-                return Response.status(400).entity("{\"error\":\"Email not specified.\"}").build();
-            }
-            JsonNode password = node.findValue("password");
-            if (password == null) {
-                return Response.status(400).entity("{\"error\":\"Password not specified.\"}").build();
+            JsonObject object = new JsonObject(credentials);
+            String email = object.getString("email");
+            String password = object.getString("password");
+
+            User u = dal.login(email, password);
+            if (u == null) {
+                return Response.status(417).entity("{\"error\":\"Invalid username and/or password.\"}").build();
             }
 
-            User u = dal.login(email.asText(), password.asText());
-            String temp = mapper.writeValueAsString(u);
-            return Response.ok(temp).build();
-        } catch ( Exception e ) {
-            return Response.status(413).entity(e.getMessage()).build();
+            try {
+                String temp = new JsonObject()
+                    .append("username", new JsonString(u.getUserName()))
+                    .append("registerDate", new JsonString(u.getUserCreated().toString()))
+                    .build();
+                //String temp = mapper.writeValueAsString(u);
+                return Response.ok(temp).build();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return Response.status(500).build();
+            }
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+            return Response.status(500).build();
+        } catch (JsonGetException e) {
+            return Response.status(400).entity(e.getMessage()).build();
         }
     }
     /*
