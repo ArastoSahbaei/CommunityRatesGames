@@ -36,12 +36,14 @@ export class SearchgameComponent implements OnInit {
   openGamePage() {
     this.storage.setItem('currentGame', this.autoCompleteControl.value);
     this.router.navigate(['game/gamepage'], { queryParams: { title: this.autoCompleteControl.value } });
-    window.location.reload();
+   // window.location.reload();
     /**
      *   window.location.reload is used for reloading the page to send
      *   through the global variable to the 'gamePage' component
      *   If the page is not reloaded, the variable can only be sent through once
      *   (you can only search for a game once)
+     *   TODO: Research this further so you can send 'this.autoCompleteControl.value'
+     *   without a page reload.
      */
   }
 

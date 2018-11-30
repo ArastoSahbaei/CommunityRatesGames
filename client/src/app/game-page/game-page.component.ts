@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./game-page.component.css']
 })
 export class GamePageComponent implements OnInit {
-  public game: Game;
+  public games = this.storage.getItem('currentGame');
   constructor(private storage: StorageService, private api: ApiService) { }
 
   getData() {
@@ -31,7 +31,10 @@ export class GamePageComponent implements OnInit {
     console.log(this.storage.getItem('currentGame'));
     console.log(this.storage.getItem('currentGame'));
     console.log(this.storage.getItem('currentGame'));
+
+
     this.storage.removeItem('currentGame');
+
   }
 
 }
