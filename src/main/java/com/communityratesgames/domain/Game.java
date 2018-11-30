@@ -30,6 +30,8 @@ public class Game {
     @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
+    private float averageRating;
+
     protected Game() {}
 
     public Game(GameModel gameModel) {
@@ -41,6 +43,7 @@ public class Game {
         for (PlatformModel platform : gameModel.getPlatforms()) {
             this.platforms.add(new Platform(platform));
         }
+        this.averageRating = gameModel.getAverageRating();
     }
 
     public Long getId() {

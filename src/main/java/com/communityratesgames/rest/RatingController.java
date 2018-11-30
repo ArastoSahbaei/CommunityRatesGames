@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -63,6 +60,13 @@ public class RatingController {
         } catch ( Exception e ) {
             return Response.status(404).build();
         }
+    }
+
+    @POST
+    @Path("/new")
+    @Consumes({"application/JSON"})
+    public Response createNewRating() {
+
     }
 /*
     private final RatingService ratingService;

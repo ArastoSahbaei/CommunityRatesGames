@@ -7,6 +7,8 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Stateless
@@ -43,5 +45,34 @@ public class RatingService implements RatingDataAccess {
                 .setParameter("userId",userId)
                 .getSingleResult();
     }
+
+    @Override
+    public void addNewRating(Rating rating) {
+        Long gameId = rating.getGame().getId();
+        rating.setCreationDate(Timestamp.from(Instant.now()));
+        try {
+            if (findByGameIdAndUserId(gameId, rating.getUser().getId()) == null) {
+                em.persist(rating);
+                System.out.println("###PERSISTED###");
+            }else {
+                em.createQuery("UPDATE Rating r SET r.rating = :rating, r.creationDate = :date WHERE r.user = :userid AND r.game = :gameid")
+                        .setParameter("rating", rating.getRating())
+                        .setParameter("date", rating.getCreationDate())
+                        .setParameter("userid", rating.getUser().getId())
+                        .setParameter("gameid", rating.getGame().getId())
+                        .executeUpdate();
+                System.out.println("###UPDATED RATING###");
+            }
+        } catch (Exception e){
+            System.out.println("Problem writing to database : " + e );
+        }
+        em.createQuery("UPDATE Game g SET g.averageRating = :average WHERE g.id = :gameId")
+                .setParameter("average",getAverageOfGame(rating.getGame().getId()))
+                .setParameter("gameId", rating.getGame().getId())
+                .executeUpdate();
+        System.out.println("###UPDATED AVERAGE###");
+    }
+
+
 }
 

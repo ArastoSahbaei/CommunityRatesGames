@@ -2,6 +2,7 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
 import org.apache.log4j.Logger;
 
@@ -66,6 +67,9 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     }
     public Rating findByGameIdAndUserId(Long gameId, Long userId) {
         return ratingDataAccess.findByGameIdAndUserId( gameId, userId);
+    }
+    public void addNewRating(Rating rating) {
+        ratingDataAccess.addNewRating(rating);
     }
 
     //Company Access

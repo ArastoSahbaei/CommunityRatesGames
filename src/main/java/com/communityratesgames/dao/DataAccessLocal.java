@@ -2,6 +2,7 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.model.RatingModel;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -19,6 +20,7 @@ public interface DataAccessLocal {
     public List<Rating> findRatingsByGameId(Long gameId);
     public float getAverageOfGame(Long gameId);
     public Rating findByGameIdAndUserId(Long gameId, Long userId);
+    public void addNewRating(Rating rating);
 
 
     //UserController

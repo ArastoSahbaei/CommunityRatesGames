@@ -1,6 +1,7 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.Rating;
+import com.communityratesgames.model.RatingModel;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -12,4 +13,5 @@ public interface RatingDataAccess {
     public abstract float getAverageOfGame(Long gameId);
     public abstract List<Rating> findRatingsByGameId(Long gameId);
     public abstract Rating findByGameIdAndUserId(Long gameId, Long userId);
+    public abstract void addNewRating(Rating rating);
 }
