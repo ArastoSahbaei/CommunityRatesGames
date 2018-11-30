@@ -5,6 +5,7 @@ import {Headers} from "./headers";
 import {UrlService} from "./url.service";
 import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
+import {StorageService} from "./storage.service";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import {User} from "../interface/user.interface";
 export class ApiService {
 
   constructor(private httpClient: HttpClient,
-              private url: UrlService) {
+              private url: UrlService, private storage: StorageService) {
   }
 
 
@@ -22,7 +23,7 @@ export class ApiService {
   }
 
   searchGameByTitle() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getSearchGameByTitle(), {headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getSearchGameByTitle() + this.storage.getItem('currentGame'), {headers: Headers.HeaderJSON()});
   }
 
   getRating() {

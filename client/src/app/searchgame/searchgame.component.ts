@@ -32,11 +32,12 @@ export class SearchgameComponent implements OnInit {
     );
   }
 
-
   openGamePage() {
     this.storage.setItem('currentGame', this.autoCompleteControl.value);
     this.router.navigate(['game/gamepage'], { queryParams: { title: this.autoCompleteControl.value } });
-   // window.location.reload();
+
+    console.log(this.storage.getItem('currentGame'));
+    // window.location.reload();
     /**
      *   window.location.reload is used for reloading the page to send
      *   through the global variable to the 'gamePage' component
@@ -46,7 +47,6 @@ export class SearchgameComponent implements OnInit {
      *   without a page reload.
      */
   }
-
   ngOnInit() {
     this.searchGameAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
       startWith(''),

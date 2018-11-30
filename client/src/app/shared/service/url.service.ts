@@ -13,7 +13,7 @@ export class UrlService {
   private register: string = "/register";
   private user: string = "/user";
   private credential: string = "/credential";
-  private searchGameByTitle: string = "/game/title?q=halo"
+  private searchGameByTitle: string = "/game/search?q=";
 
   constructor() {
   }
