@@ -1,5 +1,6 @@
 package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
+import lombok.AllArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.math.BigInteger;
 
 @ToString
 @Entity
+@AllArgsConstructor
 @Table(name = "user_entity")
 public class User implements Serializable {
 
