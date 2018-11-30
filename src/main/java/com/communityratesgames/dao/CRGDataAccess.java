@@ -33,7 +33,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User login(String email, String password) {return userDataAccess.login(email, password);}
+    public User login(User user) {return userDataAccess.login(user);}
 
     //Platform Access
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}

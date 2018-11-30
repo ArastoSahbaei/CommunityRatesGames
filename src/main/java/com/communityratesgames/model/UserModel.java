@@ -1,19 +1,19 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import lombok.ToString;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 
+@ToString
 public class UserModel implements Serializable {
 
     private Long id;
     private Timestamp userCreated;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private String role;
@@ -32,26 +32,46 @@ public class UserModel implements Serializable {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
-        System.out.println("Transferred to JsonObject::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +json);
         email = json.getString("email");
         password = json.getString("password");
 
+        if (json.containsKey("username")) {
+            System.out.println("username found");
+            username = json.getString("username");
+        } else {
+            username = user.getUserName();
+            System.out.println("Username not found");
+        }
 
-        id = user.getId();
-        role = user.getRole();
-        userCreated = user.getUserCreated();
+        id = null;
+        role = null;
+        userCreated = null;
 
         user.setPassword(password);
         user.setEmail(email);
-
-        System.out.println("IN MODEL:::::::::::::::::::::::::::::::::::::::::::::::" + user.toString());
+        user.setUserName(username);
+        user.setRole(role);
+        user.setUserCreated(userCreated);
+        user.setId(id);
 
         return user;
     }
 
+    public UserModel toModel(User user) {
+        UserModel um = new UserModel();
+
+        um.username = user.getUserName();
+        um.userCreated = user.getUserCreated();
+        um.email = user.getEmail();
+        um.password = user.getPassword();
+        um.role = user.getRole();
+
+        return um;
+    }
+
     public UserModel(User user) {
         this.id = user.getId();
-        this.userName = user.getUserName();
+        this.username = user.getUserName();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole();
@@ -59,7 +79,7 @@ public class UserModel implements Serializable {
     }
 
     public UserModel(String userName, String email, String password) {
-        this.userName = userName;
+        this.username = userName;
         this.email = email;
         this.password = password;
     }
@@ -88,11 +108,11 @@ public class UserModel implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getEmail() {
@@ -124,7 +144,7 @@ public class UserModel implements Serializable {
         return "UserModel{" +
                 "id=" + id +
                 ", userCreated=" + userCreated +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
