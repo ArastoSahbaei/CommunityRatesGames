@@ -74,27 +74,11 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
-        System.out.println("IN LOGIN:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: " + credentials);
         try {
-            User user = userModel.toEntity(credentials);
-   /*         ObjectMapper mapper = new ObjectMapper();
-            JsonNode node = mapper.readTree(credentials);
-            JsonNode email = node.findValue("email");
-            if (email == null) {
-                return Response.status(400).entity("{\"error\":\"Email not specified.\"}").build();
-            }
-            JsonNode password = node.findValue("password");
-            if (password == null) {
-                return Response.status(400).entity("{\"error\":\"Password not specified.\"}").build();
-            }*/
-
-            User user2 = dal.login(user);
-
-            System.out.println(user2);
-
-            //User u = dal.login(email.asText(), password.asText());
-            //String temp = mapper.writeValueAsString(u);
-            return Response.ok(user2).build();
+            User toEntity = userModel.toEntity(credentials);
+            User user2 = dal.login(toEntity);
+            UserModel toModel = userModel.toModel(user2);
+            return Response.ok(toModel).build();
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();
         }

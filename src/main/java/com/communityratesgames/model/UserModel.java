@@ -1,14 +1,14 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import lombok.ToString;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 
+@ToString
 public class UserModel implements Serializable {
 
     private Long id;
@@ -32,25 +32,41 @@ public class UserModel implements Serializable {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
-        System.out.println("Transferred to JsonObject::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +json);
         email = json.getString("email");
         password = json.getString("password");
-/*
-        if (json.isNull("username")) {
-            user.setUserName("");
+
+        if (json.containsKey("username")) {
+            System.out.println("username found");
+            username = json.getString("username");
         } else {
-            user.setUserName(json.getString("username"));
+            username = user.getUserName();
+            System.out.println("Username not found");
         }
-*/
+
         id = null;
         role = null;
         userCreated = null;
+
         user.setPassword(password);
         user.setEmail(email);
-
-        System.out.println("IN MODEL:::::::::::::::::::::::::::::::::::::::::::::::" + user.toString());
+        user.setUserName(username);
+        user.setRole(role);
+        user.setUserCreated(userCreated);
+        user.setId(id);
 
         return user;
+    }
+
+    public UserModel toModel(User user) {
+        UserModel um = new UserModel();
+
+        um.username = user.getUserName();
+        um.userCreated = user.getUserCreated();
+        um.email = user.getEmail();
+        um.password = user.getPassword();
+        um.role = user.getRole();
+
+        return um;
     }
 
     public UserModel(User user) {
