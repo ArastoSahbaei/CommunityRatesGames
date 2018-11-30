@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.model.UserModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.NoArgsConstructor;

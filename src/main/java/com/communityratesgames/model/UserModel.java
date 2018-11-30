@@ -2,7 +2,11 @@ package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.Serializable;
+import java.io.StringReader;
 import java.sql.Timestamp;
 
 public class UserModel implements Serializable {
@@ -15,6 +19,35 @@ public class UserModel implements Serializable {
     private String role;
     private String emailSubject;
     private String emailText;
+
+    public JsonObject jsonFromString(String input) {
+        JsonReader jsonReader = Json.createReader(new StringReader(input));
+        JsonObject object = jsonReader.readObject();
+        jsonReader.close();
+
+        return object;
+    }
+
+    public User toEntity(String input) {
+        JsonObject json = jsonFromString(input);
+        User user = new User();
+
+        System.out.println("Transferred to JsonObject::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +json);
+        email = json.getString("email");
+        password = json.getString("password");
+
+
+        id = user.getId();
+        role = user.getRole();
+        userCreated = user.getUserCreated();
+
+        user.setPassword(password);
+        user.setEmail(email);
+
+        System.out.println("IN MODEL:::::::::::::::::::::::::::::::::::::::::::::::" + user.toString());
+
+        return user;
+    }
 
     public UserModel(User user) {
         this.id = user.getId();
