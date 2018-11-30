@@ -41,6 +41,7 @@ export class SearchgameComponent implements OnInit {
      *   window.location.reload is used for reloading the page to send
      *   through the global variable to the 'gamePage' component
      *   If the page is not reloaded, the variable can only be sent through once
+     *   (you can only search for a game once)
      */
   }
 
