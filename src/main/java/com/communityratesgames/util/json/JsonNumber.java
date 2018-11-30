@@ -58,6 +58,11 @@ public class JsonNumber implements JsonThing {
 
     @Override
     public void build(JsonGenerator gen) throws IOException {
-        gen.writeNumber(this.number);
+        if (this.number == Math.floor(this.number)) {
+            // If we have no decimals, don't print any.
+            gen.writeNumber((int)this.number);
+        } else {
+            gen.writeNumber(this.number);
+        }
     }
 }

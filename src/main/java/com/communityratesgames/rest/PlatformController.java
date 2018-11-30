@@ -3,8 +3,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Platform;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.communityratesgames.util.json.*;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
@@ -41,21 +40,23 @@ public class PlatformController {
     @Consumes("application/json")
     public Response postPlatform(String payload) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode node = mapper.readTree(payload);
-            JsonNode name = node.findValue("name");
-            if (name == null) {
-                return Response.status(400).entity("{\"error\":\"Name not specified.\"}").build();
+            JsonObject object = new JsonObject(payload);
+            String name = object.getString("name");
+            int releaseYear = (int)object.getNumber("releaseYear");
+            Long companyId;
+            try {
+                companyId = (long)object.getNumber("companyId");
+            } catch (JsonGetException e) {
+                companyId = null;
             }
-
-            JsonNode releaseYear = node.findValue("releaseYear");
-            if (name == null) {
-                return Response.status(400).entity("{\"error\":\"Release year not specified.\"}").build();
-            }
-
-            JsonNode companyId = node.findValue("companyId");
-            Platform platform = dal.createPlatform(name.asText(), releaseYear.asInt(), (companyId == null) ? null : companyId.asLong());
-            return Response.ok(platform).build();
+            Platform platform = dal.createPlatform(name, releaseYear, companyId);
+            String out = new JsonObject()
+                .append("name", new JsonString(platform.getName()))
+                .append("releaseYear", new JsonNumber(platform.getReleaseYear()))
+                .build();
+            return Response.ok(out).build();
+        } catch (JsonGetException e) {
+            return Response.status(400).entity(e.getMessage()).build();
         } catch ( Exception e ) {
             return Response.status(413).entity(e.getMessage()).build();
         }

@@ -129,7 +129,7 @@ public class JsonObject implements JsonThing {
         return thing.toString();
     }
 
-    public Double getNumber(String key) throws JsonGetException {
+    public double getNumber(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
             throw new JsonGetException("No such key '" + key + "'");
@@ -139,7 +139,7 @@ public class JsonObject implements JsonThing {
         return ((JsonNumber)thing).number;
     }
 
-    public Boolean getBoolean(String key) throws JsonGetException {
+    public boolean getBoolean(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
             throw new JsonGetException("No such key '" + key + "'");

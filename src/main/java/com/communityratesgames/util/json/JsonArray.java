@@ -116,7 +116,7 @@ public class JsonArray implements JsonThing {
         return thing.toString();
     }
 
-    public Double getNumber(int index) throws JsonGetException {
+    public double getNumber(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
             throw new JsonGetException("No such index '" + index + "'");
@@ -126,7 +126,7 @@ public class JsonArray implements JsonThing {
         return ((JsonNumber)thing).number;
     }
 
-    public Boolean getBoolean(int index) throws JsonGetException {
+    public boolean getBoolean(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
             throw new JsonGetException("No such index '" + index + "'");
