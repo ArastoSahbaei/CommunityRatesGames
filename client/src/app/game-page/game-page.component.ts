@@ -29,6 +29,8 @@ export class GamePageComponent implements OnInit {
 
   this.getData();
     console.log(this.storage.getItem('currentGame'));
+    console.log(this.storage.getItem('currentGame'));
+    console.log(this.storage.getItem('currentGame'));
     this.storage.removeItem('currentGame');
   }
 
