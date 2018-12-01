@@ -5,7 +5,9 @@ import {Headers} from "./headers";
 import {UrlService} from "./url.service";
 import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
+
 import {StorageService} from "./storage.service";
+
 
 
 @Injectable({
@@ -45,6 +47,9 @@ export class ApiService {
     );
   }
 
+  getTop100(){
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()})
+  }
 }
 
 
