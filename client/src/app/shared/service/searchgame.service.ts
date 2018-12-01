@@ -13,7 +13,7 @@ export class SearchgameService {
   }
 
   search(query: string): Observable<SearchGameInterface> {
-    const url = 'http://localhost:8080/api/game/search';
+    const url = 'http://localhost:8080/communityratesgames/game/search';
     return this.http
       .get<SearchGameInterface>(url, {
         observe: 'response',

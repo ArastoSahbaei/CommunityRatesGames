@@ -8,15 +8,17 @@ export class UrlService {
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
   private rating: string = "/rating";
-  private games: string = "/game";
-  private login: string ="/login";
-  private register: string ="/register";
-  private user: string ="/user";
-  private credential: string = "/credential";
   private top100: string = "/toprated";
+  private games: string = "/game";
+  private login: string = "/login";
+  private register: string = "/register";
+  private user: string = "/user";
+  private credential: string = "/credential";
+  private searchGameByTitle: string = "/game/search?q=";
 
 
-  constructor() { }
+  constructor() {
+  }
 
   getRegister() {
     return this.register;
@@ -38,7 +40,13 @@ export class UrlService {
     return this.rating;
   }
 
-  getGames() {
+  getSearchGameByTitle() {
+      return this.searchGameByTitle;
+
+    }
+
+
+    getGames() {
     return this.games;
   }
 
@@ -50,3 +58,9 @@ export class UrlService {
     return this.user;
   }
 }
+
+
+
+
+
+

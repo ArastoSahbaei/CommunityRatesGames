@@ -36,11 +36,11 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User login(String email, String password) {
+    public User login(User user) {
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
-            .setParameter("email", email)
+            .setParameter("email", user.getEmail())
             .getSingleResult();
-        password = User.hashPassword(password, u.getPasswordHash());
+        String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
         return (u.getPassword().equals(password)) ? u : null;
     }
     /*
