@@ -33,7 +33,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User login(User user) {return userDataAccess.login(user);}
+
 
     //Platform Access
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
@@ -57,9 +57,10 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
         return gameDataAccess.getTopRatedGames(limit, page);
     }
 
-    public User register(User user) {
-        return userDataAccess.register(user);
-    }
+    //User
+    public User register(User user) { return userDataAccess.register(user); }
+    public User login(User user) {return userDataAccess.login(user);}
+
     public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();
