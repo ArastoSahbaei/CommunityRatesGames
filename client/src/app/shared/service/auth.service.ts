@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {User} from "../interface/user.interface";
 import {Router} from "@angular/router";
@@ -11,33 +11,35 @@ import {ApiService} from "./api.service";
 export class AuthService {
 
   private loggedIn$ = new BehaviorSubject<boolean>(false);
-  private credentials : Object;
+  private credentials: Object;
   private logged: boolean = false;
+  private failedLogin$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private router : Router,
+  constructor(private router: Router,
               private api: ApiService,
-              private storage: StorageService) {}
+              private storage: StorageService) {
+  }
 
   get isLoggedIn() {
     return this.loggedIn$.asObservable();
   }
 
-  public login(user : User) {
+  get failedLogin() {
+    return this.failedLogin$.asObservable();
+  }
+
+  public login(user: User) {
 
     this.api.checkCredentials(user).subscribe(response => {
-      if (response == undefined || null ) {
-        this.router.navigate(['/error']);
-      } else {
-          this.credentials = Object.values(response);
-          this.loggedIn$.next(true);
-          this.router.navigate(['/']);
-          this.storage.setItem('name', this.credentials[2]);
-          this.logged = true;
-        }
+        this.credentials = Object.values(response);
+        this.loggedIn$.next(true);
+        this.router.navigate(['/']);
+        this.storage.setItem('name', this.credentials[2]);
+        this.logged = true;
+        this.failedLogin$.next(false);
       },
       error => {
-        console.log(error);
-        this.router.navigate(['/error']);
+        this.failedLogin$.next(true);
       }
     );
 
