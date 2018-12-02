@@ -14,12 +14,17 @@ export class UrlService {
   private user: string = "/user";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
+  private searchGame: string = "/search";
 
   constructor() {
   }
 
   getRegister() {
     return this.register;
+  }
+
+  getSearch() {
+    return this.searchGame;
   }
 
   getSearchGameByTitle() {

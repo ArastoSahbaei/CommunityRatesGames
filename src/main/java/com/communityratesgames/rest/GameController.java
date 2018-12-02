@@ -24,7 +24,7 @@ public class GameController {
     @Produces({"application/JSON"})
     public Response createNewGame(String newGame) {
         try {
-            //List<Game> result = dal.createNewGame();
+            //List<GameInterface> result = dal.createNewGame();
             return Response.ok(newGame).build();
         } catch (Exception e) {
             return Response.status(414).build();

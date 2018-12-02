@@ -42,12 +42,10 @@ public class UserController {
     @Consumes("application/json")
     public Response register(String credentials) {
         try {
-            System.out.println("register::::::::::::::::::::::::::::" + credentials);
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.register(toEntity);
             UserModel toModel = userModel.toModel(user2);
-            System.out.println("This is from model: " + toModel);
-            return null; //Response.ok(toModel).build();
+            return Response.ok(toModel).build();
         } catch ( Exception e ) {
             return Response.status(413).entity(e.getMessage()).build();
         }
@@ -58,7 +56,6 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
-        System.out.println("LOGIN METHOD!!!!!!!!!!!!!!!!!!!" + credentials);
         try {
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.login(toEntity);

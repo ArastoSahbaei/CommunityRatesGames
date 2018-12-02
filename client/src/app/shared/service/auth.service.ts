@@ -10,7 +10,7 @@ import {ApiService} from "./api.service";
 })
 export class AuthService {
 
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn$ = new BehaviorSubject<boolean>(false);
   private credentials : Object;
   private logged: boolean = false;
 
@@ -19,7 +19,7 @@ export class AuthService {
               private storage: StorageService) {}
 
   get isLoggedIn() {
-    return this.loggedIn.asObservable();
+    return this.loggedIn$.asObservable();
   }
 
   public login(user : User) {
@@ -29,7 +29,7 @@ export class AuthService {
         this.router.navigate(['/error']);
       } else {
           this.credentials = Object.values(response);
-          this.loggedIn.next(true);
+          this.loggedIn$.next(true);
           this.router.navigate(['/']);
           this.storage.setItem('name', this.credentials[2]);
           this.logged = true;
@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   public logout() {
-    this.loggedIn.next(false);
+    this.loggedIn$.next(false);
     this.router.navigate(['/']);
   }
 }

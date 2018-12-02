@@ -5,7 +5,9 @@ import {Headers} from "./headers";
 import {UrlService} from "./url.service";
 import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
-import {StorageService} from "./storage.service";
+import {SearchgameService} from "./searchgame.service";
+import {SearchGame} from "../interface/search-game.interface";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -14,7 +16,7 @@ import {StorageService} from "./storage.service";
 export class ApiService {
 
   constructor(private httpClient: HttpClient,
-              private url: UrlService, private storage: StorageService) {
+              private url: UrlService) {
   }
 
 
@@ -22,8 +24,15 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames(), {headers: Headers.HeaderJSON()});
   }
 
+  searchGame(game : string) : Observable<any> {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getSearch(),
+      { headers: Headers.HeaderJSON(),
+                params: { q : game}
+      });
+  }
+
   searchGameByTitle() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getSearchGameByTitle() + this.storage.getItem('currentGame'), {headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getSearchGameByTitle(), {headers: Headers.HeaderJSON()});
   }
 
   getRating() {
@@ -35,7 +44,6 @@ export class ApiService {
   }
 
   registerUser(body: Register) {
-    console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getRegister(), body, {headers: Headers.HeaderJSON()});
   }
 

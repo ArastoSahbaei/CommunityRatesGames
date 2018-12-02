@@ -1,6 +1,3 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
 <mat-toolbar color="primary" class="mat-elevation-z8 header">
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
 
@@ -22,7 +19,7 @@
     </div>
     <hr>
 
-    <button mat-menu-item routerLink="user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add Game</button>
+    <button mat-menu-item routerLink="user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add GameInterface</button>
     <button mat-menu-item routerLink="user/report-a-bug">  <mat-icon>bug_report</mat-icon>                 Report a Bug</button>
     <button mat-menu-item routerLink="user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
   </mat-menu>
@@ -34,7 +31,7 @@
   </button>
   <mat-menu #games="matMenu">
     <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
-    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             Platform</button>
+    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
     <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
   </mat-menu>
 
