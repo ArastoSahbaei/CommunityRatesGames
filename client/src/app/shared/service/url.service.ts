@@ -15,6 +15,7 @@ export class UrlService {
   private user: string = "/user";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
+  private searchGame: string = "/search";
 
 
   constructor() {
@@ -22,6 +23,14 @@ export class UrlService {
 
   getRegister() {
     return this.register;
+  }
+
+  getSearch() {
+    return this.searchGame;
+  }
+
+  getSearchGameByTitle() {
+    return this.searchGameByTitle;
   }
 
   getTop100(){
@@ -40,13 +49,7 @@ export class UrlService {
     return this.rating;
   }
 
-  getSearchGameByTitle() {
-      return this.searchGameByTitle;
-
-    }
-
-
-    getGames() {
+  getGames() {
     return this.games;
   }
 

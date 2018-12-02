@@ -1,18 +1,10 @@
-<mat-form-field>
-  <input (keyup.enter)="openGamePage()"
-    matInput [formControl]="autoCompleteControl" type="text" placeholder="Search Games" aria-label="Number" [matAutocomplete]="auto">
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option *ngFor="let item of searchGameAutoComplete$ | async; let index = index" [value]="item.title">
-      {{ item.title | titlecase}}
-    </mat-option>
+<mat-form-field class="container">
+  <input matInput type="text" placeholder="Search game" [matAutocomplete]="auto" [formControl]="search">
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedGame($event.option.value)">
+    <mat-option *ngFor="let game of games" [value]="game.title">{{game.title}}</mat-option>
   </mat-autocomplete>
-              <mat-label>
-                         <mat-icon>search</mat-icon> search game...
-              </mat-label>
-
-              <input matInput [formControl]="autoCompleteControl"
-                     type="text"
-                     aria-label="Number"
-                     [matAutocomplete]="auto"/>
+  <mat-label>
+    <mat-icon>search</mat-icon> search game...
+  </mat-label>
 </mat-form-field>
-

@@ -1,6 +1,4 @@
-export interface SearchGameInterface {
+export interface SearchGame {
   id: number;
   title: string;
 }
-
-export declare type SearchGames = SearchGameInterface[];
