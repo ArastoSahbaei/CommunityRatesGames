@@ -10,39 +10,42 @@ import {ApiService} from "./api.service";
 })
 export class AuthService {
 
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn$ = new BehaviorSubject<boolean>(false);
+  private credentials : Object;
+  private logged: boolean = false;
 
   constructor(private router : Router,
               private api: ApiService,
               private storage: StorageService) {}
 
   get isLoggedIn() {
-    return this.loggedIn.asObservable();
+    return this.loggedIn$.asObservable();
   }
 
   public login(user : User) {
-/*
-Dont forget to let the return true / false be outside of the observable to avoid errors
- */
+
     this.api.checkCredentials(user).subscribe(response => {
-      console.log(response)
+      if (response == undefined || null ) {
+        this.router.navigate(['/error']);
+      } else {
+          this.credentials = Object.values(response);
+          this.loggedIn$.next(true);
+          this.router.navigate(['/']);
+          this.storage.setItem('name', this.credentials[2]);
+          this.logged = true;
+        }
       },
-      //error => { this.router.navigate(['/error']); }
+      error => {
+        console.log(error);
+        this.router.navigate(['/error']);
+      }
     );
 
-
-    if ( user.email === "test@test.com" && user.password === "testardetta") {
-      this.loggedIn.next(true);
-      this.router.navigate(['/']);
-      //Change 'Test' to name from backend
-      this.storage.setItem('name', 'Test');
-    } else {
-      return false;
-    }
+    return this.logged;
   }
 
   public logout() {
-    this.loggedIn.next(false);
+    this.loggedIn$.next(false);
     this.router.navigate(['/']);
   }
 }

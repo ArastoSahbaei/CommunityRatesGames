@@ -10,12 +10,12 @@ import java.util.List;
 @Local
 public interface DataAccessLocal {
 
+    //Company
     public Company registerNewCompany(CompanyModel companyModel);
-    public List<Platform> showAllPlatforms();
     public List<Company> showAllCompanies();
 
 
-    //RatingController
+    //Rating
     public List<Rating> showAllRatings();
     public List<Rating> findRatingsByGameId(Long gameId);
     public float getAverageOfGame(Long gameId);
@@ -23,13 +23,18 @@ public interface DataAccessLocal {
     public void addNewRating(Rating rating);
 
 
-    //UserController
+    //Platform
+    public List<Platform> showAllPlatforms();
+    public Platform createPlatform(String name, int releaseYear, Long companyId);
+
+
+    //User
     public List<User> showAllUsers();
-    public User login(String email, String password);
+    public User login(User user);
     public User register(User user);
 
 
-    //GameController
+    //Game
     public List<Game> showAllGames();
     public Game gameByTitle(String title);
     public Game gameById(Long id);

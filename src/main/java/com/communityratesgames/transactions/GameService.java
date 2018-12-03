@@ -87,7 +87,7 @@ public class GameService implements GameDataAccess {
 /*
     @Override
     public GameModel createGame(GameModel gameModel) {
-        Game gameEntity = new Game(gameModel);
+        GameInterface gameEntity = new GameInterface(gameModel);
         return new GameModel(gameRepository.save(gameEntity));
     }
 
