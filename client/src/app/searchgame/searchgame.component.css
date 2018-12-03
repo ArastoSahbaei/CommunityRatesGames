@@ -2,7 +2,7 @@
 input[type=text] {
   width: 100%;
   border: 2px solid #aaa;
-  border-radius: 4px;
+  border-radius: 10px;
   margin: 8px 0;
   outline: none;
   padding: 8px;
@@ -11,8 +11,8 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-  border-color: dodgerBlue;
-  box-shadow: 0 0 8px 0 dodgerBlue;
+  border-color: #00ff33;
+  box-shadow: 0 0 8px 0 #00ff33;
 }
 
 .searchFieldAndIcon input[type=text] {
@@ -34,18 +34,18 @@ input[type=text]:focus {
 }
 
 .searchFieldAndIcon input[type=text]:focus + i {
-  color: dodgerblue;
+  color: #00ff33;
 }
 
 .searchFieldAndIcon.inputIconBg i {
   background-color: #aaa;
   color: #fff;
-  padding: 8px 4px;
+  padding: 16px 10px;
   border-radius: 4px 0 0 4px;
 }
 
 .searchFieldAndIcon.inputIconBg input[type=text]:focus + i {
   color: #fff;
-  background-color:dodgerblue;
+  background-color: #00ff33;
 }
 
