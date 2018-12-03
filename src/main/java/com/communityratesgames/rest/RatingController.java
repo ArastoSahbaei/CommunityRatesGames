@@ -4,6 +4,7 @@ import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Rating;
 import com.communityratesgames.model.RatingModel;
 import lombok.NoArgsConstructor;
+import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import java.util.List;
 @Stateless
 @Path("/rating")
 public class RatingController {
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.RatingController.class);
 
     @Inject
     private DataAccessLocal dal;
@@ -32,9 +34,9 @@ public class RatingController {
     @GET
     @Path("/bygame")
     @Produces({"application/JSON"})
-    public Response findRatingsByGameId(@QueryParam("id") Long gameId) {
+    public Response findRatingsByGameId(@QueryParam("title") String title) {
         try {
-            List<Rating> result = dal.findRatingsByGameId(gameId);
+            List<Rating> result = dal.findRatingsByGameId(title);
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -43,9 +45,9 @@ public class RatingController {
     @GET
     @Path("/average")
     @Produces({"application/JSON"})
-    public Response getAverageOfGame(@QueryParam("id") Long gameId) {
+    public Response getAverageOfGame(@QueryParam("title") String gameTitle) {
         try {
-            float result = dal.getAverageOfGame(gameId);
+            float result = dal.getAverageOfGame(gameTitle);
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -55,10 +57,11 @@ public class RatingController {
     @GET
     @Path("/one")
     @Produces({"application/JSON"})
-    public Response findByGameIdAndUserId(@QueryParam("gameid") Long gameId, @QueryParam("userid") Long userId) {
+    public Response findByGameIdAndUserId(@QueryParam("title") String gameTitle, @QueryParam("user") String username) {
         try {
-            Rating result = dal.findByGameIdAndUserId(gameId, userId);
-            return Response.ok(result).build();
+            System.out.println("Controller" + gameTitle + " " + username);
+            Rating result = dal.findByGameIdAndUserId(gameTitle, username);
+            return Response.ok(new RatingModel(result)).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
         }
@@ -69,7 +72,7 @@ public class RatingController {
     @Consumes({"application/JSON"})
     public Response createNewRating(RatingModel rating) {
         try {
-            dal.addNewRating(new Rating(rating));
+            dal.addNewRating(rating);
             return Response.ok("Hej").build();
         } catch ( Exception e ) {
             return Response.status(404).build();

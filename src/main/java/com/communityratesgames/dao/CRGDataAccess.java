@@ -58,16 +58,16 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     //Rating Access
     public List<Rating> showAllRatings() {return ratingDataAccess.showAllRatings();}
-    public List<Rating> findRatingsByGameId(Long gameId) {
-        return ratingDataAccess.findRatingsByGameId(gameId);
+    public List<Rating> findRatingsByGameId(String gameTitle) {
+        return ratingDataAccess.findRatingsByGameId(gameTitle);
     }
-    public float getAverageOfGame(Long gameId) {
-        return ratingDataAccess.getAverageOfGame(gameId);
+    public float getAverageOfGame(String gameTitle) {
+        return ratingDataAccess.getAverageOfGame(gameTitle);
     }
-    public Rating findByGameIdAndUserId(Long gameId, Long userId) {
-        return ratingDataAccess.findByGameIdAndUserId( gameId, userId);
+    public Rating findByGameIdAndUserId(String gameTitle, String username) {
+        return ratingDataAccess.findByGameIdAndUserId( gameTitle, username);
     }
-    public void addNewRating(Rating rating) {
+    public void addNewRating(RatingModel rating) {
         ratingDataAccess.addNewRating(rating);
     }
 

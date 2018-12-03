@@ -8,16 +8,16 @@ import com.communityratesgames.domain.Rating;
 public class RatingModel implements Serializable {
 
     private Long id;
-    private UserModel user;
-    private GameModel game;
+    private String user;
+    private String game;
     private int rating;
     private Timestamp creationDate;
 
 
     public RatingModel(Rating rating) {
         this.id = rating.getId();
-        this.user = new UserModel(rating.getUser());
-        this.game = new GameModel(rating.getGame());
+        this.user = rating.getUser().getUserName();
+        this.game = rating.getGame().getTitle();
         this.rating = rating.getRating();
         this.creationDate = rating.getCreationDate();
     }
@@ -31,19 +31,19 @@ public class RatingModel implements Serializable {
         this.id = id;
     }
 
-    public UserModel getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public GameModel getGame() {
+    public String getGame() {
         return game;
     }
 
-    public void setGame(GameModel game) {
+    public void setGame(String game) {
         this.game = game;
     }
 

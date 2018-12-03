@@ -24,13 +24,6 @@ public class Rating implements Serializable {
     private int rating;
     private Timestamp creationDate;
 
-    public Rating(RatingModel ratingModel) {
-        this.id = ratingModel.getId();
-        this.user = new User(ratingModel.getUser());
-        this.game = new Game(ratingModel.getGame());
-        this.rating = ratingModel.getRating();
-        this.creationDate = ratingModel.getCreationDate();
-    }
     public Rating(){}
 
     public Long getId() {
