@@ -4,4 +4,7 @@
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedGame($event.option.value)">
     <mat-option *ngFor="let game of games" [value]="game.title">{{game.title}}</mat-option>
   </mat-autocomplete>
+  <mat-label>
+    <mat-icon>search</mat-icon> search game...
+  </mat-label>
 </mat-form-field>
