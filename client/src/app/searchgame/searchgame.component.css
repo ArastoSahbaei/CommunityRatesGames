@@ -1,7 +1,51 @@
-mat-form-field {
-  width: 50%;
+
+input[type=text] {
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: .3s;
 }
 
-.container {
-  width: 300px;
+input[type=text]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
 }
+
+.searchFieldAndIcon input[type=text] {
+  padding-left: 40px;
+}
+
+.searchFieldAndIcon {
+  position: relative;
+}
+
+.searchFieldAndIcon i {
+  position: absolute;
+  left: 0px;
+  top: 8px;
+  padding: 7px 8px;
+  color: #ffffff;
+  transition: .3s;
+
+}
+
+.searchFieldAndIcon input[type=text]:focus + i {
+  color: dodgerblue;
+}
+
+.searchFieldAndIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 8px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchFieldAndIcon.inputIconBg input[type=text]:focus + i {
+  color: #fff;
+  background-color:dodgerblue;
+}
+
