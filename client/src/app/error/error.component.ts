@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {Errorlayout} from "../shared/interface/errorlayout.interface";
 
 @Component({
   selector: 'app-error',
@@ -9,6 +10,10 @@ import {ActivatedRoute} from "@angular/router";
 export class ErrorComponent implements OnInit {
 
   errorMessage: string = "";
+  tiles: Errorlayout[] = [
+    {cols: 2, rows: 1, text: "Test"},
+    {cols: 1, rows: 1, text: "Temp"}
+  ];
 
   constructor(private router: ActivatedRoute) { }
 
