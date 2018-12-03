@@ -36,14 +36,9 @@ export class RegisterComponent implements OnInit {
 
     const person = {} as User ;
 
-    console.log(this.registerForm.value.email);
-    console.log(person.email);
     person.email = this.registerForm.value.email;
-
     person.password = this.registerForm.value.password;
 
-    console.log(this.registerForm.value.email);
-    console.log(person.email);
 
     this.api.registerUser(user).subscribe((response) => {
       if ( this.registerForm.value.login === true ) {
@@ -51,7 +46,7 @@ export class RegisterComponent implements OnInit {
           this.failedLogin = true;
         }
       }
-    });
+    }, error => {console.log(error)});
 
   }
 

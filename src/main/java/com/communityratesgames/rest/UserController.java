@@ -47,7 +47,7 @@ public class UserController {
             UserModel toModel = userModel.toModel(user2);
             return Response.ok(toModel).build();
         } catch ( Exception e ) {
-            return Response.status(413).entity(e.getMessage()).build();
+            return Response.status(406).entity(e.getMessage()).build();
         }
     }
 

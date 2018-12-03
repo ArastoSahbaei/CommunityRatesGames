@@ -2,6 +2,7 @@ package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
+import org.picketlink.idm.model.annotation.Unique;
 
 import javax.persistence.*;
 import java.io.Serializable;
