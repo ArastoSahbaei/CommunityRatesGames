@@ -30,7 +30,8 @@ public class Game {
     @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
-    private float averageRating;
+    @Column(name="average_rating")
+    private Float averageRating;
 
     protected Game() {}
 

@@ -56,6 +56,9 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> getTopRatedGames(Integer limit, Integer page) {
+        Query q = em.createQuery("Select g from Game as g order by g.average_rating")
+                .setFirstResult((page-1) * limit)
+                .setMaxResults(limit);
         return null;
     }
 
