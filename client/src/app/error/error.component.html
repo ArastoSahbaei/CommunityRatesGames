@@ -1,3 +1,21 @@
-<p>
-  error works!
-</p>
+<mat-card>
+  <mat-grid-list cols="4" rowHeight="200px">
+    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.background">
+
+      <mat-card class="image" *ngIf="tile.index === 2">
+        <img mat-card-image src="assets/images/gurka.gif" />
+      </mat-card>
+
+      <span *ngIf="tile.index === 3; else temp">
+        {{errorMessage}}
+      </span>
+
+        <ng-template #temp>
+          <span>{{tile.text}}</span>
+        </ng-template>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+

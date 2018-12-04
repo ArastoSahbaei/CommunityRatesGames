@@ -24,7 +24,7 @@ public class UserModel implements Serializable {
     private String emailSubject;
     private String emailText;
 
-    public JsonObject jsonFromString(String input) {
+    private JsonObject jsonFromString(String input) {
         JsonReader jsonReader = Json.createReader(new StringReader(input));
         JsonObject object = jsonReader.readObject();
         jsonReader.close();
