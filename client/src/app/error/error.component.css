@@ -1,4 +1,8 @@
 mat-card {
-  width: 400px;
+  width: 600px;
   margin: 3rem auto;
+}
+
+mat-grid-tile {
+
 }

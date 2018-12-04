@@ -1,7 +1,12 @@
 <mat-card>
-  <mat-grid-list cols="2" rowHeight="100px">
+  <mat-grid-list cols="4" rowHeight="200px">
     <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
-      {{tile.text}}
+      <span *ngIf="tile.index === 3; else temp">
+        {{errorMessage}}
+      </span>
+        <ng-template #temp>
+          <span>{{tile.text}}</span>
+        </ng-template>
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
