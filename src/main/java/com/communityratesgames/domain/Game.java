@@ -33,6 +33,9 @@ public class Game {
     @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
+    @Column(name="average_rating")
+    private Float averageRating;
+
     protected Game() {}
 
     public Game(GameModel gameModel) {
@@ -44,6 +47,7 @@ public class Game {
         for (PlatformModel platform : gameModel.getPlatforms()) {
             this.platforms.add(new Platform(platform));
         }
+        this.averageRating = gameModel.getAverageRating();
         this.verified = false;
     }
 
