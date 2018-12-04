@@ -59,8 +59,8 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :query AND g.verified = TRUE",Game.class)
-                .setParameter("query", query+'%')
+        Query q = em.createNativeQuery("SELECT * FROM game_entity WHERE title LIKE ? AND verified = TRUE LIMIT 5",Game.class)
+                .setParameter(1, query+'%')
                 .setMaxResults(5);
         return reduceGameToTitleAndId(q.getResultList());
     }
