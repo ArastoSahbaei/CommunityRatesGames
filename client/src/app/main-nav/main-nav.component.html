@@ -11,6 +11,8 @@
 
   <mat-menu #admin="matMenu">
     <span>ADMIN</span>
+    <hr>
+    <button mat-menu-item routerLink="admin/company">       <mat-icon>account_circle</mat-icon>             Add Company</button>
   </mat-menu>
 
   <mat-menu #user="matMenu">
@@ -41,7 +43,7 @@
   </button>
   <mat-menu #games="matMenu">
     <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
-    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             Platform</button>
+    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
     <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
   </mat-menu>
 

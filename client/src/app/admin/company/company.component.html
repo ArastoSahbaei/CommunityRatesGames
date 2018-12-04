@@ -1,3 +1,21 @@
-<p>
-  company works!
-</p>
+<mat-card [formGroup]="registerForm" novalidate>
+  <mat-card-title>Add a new company</mat-card-title>
+
+  <mat-form-field>
+    <input id="companyName" formControlName="companyName" matInput placeholder="Name" />
+    <mat-error *ngIf="(companyName.dirty || companyName.touched) && companyName.invalid">Companyname required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="city" formControlName="city" matInput placeholder="City" />
+    <mat-error *ngIf="(city.dirty || city.touched) && city.invalid">City required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="country" matInput formControlName="country" placeholder="Country" />
+    <mat-error *ngIf="(country.dirty || country.touched) && country.invalid">Country required</mat-error>
+  </mat-form-field>
+
+  <button mat-stroked-button [disabled]="!registerForm.valid" (click)="addCompany()">Add Company</button>
+
+</mat-card>

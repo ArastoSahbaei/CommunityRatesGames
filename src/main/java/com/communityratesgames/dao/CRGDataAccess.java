@@ -33,7 +33,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     private UserDataAccess userDataAccess;
 
 
-    //Platform Access
+    //PlatformInterface Access
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
     public Platform createPlatform(String name, int releaseYear, Long companyId) {return platformDataAccess.createPlatform(name, releaseYear, companyId);}
 
