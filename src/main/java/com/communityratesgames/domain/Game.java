@@ -16,12 +16,14 @@ public class Game implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Timestamp releaseDate;
+
     @Column
     private String title;
 
-    @JoinColumn
     @ManyToOne
+    @JoinColumn
     private Company company;
 
     @Column(nullable=false)
