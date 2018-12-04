@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
 import lombok.*;
 
 import javax.json.Json;
@@ -16,20 +19,22 @@ import javax.json.JsonReader;
 @AllArgsConstructor
 @Getter
 @Setter
-
 public class GameModel implements Serializable {
+
     private Long id;
     private Timestamp releaseDate;
     private String title;
-    private CompanyModel company;
-    private List<PlatformModel> platforms;
+    private String company;
+    private List<String> platforms;
     private boolean verified;
     private float averageRating;
+
 
     private JsonObject jsonFromString(String input) {
         JsonReader jsonReader = Json.createReader(new StringReader(input));
         JsonObject object = jsonReader.readObject();
         jsonReader.close();
+
         return object;
     }
 
@@ -48,19 +53,20 @@ public class GameModel implements Serializable {
         GameModel gm = new GameModel();
 
         gm.title = game.getTitle();
-        gm.company = game.getCompany();
-        gm.platforms = game.getPlatforms();
+       // gm.company = game.getCompany();
+       // gm.platforms = game.getPlatforms();
         gm.verified = game.isVerified();
+       // gm.averageRating = game.getAverageRating??
 
         return gm;
     }
 
     public GameModel(Game game) {
         this.title = game.getTitle();
-        this.company = game.getCompany();
-        this.platforms = game.getPlatforms();
+        this.company = game.getCompany().getCompanyName();
+        this.platforms = game.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
         this.verified = false;
-       // this.averageRating = game.getAverageRating();
+        this.averageRating = game.getAverageRating();
     }
 }
 

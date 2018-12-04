@@ -33,7 +33,7 @@ public class Game implements Serializable {
     private List<Platform> platforms;
 
     public Game() {}
-
+/*
     public Game(GameModel gameModel) {
         this.id = gameModel.getId();
         this.releaseDate = gameModel.getReleaseDate();
@@ -45,6 +45,7 @@ public class Game implements Serializable {
         }
         this.verified = false;
     }
+    */
 
     public Long getId() {
         return this.id;
