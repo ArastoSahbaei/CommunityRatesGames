@@ -28,6 +28,22 @@ public class GameService implements GameDataAccess {
     }
 
     @Override
+    public List<Game> showVerifiedGames() {
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class);
+        return (List<Game>) q.getResultList();
+    }
+
+    @Override
+    public Game verifyGame(Long id) {
+        Game g = (Game)em.createQuery("SELECT g FROM Game g WHERE g.id = :id", Game.class)
+                .setParameter("id", id)
+                .getSingleResult();
+        g.setVerified(true);
+        em.persist(g);
+        return g;
+    }
+
+    @Override
     public Game gameByTitle(String title) {
         Query q = em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class);
         q.setParameter("title", title);
@@ -43,7 +59,7 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :query",Game.class)
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :query AND g.verified = TRUE",Game.class)
                 .setParameter("query", query+'%')
                 .setMaxResults(5);
         return reduceGameToTitleAndId(q.getResultList());
@@ -51,12 +67,16 @@ public class GameService implements GameDataAccess {
 
     @Override
     public Game createNewGame(Game newGame) {
-        return null;
+        em.persist(newGame);
+        return newGame;
     }
 
     @Override
     public List<Game> getTopRatedGames(Integer limit, Integer page) {
-        return null;
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class)
+                .setFirstResult(page * limit)
+                .setMaxResults(limit);
+        return (List<Game>)q.getResultList();
     }
 
     private String reduceGameToTitleAndId(List<Game> gameList) {

@@ -27,6 +27,8 @@ public interface DataAccessLocal {
 
     //GameController
     public List<Game> showAllGames();
+    public List<Game> showVerifiedGames();
+    public Game verifyGame(Long id);
     public Game gameByTitle(String title);
     public Game gameById(Long id);
     public String searchFiveGames(String query);
