@@ -1,0 +1,14 @@
+mat-card {
+  width: 600px;
+  margin: 3rem auto;
+}
+
+.tile-image {
+  width:180px;
+  height: auto;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+}

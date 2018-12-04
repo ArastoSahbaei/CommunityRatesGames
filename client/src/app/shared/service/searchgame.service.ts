@@ -1,30 +1,26 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
-import {SearchGameInterface} from "../interface/search-game.interface";
+import {ApiService} from "./api.service";
+import {debounceTime, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchgameService {
 
-  constructor(private http: HttpClient) {
-  }
+  private allGames;
 
-  search(query: string): Observable<SearchGameInterface> {
-    const url = 'http://localhost:8080/api/game/search';
-    return this.http
-      .get<SearchGameInterface>(url, {
-        observe: 'response',
-        params: {
-          q: query
+  constructor(private api: ApiService) {}
+
+  searchGame(game : any) {
+    this.allGames = this.api.searchGame(game).pipe(
+      debounceTime(500),
+      map(
+        ( response: any ) => {
+          return ( response.length != 0 ? response as any[] : [{"title": "No games found"} as any] );
         }
-      })
-      .pipe(
-        map(res => {
-          return res.body;
-        })
-      );
+      )
+    );
+
+    return this.allGames;
   }
 }

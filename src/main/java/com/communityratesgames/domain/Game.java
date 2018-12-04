@@ -23,6 +23,9 @@ public class Game {
     @ManyToOne
     private Company company;
 
+    @Column(nullable=false)
+    private boolean verified = false;
+
     @JoinTable(name="game_platform",
         joinColumns={ @JoinColumn(name="game_id") },
         inverseJoinColumns={ @JoinColumn(name="platform_id") }
@@ -41,6 +44,7 @@ public class Game {
         for (PlatformModel platform : gameModel.getPlatforms()) {
             this.platforms.add(new Platform(platform));
         }
+        this.verified = false;
     }
 
     public Long getId() {
@@ -69,6 +73,14 @@ public class Game {
 
     public void setPlatforms(List<Platform> platforms) {
         this.platforms = platforms;
+    }
+
+    public boolean isVerified() {
+        return this.verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     public Timestamp getReleaseDate() {

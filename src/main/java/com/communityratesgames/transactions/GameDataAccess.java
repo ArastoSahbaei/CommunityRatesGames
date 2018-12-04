@@ -8,6 +8,8 @@ import java.util.List;
 @Local
 public interface GameDataAccess {
     public abstract List<Game> showAllGames();
+    public List<Game> showVerifiedGames();
+    public Game verifyGame(Long id);
     public abstract Game gameByTitle(String title);
     public abstract Game gameById(Long id);
     public abstract String searchFiveGames(String query);

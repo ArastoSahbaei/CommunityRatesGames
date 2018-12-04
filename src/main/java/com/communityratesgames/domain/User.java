@@ -1,6 +1,8 @@
 package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
+import lombok.AllArgsConstructor;
 import lombok.ToString;
+import org.picketlink.idm.model.annotation.Unique;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +13,7 @@ import java.math.BigInteger;
 
 @ToString
 @Entity
+@AllArgsConstructor
 @Table(name = "user_entity")
 public class User implements Serializable {
 
@@ -28,7 +31,7 @@ public class User implements Serializable {
 
     public User(UserModel userModel) {
         this.id = userModel.getId();
-        this.userName = userModel.getUserName();
+        this.userName = userModel.getUsername();
         this.email = userModel.getEmail();
         this.setPassword(userModel.getPassword());
         this.role = userModel.getRole();
@@ -41,6 +44,10 @@ public class User implements Serializable {
         this.email = email;
         this.encryptPassword(password);
         this.role = "user";
+    }
+
+    public Timestamp getTimestamp() {
+        return new Timestamp(System.currentTimeMillis());
     }
 
     public User() {
@@ -100,7 +107,7 @@ public class User implements Serializable {
         }
     }
 
-    public void encryptPassword(String password) {
+    public String encryptPassword(String password) {
         byte[] hash = new byte[4];
         SecureRandom rand = new SecureRandom();
         rand.setSeed(rand.generateSeed(4));
@@ -112,6 +119,8 @@ public class User implements Serializable {
                 (int)hash[3]);
 
         this.password = hashPassword(password, this.passwordHash);
+
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -119,7 +128,7 @@ public class User implements Serializable {
     }
 
     public String getRole() {
-        return role;
+        return "user";
     }
 
     public void setRole(String role) {

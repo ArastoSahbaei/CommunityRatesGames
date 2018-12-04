@@ -22,10 +22,34 @@ public class GameController {
     @POST
     @Path("/create")
     @Produces({"application/JSON"})
-    public Response createNewGame(String newGame) {
+    public Response createNewGame(Game newGame) {
         try {
-            //List<Game> result = dal.createNewGame();
-            return Response.ok(newGame).build();
+            Game result = dal.createNewGame(newGame);
+            return Response.ok(result).build();
+        } catch (Exception e) {
+            return Response.status(414).build();
+        }
+    }
+
+    @PUT
+    @Path("/verify")
+    @Produces("application/json")
+    public Response verifyGame(@QueryParam("id") Long id) {
+        try {
+            Game result = dal.verifyGame(id);
+            return Response.ok(result).build();
+        } catch (Exception e) {
+            return Response.status(414).build();
+        }
+    }
+
+    @GET
+    @Path("/all")
+    @Produces({"application/JSON"})
+    public Response showAllGames() {
+        try {
+            List<Game> result = dal.showAllGames();
+            return Response.ok(result).build();
         } catch (Exception e) {
             return Response.status(414).build();
         }
@@ -33,9 +57,9 @@ public class GameController {
 
     @GET
     @Produces({"application/JSON"})
-    public Response showAllGames() {
+    public Response showVerifiedGames() {
         try {
-            List<Game> result = dal.showAllGames();
+            List<Game> result = dal.showVerifiedGames();
             return Response.ok(result).build();
         } catch (Exception e) {
             return Response.status(414).build();

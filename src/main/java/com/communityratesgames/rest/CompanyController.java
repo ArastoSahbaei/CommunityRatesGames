@@ -40,18 +40,4 @@ public class CompanyController {
             return Response.status(404).build();
         }
     }
-/*
-    public ResponseEntity<List<CompanyModel>> getAllCompanies() {
-        List<CompanyModel> resultList = companyService.findAllCompanies();
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
-    }
-
-    public ResponseEntity<CompanyModel> getCompanyById(@RequestParam("id") Long id) {
-        return new ResponseEntity<>(companyService.findCompanyById(id), HttpStatus.OK);
-    }
-
-    public ResponseEntity<CompanyModel> getCompanyByCompanyName(@RequestParam("name") String companyName) {
-        return new ResponseEntity<>(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
-    }
-*/
 }

@@ -1,16 +1,21 @@
-<div class="container">
-  <mat-card>
-    <mat-card-title>Add Game</mat-card-title>
-    <mat-card-content>
-      <form [formGroup]="addGames" class="layout">
-        <input id="title" matInput placeholder="Title" formControlName="title" class="form-control" type="title" required>
-        <span *ngIf="(title.dirty || title.touched) && title.invalid">Title is required</span>
-        <input id="companyId" matInput placeholder="Company" formControlName="companyId" class="form-control" type="companyId">
-        <input id="allPlatformId" matInput placeholder="Platform" formControlName="allPlatformId" class="form-control" type="allPlatformId">
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<mat-card [formGroup]="addGames">
+  <mat-card-title>Fill in empty spaces to add a game</mat-card-title>
+  <mat-form-field>
+    <p>Title:</p>
+    <input id="title" matInput placeholder="" formControlName="title" class="form-control" type="title" required>
+    <span *ngIf="(title.dirty || title.touched) && title.invalid">Title is required</span>
+  </mat-form-field>
+  <mat-form-field>
+    <p>Company:</p>
+    <input id="companyId" matInput placeholder="" type="companyId" formControlName="companyId" class="form-control" required >
+    <span *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">Company is required</span>
+  </mat-form-field>
+  <mat-form-field>
+    <p>Platforms/Platform:</p>
+    <input id="allPlatformId" matInput placeholder="" type="allPlatformId" formControlName="allPlatformId" class="form-control" required >
+    <span *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">Platform is required</span>
+  </mat-form-field>
+  <mat-card-actions>
+    <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>
+  </mat-card-actions>
+</mat-card>

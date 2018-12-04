@@ -32,12 +32,17 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     private UserDataAccess userDataAccess;
 
     public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
-    public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User login(String email, String password) {return userDataAccess.login(email, password);}
 
-    //Game Access
+
+    //Platform Access
+    public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
+    public Platform createPlatform(String name, int releaseYear, Long companyId) {return platformDataAccess.createPlatform(name, releaseYear, companyId);}
+
+    //GameInterface Access
     public List<Game> showAllGames() {return gameDataAccess.showAllGames();}
+    public List<Game> showVerifiedGames() {return gameDataAccess.showVerifiedGames();}
+    public Game verifyGame(Long id) {return gameDataAccess.verifyGame(id);}
     public Game gameByTitle(String title) {
         return gameDataAccess.gameByTitle(title);
     }
@@ -54,9 +59,10 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
         return gameDataAccess.getTopRatedGames(limit, page);
     }
 
-    public User register(User user) {
-        return userDataAccess.register(user);
-    }
+    //User
+    public User register(User user) { return userDataAccess.register(user); }
+    public User login(User user) {return userDataAccess.login(user);}
+
     public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();

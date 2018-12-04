@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
@@ -27,7 +27,8 @@ import { ApiService } from "./shared/service/api.service";
 import { UrlService } from "./shared/service/url.service";
 import { StorageService } from "./shared/service/storage.service";
 import { ErrorComponent } from './error/error.component';
-import { GamePageComponent } from './game-page/game-page.component';
+import { GamePageComponent } from './game/game-page/game-page.component';
+import {GlobalErrorHandlingService} from "./shared/service/global-error-handling.service";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { GamePageComponent } from './game-page/game-page.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ApiService, UrlService, StorageService],
+  providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

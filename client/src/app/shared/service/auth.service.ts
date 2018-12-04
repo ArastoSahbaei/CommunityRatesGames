@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {User} from "../interface/user.interface";
 import {Router} from "@angular/router";
@@ -10,39 +10,44 @@ import {ApiService} from "./api.service";
 })
 export class AuthService {
 
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn$ = new BehaviorSubject<boolean>(false);
+  private credentials: Object;
+  private logged: boolean = false;
+  private failedLogin$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private router : Router,
+  constructor(private router: Router,
               private api: ApiService,
-              private storage: StorageService) {}
-
-  get isLoggedIn() {
-    return this.loggedIn.asObservable();
+              private storage: StorageService) {
   }
 
-  public login(user : User) {
-/*
-Dont forget to let the return true / false be outside of the observable to avoid errors
- */
+  get isLoggedIn() {
+    return this.loggedIn$.asObservable();
+  }
+
+  get failedLogin() {
+    return this.failedLogin$.asObservable();
+  }
+
+  public login(user: User) {
+
     this.api.checkCredentials(user).subscribe(response => {
-      console.log(response)
+        this.credentials = Object.values(response);
+        this.loggedIn$.next(true);
+        this.router.navigate(['/']);
+        this.storage.setItem('name', this.credentials[2]);
+        this.logged = true;
+        this.failedLogin$.next(false);
       },
-      //error => { this.router.navigate(['/error']); }
+      error => {
+        this.failedLogin$.next(true);
+      }
     );
 
-
-    if ( user.email === "test@test.com" && user.password === "testardetta") {
-      this.loggedIn.next(true);
-      this.router.navigate(['/']);
-      //Change 'Test' to name from backend
-      this.storage.setItem('name', 'Test');
-    } else {
-      return false;
-    }
+    return this.logged;
   }
 
   public logout() {
-    this.loggedIn.next(false);
+    this.loggedIn$.next(false);
     this.router.navigate(['/']);
   }
 }

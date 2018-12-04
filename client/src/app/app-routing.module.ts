@@ -17,7 +17,7 @@ import {PlatformComponent} from "./game/platform/platform.component";
 import {MygamesComponent} from "./user/mygames/mygames.component";
 import {LoginGuard} from "./login/login.guard";
 import {ErrorComponent} from "./error/error.component";
-import {GamePageComponent} from "./game-page/game-page.component";
+import {GamePageComponent} from "./game/game-page/game-page.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, children: [

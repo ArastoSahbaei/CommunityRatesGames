@@ -13,17 +13,17 @@ VALUES
 (3, 'BasementDudes', 'Antarktis', 'North Pole'),
 (4, 'Danielcraft', 'MotherlandAfrica', 'Southern Lamp');
 
-INSERT INTO game_entity(id, title, company_id)
+INSERT INTO game_entity(id, title, company_id, verified)
 VALUES
-(1, 'Halo', 1),
-(2, 'Hallå', 2),
-(3, 'Hallon', 2),
-(4, 'Haloeller', 2),
-(5, 'Halloes', 2),
-(6, 'Hajro II', 1),
-(7, 'Mario cart', 4),
-(8, 'Mario party', 4),
-(9, 'Final Fantasy 1337', 3);
+(1, 'Halo', 1, false),
+(2, 'Hallå', 2, false),
+(3, 'Hallon', 2, false),
+(4, 'Haloeller', 2, false),
+(5, 'Halloes', 2, true),
+(6, 'Hajro II', 1, true),
+(7, 'Mario cart', 4, true),
+(8, 'Mario party', 4, true),
+(9, 'Final Fantasy 1337', 3, false);
 
 INSERT INTO platform_entity(id, name, release_year, company_id)
 VALUES
