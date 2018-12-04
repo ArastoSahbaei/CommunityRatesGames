@@ -21,7 +21,7 @@ public interface DataAccessLocal {
 
     //UserController
     public List<User> showAllUsers();
-    public User login(String email, String password);
+    public User login(User user);
     public User register(User user);
 
 

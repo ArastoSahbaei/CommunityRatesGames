@@ -1,19 +1,23 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import lombok.*;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class UserModel implements Serializable {
 
     private Long id;
     private Timestamp userCreated;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private String role;
@@ -32,120 +36,49 @@ public class UserModel implements Serializable {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
-        System.out.println("Transferred to JsonObject::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" +json);
         email = json.getString("email");
         password = json.getString("password");
 
+        if (json.containsKey("username")) {
+            username = json.getString("username");
+            password = user.encryptPassword(json.getString("password"));
+            userCreated = user.getTimestamp();
+        } else {
+            username = user.getUserName();
+            user.setPassword(password);
+            userCreated = null;
+        }
 
         id = user.getId();
         role = user.getRole();
-        userCreated = user.getUserCreated();
 
-        user.setPassword(password);
+
         user.setEmail(email);
-
-        System.out.println("IN MODEL:::::::::::::::::::::::::::::::::::::::::::::::" + user.toString());
+        user.setUserName(username);
+        user.setRole(role);
+        user.setUserCreated(userCreated);
+        user.setId(id);
 
         return user;
     }
 
+    public UserModel toModel(User user) {
+        UserModel um = new UserModel();
+
+        um.username = user.getUserName();
+        um.userCreated = user.getUserCreated();
+        um.email = user.getEmail();
+        um.role = user.getRole();
+
+        return um;
+    }
+
     public UserModel(User user) {
         this.id = user.getId();
-        this.userName = user.getUserName();
+        this.username = user.getUserName();
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.role = user.getRole();
         this.userCreated = user.getUserCreated();
-    }
-
-    public UserModel(String userName, String email, String password) {
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-    }
-
-    public UserModel(String emailSubject, String emailText) {
-        this.emailSubject = emailSubject;
-        this.emailText = emailText;
-    }
-
-    public UserModel(){}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Timestamp getUserCreated() {
-        return userCreated;
-    }
-
-    public void setUserCreated(Timestamp userCreated) {
-        this.userCreated = userCreated;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "id=" + id +
-                ", userCreated=" + userCreated +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", emailSubject='" + emailSubject + '\'' +
-                ", emailText='" + emailText + '\'' +
-                '}';
-    }
-
-    public String getEmailSubject() {
-        return emailSubject;
-    }
-
-    public void setEmailSubject(String emailSubject) {
-        this.emailSubject = emailSubject;
-    }
-
-    public String getEmailText() {
-        return emailText;
-    }
-
-    public void setEmailText(String emailText) {
-        this.emailText = emailText;
     }
 }
