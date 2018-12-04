@@ -18,17 +18,19 @@ public class CompanyController {
     @Inject
     private DataAccessLocal dal;
 
-    @POST
-    @Produces({"application/JSON"})
-    @Consumes({"application/JSON"})
-    public Response registerNewCompany(CompanyModel companyModel) {
-        try {
-            dal.registerNewCompany(companyModel);
-        } catch (ServiceUnavailableException e ) {
-            return Response.status(410).build();
-        }
-        return Response.status(200).build();
-    }
+    private CompanyModel companyModel = new CompanyModel();
+
+ //   @POST
+ //   @Produces({"application/JSON"})
+ //   @Consumes({"application/JSON"})
+ //   public Response registerNewCompany(CompanyModel companyModel) {
+ //       try {
+ //           dal.registerNewCompany(companyModel);
+ //       } catch (ServiceUnavailableException e ) {
+ //           return Response.status(410).build();
+ //       }
+ //       return Response.status(200).build();
+ //   }
 
     @GET
     @Produces({"application/JSON"})
@@ -40,18 +42,19 @@ public class CompanyController {
             return Response.status(404).build();
         }
     }
-/*
-    public ResponseEntity<List<CompanyModel>> getAllCompanies() {
-        List<CompanyModel> resultList = companyService.findAllCompanies();
-        return new ResponseEntity<>(resultList, HttpStatus.OK);
-    }
 
-    public ResponseEntity<CompanyModel> getCompanyById(@RequestParam("id") Long id) {
-        return new ResponseEntity<>(companyService.findCompanyById(id), HttpStatus.OK);
+    @POST
+    @Path("/company")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public Response createCompany(String compis){
+        try {
+            Company toEntity = companyModel.toEntity(compis);
+            Company company2 = dal.registerNewCompany(toEntity);
+            CompanyModel toCompany = companyModel.toCompany(company2);
+            return Response.ok(toCompany).build();
+        }catch (Exception e){
+            return Response.status(413).entity(e.getMessage()).build();
+        }
     }
-
-    public ResponseEntity<CompanyModel> getCompanyByCompanyName(@RequestParam("name") String companyName) {
-        return new ResponseEntity<>(companyService.findCompanyByCompanyName(companyName), HttpStatus.OK);
-    }
-*/
 }

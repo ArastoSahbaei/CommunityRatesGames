@@ -9,7 +9,7 @@ import java.util.List;
 @Local
 public interface DataAccessLocal {
 
-    public Company registerNewCompany(CompanyModel companyModel);
+    public Company registerNewCompany(Company company);
     public List<Rating> showAllRatings();
     public List<Company> showAllCompanies();
 
