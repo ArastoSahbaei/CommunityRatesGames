@@ -1,6 +1,8 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.Game;
 import com.communityratesgames.domain.Rating;
+import com.communityratesgames.domain.User;
 import com.communityratesgames.model.RatingModel;
 
 import javax.ejb.Stateless;
@@ -41,27 +43,20 @@ public class RatingService implements RatingDataAccess {
 
     @Override
     public Rating findByGameIdAndUserId(String gameId, String userId) {
-        System.out.println("Service " + gameId + " " + userId);
-        try {
-            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
-                    .setParameter("gameId",gameId)
-                    .setParameter("userId",userId)
-                    .getSingleResult();
-        }catch (Exception e) {
-            System.out.println("######### THE ERROL: " + e);
-            return null;
-        }
-
-
+        return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
+                .setParameter("gameId",gameId)
+                .setParameter("userId",userId)
+                .getSingleResult();
     }
 
     @Override
     public void addNewRating(RatingModel rating) {
-        String gameId = rating.getGame();
         rating.setCreationDate(Timestamp.from(Instant.now()));
+        Rating newRating = ratingModelToEntity(rating);
+        String gameId = rating.getGame();
         try {
             if (findByGameIdAndUserId(gameId, rating.getUser()) == null) {
-                em.persist(rating);
+                em.persist(newRating);
                 System.out.println("###PERSISTED###");
             }else {
                 em.createQuery("UPDATE Rating r SET r.rating = :rating, r.creationDate = :date WHERE r.user.userName = :user AND r.game.title = :game")
@@ -80,6 +75,31 @@ public class RatingService implements RatingDataAccess {
                 .setParameter("game", rating.getGame())
                 .executeUpdate();
         System.out.println("###UPDATED AVERAGE###");
+    }
+
+    private Rating ratingModelToEntity(RatingModel model) {
+        Rating entity = new Rating();
+        entity.setGame(getGameFromTitle(model.getGame()));
+        entity.setUser(getUserFromUsername(model.getUser()));
+        entity.setRating(model.getRating());
+        if(model.getCreationDate() != null) {
+            entity.setCreationDate(Timestamp.from(Instant.now()));
+        }else {
+            entity.setCreationDate(model.getCreationDate());
+        }
+        return entity;
+    }
+
+    public User getUserFromUsername(String name){
+        return (User) em.createQuery("SELECT u FROM User u WHERE u.userName = :username")
+                .setParameter("username",name)
+                .getSingleResult();
+    }
+
+    public Game getGameFromTitle(String title){
+        return (Game) em.createQuery("SELECT g FROM Game g WHERE g.title = :title")
+                .setParameter("title",title)
+                .getSingleResult();
     }
 }
 

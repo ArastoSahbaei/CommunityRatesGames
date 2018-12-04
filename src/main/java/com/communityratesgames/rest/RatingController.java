@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Stateless
@@ -25,7 +26,8 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response showAllRatings() {
         try {
-            List<Rating> result = dal.showAllRatings();
+            List<RatingModel> result = dal.showAllRatings()
+                    .stream().map(RatingModel::new).collect(Collectors.toList());
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -36,7 +38,8 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response findRatingsByGameId(@QueryParam("title") String title) {
         try {
-            List<Rating> result = dal.findRatingsByGameId(title);
+            List<RatingModel> result = dal.findRatingsByGameId(title)
+                    .stream().map(RatingModel::new).collect(Collectors.toList());
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -59,7 +62,6 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response findByGameIdAndUserId(@QueryParam("title") String gameTitle, @QueryParam("user") String username) {
         try {
-            System.out.println("Controller" + gameTitle + " " + username);
             Rating result = dal.findByGameIdAndUserId(gameTitle, username);
             return Response.ok(new RatingModel(result)).build();
         } catch ( Exception e ) {
