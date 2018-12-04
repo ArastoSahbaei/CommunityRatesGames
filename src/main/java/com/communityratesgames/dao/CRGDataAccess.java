@@ -41,6 +41,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     //Game Access
     public List<Game> showAllGames() {return gameDataAccess.showAllGames();}
+    public List<Game> showVerifiedGames() {return gameDataAccess.showVerifiedGames();}
+    public Game verifyGame(Long id) {return gameDataAccess.verifyGame(id);}
     public Game gameByTitle(String title) {
         return gameDataAccess.gameByTitle(title);
     }
