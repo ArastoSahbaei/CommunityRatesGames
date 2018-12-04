@@ -1,26 +1,46 @@
 .wrapper {
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 1em;
+  grid-template-columns: repeat(8, 1fr);
+  background-size: contain;
 }
 
-.fill-remaining-space {
+/* Grid Positioning */
+.signIn {
+  grid-column: 1/1;
+}
+
+.navigationButtonHome {
+  grid-column: 2/3;
+}
+
+.navigationButtonGame {
+  grid-column: 3/4;
+}
+
+.searchBar {
+  grid-column: 4/8;
+}
+
+.social {
+  grid-column: 9/11;
+}
+
+.logo {
+  grid-column: 11/12;
+}
+
+.searchBar {
   flex: 1 1 auto;
 }
+
 .titleForLoggedInUsers {
-  font-family:arial;
+  font-family: arial;
   font-size: 17px;
   letter-spacing: 3px;
   text-shadow: 0.2px 0.2px whitesmoke;
   text-align: center;
 }
-
-
-
-
-
-
-
-
 
 /**
     SOCIAL MEDIA
@@ -28,7 +48,6 @@
 
 ul {
   display: flex;
-  position: relative;
 }
 
 ul li {
@@ -93,20 +112,4 @@ ul li:nth-child(3) a:before {
 
 ul li:nth-child(4) a:before {
   background: #333;
-}
-
-.bottomFooter {
-  font-size: 0.9em;
-  position: relative;
-  width: 100%;
-  height: 110px;
-  color: #ffffff;
-}
-.bottomFooter {
-  font-size: 0.9em;
-  position: relative;
-  width: 100%;
-  height: 110px;
-  right: -10px;
-  color: #ffffff;
 }

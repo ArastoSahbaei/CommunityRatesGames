@@ -1,9 +1,11 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-<div class="wrapper">
-<mat-toolbar color="primary" class="mat-elevation-z8 header">
+<mat-toolbar color="primary" class="wrapper">
+
+  <div class="signIn">
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
+  </div>
 
   <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
@@ -36,19 +38,25 @@
     <button mat-menu-item routerLink="user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
   </mat-menu>
 
+  <div class="navigationButtonHome">
   <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
+  </div>
 
+  <div class="navigationButtonGame">
   <button mat-button [matMenuTriggerFor]="games">
     <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
   </button>
+  </div>
+
   <mat-menu #games="matMenu">
     <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
     <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
     <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
   </mat-menu>
 
-  <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
-      <span>
+  <span class="searchBar"><app-searchgame></app-searchgame></span>
+
+      <span class="social">
         <ul>
             <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
             <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
@@ -56,8 +64,6 @@
             <li><a href="/404">     <i class="fa fa-github"       aria-hidden="true"></i></a></li>
         </ul>
       </span>
-  <span id="logo">LOGOTYPE</span>
-
+<h1 class="logo">LOGOTYPE</h1>
 
 </mat-toolbar>
-</div>
