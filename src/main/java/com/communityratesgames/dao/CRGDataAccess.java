@@ -1,6 +1,7 @@
 package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
+import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.transactions.*;
 import org.apache.log4j.Logger;
@@ -61,7 +62,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     //User
     public User register(User user) { return userDataAccess.register(user); }
-    public User login(User user) {return userDataAccess.login(user);}
+    public AuthToken login(User user) {return userDataAccess.login(user);}
+    public boolean logout(Long token) {return userDataAccess.logout(token);}
 
     public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
     public List<Company> showAllCompanies() {

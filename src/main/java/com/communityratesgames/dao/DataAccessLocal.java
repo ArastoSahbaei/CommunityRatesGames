@@ -2,6 +2,7 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.user.AuthToken;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -21,7 +22,8 @@ public interface DataAccessLocal {
 
     //UserController
     public List<User> showAllUsers();
-    public User login(User user);
+    public AuthToken login(User user);
+    public boolean logout(Long token);
     public User register(User user);
 
 
