@@ -2,6 +2,7 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
 import org.apache.log4j.Logger;
 
@@ -31,11 +32,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     @Inject
     private UserDataAccess userDataAccess;
 
-    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
-    public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
 
-
-    //Platform Access
+    //PlatformInterface Access
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
     public Platform createPlatform(String name, int releaseYear, Long companyId) {return platformDataAccess.createPlatform(name, releaseYear, companyId);}
 
@@ -59,12 +57,33 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
         return gameDataAccess.getTopRatedGames(limit, page);
     }
 
-    //User
-    public User register(User user) { return userDataAccess.register(user); }
-    public User login(User user) {return userDataAccess.login(user);}
 
-    public List<Rating> showAllRatings() {return  ratingDataAccess.showAllRatings();}
+    //Rating Access
+    public List<Rating> showAllRatings() {return ratingDataAccess.showAllRatings();}
+    public List<Rating> findRatingsByGameId(String gameTitle) {
+        return ratingDataAccess.findRatingsByGameId(gameTitle);
+    }
+    public float getAverageOfGame(String gameTitle) {
+        return ratingDataAccess.getAverageOfGame(gameTitle);
+    }
+    public Rating findByGameIdAndUserId(String gameTitle, String username) {
+        return ratingDataAccess.findByGameIdAndUserId( gameTitle, username);
+    }
+    public void addNewRating(RatingModel rating) {
+        ratingDataAccess.addNewRating(rating);
+    }
+
+
+    //Company Access
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();
     }
+    public Company registerNewCompany(CompanyModel companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
+
+
+    //User Access
+    public User register(User user) { return userDataAccess.register(user); }
+    public User login(User user) {return userDataAccess.login(user);}
+    public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
+
 }

@@ -18,10 +18,16 @@ import {MygamesComponent} from "./user/mygames/mygames.component";
 import {LoginGuard} from "./login/login.guard";
 import {ErrorComponent} from "./error/error.component";
 import {GamePageComponent} from "./game/game-page/game-page.component";
+import {AdminComponent} from "./admin/admin.component";
+import {AdminGuard} from "./admin/admin.guard";
+import {CompanyComponent} from "./admin/company/company.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, children: [
       {path: 'login', component: LoginComponent},
+      {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
+          {path: 'company', component: CompanyComponent}
+        ]},
       {path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
           {path: 'profile', component: ProfileComponent},
           {path: 'report-a-bug', component: ReportBugComponent},
