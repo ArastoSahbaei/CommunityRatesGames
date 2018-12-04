@@ -1,6 +1,7 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Errorlayout} from "../shared/interface/errorlayout.interface";
+
 
 @Component({
   selector: 'app-error',
