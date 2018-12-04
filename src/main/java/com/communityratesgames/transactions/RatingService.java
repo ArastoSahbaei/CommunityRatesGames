@@ -43,27 +43,33 @@ public class RatingService implements RatingDataAccess {
 
     @Override
     public Rating findByGameIdAndUserId(String gameId, String userId) {
-        return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
-                .setParameter("gameId",gameId)
-                .setParameter("userId",userId)
-                .getSingleResult();
+        try {
+            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
+                    .setParameter("gameId",gameId)
+                    .setParameter("userId",userId)
+                    .getSingleResult();
+        }catch (Exception e) {
+            System.out.println("####### FIND RATING BY GAME AND USER FAILED #######");
+            return null;
+        }
     }
 
     @Override
     public void addNewRating(RatingModel rating) {
         rating.setCreationDate(Timestamp.from(Instant.now()));
         Rating newRating = ratingModelToEntity(rating);
-        String gameId = rating.getGame();
+        String title = rating.getGame();
         try {
-            if (findByGameIdAndUserId(gameId, rating.getUser()) == null) {
+            if (findByGameIdAndUserId(title, rating.getUser()) == null) {
                 em.persist(newRating);
                 System.out.println("###PERSISTED###");
             }else {
-                em.createQuery("UPDATE Rating r SET r.rating = :rating, r.creationDate = :date WHERE r.user.userName = :user AND r.game.title = :game")
+                em.createQuery("UPDATE Rating r SET r.rating = :rating WHERE r.game.title = :game")
                         .setParameter("rating", rating.getRating())
-                        .setParameter("date", rating.getCreationDate())
-                        .setParameter("user", rating.getUser())
+                        //.setParameter("date", rating.getCreationDate())
+                        //.setParameter("user", rating.getUser())
                         .setParameter("game", rating.getGame())
+                        //.getSingleResult());
                         .executeUpdate();
                 System.out.println("###UPDATED RATING###");
             }
@@ -91,15 +97,26 @@ public class RatingService implements RatingDataAccess {
     }
 
     public User getUserFromUsername(String name){
-        return (User) em.createQuery("SELECT u FROM User u WHERE u.userName = :username")
-                .setParameter("username",name)
-                .getSingleResult();
+        try {
+            return (User) em.createQuery("SELECT u FROM User u WHERE u.userName = :username")
+                    .setParameter("username",name)
+                    .getSingleResult();
+        }catch (Exception e) {
+            System.out.println("####### GET USER FAILED #######");
+            return null;
+        }
+
     }
 
     public Game getGameFromTitle(String title){
-        return (Game) em.createQuery("SELECT g FROM Game g WHERE g.title = :title")
-                .setParameter("title",title)
-                .getSingleResult();
+        try {
+            return (Game) em.createQuery("SELECT g FROM Game g WHERE g.title = :title")
+                    .setParameter("title",title)
+                    .getSingleResult();
+        }catch (Exception e) {
+            System.out.println("####### GET GAME FAILED #######");
+            return null;
+        }
     }
 }
 
