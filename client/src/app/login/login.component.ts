@@ -26,9 +26,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.auth.login(this.loginForm.value)) {
-      this.failedLogin = true;
-    }
+
+    this.auth.login(this.loginForm.value);
+
+    this.auth.failedLogin.subscribe((data) => {
+      if ( data == true ) {
+        this.failedLogin = true;
+      }
+    })
   }
 
   get email() {

@@ -15,12 +15,14 @@ public class GameModel implements Serializable {
     private String title;
     private CompanyModel company;
     private List<PlatformModel> platforms;
+    private boolean verified;
     private float averageRating;
 
     public GameModel(String title, CompanyModel company, List<PlatformModel> platforms) {
         this.title = title;
         this.company = company;
         this.platforms = platforms;
+        this.verified = false;
     }
 
     public GameModel(Game game) {
@@ -36,6 +38,7 @@ public class GameModel implements Serializable {
         for (Platform platform : game.getPlatforms()) {
             this.platforms.add(new PlatformModel(platform));
         }
+        this.verified = true;
         this.averageRating = average;
     }
 
@@ -75,6 +78,14 @@ public class GameModel implements Serializable {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public boolean isVerified() {
+        return this.verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 
     public float getAverageRating() {

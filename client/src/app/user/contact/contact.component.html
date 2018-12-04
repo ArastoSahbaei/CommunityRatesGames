@@ -1,21 +1,20 @@
-<div class="container">
-  <mat-card>
+ <mat-card [formGroup]="contact">
     <mat-card-title>Contact Us</mat-card-title>
-    <mat-card-content>
-    <form [formGroup]="contact" class="layout">
-      <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
-      <span *ngIf="(email.dirty || email.touched) && email.invalid">Email required</span>
-      <input id="username" matInput placeholder="Username" formControlName="username" class="form-control" type="username">
       <mat-form-field>
-        <textarea matInput rows="6" cols="70" placeholder="Please type your message below"></textarea>
+        <p>Email:</p>
+        <input id="email" matInput placeholder="" formControlName="email" class="form-control" type="email" required>
+        <span *ngIf="(email.dirty || email.touched) && email.invalid">Email is required</span>
       </mat-form-field>
-    </form>
-    </mat-card-content>
+      <mat-form-field>
+        <p>Username:</p>
+        <input id="username" matInput placeholder="" type="username" formControlName="username" class="form-control" required >
+        <span *ngIf="(username.dirty || username.touched) && username.invalid">Username is required</span>
+      </mat-form-field>
+      <mat-form-field>
+        <p>Message:</p>
+        <textarea matInput rows="6" cols="70" placeholder="Please type your message here"></textarea>
+      </mat-form-field>
     <mat-card-actions>
       <button mat-raised-button type="button" (click)="onSubmit()" color="primary">Send Message</button>
     </mat-card-actions>
   </mat-card>
-</div>
-
-
-

@@ -1,7 +1,39 @@
-mat-form-field {
-  width: 50%;
+input[type=text] {
+  width: 40%;
+  border: 2px solid #aaa;
+  border-radius: 13px;
+  margin: 16px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: .5s;
+  background-color: #424242;
 }
 
-.container {
-  width: 300px;
+input[type=text]:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 10px 0 #ffffff;
 }
+
+.searchFieldAndIcon input[type=text] {
+  padding-left: 40px;
+}
+
+.searchFieldAndIcon {
+  position: relative;
+}
+
+.searchFieldAndIcon i {
+  position: absolute;
+  left: 1px;
+  top: 14px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: .5s;
+
+}
+
+.searchFieldAndIcon input[type=text]:focus + i {
+  color: #ffffff;
+}
+
