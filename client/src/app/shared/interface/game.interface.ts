@@ -1,10 +1,10 @@
-import {Company} from "./company";
-import {Platform} from "./platform";
+import {Company} from "./company.interface";
+import {PlatformInterface} from "./platform.interface";
 
-export interface GameInterface {
+export interface Game {
   id: number;
   title: string;
   company: Company;
-  platforms: Platform[];
+  platforms: PlatformInterface[];
   averageRating: number;
 }

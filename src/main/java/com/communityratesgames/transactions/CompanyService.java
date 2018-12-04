@@ -41,20 +41,20 @@ public class CompanyService implements CompanyDataAccess {
     }
 
     public List<CompanyModel> findAllCompanies() {
-        List<Company> listWithAllCompanies = companyRepository.findAll();
+        List<CompanyInterface> listWithAllCompanies = companyRepository.findAll();
         return convertCompanyListToModelList(listWithAllCompanies);
     }
 
     @Override
     public CompanyModel findCompanyById(Long id) {
-        Company companyEntity = companyRepository.getOne(id);
+        CompanyInterface companyEntity = companyRepository.getOne(id);
         return new CompanyModel(companyEntity);
     }
 
 
-    private List<CompanyModel> convertCompanyListToModelList(List<Company> companyList) {
+    private List<CompanyModel> convertCompanyListToModelList(List<CompanyInterface> companyList) {
         List<CompanyModel> companyModelList = new ArrayList<>();
-        for (Company companyEntity : companyList) {
+        for (CompanyInterface companyEntity : companyList) {
             companyModelList.add(new CompanyModel(companyEntity));
         }
         return companyModelList;

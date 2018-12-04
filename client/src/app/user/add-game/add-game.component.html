@@ -6,14 +6,14 @@
     <span *ngIf="(title.dirty || title.touched) && title.invalid">Title is required</span>
   </mat-form-field>
   <mat-form-field>
-    <p>Company:</p>
+    <p>CompanyInterface:</p>
     <input id="companyId" matInput placeholder="" type="companyId" formControlName="companyId" class="form-control" required >
-    <span *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">Company is required</span>
+    <span *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">CompanyInterface is required</span>
   </mat-form-field>
   <mat-form-field>
-    <p>Platforms/Platform:</p>
+    <p>Platforms/PlatformInterface:</p>
     <input id="allPlatformId" matInput placeholder="" type="allPlatformId" formControlName="allPlatformId" class="form-control" required >
-    <span *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">Platform is required</span>
+    <span *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">PlatformInterface is required</span>
   </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>

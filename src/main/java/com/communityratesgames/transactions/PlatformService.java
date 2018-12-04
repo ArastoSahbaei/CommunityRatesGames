@@ -47,16 +47,16 @@ public class PlatformService implements PlatformDataAccess {
     @Autowired
     private PlatformRepository repo;
 
-    private List<PlatformModel> convertEntityListToModelList(List<Platform> list) {
+    private List<PlatformModel> convertEntityListToModelList(List<PlatformInterface> list) {
         List<PlatformModel> out = new ArrayList<>();
-        for (Platform entity : list) {
+        for (PlatformInterface entity : list) {
             out.add(new PlatformModel(entity));
         }
         return out;
     }
 
-    public Platform getPlatformById(int id) {
-        Optional<Platform> opt = repo.findById((Integer)id);
+    public PlatformInterface getPlatformById(int id) {
+        Optional<PlatformInterface> opt = repo.findById((Integer)id);
         if (opt.isPresent()) {
             return opt.get();
         } else {
@@ -69,10 +69,10 @@ public class PlatformService implements PlatformDataAccess {
     }
 
     public void insertPlatform(PlatformModel platform) {
-        repo.save(new Platform(platform));
+        repo.save(new PlatformInterface(platform));
     }
 
-    public void deletePlatform(Platform platform) {
+    public void deletePlatform(PlatformInterface platform) {
         repo.delete(platform);
     }*/
 }
