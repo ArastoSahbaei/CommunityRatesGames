@@ -16,16 +16,12 @@ public class Game implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Timestamp releaseDate;
-
     @Column
     private String title;
-
     @ManyToOne
     @JoinColumn
     private Company company;
-
     @Column(nullable=false)
     private boolean verified = false;
 
@@ -36,7 +32,7 @@ public class Game implements Serializable {
     @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
-    protected Game() {}
+    public Game() {}
 
     public Game(GameModel gameModel) {
         this.id = gameModel.getId();

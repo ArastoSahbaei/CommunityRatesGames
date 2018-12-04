@@ -1,15 +1,23 @@
 package com.communityratesgames.model;
 
 import java.io.Serializable;
+import java.io.StringReader;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.ArrayList;
-
 import com.communityratesgames.domain.Game;
-import com.communityratesgames.domain.Platform;
+import lombok.*;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 
 public class GameModel implements Serializable {
-
     private Long id;
     private Timestamp releaseDate;
     private String title;
@@ -17,6 +25,48 @@ public class GameModel implements Serializable {
     private List<PlatformModel> platforms;
     private boolean verified;
     private float averageRating;
+
+    private JsonObject jsonFromString(String input) {
+        JsonReader jsonReader = Json.createReader(new StringReader(input));
+        JsonObject object = jsonReader.readObject();
+        jsonReader.close();
+        return object;
+    }
+
+    public Game toEntity(String input) {
+        JsonObject json = jsonFromString(input);
+        Game game = new Game();
+
+        title = json.getString("title");
+
+        game.setTitle(title);
+
+        return game;
+    }
+
+    public GameModel toModel(Game game) {
+        GameModel gm = new GameModel();
+
+        gm.title = game.getTitle();
+        gm.company = game.getCompany();
+        gm.platforms = game.getPlatforms();
+        gm.verified = game.isVerified();
+
+        return gm;
+    }
+
+    public GameModel(Game game) {
+        this.title = game.getTitle();
+        this.company = game.getCompany();
+        this.platforms = game.getPlatforms();
+        this.verified = false;
+       // this.averageRating = game.getAverageRating();
+    }
+}
+
+
+/*
+
 
     public GameModel(String title, CompanyModel company, List<PlatformModel> platforms) {
         this.title = title;
@@ -96,3 +146,4 @@ public class GameModel implements Serializable {
         this.averageRating = average;
     }
 }
+*/
