@@ -2,20 +2,22 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Rating;
+import com.communityratesgames.model.RatingModel;
 import lombok.NoArgsConstructor;
+import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Stateless
 @Path("/rating")
 public class RatingController {
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.RatingController.class);
 
     @Inject
     private DataAccessLocal dal;
@@ -24,49 +26,65 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response showAllRatings() {
         try {
-            List<Rating> result = dal.showAllRatings();
+            List<RatingModel> result = dal.showAllRatings()
+                    .stream().map(RatingModel::new).collect(Collectors.toList());
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
         }
     }
-/*
-    private final RatingService ratingService;
-
-    @Autowired
-    public RatingController(RatingService ratingService) {
-        this.ratingService = ratingService;
+    @GET
+    @Path("/bygame")
+    @Produces({"application/JSON"})
+    public Response findRatingsByGameId(@QueryParam("title") String title) {
+        try {
+            List<RatingModel> result = dal.findRatingsByGameId(title)
+                    .stream().map(RatingModel::new).collect(Collectors.toList());
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+    @GET
+    @Path("/average")
+    @Produces({"application/JSON"})
+    public Response getAverageOfGame(@QueryParam("title") String gameTitle) {
+        try {
+            float result = dal.getAverageOfGame(gameTitle);
+            return Response.ok(result).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
     }
 
+    @GET
+    @Path("/one")
+    @Produces({"application/JSON"})
+    public Response findByGameIdAndUserId(@QueryParam("title") String gameTitle, @QueryParam("user") String username) {
+        try {
+            Rating result = dal.findByGameIdAndUserId(gameTitle, username);
+            return Response.ok(new RatingModel(result)).build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+
+    @POST
+    @Path("/new")
+    @Consumes({"application/JSON"})
+    public Response createNewRating(RatingModel rating) {
+        try {
+            dal.addNewRating(rating);
+            return Response.ok("Hej").build();
+        } catch ( Exception e ) {
+            return Response.status(404).build();
+        }
+    }
+/*
     @PostMapping("/rating")
     public ResponseEntity<RatingModel> registerNewRating (@RequestBody RatingModel rating){
         RatingModel newRating = ratingService.createNewRating(rating);
         return new ResponseEntity<>(newRating, HttpStatus.OK);
-    }
-
-    @GetMapping("/rating")
-    public ResponseEntity<List<RatingModel>> getRatings(){
-        List<RatingModel> ratingList = ratingService.getAllRatings();
-        return new ResponseEntity<>(ratingList, HttpStatus.OK);
-    }
-
-    @GetMapping("/rating/list")
-    public ResponseEntity<List<RatingModel>> getRatingsByGameId (@RequestParam("gameId") Long gameId){
-        List<RatingModel> ratingList = ratingService.findRatingsByGameId(gameId);
-        return new ResponseEntity<>(ratingList, HttpStatus.OK);
-    }
-
-    @GetMapping("/rating/average")
-    public ResponseEntity<Float> getRatingAverageByGameId (@RequestParam("gameId") Long gameId){
-        return new ResponseEntity<>(ratingService.getAverageOfGame(gameId), HttpStatus.OK);
-    }
-
-    /*
-    //TODO: Refactor when needed
-    @GetMapping("/rating/{gameid}/{userid}")
-    public ResponseEntity<RatingModel> getRatingByGameIdAndUserId(@PathVariable Long gameId, Long userId){
-        RatingModel rating = ratingService.findByGameIdAndUserId(gameId, userId);
-        return new ResponseEntity<>(rating, HttpStatus.OK);
     }
     */
 }
