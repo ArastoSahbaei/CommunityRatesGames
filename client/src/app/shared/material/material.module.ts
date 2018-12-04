@@ -6,6 +6,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -35,7 +36,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatAutocompleteModule,
     MatFormFieldModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
   ],
 })
 export class MaterialModule { }
