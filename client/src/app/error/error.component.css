@@ -3,6 +3,12 @@ mat-card {
   margin: 3rem auto;
 }
 
-mat-grid-tile {
+.tile-image {
+  width:180px;
+  height: auto;
+}
 
+.image {
+  width: 200px;
+  height: 200px;
 }

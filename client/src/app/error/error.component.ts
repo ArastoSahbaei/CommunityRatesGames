@@ -12,8 +12,8 @@ export class ErrorComponent implements OnInit {
   errorMessage: string = "Test";
 
   tiles: Errorlayout[] = [
-    {index: 1, cols: 2, rows: 1, text: "Header", border: "border: white 1px solid"},
-    {index: 2, cols: 2, rows: 2, text: "Image"},
+    {index: 1, cols: 2, rows: 1, text: "Sorry, we encountered an error!"},
+    {index: 2, cols: 2, rows: 2, background: "white"},
     {index: 3, cols: 2, rows: 1}
   ];
 
