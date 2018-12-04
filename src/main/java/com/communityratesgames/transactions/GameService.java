@@ -73,8 +73,8 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> getTopRatedGames(Integer limit, Integer page) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class)
-                .setFirstResult(page * limit)
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE order by g.average_rating", Game.class)
+                .setFirstResult((page-1) * limit)
                 .setMaxResults(limit);
         return (List<Game>)q.getResultList();
     }
