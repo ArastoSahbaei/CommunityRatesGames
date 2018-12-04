@@ -51,7 +51,7 @@ public class UserModel implements Serializable {
 
         id = user.getId();
         role = user.getRole();
-
+        System.out.println("ROLE:::::::::::::::::::::::::::::::::::::::::::::::::::: " + role);
 
         user.setEmail(email);
         user.setUserName(username);

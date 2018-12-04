@@ -7,6 +7,12 @@
 
   <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
+  <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+
+  <mat-menu #admin="matMenu">
+    <span>ADMIN</span>
+  </mat-menu>
+
   <mat-menu #user="matMenu">
 
     <div class="titleForLoggedInUsers">
