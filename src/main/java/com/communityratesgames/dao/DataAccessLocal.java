@@ -2,6 +2,7 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.RatingModel;
 
 import javax.ejb.Local;
@@ -29,7 +30,8 @@ public interface DataAccessLocal {
 
     //User
     public List<User> showAllUsers();
-    public User login(User user);
+    public AuthToken login(User user);
+    public boolean logout(Long token);
     public User register(User user);
 
 

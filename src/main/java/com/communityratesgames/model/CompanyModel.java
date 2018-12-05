@@ -1,7 +1,6 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.Company;
-import lombok.*;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -9,11 +8,6 @@ import javax.json.JsonReader;
 import java.io.Serializable;
 import java.io.StringReader;
 
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class CompanyModel implements Serializable {
 
     private Long id;
@@ -21,7 +15,8 @@ public class CompanyModel implements Serializable {
     private String country;
     private String city;
 
-
+    public CompanyModel() {
+    }
 
     public JsonObject jsonFromString(String input) {
         JsonReader jsonReader = Json.createReader(new StringReader(input));
@@ -64,5 +59,37 @@ public class CompanyModel implements Serializable {
         this.companyName = company.getCompanyName();
         this.country = company.getCountry();
         this.city = company.getCity();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
