@@ -9,6 +9,7 @@ import java.util.List;
 @Local
 public interface CompanyDataAccess {
 
-    public abstract Company registerNewCompany(CompanyModel companyModel);
+    public abstract Company registerNewCompany(Company company);
     public abstract List<Company> showAllCompanies();
+    public abstract Company findCompanyByCompanyName(String companyName);
 }

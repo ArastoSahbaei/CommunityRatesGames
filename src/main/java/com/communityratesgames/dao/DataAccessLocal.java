@@ -11,7 +11,6 @@ import java.util.List;
 public interface DataAccessLocal {
 
     public Company registerNewCompany(Company company);
-    public List<Rating> showAllRatings();
     public List<Company> showAllCompanies();
 
 
