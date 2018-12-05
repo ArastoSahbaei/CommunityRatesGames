@@ -9,11 +9,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 @Stateless
@@ -103,19 +107,18 @@ public class GameService implements GameDataAccess {
         return outputStream.toString();
     }
 
-
-
     public Company getCompanyFromName(String name) {
         return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :companyName", Company.class)
                 .setParameter("companyName", name)
                 .getSingleResult();
     }
 
-    public List<Platform> getPlatformFromName(String name) {
+    public Platform getPlatformFromName(String name) {
         return em.createQuery("SELECT p FROM Platform p WHERE p.name = :platformName", Platform.class)
                 .setParameter("platformName", name)
-                .getResultList();
+                .getSingleResult();
     }
+
 
 /*
     @Override

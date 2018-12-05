@@ -37,20 +37,20 @@ public class GameModel implements Serializable {
 
         return object;
     }
-
-    public Game toEntity(String input) {
+    public Game test (String input) {
         JsonObject json = jsonFromString(input);
-        Game game = new Game();
 
-        title = json.getString("title");
+        this.releaseDate=Timestamp.valueOf(json.getString("releaseDate"));
+        this.title=json.getString("title");
+        this.company=json.getString("company");
+        this.platforms=json.getJsonArray.("platforms");
 
-
-        game.setTitle(title);
+        );
 
         return game;
     }
 
-    public GameModel toModel(Game game) {
+    public GameModel toModel(String input) {
         GameModel gm = new GameModel();
 
         gm.title = game.getTitle();
