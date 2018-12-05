@@ -37,6 +37,22 @@ public class UserController {
         }
     }
 
+    @GET
+    @Path("/session")
+    @Produces("application/json")
+    public Response getUserSession(@HeaderParam("session-token") Long token) {
+        try {
+            Long id = AuthToken.getUserId(token);
+            if (id == -1) {
+                return Response.status(401).build();
+            }
+            User result = dal.getUser(id);
+            return Response.ok(result).build();
+        } catch (Exception e) {
+            return Response.status(500).build();
+        }
+    }
+
     @POST
     @Path("/register")
     @Produces("application/json")

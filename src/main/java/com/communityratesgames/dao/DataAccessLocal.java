@@ -30,6 +30,7 @@ public interface DataAccessLocal {
 
     //User
     public List<User> showAllUsers();
+    public User getUser(Long id);
     public AuthToken login(User user);
     public boolean logout(Long token);
     public User register(User user);

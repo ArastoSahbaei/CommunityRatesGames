@@ -30,6 +30,13 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
+    public User getUser(Long id) {
+        Query q = em.createNativeQuery("SELECT * FROM user_entity WHERE id = ?", User.class)
+            .setParameter(1, id);
+        return (User)q.getSingleResult();
+    }
+
+    @Override
     public User register(User user) {
         em.persist(user);
         return user;
