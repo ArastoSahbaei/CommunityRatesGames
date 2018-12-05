@@ -1,6 +1,8 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,8 +75,8 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> getTopRatedGames(Integer limit, Integer page) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class)
-                .setFirstResult(page * limit)
+        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE order by g.average_rating", Game.class)
+                .setFirstResult((page-1) * limit)
                 .setMaxResults(limit);
         return (List<Game>)q.getResultList();
     }
@@ -99,6 +101,20 @@ public class GameService implements GameDataAccess {
             e.printStackTrace();
         }
         return outputStream.toString();
+    }
+
+
+
+    public Company getCompanyFromName(String name) {
+        return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :companyName", Company.class)
+                .setParameter("companyName", name)
+                .getSingleResult();
+    }
+
+    public List<Platform> getPlatformFromName(String name) {
+        return em.createQuery("SELECT p FROM Platform p WHERE p.name = :platformName", Platform.class)
+                .setParameter("platformName", name)
+                .getResultList();
     }
 
 /*

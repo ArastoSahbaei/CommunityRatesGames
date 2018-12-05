@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.ArrayList;
-
-import com.communityratesgames.model.GameModel;
-import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @Table(name = "game_entity")
@@ -22,18 +18,22 @@ public class Game implements Serializable {
     @ManyToOne
     @JoinColumn
     private Company company;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private boolean verified = false;
+    @Column(name = "average_rating")
+    private Float averageRating;
 
-    @JoinTable(name="game_platform",
-        joinColumns={ @JoinColumn(name="game_id") },
-        inverseJoinColumns={ @JoinColumn(name="platform_id") }
+    @JoinTable(name = "game_platform",
+            joinColumns = {@JoinColumn(name = "game_id")},
+            inverseJoinColumns = {@JoinColumn(name = "platform_id")}
     )
-    @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
-    public Game() {}
+    public Game() {
+    }
 /*
+
     public Game(GameModel gameModel) {
         this.id = gameModel.getId();
         this.releaseDate = gameModel.getReleaseDate();
@@ -43,6 +43,7 @@ public class Game implements Serializable {
         for (PlatformModel platform : gameModel.getPlatforms()) {
             this.platforms.add(new Platform(platform));
         }
+        this.averageRating = gameModel.getAverageRating();
         this.verified = false;
     }
     */
@@ -89,5 +90,13 @@ public class Game implements Serializable {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public Float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Float averageRating) {
+        this.averageRating = averageRating;
     }
 }

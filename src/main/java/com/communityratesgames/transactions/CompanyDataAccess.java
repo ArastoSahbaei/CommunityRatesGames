@@ -11,4 +11,5 @@ public interface CompanyDataAccess {
 
     public abstract Company registerNewCompany(CompanyModel companyModel);
     public abstract List<Company> showAllCompanies();
+    public abstract Company getCompanyFromName(String name);
 }

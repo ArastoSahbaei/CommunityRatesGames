@@ -44,6 +44,7 @@ public class GameModel implements Serializable {
 
         title = json.getString("title");
 
+
         game.setTitle(title);
 
         return game;
@@ -65,7 +66,7 @@ public class GameModel implements Serializable {
         this.title = game.getTitle();
         this.company = game.getCompany().getCompanyName();
         this.platforms = game.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
-        this.verified = false;
+        this.verified = game.isVerified();
         this.averageRating = game.getAverageRating();
     }
 }

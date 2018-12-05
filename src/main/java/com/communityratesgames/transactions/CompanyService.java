@@ -34,6 +34,13 @@ public class CompanyService implements CompanyDataAccess {
         return companies;
     }
 
+    @Override
+    public Company getCompanyFromName(String name) {
+        return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :companyName", Company.class)
+                .setParameter("companyName", name)
+                .getSingleResult();
+    }
+
 
 /*
     public CompanyModel findCompanyByCompanyName(String companyName) {
