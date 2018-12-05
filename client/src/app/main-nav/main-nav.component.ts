@@ -11,37 +11,49 @@ import {Observable} from "rxjs";
   styleUrls: ['./main-nav.component.css'],
   providers: [LoginGuard]
 })
-export class MainNavComponent implements OnInit{
+export class MainNavComponent implements OnInit {
 
-  private name: string = "";
   public buttonText: string = "Sign In";
   public isLoggedIn: boolean = false;
   public isLoggedIn$: Observable<boolean>;
+  public isLoggedInAdmin$: Observable<boolean>;
+  private name: string = "";
 
   constructor(private storage: StorageService,
               private auth: AuthService,
-              private route: Router) {}
+              private route: Router) {
+  }
 
   ngOnInit() {
-    this.storage.watchStorage().subscribe((data:string) => {
-      if ( this.isLoggedIn == false ) {
-        this.name = this.storage.getItem('name');
-        this.isLoggedIn = true;
-        this.buttonText = "Sign Out";
+    this.storage.watchStorage().subscribe((data: string) => {
+      if (this.isLoggedIn == false) {
+        if (this.storage.getItem('admin')) {
+          this.name = this.storage.getItem('admin');
+          this.isLoggedIn = true;
+          this.buttonText = "Sign Out";
+          this.isLoggedInAdmin$ = this.auth.isLoggedInAdmin;
+        }
+        else if (this.storage.getItem('name')) {
+          this.name = this.storage.getItem('name');
+          this.isLoggedIn = true;
+          this.buttonText = "Sign Out";
+          this.isLoggedIn$ = this.auth.isLoggedIn;
+        }
       } else {
         this.isLoggedIn = false;
         this.buttonText = "Sign In";
       }
     });
-    this.isLoggedIn$ = this.auth.isLoggedIn;
+
   }
 
   public logInOut() {
-    if (this.isLoggedIn === false ) {
+    if (this.isLoggedIn === false) {
       this.route.navigateByUrl('/login');
     }
     else {
       this.storage.removeItem('name');
+      this.storage.removeItem('admin');
       this.route.navigateByUrl('/');
       this.auth.logout();
       this.name = "";

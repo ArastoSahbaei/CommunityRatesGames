@@ -6,6 +6,7 @@ import {UrlService} from "./url.service";
 import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
 import {Observable} from "rxjs";
+import {Company} from "../interface/company.interface";
 
 
 
@@ -18,7 +19,6 @@ export class ApiService {
   constructor(private httpClient: HttpClient,
               private url: UrlService) {
   }
-
 
   getGames() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames(), {headers: Headers.HeaderJSON()});
@@ -45,6 +45,10 @@ export class ApiService {
 
   registerUser(body: Register) {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getRegister(), body, {headers: Headers.HeaderJSON()});
+  }
+
+  createCompany(company: Company) {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getCompany(), company, { headers: Headers.HeaderJSON() });
   }
 
   postGame(body: AddGame) {

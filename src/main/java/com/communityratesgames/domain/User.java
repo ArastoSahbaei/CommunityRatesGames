@@ -128,11 +128,11 @@ public class User implements Serializable {
     }
 
     public String getRole() {
-        return "user";
+        return role;
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role = "user";
     }
 
 }
