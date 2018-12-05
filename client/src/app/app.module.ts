@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
 import { HttpClientModule } from "@angular/common/http";
-import { CompanyComponent } from './company/company.component';
+import { CompanyComponent } from './admin/company/company.component';
 import { PlatformComponent } from './game/platform/platform.component';
 import { RatingComponent } from './game/rating/rating.component';
 import { UserComponent } from './user/user.component';
@@ -29,6 +29,7 @@ import { StorageService } from "./shared/service/storage.service";
 import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
 import {GlobalErrorHandlingService} from "./shared/service/global-error-handling.service";
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {GlobalErrorHandlingService} from "./shared/service/global-error-handling
     Top100Component,
     MygamesComponent,
     ErrorComponent,
-    GamePageComponent
+    GamePageComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -16,9 +16,14 @@ export class UrlService {
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
   private searchGame: string = "/search";
+  private company: string = "/company";
 
 
   constructor() {
+  }
+
+  getCompany() {
+    return this.company;
   }
 
   getRegister() {

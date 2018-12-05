@@ -1,7 +1,5 @@
 package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
 import org.picketlink.idm.model.annotation.Unique;
 
 import javax.persistence.*;
@@ -11,9 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.math.BigInteger;
 
-@ToString
 @Entity
-@AllArgsConstructor
 @Table(name = "user_entity")
 public class User implements Serializable {
 
@@ -128,7 +124,7 @@ public class User implements Serializable {
     }
 
     public String getRole() {
-        return "user";
+        return role;
     }
 
     public void setRole(String role) {

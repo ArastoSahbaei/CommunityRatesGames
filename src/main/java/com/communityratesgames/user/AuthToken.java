@@ -34,6 +34,10 @@ public class AuthToken {
         int index = logins.size() / 2;
         int step = index / 2;
         long current = 0;
+        
+        if (logins.size() == 0) {
+            return -1;
+        }
 
         do {
             // Binary search
