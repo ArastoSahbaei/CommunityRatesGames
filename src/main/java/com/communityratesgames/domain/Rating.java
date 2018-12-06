@@ -78,4 +78,15 @@ public class Rating implements Serializable {
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", user=" + user +
+                ", game=" + game +
+                ", rating=" + rating +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }

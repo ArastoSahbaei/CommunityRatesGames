@@ -94,4 +94,12 @@ public class Game {
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public Float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Float averageRating) {
+        this.averageRating = averageRating;
+    }
 }
