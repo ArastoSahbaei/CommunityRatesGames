@@ -15,6 +15,11 @@
         <mat-card-header>Add a user</mat-card-header>
 
         <mat-form-field>
+          <input id="user" formControlName="user" matInput placeholder="Name" />
+          <mat-error *ngIf="(user.dirty || user.touched) && user.invalid">Name required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
           <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
           <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
         </mat-form-field>
@@ -24,9 +29,9 @@
           <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
         </mat-form-field>
 
-        <mat-radio-group formControlName="user">
-          <mat-radio-button name="user"  color="primary" value="1">User</mat-radio-button>
-          <mat-radio-button name="user"  color="primary" value="2">Admin</mat-radio-button>
+        <mat-radio-group formControlName="role">
+          <mat-radio-button name="role"  color="primary" value="1">User</mat-radio-button>
+          <mat-radio-button name="role"  color="primary" value="2">Admin</mat-radio-button>
         </mat-radio-group>
 
         <mat-card-actions>

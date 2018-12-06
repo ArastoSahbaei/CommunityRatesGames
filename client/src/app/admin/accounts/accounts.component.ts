@@ -3,6 +3,7 @@ import {ApiService} from "../../shared/service/api.service";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {User} from "../../shared/interface/user.interface";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Register} from "../../shared/interface/register.interface";
 
 @Component({
   selector: 'app-accounts',
@@ -19,6 +20,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   users: User[] = [];
   dataSource = new MatTableDataSource(this.users);
   tableColumns : string[] = ['userName', 'email', 'userCreated'];
+
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
     this.setDataSourceAttributes();
@@ -38,9 +40,10 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
+      'user': ['', Validators.required],
       'email' : ['', [Validators.required, Validators.email]],
       'password' : ['', Validators.required],
-      'user': ['', Validators.required]
+      'role': ['', Validators.required]
     });
   }
 
@@ -83,7 +86,33 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     return this.userForm.get('password');
   }
 
+  get role() {
+    return this.userForm.get('role');
+  }
+
+  get user() {
+    return this.userForm.get('user');
+  }
+
   onSubmit() {
     console.log(this.userForm.value);
+    const user = {} as Register;
+    user.email = this.userForm.value.email;
+    user.username = this.userForm.value.user;
+    user.password = this.userForm.value.password;
+    if (this.userForm.value.role == 1) {
+      user.role = 'User';
+    } else {
+      user.role = 'Admin';
+    }
+
+    this.api.registerUser(user).subscribe((response) => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+        throw error;
+      }
+    );
   }
 }
