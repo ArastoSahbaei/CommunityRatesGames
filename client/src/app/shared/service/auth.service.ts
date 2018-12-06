@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {StorageService} from "./storage.service";
 import {ApiService} from "./api.service";
 import {Storage} from "../interface/storage.interface";
-import {map} from "rxjs/operators";
+import {flatMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,8 @@ export class AuthService {
   private credentials: Object;
   private logged: boolean = false;
   private failedLogin$ = new BehaviorSubject<boolean>(false);
-  private static token = null;
+  private authToken$ = new BehaviorSubject<string>(null);
+  private static token: string
 
   constructor(private router: Router,
               private api: ApiService,
@@ -36,13 +37,19 @@ export class AuthService {
     return this.failedLogin$.asObservable();
   }
 
+  get authToken() {
+    return this.authToken$.asObservable();
+  }
+
   public login(user: User) {
     this.api.checkCredentials(user).pipe(
-      // We have to use maps to enforce thread-syncing.
-      map(response => {
+      flatMap(response => {
         AuthService.token = response['token'];
-        console.log(AuthService.token);
-        return this.api.getActiveUser(AuthService.token);
+        this.authToken$.next(response['token']);
+        return this.authToken$.asObservable();
+      }),
+      flatMap(token => {
+        return this.api.getActiveUser(token);
       })
     ).subscribe(response => {
       console.log(response);
@@ -66,7 +73,7 @@ export class AuthService {
   }
 
   public logout() {
-    console.log(AuthService.token);
+    this.authToken$.next(null);
     this.api.destroyToken(AuthService.token).subscribe(response => {
       this.loggedIn$.next(false);
       this.loggedInAdmin$.next(false);
