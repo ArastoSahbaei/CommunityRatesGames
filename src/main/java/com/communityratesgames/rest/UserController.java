@@ -59,11 +59,14 @@ public class UserController {
     public Response login(String credentials) {
         try {
             User toEntity = userModel.toEntity(credentials);
-            AuthToken token = dal.login(toEntity);
+            User user2 = dal.login(toEntity);
+            UserModel toModel = userModel.toModel(user2);
+            return Response.ok(toModel).build();
+         /*   AuthToken token = dal.login(toEntity);
             if (token == null) {
                 return Response.status(400).build();
             }
-            return Response.ok(token).build();
+            return Response.ok(token).build();*/
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();
         }

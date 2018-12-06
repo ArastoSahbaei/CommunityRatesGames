@@ -36,14 +36,14 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public AuthToken login(User user) {
+    public User login(User user) {
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
             .setParameter("email", user.getEmail())
             .getSingleResult();
         String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
         if (u.getPassword().equals(password)) {
-            Long token = AuthToken.generateNewToken(u.getId());
-            return new AuthToken(token, u.getId());
+            //Long token = AuthToken.generateNewToken(u.getId());
+            return u;
         } else {
             return null;
         }

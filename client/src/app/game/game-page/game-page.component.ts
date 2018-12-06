@@ -9,19 +9,26 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./game-page.component.css']
 })
 export class GamePageComponent implements OnInit {
-  public games;
 
-  constructor(private route: ActivatedRoute) {
+  response : any = {};
+
+
+  constructor(private route: ActivatedRoute, private api: ApiService) {
+    this.getTheGames();
+  }
+
+  getTheGames(){
+    this.route.queryParams.subscribe(queryParam => {
+      this.api.getOneGameByTitle(queryParam.title).subscribe(response =>{
+        console.log(response);
+        this.response = response;
+      });
+    });
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(queryParam => {
-      this.games = queryParam.title;
-    });
 
-    this.route.queryParams.subscribe(routeParams => {
 
-    });
   }
-
 }
+
