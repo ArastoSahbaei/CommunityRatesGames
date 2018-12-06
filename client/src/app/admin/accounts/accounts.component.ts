@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../shared/service/api.service";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {User} from "../../shared/interface/user.interface";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-accounts',
@@ -12,7 +13,9 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
   private paginator: MatPaginator;
   private sort: MatSort;
+  public userForm: FormGroup;
   choice: boolean = false;
+  addUser: boolean = false;
   users: User[] = [];
   dataSource = new MatTableDataSource(this.users);
   tableColumns : string[] = ['userName', 'email', 'userCreated'];
@@ -30,9 +33,15 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+              private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.userForm = this.fb.group({
+      'email' : ['', [Validators.required, Validators.email]],
+      'password' : ['', Validators.required],
+      'user': ['', Validators.required]
+    });
   }
 
   ngAfterViewInit() {
@@ -50,7 +59,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       this.api.getAllUsers().subscribe((data) => {
         this.users = Object.values(data);
         this.dataSource.data = this.users;
-        console.log(this.dataSource.data);
       }, error => {
         throw error;
       });
@@ -59,6 +67,23 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  addUsers(event) {
+    if ( event.checked === true ) {
+      this.addUser = true;
+    } else {
+      this.addUser = false;
+    }
+  }
 
+  get email() {
+    return this.userForm.get('email');
+  }
 
+  get password() {
+    return this.userForm.get('password');
+  }
+
+  onSubmit() {
+    console.log(this.userForm.value);
+  }
 }

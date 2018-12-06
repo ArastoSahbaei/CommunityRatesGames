@@ -4,10 +4,15 @@
 }
 
 mat-drawer-content {
-  border-left: 1px solid #E91E63;
+
 }
 
 .dashboard {
+  border-right: 1px solid #E91E63;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 1px solid #E91E63;
+  border-bottom: 1px solid #E91E63;
   width: 15%
 }
 
@@ -20,6 +25,17 @@ table {
   height: 275px;
 }
 
+mat-radio-button {
+  margin-left: 10px;
+}
+
 mat-paginator {
   width: 60%;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
 }

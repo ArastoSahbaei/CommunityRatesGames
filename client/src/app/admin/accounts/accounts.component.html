@@ -1,11 +1,39 @@
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened class="dashboard">
     <mat-checkbox value="1" color="primary" [checked]="checkbox" (change)="showAllUsers($event)">Show all users</mat-checkbox>
+    <mat-checkbox value="1" color="primary" [checked]="checkbox" (change)="addUsers($event)">Add user</mat-checkbox>
   </mat-drawer>
 
   <mat-drawer-content>
 
     <ng-container *ngIf="!choice; else showUsers"></ng-container>
+    <ng-container *ngIf="!addUser; else addAdmin"></ng-container>
+
+<!-- Add a new user or admin -->
+    <ng-template #addAdmin>
+      <mat-card [formGroup]="userForm" novalidate>
+        <mat-card-header>Add a user</mat-card-header>
+
+        <mat-form-field>
+          <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+          <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input id="password" matInput placeholder="Password" type="password" formControlName="password" class="form-control" required >
+          <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
+        </mat-form-field>
+
+        <mat-radio-group formControlName="user">
+          <mat-radio-button name="user"  color="primary" value="1">User</mat-radio-button>
+          <mat-radio-button name="user"  color="primary" value="2">Admin</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-card-actions>
+          <button mat-raised-button type="button" [disabled]="!userForm.valid" (click)="onSubmit()" color="primary">Add User</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-template>
 
 <!--    Show all users in mat table   -->
     <ng-template #showUsers>
