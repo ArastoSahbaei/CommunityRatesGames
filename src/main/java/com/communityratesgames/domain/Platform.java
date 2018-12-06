@@ -36,17 +36,6 @@ public class Platform implements Serializable {
         this.games = games;
     }
 
-    public Platform(PlatformModel model) {
-        this.id = model.getId();
-        this.name = model.getName();
-        this.releaseYear = model.getReleaseYear();
-        this.company = new Company(model.getCompany());
-        this.games = new ArrayList<Game>();
-        for (GameModel game : model.getGames()) {
-            this.games.add(new Game(game));
-        }
-    }
-
     protected Platform() { }
 
     public Long getId() {

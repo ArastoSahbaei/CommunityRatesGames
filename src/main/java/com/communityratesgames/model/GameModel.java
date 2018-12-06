@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import com.communityratesgames.domain.Game;
 import com.communityratesgames.domain.Platform;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 
 import javax.json.*;
@@ -36,23 +38,72 @@ public class GameModel implements Serializable {
 
         return object;
     }
-    public GameModel test (String input) {
+
+
+    public GameModel test(String input) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<String> list = new ArrayList<>();
+        try {
+            JsonNode root = objectMapper.readTree(input);
+            GameModel gameModel = new GameModel();
+            gameModel.setReleaseDate(Timestamp.valueOf(root.get("releaseDate").asText()));
+            gameModel.setTitle(root.get("title").asText());
+            gameModel.setCompany(root.get("company").asText());
+            JsonNode jn = root.get("platforms");
+            for (JsonNode n : jn
+                 ) {
+                list.add(n.asText());
+            }
+            gameModel.setPlatforms(list);
+
+
+         //   gameModel.setCompany(json.getString("company"));
+           // gameModel.setPlatforms(herp);
+            return gameModel;
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+
+
+        /*
         GameModel gameModel = new GameModel();
         JsonObject json = jsonFromString(input);
         ArrayList<String> herp = new ArrayList<>();
 
         JsonArray derp = json.getJsonArray("platforms");
-        for (JsonValue v:derp
-             ) {
+        for (JsonValue v : derp
+        ) {
             herp.add(v.toString());
         }
+*/
+    }
 
-        gameModel.setReleaseDate(Timestamp.valueOf(json.getString("releaseDate")));
+
+
+
+
+            public GameModel(Game game) {
+            this.title = game.getTitle();
+            this.company = game.getCompany().getCompanyName();
+            this.platforms = game.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
+            this.verified = game.isVerified();
+            this.averageRating = game.getAverageRating();
+        }
+    }
+
+
+/*
+        //gameModel.setReleaseDate(Timestamp.valueOf(json.getString("releaseDate")));
         gameModel.setTitle(json.getString("title"));
         gameModel.setCompany(json.getString("company"));
         gameModel.setPlatforms(herp);
         return gameModel;
     }
+*/
 /*
     public GameModel toModel(String input) {
         GameModel gm = new GameModel();
@@ -66,15 +117,6 @@ public class GameModel implements Serializable {
         return gm;
     }
 */
-    public GameModel(Game game) {
-        this.title = game.getTitle();
-        this.company = game.getCompany().getCompanyName();
-        this.platforms = game.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
-        this.verified = game.isVerified();
-        this.averageRating = game.getAverageRating();
-    }
-}
-
 
 /*
 
