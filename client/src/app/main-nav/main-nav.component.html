@@ -12,9 +12,9 @@
   <mat-menu #admin="matMenu">
     <span>ADMIN</span>
     <hr>
-    <button mat-menu-item routerLink="admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
+    <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
     <hr>
-    <button mat-menu-item routerLink="admin/accounts"><mat-icon>perm_contact_calendar</mat-icon> Accounts</button>
+    <button mat-menu-item routerLink="start/admin/accounts"><mat-icon>perm_contact_calendar</mat-icon> Accounts</button>
   </mat-menu>
 
   <mat-menu #user="matMenu">
@@ -24,8 +24,8 @@
     </div>
 
     <hr>
-    <button mat-menu-item routerLink="user/profile">       <mat-icon>account_circle</mat-icon>             Profile</button>
-    <button mat-menu-item routerLink="user/my-games">      <mat-icon>favorite</mat-icon>                   My Games</button>
+    <button mat-menu-item routerLink="start/user/profile">       <mat-icon>account_circle</mat-icon>             Profile</button>
+    <button mat-menu-item routerLink="start/user/my-games">      <mat-icon>favorite</mat-icon>                   My Games</button>
 
     <hr>
     <div class="titleForLoggedInUsers">
@@ -33,9 +33,9 @@
     </div>
     <hr>
 
-    <button mat-menu-item routerLink="user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add Game</button>
-    <button mat-menu-item routerLink="user/report-a-bug">  <mat-icon>bug_report</mat-icon>                 Report a Bug</button>
-    <button mat-menu-item routerLink="user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
+    <button mat-menu-item routerLink="start/user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add Game</button>
+    <button mat-menu-item routerLink="start/user/report-a-bug">  <mat-icon>bug_report</mat-icon>                 Report a Bug</button>
+    <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
   </mat-menu>
 
   <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
@@ -44,9 +44,9 @@
     <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
   </button>
   <mat-menu #games="matMenu">
-    <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
-    <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
-    <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
+    <button mat-menu-item routerLink="start/game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
+    <button mat-menu-item routerLink="start/game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
+    <button mat-menu-item routerLink="start/game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
   </mat-menu>
 
   <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
