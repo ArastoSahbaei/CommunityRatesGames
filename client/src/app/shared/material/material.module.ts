@@ -10,8 +10,10 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule,
-  MatSidenavModule,
+  MatMenuModule, MatPaginatorModule,
+  MatRadioModule,
+  MatSidenavModule, MatSortModule,
+  MatTableModule,
   MatToolbarModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -37,7 +39,11 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatFormFieldModule,
     FlexLayoutModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatRadioModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
 })
 export class MaterialModule { }

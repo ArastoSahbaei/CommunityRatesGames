@@ -52,7 +52,6 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
     );
   }
@@ -64,6 +63,10 @@ export class ApiService {
   getOneGameByTitle(title: string) {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getOneGamebyTitle(),{headers: Headers.HeaderJSON(),
       params: { title : title}})
+  }
+
+  getAllUsers() {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()})
   }
 
 }
