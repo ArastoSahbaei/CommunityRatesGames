@@ -42,11 +42,11 @@ public class RatingService implements RatingDataAccess {
     }
 
     @Override
-    public Rating findByGameIdAndUserId(String gameId, String userId) {
+    public Rating findByGameIdAndUserId(String title, String username) {
         try {
-            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
-                    .setParameter("gameId",gameId)
-                    .setParameter("userId",userId)
+            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username")
+                    .setParameter("title",title)
+                    .setParameter("username",username)
                     .getSingleResult();
         }catch (Exception e) {
             return null;

@@ -108,6 +108,12 @@ public class GameController {
     public Response getTopRatedGames(
             @QueryParam("limit") Integer limit,
             @QueryParam("page") Integer page) {
-        return Response.ok().build();
+        try {
+            List<Game> topRatedGames = dal.getTopRatedGames(limit,page);
+            return Response.ok(topRatedGames).build();
+        } catch (Exception e) {
+            return Response.status(414).build();
+        }
+
     }
 }
