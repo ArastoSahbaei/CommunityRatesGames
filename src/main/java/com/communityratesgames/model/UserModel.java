@@ -1,6 +1,7 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import org.apache.log4j.Logger;
 
 import javax.json.*;
 import java.io.Serializable;
@@ -8,6 +9,8 @@ import java.io.StringReader;
 import java.sql.Timestamp;
 
 public class UserModel implements Serializable {
+
+    private final static Logger logger = Logger.getLogger(com.communityratesgames.model.UserModel.class);
 
     private Long id;
     private Timestamp userCreated;
@@ -40,15 +43,15 @@ public class UserModel implements Serializable {
             username = json.getString("username");
             password = user.encryptPassword(json.getString("password"));
             userCreated = user.getTimestamp();
+            role = json.getString("role");
         } else {
             username = user.getUserName();
             user.setPassword(password);
             userCreated = null;
+            role = null;
         }
 
         id = user.getId();
-        role = user.getRole();
-        System.out.println("ROLE:::::::::::::::::::::::::::::::::::::::::::::::::::: " + role);
 
         user.setEmail(email);
         user.setUserName(username);

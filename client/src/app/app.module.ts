@@ -30,6 +30,7 @@ import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
 import {GlobalErrorHandlingService} from "./shared/service/global-error-handling.service";
 import { AdminComponent } from './admin/admin.component';
+import { AccountsComponent } from './admin/accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AdminComponent } from './admin/admin.component';
     MygamesComponent,
     ErrorComponent,
     GamePageComponent,
-    AdminComponent
+    AdminComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,

@@ -21,12 +21,14 @@ import {GamePageComponent} from "./game/game-page/game-page.component";
 import {AdminComponent} from "./admin/admin.component";
 import {AdminGuard} from "./admin/admin.guard";
 import {CompanyComponent} from "./admin/company/company.component";
+import {AccountsComponent} from "./admin/accounts/accounts.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, children: [
       {path: 'login', component: LoginComponent},
       {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
-          {path: 'company', component: CompanyComponent}
+          {path: 'company', component: CompanyComponent},
+          {path: 'accounts', component: AccountsComponent}
         ]},
       {path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
           {path: 'profile', component: ProfileComponent},

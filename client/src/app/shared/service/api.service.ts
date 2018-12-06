@@ -52,13 +52,16 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
   getTop100(){
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()})
+  }
+
+  getAllUsers() {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()})
   }
 }
 
