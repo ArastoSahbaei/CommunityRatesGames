@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  height: 400px;
+}
+
+mat-drawer-content {
+  border-left: 1px solid #E91E63;
+}
+
+.dashboard {
+  width: 15%
+}
+
+mat-checkbox {
+  margin: 10px 0 0 10px;
+}
+
+table {
+  width: 60%;
+  height: 275px;
+}
+
+mat-paginator {
+  width: 60%;
+}
