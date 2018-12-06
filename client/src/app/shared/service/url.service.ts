@@ -15,6 +15,7 @@ export class UrlService {
   private user: string = "/user";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
+  private oneGamebyTitle: string = "/title";
   private searchGame: string = "/search";
   private company: string = "/company";
 
@@ -57,6 +58,10 @@ export class UrlService {
   getGames() {
     return this.games;
   }
+
+  getOneGamebyTitle(){
+    return this.oneGamebyTitle;
+}
 
   getLogin() {
     return this.login;
