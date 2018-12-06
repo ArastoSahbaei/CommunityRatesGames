@@ -1,4 +1,5 @@
-<h1 align="center"> Community Rates Games </h1>
+<h1 align="center"> Community Rates Games 
+  <p align="center"> This project was born on 31/10-18 </p></h1>
 <h1 align="center"> This project was born on 31/10-18 </h1>
 
 Five unemployed dudes with one given goal, one destination, to create a community for devoted video-game admirers to share their their thoughts and opinions.
