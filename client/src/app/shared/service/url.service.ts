@@ -11,8 +11,10 @@ export class UrlService {
   private top100: string = "/toprated";
   private games: string = "/game";
   private login: string = "/login";
+  private logout: string = "/logout?token=";
   private register: string = "/register";
   private user: string = "/user";
+  private session: string = "/session";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
   private searchGame: string = "/search";
@@ -62,13 +64,15 @@ export class UrlService {
     return this.login;
   }
 
+  getLogout() {
+    return this.logout;
+  }
+
   getUser() {
     return this.user;
   }
+
+  getSession() {
+    return this.session;
+  }
 }
-
-
-
-
-
-

@@ -30,27 +30,16 @@ public class AuthToken {
     }
     
     private static int find(Long token) {
-        // Assume that the auth table is sorted.
-        int index = logins.size() / 2;
-        int step = index / 2;
-        long current = 0;
-        
         if (logins.size() == 0) {
             return -1;
         }
 
-        do {
-            // Binary search
-            current = logins.get(index).token;
-            if (current == token) {
-                return index;
-            } else if (current < token) {
-                index += step;
-            } else if (current > token) {
-                index -= step;
+        for (int i = 0; i < logins.size(); i++) {
+            if (logins.get(i).token.equals(token)) {
+                return i;
             }
-            step /= 2;
-        } while (step != 0);
+        }
+
         return -1;
     }
 
