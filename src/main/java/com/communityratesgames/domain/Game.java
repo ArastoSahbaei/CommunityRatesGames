@@ -51,6 +51,19 @@ public class Game {
         this.verified = false;
     }
 
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", releaseDate=" + releaseDate +
+                ", title='" + title + '\'' +
+                ", company=" + company +
+                ", verified=" + verified +
+                ", platforms=" + platforms +
+                ", averageRating=" + averageRating +
+                '}';
+    }
+
     public Long getId() {
         return this.id;
     }
