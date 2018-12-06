@@ -22,11 +22,13 @@ import {AdminComponent} from "./admin/admin.component";
 import {AdminGuard} from "./admin/admin.guard";
 import {CompanyComponent} from "./admin/company/company.component";
 import {AccountsComponent} from "./admin/accounts/accounts.component";
+import {CrgComponent} from "./crg/crg.component";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
+  {path: '', component: CrgComponent},
+  {path: 'start', component: HomeComponent, children: [
+        {path: 'login', component: LoginComponent},
+        {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
           {path: 'company', component: CompanyComponent},
           {path: 'accounts', component: AccountsComponent}
         ]},
@@ -44,7 +46,7 @@ const routes: Routes = [
           {path: 'gamepage', component: GamePageComponent}
         ]},
       {path: 'search', component: SearchgameComponent}
-    ]},
+      ]},
   {path: 'error', component: ErrorComponent},
   {path: 'register', component: RegisterComponent},
   { path: '**', component: PageNotFoundComponent }

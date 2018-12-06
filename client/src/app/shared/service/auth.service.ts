@@ -40,7 +40,7 @@ export class AuthService {
         this.credentials = Object.values(response);
         if ( this.credentials[5] === 'admin' ) {
          this.loggedInAdmin$.next(true);
-         this.router.navigate(['/admin']);
+         this.router.navigate(['start/admin']);
          this.storage.setItem('admin', this.credentials[2]);
          this.logged = true;
          this.failedLogin$.next(false);
