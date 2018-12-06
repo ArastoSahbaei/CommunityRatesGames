@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Game;
+import com.communityratesgames.model.GameModel;
 import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
@@ -109,5 +110,15 @@ public class GameController {
             @QueryParam("limit") Integer limit,
             @QueryParam("page") Integer page) {
         return Response.ok().build();
+    }
+    @POST
+    @Path("/jsonp")
+    @Consumes({"application/JSON"})
+    @Produces({"application/JSON"})
+    public Response test(String input)
+ {
+     GameModel gameModel = new GameModel();
+        return Response.ok(gameModel.test(input)).build();
+
     }
 }

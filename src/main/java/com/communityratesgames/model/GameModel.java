@@ -3,6 +3,7 @@ package com.communityratesgames.model;
 import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,9 +11,7 @@ import com.communityratesgames.domain.Game;
 import com.communityratesgames.domain.Platform;
 import lombok.*;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 
 @ToString
 @NoArgsConstructor
@@ -37,19 +36,24 @@ public class GameModel implements Serializable {
 
         return object;
     }
-    public Game test (String input) {
+    public GameModel test (String input) {
+        GameModel gameModel = new GameModel();
         JsonObject json = jsonFromString(input);
+        ArrayList<String> herp = new ArrayList<>();
 
-        this.releaseDate=Timestamp.valueOf(json.getString("releaseDate"));
-        this.title=json.getString("title");
-        this.company=json.getString("company");
-        this.platforms=json.getJsonArray.("platforms");
+        JsonArray derp = json.getJsonArray("platforms");
+        for (JsonValue v:derp
+             ) {
+            herp.add(v.toString());
+        }
 
-        );
-
-        return game;
+        gameModel.setReleaseDate(Timestamp.valueOf(json.getString("releaseDate")));
+        gameModel.setTitle(json.getString("title"));
+        gameModel.setCompany(json.getString("company"));
+        gameModel.setPlatforms(herp);
+        return gameModel;
     }
-
+/*
     public GameModel toModel(String input) {
         GameModel gm = new GameModel();
 
@@ -61,7 +65,7 @@ public class GameModel implements Serializable {
 
         return gm;
     }
-
+*/
     public GameModel(Game game) {
         this.title = game.getTitle();
         this.company = game.getCompany().getCompanyName();
