@@ -5,7 +5,7 @@ This quest meant a long distance from society and human interraction, but since 
 </p>
 <br />
 
-                                   ....legend says that they are stil in that dungeon
+                               ....legend says that they are stil in that dungeon
 
 <br />
 
