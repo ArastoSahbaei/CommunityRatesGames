@@ -1,7 +1,6 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
-import lombok.*;
 import org.apache.log4j.Logger;
 
 import javax.json.*;
@@ -9,11 +8,6 @@ import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class UserModel implements Serializable {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.model.UserModel.class);
@@ -26,6 +20,9 @@ public class UserModel implements Serializable {
     private String role;
     private String emailSubject;
     private String emailText;
+
+    public UserModel() {
+    }
 
     private JsonObject jsonFromString(String input) {
         JsonReader jsonReader = Json.createReader(new StringReader(input));
@@ -83,5 +80,53 @@ public class UserModel implements Serializable {
         this.password = user.getPassword();
         this.role = user.getRole();
         this.userCreated = user.getUserCreated();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Timestamp getUserCreated() {
+        return userCreated;
+    }
+
+    public void setUserCreated(Timestamp userCreated) {
+        this.userCreated = userCreated;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

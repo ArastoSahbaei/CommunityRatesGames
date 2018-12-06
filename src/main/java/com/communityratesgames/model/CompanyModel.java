@@ -2,7 +2,11 @@ package com.communityratesgames.model;
 
 import com.communityratesgames.domain.Company;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.Serializable;
+import java.io.StringReader;
 
 public class CompanyModel implements Serializable {
 
@@ -11,7 +15,44 @@ public class CompanyModel implements Serializable {
     private String country;
     private String city;
 
-    public CompanyModel(){}
+    public CompanyModel() {
+    }
+
+    public JsonObject jsonFromString(String input) {
+        JsonReader jsonReader = Json.createReader(new StringReader(input));
+        JsonObject object = jsonReader.readObject();
+        jsonReader.close();
+
+        return object;
+    }
+
+    public Company toEntity(String input){
+        JsonObject json = jsonFromString(input);
+        Company company = new Company();
+
+        companyName = json.getString("companyName");
+        country = json.getString("country");
+        city = json.getString("city");
+
+        id = company.getId();
+
+        company.setCompanyName(companyName);
+        company.setCountry(country);
+        company.setCity(city);
+        company.setId(id);
+
+        return company;
+    }
+
+    public CompanyModel toCompany(Company company){
+        CompanyModel cm = new CompanyModel();
+
+        cm.companyName = company.getCompanyName();
+        cm.country = company.getCountry();
+        cm.city = company.getCity();
+
+        return cm;
+    }
 
     public CompanyModel(Company company){
         this.id = company.getId();
@@ -21,7 +62,7 @@ public class CompanyModel implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -29,7 +70,7 @@ public class CompanyModel implements Serializable {
     }
 
     public String getCompanyName() {
-        return companyName;
+        return this.companyName;
     }
 
     public void setCompanyName(String companyName) {
@@ -37,7 +78,7 @@ public class CompanyModel implements Serializable {
     }
 
     public String getCountry() {
-        return country;
+        return this.country;
     }
 
     public void setCountry(String country) {
@@ -45,7 +86,7 @@ public class CompanyModel implements Serializable {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {

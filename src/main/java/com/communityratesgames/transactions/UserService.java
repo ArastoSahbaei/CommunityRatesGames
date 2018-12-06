@@ -1,6 +1,7 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.User;
+import com.communityratesgames.user.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
@@ -35,11 +36,20 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User login(User user) {
+    public AuthToken login(User user) {
         User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
             .setParameter("email", user.getEmail())
             .getSingleResult();
         String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
-        return (u.getPassword().equals(password)) ? u : null;
+        if (u.getPassword().equals(password)) {
+            Long token = AuthToken.generateNewToken(u.getId());
+            return new AuthToken(token, u.getId());
+        } else {
+            return null;
+        }
+    }
+
+    public boolean logout(Long token) {
+        return AuthToken.close(token);
     }
 }
