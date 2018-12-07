@@ -17,3 +17,4 @@ This quest meant a long distance from society and human interraction, but since 
       Gustaf Lé Cyborg    <br />
       Björn Kristensson   </p>
 
+<hr>
