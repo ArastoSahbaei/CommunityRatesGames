@@ -10,9 +10,10 @@ This quest meant a long distance from society and human interraction, but since 
 <br />
 
   <h1 align="center"> Developers :star2: </h1>
+  <p align="center">
 Arasto Sahbaei <br />
 Robin Svensson - No not feed cheese after midnight<br />
 Daniel Ivestig <br />
 Gustaf Lé Cyborg <br />
-Björn Kristensson
+Björn Kristensson </p>
 
