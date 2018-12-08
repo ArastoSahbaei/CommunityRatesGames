@@ -24,9 +24,8 @@ public class RatingService implements RatingDataAccess {
 
     @Override
     public List<Rating> showAllRatings() {
-        Query q = em.createNativeQuery("SELECT * FROM rating_entity", Rating.class);
-        List<Rating> rating = q.getResultList();
-        return rating;
+        return em.createQuery("SELECT r FROM Rating r", Rating.class)
+                .getResultList();
     }
 
     @Override
@@ -44,7 +43,7 @@ public class RatingService implements RatingDataAccess {
     @Override
     public Rating findByGameIdAndUserId(String title, String username) {
         try {
-            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username")
+            return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
                     .setParameter("title",title)
                     .setParameter("username",username)
                     .getSingleResult();
