@@ -10,9 +10,7 @@ export class ContactComponent implements OnInit {
 
   contact: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.contact = this.formBuilder.group({
@@ -25,7 +23,7 @@ export class ContactComponent implements OnInit {
     return this.contact.get('email')
   }
 
-  get messages(){
+  get message(){
    return this.contact.get('messages')
   }
 }
