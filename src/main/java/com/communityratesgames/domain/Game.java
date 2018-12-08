@@ -10,6 +10,21 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @Table(name = "game_entity")
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(
+        name = "searchForFiveGamesByTitle",
+        procedureName = "SEARCH_FIVE_GAMES",
+        resultClasses = {Game.class},
+        parameters = {
+            @StoredProcedureParameter(
+                name = "query",
+                type = String.class,
+                mode = ParameterMode.IN
+            )
+        }
+    )
+})
+
 public class Game {
 
     @Id

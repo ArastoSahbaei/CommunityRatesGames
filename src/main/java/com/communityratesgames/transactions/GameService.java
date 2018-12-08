@@ -10,6 +10,7 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -58,11 +59,17 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
+        StoredProcedureQuery searchForFiveGamesByTitle =
+                em.createNamedStoredProcedureQuery("searchForFiveGamesByTitle");
+
+        StoredProcedureQuery sp =
+                searchForFiveGamesByTitle.setParameter("query",query);
+        /*
             List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title AND g.verified = TRUE",Game.class)
                     .setParameter("title", query+'%')
                     .setMaxResults(5)
-                    .getResultList();
-            return reduceGameToTitleAndId(results);
+                    .getResultList();*/
+            return reduceGameToTitleAndId(sp.getResultList());
     }
 
     @Override
