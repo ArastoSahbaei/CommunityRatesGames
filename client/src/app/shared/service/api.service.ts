@@ -60,9 +60,15 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()})
   }
 
+  getOneGameByTitle(title: string) {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getOneGamebyTitle(),{headers: Headers.HeaderJSON(),
+      params: { title : title}})
+  }
+
   getAllUsers() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()})
   }
+
 }
 
 
