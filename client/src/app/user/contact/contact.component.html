@@ -7,11 +7,11 @@
    </mat-form-field>
 
    <mat-form-field>
-     <textarea id="message" matInput placeholder="Message" type="message" formControlName="message" class="form-control" required ></textarea>
+     <textarea matInput rows="10" cols="62" id="message" placeholder="Message" formControlName="message" class="form-control" required ></textarea>
      <mat-error *ngIf="(message.dirty || message.touched) && message.invalid">Message required</mat-error>
    </mat-form-field>
 
    <mat-card-actions>
-     <button mat-raised-button type="button" [disabled]="!contact.valid" (click)="onSubmit()" color="primary">Sign in</button>
+     <button mat-raised-button type="button" [disabled]="!contact.valid" (click)="onSubmit()" color="primary">Send</button>
    </mat-card-actions>
   </mat-card>

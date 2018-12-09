@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ApiService} from "../../shared/service/api.service";
+import {Contact} from "../../shared/interface/contact.interface";
 
 @Component({
   selector: 'app-contact',
@@ -10,12 +12,13 @@ export class ContactComponent implements OnInit {
 
   contact: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private api: ApiService) {}
 
   ngOnInit() {
     this.contact = this.formBuilder.group({
       'email': ['', [Validators.required, Validators.email]],
-      'messages': ['', Validators.required]
+      'message': ['', Validators.required]
     });
   }
 
@@ -24,6 +27,16 @@ export class ContactComponent implements OnInit {
   }
 
   get message(){
-   return this.contact.get('messages')
+   return this.contact.get('message')
+  }
+
+  onSubmit() {
+    const contactMessage = {} as Contact;
+    contactMessage.email = this.contact.value.email;
+    contactMessage.message = this.contact.value.message;
+
+    this.api.addNewContactMessage(contactMessage).subscribe((response) => {
+      console.log(response);
+    });
   }
 }

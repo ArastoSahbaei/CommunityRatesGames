@@ -7,6 +7,7 @@ export class UrlService {
 
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
+  private mongoUrl: string ="http://localhost:4000";
   private rating: string = "/rating";
   private top100: string = "/toprated";
   private games: string = "/game";
@@ -19,8 +20,11 @@ export class UrlService {
   private searchGame: string = "/search";
   private company: string = "/company";
 
-
   constructor() {
+  }
+
+  getMongoUrl() {
+    return this.mongoUrl;
   }
 
   getCompany() {

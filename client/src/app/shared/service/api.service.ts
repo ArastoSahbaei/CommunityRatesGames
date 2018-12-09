@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   getRating() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()})
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
   checkCredentials(body: User) {
@@ -57,18 +57,21 @@ export class ApiService {
   }
 
   getTop100(){
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()})
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
   }
 
   getOneGameByTitle(title: string) {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getOneGamebyTitle(),{headers: Headers.HeaderJSON(),
-      params: { title : title}})
+      params: { title : title}});
   }
 
   getAllUsers() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()})
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()});
   }
 
+  addNewContactMessage(message: any) {
+    return this.httpClient.post(this.url.getMongoUrl() + "/add", message, {headers: Headers.HeaderJSON()});
+  }
 }
 
 
