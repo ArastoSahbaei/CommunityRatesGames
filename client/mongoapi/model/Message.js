@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let message = new Schema({
+let Message = new Schema({
   email: {
     type: String
   },
@@ -12,4 +12,4 @@ let message = new Schema({
   collection: 'messages'
 });
 
-module.exports = mongoose.model('message', message);
+module.exports = mongoose.model('Message', Message);

@@ -7,6 +7,7 @@ import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
 import {Observable} from "rxjs";
 import {Company} from "../interface/company.interface";
+import {Contact} from "../interface/contact.interface";
 
 
 
@@ -69,7 +70,8 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()});
   }
 
-  addNewContactMessage(message: any) {
+  addNewContactMessage(message: Contact) {
+    console.log(message);
     return this.httpClient.post(this.url.getMongoUrl() + "/add", message, {headers: Headers.HeaderJSON()});
   }
 }

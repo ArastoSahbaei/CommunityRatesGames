@@ -7,7 +7,7 @@ export class UrlService {
 
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
-  private mongoUrl: string ="http://localhost:4000";
+  private mongoUrl: string ="http://localhost:4000/messages";
   private rating: string = "/rating";
   private top100: string = "/toprated";
   private games: string = "/game";

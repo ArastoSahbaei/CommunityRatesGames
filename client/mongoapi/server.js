@@ -1,26 +1,25 @@
 const express = require('express'),
+  path = require('path'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
   mongoose = require('mongoose'),
-  config = require('./src/mongo/DB');
+  config = require('./DB');
 
-  const app = express();
+  const messageRoute = require('./routes/message.route');
 
   mongoose.Promise = global.Promise;
 
-  mongoose.connect(config.DB).then(
+  mongoose.connect(config.DB, { useNewUrlParser : true }).then(
     () => {console.log('Connection to database') },
     error => { console.log('Can not find a database' + error)}
   );
 
-  const messageRoute = require('./src/app/shared/routes/message.route');
-
+  const app = express();
   app.use(bodyParser.json);
   app.use(cors());
+  app.use('/messages', messageRoute);
 
   const port = process.env.PORT || 4000;
-
-  app.use('/messages', messageRoute);
 
   const server = app.listen(port, function () {
     console.log('Listening on port: ' + port);

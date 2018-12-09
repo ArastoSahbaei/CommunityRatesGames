@@ -37,6 +37,6 @@ export class ContactComponent implements OnInit {
 
     this.api.addNewContactMessage(contactMessage).subscribe((response) => {
       console.log(response);
-    });
+    }, error1 => console.log(error1));
   }
 }
