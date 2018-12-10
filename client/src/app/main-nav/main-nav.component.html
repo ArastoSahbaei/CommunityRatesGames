@@ -1,14 +1,14 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-<mat-toolbar color="primary" class="wrapper">
+<mat-toolbar titleForLoggedInUsers="primary" class="wrapper">
 
   <div class="signIn">
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
   </div>
-
+  <div class="loggedInUser">
   <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
-
+  </div>
   <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
   <mat-menu #admin="matMenu">
