@@ -1,0 +1,31 @@
+.container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 10px;
+}
+
+.lista2{
+  grid-column: 2 / 1;
+  grid-row: 1 / 1;
+}
+
+.rubrik{
+  text-align: center;
+}
+.example-game {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('../../assets/images/mariocart.jpg');
+  background-size: cover;
+}
+.example-header-image3 {
+   background-image: url('../../assets/images/halo.jpg');
+   background-size: cover;
+}
+.example-header-image2 {
+  background-image: url('../../assets/images/spyro.jpg');
+  background-size: cover;
+}
