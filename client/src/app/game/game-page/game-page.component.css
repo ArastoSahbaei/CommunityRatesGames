@@ -11,16 +11,12 @@
   align-self: center;
   justify-self: center;
   margin-top: 40px;
-
-
 }
 
 .första{
   grid-column: 3 / 5;
   grid-row: 3 / 4;
   text-align: center;
-
-
 }
 
 .andra{
@@ -28,7 +24,6 @@
   grid-row: 3 / 4;
   text-align: center;
   margin-top: 80px;
-
 }
 
 .tredje{
