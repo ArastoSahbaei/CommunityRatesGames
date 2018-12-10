@@ -71,9 +71,7 @@ export class ApiService {
   }
 
   addNewContactMessage(message: object) {
-    console.log(message);
-    console.log(this.url.getMongoUrl());
-    return this.httpClient.post(`${this.url.getMongoUrl()}`, message).subscribe(res => {console.log('done')});
+    return this.httpClient.post(this.url.getMongoUrl(), message);
   }
 }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../shared/service/api.service";
-import {Contact} from "../../shared/interface/contact.interface";
 
 @Component({
   selector: 'app-contact',
@@ -36,6 +35,7 @@ export class ContactComponent implements OnInit {
       message : this.contact.value.message
     };
 
-    this.api.addNewContactMessage(contactMessage);
+    this.api.addNewContactMessage(contactMessage)
+      .subscribe((response) => { console.log("Message sent")});
   }
 }
