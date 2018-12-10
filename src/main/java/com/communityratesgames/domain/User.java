@@ -42,6 +42,10 @@ public class User implements Serializable {
         this.role = "user";
     }
 
+    public String toJMS() {
+        return this.getUserName();
+    }
+
     public Timestamp getTimestamp() {
         return new Timestamp(System.currentTimeMillis());
     }
@@ -131,4 +135,16 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userCreated=" + userCreated +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +23,9 @@ public class UserController {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
     private UserModel userModel = new UserModel();
+
+    @Inject
+    JMSSender sender;
 
     @Inject
     private DataAccessLocal dal;
@@ -61,12 +65,8 @@ public class UserController {
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.login(toEntity);
             UserModel toModel = userModel.toModel(user2);
+            sender.registerLog(user2.toJMS());
             return Response.ok(toModel).build();
-         /*   AuthToken token = dal.login(toEntity);
-            if (token == null) {
-                return Response.status(400).build();
-            }
-            return Response.ok(token).build();*/
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();
         }
