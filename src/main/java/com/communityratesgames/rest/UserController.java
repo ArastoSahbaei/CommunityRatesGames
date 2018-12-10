@@ -65,7 +65,7 @@ public class UserController {
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.login(toEntity);
             UserModel toModel = userModel.toModel(user2);
-            sender.registerLog(userModel.toJMS(user2));
+            sender.registerLog(user2.toJMS());
             return Response.ok(toModel).build();
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();

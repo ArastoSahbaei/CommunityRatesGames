@@ -73,10 +73,6 @@ public class UserModel implements Serializable {
         return um;
     }
 
-    public String toJMS(User user) {
-        return user.getUserName();
-    }
-
     public UserModel(User user) {
         this.id = user.getId();
         this.username = user.getUserName();

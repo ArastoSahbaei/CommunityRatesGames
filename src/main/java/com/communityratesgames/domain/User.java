@@ -42,6 +42,10 @@ public class User implements Serializable {
         this.role = "user";
     }
 
+    public String toJMS() {
+        return this.getUserName();
+    }
+
     public Timestamp getTimestamp() {
         return new Timestamp(System.currentTimeMillis());
     }
