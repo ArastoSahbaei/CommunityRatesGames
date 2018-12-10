@@ -32,10 +32,11 @@ public class RatingController {
             return Response.status(404).build();
         }
     }
+
     @GET
     @Path("/bygame")
     @Produces({"application/JSON"})
-    public Response findRatingsByGameId(@QueryParam("title") String title) {
+    public Response findRatingsByGameTitle(@QueryParam("title") String title) {
         try {
             List<RatingModel> result = dal.findRatingsByGameId(title);
             return Response.ok(result).build();
@@ -43,7 +44,20 @@ public class RatingController {
             return Response.status(404).build();
         }
     }
+
     @GET
+    @Path("/byuser")
+    @Produces({"application/JSON"})
+    public Response findRatingsByUsername(@QueryParam("user") String user) {
+        try {
+            List<RatingModel> result = dal.findAllUserRatings(user);
+            return Response.ok(result).build();
+        } catch (Exception e) {
+            return Response.status(404).build();
+        }
+    }
+
+        @GET
     @Path("/average")
     @Produces({"application/JSON"})
     public Response getAverageOfGame(@QueryParam("title") String gameTitle) {

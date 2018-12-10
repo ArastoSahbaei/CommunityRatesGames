@@ -26,7 +26,23 @@ public class RatingService implements RatingDataAccess {
     @Override
     public List<RatingModel> showAllRatings() {
         return convertListEntityToModel(
-                em.createQuery("SELECT r FROM Rating r", Rating.class)
+            em.createQuery("SELECT r FROM Rating r", Rating.class)
+                .getResultList()
+        );
+    }
+
+    @Override
+    public List<RatingModel> findRatingsByGameId(String gameTitle) {
+        return convertListEntityToModel(
+            em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
+                .setParameter("game",gameTitle).getResultList()
+        );
+    }
+
+    public List<RatingModel> findAllUserRatings(String username) {
+        return convertListEntityToModel(
+            em.createQuery("SELECT r FROM Rating r WHERE r.user.userName = :user", Rating.class)
+                .setParameter("user", username)
                 .getResultList()
         );
     }
@@ -38,18 +54,10 @@ public class RatingService implements RatingDataAccess {
     }
 
     @Override
-    public List<RatingModel> findRatingsByGameId(String gameTitle) {
-        return convertListEntityToModel(
-                em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
-                .setParameter("game",gameTitle).getResultList()
-        );
-    }
-
-    @Override
     public RatingModel findByGameIdAndUserId(String title, String username) {
         try {
             return new RatingModel(
-                    em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
+                em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
                     .setParameter("title",title)
                     .setParameter("username",username)
                     .getSingleResult()
@@ -85,15 +93,6 @@ public class RatingService implements RatingDataAccess {
         } catch (Exception e){
             System.out.println("Problem writing to database : " + e );
         }
-    }
-
-    @Override
-    public List<RatingModel> findAllUserRatings(String username) {
-        return convertListEntityToModel(
-                em.createQuery("SELECT r FROM Rating r WHERE r.user = :user", Rating.class)
-                        .setParameter("user", username)
-                        .getResultList()
-        );
     }
 
     private Rating ratingModelToEntity(RatingModel model) throws Exception{
