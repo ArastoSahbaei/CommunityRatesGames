@@ -16,7 +16,7 @@ This quest meant a long distance from society and human interraction, but since 
       Daniel Ivestig      <br />
       Gustaf Lé Cyborg    <br />
       Björn Kristensson   </p>
-
+<br />
 <hr>
 <h1 align="center"> Join Us On Discord! </h1>
 
