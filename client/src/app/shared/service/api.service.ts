@@ -70,7 +70,7 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()});
   }
 
-  addNewContactMessage(message: object) {
+  addNewContactMessage(message: Contact) {
     return this.httpClient.post(this.url.getMongoUrl(), message);
   }
 }

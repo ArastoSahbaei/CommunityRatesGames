@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../shared/service/api.service";
+import {Contact} from "../../shared/interface/contact.interface";
 
 @Component({
   selector: 'app-contact',
@@ -30,10 +31,10 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    const contactMessage = {
-      email : this.contact.value.email,
-      message : this.contact.value.message
-    };
+    const contactMessage = {} as Contact;
+
+    contactMessage.email = this.contact.value.email;
+    contactMessage.message = this.contact.value.message;
 
     this.api.addNewContactMessage(contactMessage)
       .subscribe((response) => { console.log("Message sent")});

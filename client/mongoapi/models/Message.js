@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Message = new Schema({
-  person_name: {
+  email: {
     type: String
   },
-  business_name: {
+  message: {
     type: String
   }
 },{

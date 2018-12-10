@@ -6,8 +6,9 @@ let Message = require('../models/Message');
 
 messageRoutes.route('/add').post(function (req, res) {
   let message = new Message(req.body);
+  console.log(req.body);
   message.save()
-    .then(business => {
+    .then(message => {
       res.status(200).json({'message': 'message in added successfully'});
     })
     .catch(err => {
