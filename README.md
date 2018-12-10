@@ -18,3 +18,9 @@ This quest meant a long distance from society and human interraction, but since 
       Björn Kristensson   </p>
 
 <hr>
+<h1 align="center"> Join Us On Discord! </h1>
+
+<p align="center">
+<a href="https://discord.gg/XrXsmVy" 
+target="_blank"><img src="https://img.shields.io/discord/414084485110431745.svg?style=for-the-badge" 
+alt="https://img.shields.io/discord/414084485110431745.svg?style=for-the-badge" width="340" height="120" border="20" /></a></p>
