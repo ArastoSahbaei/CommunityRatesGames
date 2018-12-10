@@ -70,9 +70,10 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()});
   }
 
-  addNewContactMessage(message: Contact) {
+  addNewContactMessage(message: object) {
     console.log(message);
-    return this.httpClient.post(this.url.getMongoUrl() + "/add", message, {headers: Headers.HeaderJSON()});
+    console.log(this.url.getMongoUrl());
+    return this.httpClient.post(`${this.url.getMongoUrl()}`, message).subscribe(res => {console.log('done')});
   }
 }
 

@@ -31,12 +31,11 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    const contactMessage = {} as Contact;
-    contactMessage.email = this.contact.value.email;
-    contactMessage.message = this.contact.value.message;
+    const contactMessage = {
+      email : this.contact.value.email,
+      message : this.contact.value.message
+    };
 
-    this.api.addNewContactMessage(contactMessage).subscribe((response) => {
-      console.log(response);
-    }, error1 => console.log(error1));
+    this.api.addNewContactMessage(contactMessage);
   }
 }
