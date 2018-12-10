@@ -15,25 +15,23 @@ public class CompanyModel implements Serializable {
     private String country;
     private String city;
 
-    public CompanyModel() {
+    public CompanyModel() {}
+
+    private JsonObject jsonObjectFromString(String input) {
+        JsonReader jr = Json.createReader(new StringReader(input));
+        JsonObject jsonObject = jr.readObject();
+
+        jr.close();
+        return jsonObject;
     }
 
-    public JsonObject jsonFromString(String input) {
-        JsonReader jsonReader = Json.createReader(new StringReader(input));
-        JsonObject object = jsonReader.readObject();
-        jsonReader.close();
-
-        return object;
-    }
-
-    public Company toEntity(String input){
-        JsonObject json = jsonFromString(input);
+    public Company jsonPtoEntity(String companyEntity){
+        JsonObject jsonP = jsonObjectFromString(companyEntity);
         Company company = new Company();
 
-        companyName = json.getString("companyName");
-        country = json.getString("country");
-        city = json.getString("city");
-
+        companyName = jsonP.getString("companyName");
+        country = jsonP.getString("country");
+        city = jsonP.getString("city");
         id = company.getId();
 
         company.setCompanyName(companyName);
@@ -45,13 +43,12 @@ public class CompanyModel implements Serializable {
     }
 
     public CompanyModel toCompany(Company company){
-        CompanyModel cm = new CompanyModel();
+        CompanyModel companyModel = new CompanyModel();
 
-        cm.companyName = company.getCompanyName();
-        cm.country = company.getCountry();
-        cm.city = company.getCity();
-
-        return cm;
+        companyModel.companyName = company.getCompanyName();
+        companyModel.country = company.getCountry();
+        companyModel.city = company.getCity();
+        return companyModel;
     }
 
     public CompanyModel(Company company){
