@@ -9,9 +9,10 @@ import java.util.List;
 @Local
 public interface RatingDataAccess {
 
-    public abstract List<Rating> showAllRatings();
+    public abstract List<RatingModel> showAllRatings();
     public abstract float getAverageOfGame(String gameTitle);
-    public abstract List<Rating> findRatingsByGameId(String gameTitle);
-    public abstract Rating findByGameIdAndUserId(String gameTitle, String username);
+    public abstract List<RatingModel> findRatingsByGameId(String gameTitle);
+    public abstract RatingModel findByGameIdAndUserId(String gameTitle, String username);
     public abstract void addNewRating(RatingModel rating);
+    public abstract List<RatingModel> findAllUserRatings(String username);
 }

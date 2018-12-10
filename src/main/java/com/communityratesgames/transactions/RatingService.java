@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 @Default
@@ -23,9 +24,11 @@ public class RatingService implements RatingDataAccess {
     private EntityManager em;
 
     @Override
-    public List<Rating> showAllRatings() {
-        return em.createQuery("SELECT r FROM Rating r", Rating.class)
-                .getResultList();
+    public List<RatingModel> showAllRatings() {
+        return convertListEntityToModel(
+                em.createQuery("SELECT r FROM Rating r", Rating.class)
+                .getResultList()
+        );
     }
 
     @Override
@@ -35,18 +38,22 @@ public class RatingService implements RatingDataAccess {
     }
 
     @Override
-    public List<Rating> findRatingsByGameId(String gameTitle) {
-        return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
-                .setParameter("game",gameTitle).getResultList();
+    public List<RatingModel> findRatingsByGameId(String gameTitle) {
+        return convertListEntityToModel(
+                em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
+                .setParameter("game",gameTitle).getResultList()
+        );
     }
 
     @Override
-    public Rating findByGameIdAndUserId(String title, String username) {
+    public RatingModel findByGameIdAndUserId(String title, String username) {
         try {
-            return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
+            return new RatingModel(
+                    em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
                     .setParameter("title",title)
                     .setParameter("username",username)
-                    .getSingleResult();
+                    .getSingleResult()
+            );
         }catch (Exception e) {
             return null;
         }
@@ -80,6 +87,15 @@ public class RatingService implements RatingDataAccess {
         }
     }
 
+    @Override
+    public List<RatingModel> findAllUserRatings(String username) {
+        return convertListEntityToModel(
+                em.createQuery("SELECT r FROM Rating r WHERE r.user = :user", Rating.class)
+                        .setParameter("user", username)
+                        .getResultList()
+        );
+    }
+
     private Rating ratingModelToEntity(RatingModel model) throws Exception{
         Rating entity = new Rating();
         try {
@@ -105,7 +121,6 @@ public class RatingService implements RatingDataAccess {
         }catch (Exception e) {
             throw new SQLException("Failed to get user : " + e.getMessage(), e);
         }
-
     }
 
     private Game getGameFromTitle(String title) throws Exception {
@@ -116,6 +131,10 @@ public class RatingService implements RatingDataAccess {
         }catch (Exception e) {
             throw new SQLException("Failed to get game : " + e.getMessage(), e);
         }
+    }
+
+    private List<RatingModel> convertListEntityToModel (List<Rating> entityList) {
+        return entityList.stream().map(RatingModel::new).collect(Collectors.toList());
     }
 }
 

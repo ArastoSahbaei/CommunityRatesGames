@@ -26,8 +26,7 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response showAllRatings() {
         try {
-            List<RatingModel> result = dal.showAllRatings()
-                    .stream().map(RatingModel::new).collect(Collectors.toList());
+            List<RatingModel> result = dal.showAllRatings();
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -38,8 +37,7 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response findRatingsByGameId(@QueryParam("title") String title) {
         try {
-            List<RatingModel> result = dal.findRatingsByGameId(title)
-                    .stream().map(RatingModel::new).collect(Collectors.toList());
+            List<RatingModel> result = dal.findRatingsByGameId(title);
             return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
@@ -62,8 +60,8 @@ public class RatingController {
     @Produces({"application/JSON"})
     public Response findByGameIdAndUserId(@QueryParam("title") String gameTitle, @QueryParam("user") String username) {
         try {
-            Rating result = dal.findByGameIdAndUserId(gameTitle, username);
-            return Response.ok(new RatingModel(result)).build();
+            RatingModel result = dal.findByGameIdAndUserId(gameTitle, username);
+            return Response.ok(result).build();
         } catch ( Exception e ) {
             return Response.status(404).build();
         }
@@ -75,16 +73,9 @@ public class RatingController {
     public Response createNewRating(RatingModel rating) {
         try {
             dal.addNewRating(rating);
-            return Response.ok("Hej").build();
+            return Response.ok("rating added").build();
         } catch ( Exception e ) {
             return Response.status(404).build();
         }
     }
-/*
-    @PostMapping("/rating")
-    public ResponseEntity<RatingModel> registerNewRating (@RequestBody RatingModel rating){
-        RatingModel newRating = ratingService.createNewRating(rating);
-        return new ResponseEntity<>(newRating, HttpStatus.OK);
-    }
-    */
 }

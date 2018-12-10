@@ -16,11 +16,12 @@ public interface DataAccessLocal {
 
 
     //Rating
-    public List<Rating> showAllRatings();
-    public List<Rating> findRatingsByGameId(String gameTitle);
+    public List<RatingModel> showAllRatings();
+    public List<RatingModel> findRatingsByGameId(String gameTitle);
     public float getAverageOfGame(String gameTitle);
-    public Rating findByGameIdAndUserId(String gameTitle, String username);
+    public RatingModel findByGameIdAndUserId(String gameTitle, String username);
     public void addNewRating(RatingModel rating);
+    public List<RatingModel> findAllUserRatings(String username);
 
 
     //Platform
