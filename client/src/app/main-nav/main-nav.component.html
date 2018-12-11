@@ -7,15 +7,41 @@
                    [mode]="(isHandset$ | async) ? 'over' : 'side'"
                    [opened]="!(isHandset$ | async)">
 
-        <mat-toolbar>Username</mat-toolbar>
+
+        <!-- SIDEBAR -->
+        <mat-toolbar>LOGOTYPE</mat-toolbar>
         <mat-nav-list>
 
-          <button mat-menu-item routerLink="game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
-          <button mat-menu-item routerLink="game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
-          <button mat-menu-item routerLink="game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
+          <div class="signIn">
+            <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
+          </div>
+
+          <div class="loggedInUser">
+            <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+          </div>
+          <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+
+          <div class="navigationButtonHome">
+            <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
+          </div>
+
+          <div class="navigationButtonGame">
+            <button mat-button [matMenuTriggerFor]="games">
+              <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
+            </button>
+          </div>
+
+        <ul>
+            <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-instagram"    aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-github"       aria-hidden="true"></i></a></li>
+        </ul>
 
         </mat-nav-list>
       </mat-sidenav>
+      <!-- SIDEBAR END -->
+
       <mat-sidenav-content>
 
         <mat-toolbar titleForLoggedInUsers="primary" class="wrapper">

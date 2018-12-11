@@ -100,18 +100,63 @@
     display: unset;
   }
 
+  .wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 65px;
+    background: #424242;
+  }
+
   .hamburgerButton {
+    grid-column: 1/1;
+    grid-row: 1/1;
     display: unset;
   }
+
+  .signIn {
+    justify-self: center;
+    grid-column: 2/2;
+    grid-row: 1/1;
+  }
+
+  .loggedInUser {
+    justify-self: start;
+    align-self: center;
+    grid-column: 2/2;
+    grid-row: 1/1;
+    font-family: arial;
+    font-size: 17px;
+    letter-spacing: 3px;
+    text-shadow: 0.2px 0.2px whitesmoke;
+    text-align: center;
+  }
+
+  .navigationButtonHome {
+    justify-self: end;
+    align-self: center;
+    grid-column: 4/4;
+    grid-row: 1/1;
+  }
+
+  .navigationButtonGame {
+    display: none;
+
+  }
+
+  .searchBar {
+    grid-column: 6/12;
+    grid-row: 1/1;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logo {
+   display: none;
+  }
 }
-
-
-
-
-
-
-
-
 
 /**
     SOCIAL MEDIA
