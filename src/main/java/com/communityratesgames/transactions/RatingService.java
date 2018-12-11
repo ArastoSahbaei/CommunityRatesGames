@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -62,7 +63,7 @@ public class RatingService implements RatingDataAccess {
                     .setParameter("username",username)
                     .getSingleResult()
             );
-        }catch (Exception e) {
+        }catch (PersistenceException e) {
             return null;
         }
     }
@@ -112,14 +113,15 @@ public class RatingService implements RatingDataAccess {
         return entity;
     }
 
-    private User getUserFromUsername(String name) throws Exception {
+    private User getUserFromUsername(String name) {
         try {
             return em.createQuery("SELECT u FROM User u WHERE u.userName = :username",User.class)
                     .setParameter("username",name)
                     .getSingleResult();
-        }catch (Exception e) {
-            throw new SQLException("Failed to get user : " + e.getMessage(), e);
+        }catch (PersistenceException e) {
+            return null;
         }
+
     }
 
     private Game getGameFromTitle(String title) throws Exception {
