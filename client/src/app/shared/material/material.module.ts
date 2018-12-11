@@ -10,9 +10,11 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatMenuModule, MatPaginatorModule,
+  MatMenuModule,
+  MatPaginatorModule,
   MatRadioModule,
-  MatSidenavModule, MatSortModule,
+  MatSidenavModule,
+  MatSortModule,
   MatTableModule,
   MatToolbarModule
 } from "@angular/material";
