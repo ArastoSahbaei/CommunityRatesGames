@@ -64,12 +64,7 @@ public class GameService implements GameDataAccess {
 
         StoredProcedureQuery sp =
                 searchForFiveGamesByTitle.setParameter("query",query);
-        /*
-            List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title AND g.verified = TRUE",Game.class)
-                    .setParameter("title", query+'%')
-                    .setMaxResults(5)
-                    .getResultList();*/
-            return reduceGameToTitleAndId(sp.getResultList());
+        return reduceGameToTitleAndId(sp.getResultList());
     }
 
     @Override
@@ -107,18 +102,4 @@ public class GameService implements GameDataAccess {
         }
         return outputStream.toString();
     }
-
-/*
-    @Override
-    public GameModel createGame(GameModel gameModel) {
-        GameInterface gameEntity = new GameInterface(gameModel);
-        return new GameModel(gameRepository.save(gameEntity));
-    }
-
-    public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
-        PageRequest request = PageRequest.of(page-1, limit);
-        List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
-        return items;
-    }
-*/
 }
