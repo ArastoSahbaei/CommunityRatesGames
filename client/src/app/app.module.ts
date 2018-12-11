@@ -32,6 +32,7 @@ import {GlobalErrorHandlingService} from "./shared/service/global-error-handling
 import { AdminComponent } from './admin/admin.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CrgComponent } from './crg/crg.component';
     GamePageComponent,
     AdminComponent,
     AccountsComponent,
-    CrgComponent
+    CrgComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { CrgComponent } from './crg/crg.component';
     FormsModule,
     ReactiveFormsModule
   ],
+  entryComponents: [DialogComponent],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
   bootstrap: [AppComponent]
 })

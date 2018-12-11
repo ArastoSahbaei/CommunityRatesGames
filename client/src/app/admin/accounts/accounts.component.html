@@ -14,17 +14,15 @@
 <!-- Show statistic about a certain user -->
     <ng-template #showUser>
       <mat-card [formGroup]="showUserForm">
-        <mat-card-header>Search user email</mat-card-header>
+        <mat-card-header>Search user</mat-card-header>
 
-        <div class="container">
           <div class="searchFieldAndIcon inputIconBg">
             <input type="text" placeholder="Search user" [matAutocomplete]="auto" [formControl]="search">
             <i class="fa fa-search" aria-hidden="true"></i>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userSearch($event.option.value)">
-              <mat-option *ngFor="let user of usersFound" [value]="user.name">{{user.name}}</mat-option>
+              <mat-option *ngFor="let user of usersFound" [value]="user.user">{{user.user}}</mat-option>
             </mat-autocomplete>
           </div>
-        </div>
       </mat-card>
     </ng-template>
 

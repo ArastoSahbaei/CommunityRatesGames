@@ -21,6 +21,7 @@ export class UrlService {
   private searchGame: string = "/search";
   private company: string = "/company";
   private logs: string = "/logs";
+  private statistic: string = "/statistic";
 
   constructor() {
   }
@@ -55,6 +56,10 @@ export class UrlService {
 
   getCredential() {
     return this.credential;
+  }
+
+  getStatistic() {
+    return this.statistic;
   }
 
   getRating() {

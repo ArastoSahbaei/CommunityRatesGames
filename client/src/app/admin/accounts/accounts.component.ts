@@ -1,10 +1,11 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../shared/service/api.service";
-import {MatDrawer, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatDialog, MatDrawer, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {User} from "../../shared/interface/user.interface";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Register} from "../../shared/interface/register.interface";
 import {SearchuserService} from "../../shared/service/searchuser.service";
+import {DialogComponent} from "../../dialog/dialog.component";
 
 @Component({
   selector: 'app-accounts',
@@ -45,7 +46,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
   constructor(private api: ApiService,
               private searchUser: SearchuserService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -119,12 +121,25 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         }
       });
     this.search.setValue('');
+
     //SELECT COUNT(DISTINCT(logintime)), user from amountoflogins where user =
 
   }
 
-  userSearch(event) {
+  openDialog(data: string): void {
 
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {user: data}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  userSearch(event) {
+    this.openDialog(event);
   }
 
   get email() {

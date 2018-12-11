@@ -5,6 +5,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -13,6 +14,7 @@ import {
   MatMenuModule,
   MatPaginatorModule,
   MatRadioModule,
+  MatSelectModule,
   MatSidenavModule,
   MatSortModule,
   MatTableModule,
@@ -45,7 +47,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatRadioModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule { }
