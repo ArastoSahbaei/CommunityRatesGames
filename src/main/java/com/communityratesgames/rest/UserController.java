@@ -64,6 +64,9 @@ public class UserController {
         try {
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.login(toEntity);
+            if (user2 == null) {
+                return Response.status(400).entity("invalid credentials").build();
+            }
             UserModel toModel = userModel.toModel(user2);
             sender.registerLog(user2.toJMS());
             return Response.ok(toModel).build();
