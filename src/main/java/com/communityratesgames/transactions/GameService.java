@@ -100,18 +100,4 @@ public class GameService implements GameDataAccess {
         }
         return outputStream.toString();
     }
-
-/*
-    @Override
-    public GameModel createGame(GameModel gameModel) {
-        GameInterface gameEntity = new GameInterface(gameModel);
-        return new GameModel(gameRepository.save(gameEntity));
-    }
-
-    public List<Map<String, Object>> getTopRatedGames(Integer limit, Integer page) {
-        PageRequest request = PageRequest.of(page-1, limit);
-        List<Map<String, Object>> items = gameRepository.getTopRatedGames(request);
-        return items;
-    }
-*/
 }

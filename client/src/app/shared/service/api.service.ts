@@ -32,6 +32,15 @@ export class ApiService {
       });
   }
 
+// For admin view that is connected to Logging EE server
+  searchUser(user: string):Observable<any> {
+    console.log(user);
+    return this.httpClient.get(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getSearch(),
+      { headers: Headers.HeaderJSON(),
+                params: { name: user }
+      });
+  }
+
   searchGameByTitle() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getSearchGameByTitle(), {headers: Headers.HeaderJSON()});
   }

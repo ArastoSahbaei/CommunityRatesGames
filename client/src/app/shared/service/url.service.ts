@@ -8,6 +8,7 @@ export class UrlService {
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
   private mongoUrl: string ="http://localhost:4000/message/add";
+  private loggingUrl: string = "http://localhost:8080/communityratesgameslogging";
   private rating: string = "/rating";
   private top100: string = "/toprated";
   private games: string = "/game";
@@ -19,6 +20,7 @@ export class UrlService {
   private oneGamebyTitle: string = "/title";
   private searchGame: string = "/search";
   private company: string = "/company";
+  private logs: string = "/logs";
 
   constructor() {
   }
@@ -73,6 +75,14 @@ export class UrlService {
 
   getUser() {
     return this.user;
+  }
+
+  getLogs() {
+    return this.logs;
+  }
+
+  getBaseUrlLogs() {
+    return this.loggingUrl;
   }
 }
 
