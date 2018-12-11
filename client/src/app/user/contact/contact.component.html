@@ -1,20 +1,17 @@
- <mat-card [formGroup]="contact">
+ <mat-card [formGroup]="contact" novalidate>
     <mat-card-title>Contact Us</mat-card-title>
-      <mat-form-field>
-        <p>Email:</p>
-        <input id="email" matInput placeholder="" formControlName="email" class="form-control" type="email" required>
-        <span *ngIf="(email.dirty || email.touched) && email.invalid">Email is required</span>
-      </mat-form-field>
-      <mat-form-field>
-        <p>Username:</p>
-        <input id="username" matInput placeholder="" type="username" formControlName="username" class="form-control" required >
-        <span *ngIf="(username.dirty || username.touched) && username.invalid">Username is required</span>
-      </mat-form-field>
-      <mat-form-field>
-        <p>Message:</p>
-        <textarea matInput rows="6" cols="70" placeholder="Please type your message here"></textarea>
-      </mat-form-field>
-    <mat-card-actions>
-      <button mat-raised-button type="button" (click)="onSubmit()" color="primary">Send Message</button>
-    </mat-card-actions>
+
+   <mat-form-field>
+     <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+     <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+   </mat-form-field>
+
+   <mat-form-field>
+     <textarea matInput rows="10" cols="62" id="message" placeholder="Message" formControlName="message" class="form-control" required ></textarea>
+     <mat-error *ngIf="(message.dirty || message.touched) && message.invalid">Message required</mat-error>
+   </mat-form-field>
+
+   <mat-card-actions>
+     <button mat-raised-button type="button" [disabled]="!contact.valid" (click)="onSubmit()" color="primary">Send</button>
+   </mat-card-actions>
   </mat-card>
