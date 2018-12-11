@@ -5,6 +5,17 @@
   text-shadow: 0.2px 0.2px whitesmoke;
   text-align: center;
 }
+.sidenav-container {
+  height: 100%;
+}
+
+.hamburgerButton {
+ /* display: none; */
+}
+
+.sidenav {
+ /* display: none; */
+}
 
 .wrapper {
   display: grid;
@@ -12,9 +23,6 @@
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: 65px;
   background: #424242;
-}
-.sidenav-container {
-  height: 100%;
 }
 
 .sidenav {
@@ -136,6 +144,10 @@
 }
 
 @media only screen and (max-width: 850px) {
+  .hamburgerButton {
+    display: none;
+  }
+
   .wrapper {
     display: grid;
     grid-gap: 10px;
