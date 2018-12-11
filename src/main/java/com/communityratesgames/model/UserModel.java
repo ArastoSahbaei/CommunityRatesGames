@@ -32,16 +32,19 @@ public class UserModel implements Serializable {
         return object;
     }
 
-    public User toEntity(String input) {
+    public User toEntity(String input, boolean encryptPassword) {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
         email = json.getString("email");
-        password = json.getString("password");
+        if (encryptPassword) {
+            password = user.encryptPassword(json.getString("password"));
+        } else {
+            password = json.getString("password");
+        }
 
         if (json.containsKey("username")) {
             username = json.getString("username");
-            password = user.encryptPassword(json.getString("password"));
             userCreated = user.getTimestamp();
             role = json.getString("role");
         } else {
