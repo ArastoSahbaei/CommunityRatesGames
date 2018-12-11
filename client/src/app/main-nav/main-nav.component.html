@@ -4,6 +4,13 @@
 <mat-toolbar titleForLoggedInUsers="primary" class="wrapper">
 
   <div class="signIn">
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
   <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
   </div>
   <div class="loggedInUser">
@@ -122,43 +129,6 @@
             (click)="drawer.toggle()">
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
           </button>
-
-          <span>COMMUNITY RATED GAMES</span>
-          <span class="mainTitles"></span>
-
-          <div fxFlex="600px" fxFlex.xs="100" fxFlexOffset.xs="0" fxFlexOffset="calc(50% - 400px)" fxLayout="column"
-               style="padding: 10px;">
-
-            <mat-form-field>
-              <mat-label>
-                <mat-icon>search</mat-icon>
-                search game...
-              </mat-label>
-              <input [formControl]="autoCompleteControl"
-                     aria-label="Number" matInput [matAutocomplete]="auto">
-              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
-                  {{ item.name | titlecase}}
-                </mat-option>
-              </mat-autocomplete>
-            </mat-form-field>
-
-          </div>
-
-
-          <a mat-list-item routerLink="/home" routerLinkActive="x">
-            <mat-icon>home</mat-icon>
-            Home</a>
-          <a mat-list-item routerLink="/game" routerLinkActive="x">
-            <mat-icon>games</mat-icon>
-            Game</a>
-          <span class="loginRegister"></span>
-          <a mat-list-item routerLink="/login" routerLinkActive="x">
-            <mat-icon>how_to_reg</mat-icon>
-            Login</a>
-          <a mat-list-item routerLink="/register" routerLinkActive="x">
-            <mat-icon>fingerprint</mat-icon>
-            Register</a>
         </mat-toolbar>
         <ng-content></ng-content>
       </mat-sidenav-content>
