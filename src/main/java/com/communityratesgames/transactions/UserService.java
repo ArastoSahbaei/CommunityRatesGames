@@ -1,6 +1,7 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.User;
+import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.user.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
