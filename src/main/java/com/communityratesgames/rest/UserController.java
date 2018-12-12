@@ -5,6 +5,7 @@ import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
+import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.NoArgsConstructor;
@@ -53,6 +54,8 @@ public class UserController {
             User user2 = dal.register(toEntity);
             UserModel toModel = userModel.toModel(user2);
             return Response.ok(toModel).build();
+        } catch (JsonError e) {
+            return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
@@ -72,6 +75,8 @@ public class UserController {
             UserModel toModel = userModel.toModel(user2);
             sender.registerLog(user2.toJMS());
             return Response.ok(toModel).build();
+        } catch (JsonError e) {
+            return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         }

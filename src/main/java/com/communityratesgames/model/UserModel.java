@@ -1,6 +1,7 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import com.communityratesgames.util.JsonError;
 import org.apache.log4j.Logger;
 
 import javax.json.*;
@@ -32,12 +33,19 @@ public class UserModel implements Serializable {
         return object;
     }
 
-    public User toEntity(String input) {
+    public User toEntity(String input) throws JsonError {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
-        email = json.getString("email");
-        password = json.getString("password");
+        email = json.getString("email", null);
+        if (email == null) {
+            throw new JsonError(1, "email not specified");
+        }
+
+        password = json.getString("password", null);
+        if (password == null) {
+            throw new JsonError(2, "password not specified");
+        }
 
         if (json.containsKey("username")) {
             username = json.getString("username");
