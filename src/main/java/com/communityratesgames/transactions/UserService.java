@@ -8,9 +8,7 @@ import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -38,14 +36,18 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User login(User user) {
-        User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
-            .setParameter("email", user.getEmail())
-            .getSingleResult();
-        String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
-        if (u.getPassword().equals(password)) {
-            //Long token = AuthToken.generateNewToken(u.getId());
-            return u;
-        } else {
+        try {
+            User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
+                .setParameter("email", user.getEmail())
+                .getSingleResult();
+            String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
+            if (u.getPassword().equals(password)) {
+                //Long token = AuthToken.generateNewToken(u.getId());
+                return u;
+            } else {
+                return null;
+            }
+        } catch (NoResultException e) {
             return null;
         }
     }
