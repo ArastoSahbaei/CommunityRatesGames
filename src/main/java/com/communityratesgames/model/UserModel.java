@@ -51,19 +51,17 @@ public class UserModel implements Serializable {
             username = json.getString("username");
             password = user.encryptPassword(json.getString("password"));
             userCreated = user.getTimestamp();
-            role = json.getString("role");
         } else {
             username = user.getUserName();
             user.setPassword(password);
             userCreated = null;
-            role = null;
         }
 
         id = user.getId();
 
         user.setEmail(email);
         user.setUserName(username);
-        user.setRole(role);
+        user.setRole("User");
         user.setUserCreated(userCreated);
         user.setId(id);
 
