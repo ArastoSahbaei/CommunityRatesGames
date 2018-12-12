@@ -126,12 +126,12 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   openDialog(data: string): void {
 
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+      width: '550px',
+      height: '500px',
       data: {user: data}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
     });
   }
 
