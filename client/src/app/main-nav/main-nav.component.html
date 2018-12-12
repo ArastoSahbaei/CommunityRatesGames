@@ -4,7 +4,7 @@
     <mat-sidenav-container class="sidenav-container">
       <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
                    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-                   [mode]="(isHandset$ | async) ? 'over' : 'side'"
+                   [mode]="(isHandset$ | async) ? 'over' : 'over'"
                    [opened]="!(isHandset$ | async)">
 
 
@@ -27,8 +27,7 @@
 
           <div class="navigationButtonGame">
             <button mat-button [matMenuTriggerFor]="games">
-              <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
-            </button>
+              <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span> </button>
           </div>
 
         <ul>

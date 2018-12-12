@@ -11,8 +11,6 @@
 }
 
 .sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
   display: none;
 }
 
@@ -95,7 +93,7 @@
 /* FOR TABLETS */
 @media only screen and (max-width: 900px) {
   .sidenav {
-    width: 200px;
+    width: 250px;
     box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
     display: unset;
   }
@@ -140,8 +138,10 @@
   }
 
   .navigationButtonGame {
-    display: none;
-
+    justify-self: start;
+    align-self: center;
+    grid-column: 5/5;
+    grid-row: 1/1;
   }
 
   .searchBar {
@@ -157,6 +157,20 @@
    display: none;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
     SOCIAL MEDIA
