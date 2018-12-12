@@ -10,3 +10,15 @@ mat-error {
 button{
   color: greenyellow;
 }
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+p {
+  font-family: Lato;
+}
