@@ -36,6 +36,11 @@ public class UserService implements UserDataAccess {
                 .getResultList().size() != 0) {
             throw new JsonError(3, "email already registered");
         }
+        if (em.createNativeQuery("SELECT * FROM user_entity where userName = ?")
+                .setParameter(1, user.getUserName())
+                .getResultList().size() != 0) {
+            throw new JsonError(4, "username already registered");
+        }
         em.persist(user);
         return user;
     }
