@@ -1,16 +1,12 @@
-input {
-  background-color: gray;
-  color: white;
-  border-radius: 10px;
-}
-
 mat-card {
   display: flex;
   flex-direction: column;
   width: 30%;
-  margin: 0 auto;
+  margin: 10px auto 0;
 }
-
-span {
+mat-error {
   color: red;
+}
+button{
+  color: greenyellow;
 }
