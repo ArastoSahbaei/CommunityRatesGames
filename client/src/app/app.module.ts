@@ -32,6 +32,7 @@ import {GlobalErrorHandlingService} from "./shared/service/global-error-handling
 import { AdminComponent } from './admin/admin.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
+import {BarRatingModule} from "ngx-bar-rating";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { CrgComponent } from './crg/crg.component';
     LayoutModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BarRatingModule
   ],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
   bootstrap: [AppComponent]
