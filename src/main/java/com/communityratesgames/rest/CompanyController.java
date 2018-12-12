@@ -49,7 +49,7 @@ public class CompanyController {
     @Consumes("application/json")
     public Response createCompany(String compis){
         try {
-            Company toEntity = companyModel.toEntity(compis);
+            Company toEntity = companyModel.jsonPtoEntity(compis);
             Company company2 = dal.registerNewCompany(toEntity);
             CompanyModel toCompany = companyModel.toCompany(company2);
             return Response.ok(toCompany).build();

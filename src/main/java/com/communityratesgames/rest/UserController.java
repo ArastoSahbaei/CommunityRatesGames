@@ -2,7 +2,9 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
+import com.communityratesgames.user.AuthToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,9 @@ public class UserController {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
     private UserModel userModel = new UserModel();
+
+    @Inject
+    JMSSender sender;
 
     @Inject
     private DataAccessLocal dal;
@@ -60,7 +65,24 @@ public class UserController {
             User toEntity = userModel.toEntity(credentials);
             User user2 = dal.login(toEntity);
             UserModel toModel = userModel.toModel(user2);
+            sender.registerLog(user2.toJMS());
             return Response.ok(toModel).build();
+        } catch ( Exception e ) {
+            return Response.status(401).entity(e.getMessage()).build();
+        }
+    }
+
+    @DELETE
+    @Path("/logout")
+    @Produces({"application/json"})
+    @Consumes({"application/JSON"})
+    public Response logout(@QueryParam("token") Long token) {
+        try {
+            if (dal.logout(token)) {
+                return Response.status(200).build();
+            } else {
+                return Response.status(400).build();
+            }
         } catch ( Exception e ) {
             return Response.status(401).entity(e.getMessage()).build();
         }

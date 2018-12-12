@@ -1,6 +1,8 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.User;
+import com.communityratesgames.jms.JMSSender;
+import com.communityratesgames.user.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
@@ -40,6 +42,15 @@ public class UserService implements UserDataAccess {
             .setParameter("email", user.getEmail())
             .getSingleResult();
         String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
-        return (u.getPassword().equals(password)) ? u : null;
+        if (u.getPassword().equals(password)) {
+            //Long token = AuthToken.generateNewToken(u.getId());
+            return u;
+        } else {
+            return null;
+        }
+    }
+
+    public boolean logout(Long token) {
+        return AuthToken.close(token);
     }
 }

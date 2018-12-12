@@ -1,7 +1,6 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.Company;
-import lombok.*;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -9,11 +8,6 @@ import javax.json.JsonReader;
 import java.io.Serializable;
 import java.io.StringReader;
 
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 public class CompanyModel implements Serializable {
 
     private Long id;
@@ -21,24 +15,23 @@ public class CompanyModel implements Serializable {
     private String country;
     private String city;
 
+    public CompanyModel() {}
 
+    private JsonObject jsonObjectFromString(String input) {
+        JsonReader jr = Json.createReader(new StringReader(input));
+        JsonObject jsonObject = jr.readObject();
 
-    public JsonObject jsonFromString(String input) {
-        JsonReader jsonReader = Json.createReader(new StringReader(input));
-        JsonObject object = jsonReader.readObject();
-        jsonReader.close();
-
-        return object;
+        jr.close();
+        return jsonObject;
     }
 
-    public Company toEntity(String input){
-        JsonObject json = jsonFromString(input);
+    public Company jsonPtoEntity(String companyEntity){
+        JsonObject jsonP = jsonObjectFromString(companyEntity);
         Company company = new Company();
 
-        companyName = json.getString("companyName");
-        country = json.getString("country");
-        city = json.getString("city");
-
+        companyName = jsonP.getString("companyName");
+        country = jsonP.getString("country");
+        city = jsonP.getString("city");
         id = company.getId();
 
         company.setCompanyName(companyName);
@@ -50,13 +43,12 @@ public class CompanyModel implements Serializable {
     }
 
     public CompanyModel toCompany(Company company){
-        CompanyModel cm = new CompanyModel();
+        CompanyModel companyModel = new CompanyModel();
 
-        cm.companyName = company.getCompanyName();
-        cm.country = company.getCountry();
-        cm.city = company.getCity();
-
-        return cm;
+        companyModel.companyName = company.getCompanyName();
+        companyModel.country = company.getCountry();
+        companyModel.city = company.getCity();
+        return companyModel;
     }
 
     public CompanyModel(Company company){
@@ -64,5 +56,37 @@ public class CompanyModel implements Serializable {
         this.companyName = company.getCompanyName();
         this.country = company.getCountry();
         this.city = company.getCity();
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCountry() {
+        return this.country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return this.city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

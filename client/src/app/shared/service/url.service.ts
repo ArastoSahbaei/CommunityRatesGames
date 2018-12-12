@@ -7,6 +7,7 @@ export class UrlService {
 
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
+  private mongoUrl: string ="http://localhost:4000/message/add";
   private rating: string = "/rating";
   private top100: string = "/toprated";
   private games: string = "/game";
@@ -15,11 +16,15 @@ export class UrlService {
   private user: string = "/user";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
+  private oneGamebyTitle: string = "/title";
   private searchGame: string = "/search";
   private company: string = "/company";
 
-
   constructor() {
+  }
+
+  getMongoUrl() {
+    return this.mongoUrl;
   }
 
   getCompany() {
@@ -57,6 +62,10 @@ export class UrlService {
   getGames() {
     return this.games;
   }
+
+  getOneGamebyTitle(){
+    return this.oneGamebyTitle;
+}
 
   getLogin() {
     return this.login;

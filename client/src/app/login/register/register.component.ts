@@ -18,8 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
-              private auth: AuthService,
-              private router: Router) { }
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -35,6 +34,7 @@ export class RegisterComponent implements OnInit {
     user.email = this.registerForm.value.email;
     user.username = this.registerForm.value.user;
     user.password = this.registerForm.value.password;
+    user.role = 'User';
 
     const person = {} as User ;
 

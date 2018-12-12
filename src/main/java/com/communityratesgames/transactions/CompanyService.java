@@ -1,7 +1,6 @@
 package com.communityratesgames.transactions;
 
 import com.communityratesgames.domain.Company;
-import com.communityratesgames.model.CompanyModel;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -19,19 +18,25 @@ public class CompanyService implements CompanyDataAccess {
     private EntityManager em;
 
     @Override
-    public Company registerNewCompany(CompanyModel companyModel) {
-        Company company = new Company(companyModel);
+    public  Company registerNewCompany(Company company) {
         em.persist(company);
         em.flush();
-
         return company;
     }
+
+
 
     @Override
     public List<Company> showAllCompanies() {
         Query q = em.createNativeQuery("SELECT * FROM company_entity", Company.class);
         List<Company> companies = q.getResultList();
         return companies;
+    }
+
+    @Override
+    public Company findCompanyByCompanyName(String companyName) {
+        return em.createQuery("SELECT c FROM Company c WHERE c.company.name = :company", Company.class)
+                .setParameter("company", companyName).getSingleResult();
     }
 
 

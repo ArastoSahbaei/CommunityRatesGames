@@ -7,6 +7,7 @@ import {Register} from "../interface/register.interface";
 import {User} from "../interface/user.interface";
 import {Observable} from "rxjs";
 import {Company} from "../interface/company.interface";
+import {Contact} from "../interface/contact.interface";
 
 
 
@@ -36,7 +37,7 @@ export class ApiService {
   }
 
   getRating() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()})
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
   checkCredentials(body: User) {
@@ -52,13 +53,25 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    console.log(body);
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
   getTop100(){
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()})
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
+  }
+
+  getOneGameByTitle(title: string) {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getOneGamebyTitle(),{headers: Headers.HeaderJSON(),
+      params: { title : title}});
+  }
+
+  getAllUsers() {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser(), {headers: Headers.HeaderJSON()});
+  }
+
+  addNewContactMessage(message: Contact) {
+    return this.httpClient.post(this.url.getMongoUrl(), message);
   }
 }
 

@@ -10,6 +10,7 @@ import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
@@ -30,63 +31,64 @@ public class RatingService implements RatingDataAccess {
 
     @Override
     public float getAverageOfGame(String gameTitle) {
-        Double derp = (double)em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.title = :game")
-                .setParameter("game",gameTitle).getSingleResult();
-        return derp.floatValue();
+        return em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.title = :game",Double.class)
+                .setParameter("game",gameTitle).getSingleResult().floatValue();
     }
 
     @Override
     public List<Rating> findRatingsByGameId(String gameTitle) {
-        return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game")
+        return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
                 .setParameter("game",gameTitle).getResultList();
     }
 
     @Override
-    public Rating findByGameIdAndUserId(String gameId, String userId) {
+    public Rating findByGameIdAndUserId(String title, String username) {
         try {
-            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :gameId AND r.user.userName = :userId")
-                    .setParameter("gameId",gameId)
-                    .setParameter("userId",userId)
+            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username")
+                    .setParameter("title",title)
+                    .setParameter("username",username)
                     .getSingleResult();
         }catch (Exception e) {
-            System.out.println("####### FIND RATING BY GAME AND USER FAILED #######");
             return null;
         }
     }
 
     @Override
     public void addNewRating(RatingModel rating) {
-        rating.setCreationDate(Timestamp.from(Instant.now()));
-        Rating newRating = ratingModelToEntity(rating);
-        String title = rating.getGame();
         try {
-            if (findByGameIdAndUserId(title, rating.getUser()) == null) {
+            rating.setCreationDate(Timestamp.from(Instant.now()));
+            Rating newRating = ratingModelToEntity(rating);
+            String title = rating.getGame();
+            String user = rating.getUser();
+            if (findByGameIdAndUserId(title, user) == null) {
                 em.persist(newRating);
-                System.out.println("###PERSISTED###");
+                System.out.printf("LOG: User %s added a new rating of game '%s' rated at %d",user,title,rating.getRating());
             }else {
-                em.createQuery("UPDATE Rating r SET r.rating = :rating WHERE r.game.title = :game")
+                em.createQuery("UPDATE Rating r SET r.rating = :rating, r.creationDate = :date WHERE r.game = :game AND r.user = :user")
                         .setParameter("rating", rating.getRating())
-                        //.setParameter("date", rating.getCreationDate())
-                        //.setParameter("user", rating.getUser())
-                        .setParameter("game", rating.getGame())
-                        //.getSingleResult());
+                        .setParameter("date", rating.getCreationDate())
+                        .setParameter("user", newRating.getUser())
+                        .setParameter("game", newRating.getGame())
                         .executeUpdate();
-                System.out.println("###UPDATED RATING###");
+                System.out.printf("LOG: User %s changed their rating of game '%s' to %d",user,title,rating.getRating());
             }
+            em.createQuery("UPDATE Game g SET g.averageRating = :average WHERE g.title = :game")
+                    .setParameter("average",getAverageOfGame(rating.getGame()))
+                    .setParameter("game", rating.getGame())
+                    .executeUpdate();
         } catch (Exception e){
             System.out.println("Problem writing to database : " + e );
         }
-        em.createQuery("UPDATE Game g SET g.averageRating = :average WHERE g.title = :game")
-                .setParameter("average",getAverageOfGame(rating.getGame()))
-                .setParameter("game", rating.getGame())
-                .executeUpdate();
-        System.out.println("###UPDATED AVERAGE###");
     }
 
-    private Rating ratingModelToEntity(RatingModel model) {
+    private Rating ratingModelToEntity(RatingModel model) throws Exception{
         Rating entity = new Rating();
-        entity.setGame(getGameFromTitle(model.getGame()));
-        entity.setUser(getUserFromUsername(model.getUser()));
+        try {
+            entity.setGame(getGameFromTitle(model.getGame()));
+            entity.setUser(getUserFromUsername(model.getUser()));
+        }catch (Exception e) {
+            throw new Exception("Failed to set entities: " + e.getMessage(), e);
+        }
         entity.setRating(model.getRating());
         if(model.getCreationDate() != null) {
             entity.setCreationDate(Timestamp.from(Instant.now()));
@@ -96,26 +98,24 @@ public class RatingService implements RatingDataAccess {
         return entity;
     }
 
-    public User getUserFromUsername(String name){
+    private User getUserFromUsername(String name) throws Exception {
         try {
-            return (User) em.createQuery("SELECT u FROM User u WHERE u.userName = :username")
+            return em.createQuery("SELECT u FROM User u WHERE u.userName = :username",User.class)
                     .setParameter("username",name)
                     .getSingleResult();
         }catch (Exception e) {
-            System.out.println("####### GET USER FAILED #######");
-            return null;
+            throw new SQLException("Failed to get user : " + e.getMessage(), e);
         }
 
     }
 
-    public Game getGameFromTitle(String title){
+    private Game getGameFromTitle(String title) throws Exception {
         try {
-            return (Game) em.createQuery("SELECT g FROM Game g WHERE g.title = :title")
+            return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
                     .setParameter("title",title)
                     .getSingleResult();
         }catch (Exception e) {
-            System.out.println("####### GET GAME FAILED #######");
-            return null;
+            throw new SQLException("Failed to get game : " + e.getMessage(), e);
         }
     }
 }

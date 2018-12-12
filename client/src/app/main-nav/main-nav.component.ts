@@ -57,7 +57,7 @@ export class MainNavComponent implements OnInit {
 
   public logInOut() {
     if (this.isLoggedIn === false) {
-      this.route.navigateByUrl('/login');
+      this.route.navigateByUrl('start/login');
     }
     else {
       this.storage.removeItem('name');

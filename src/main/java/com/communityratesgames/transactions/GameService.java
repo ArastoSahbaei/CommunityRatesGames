@@ -7,9 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -23,46 +21,58 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> showAllGames() {
-        Query q = em.createQuery("SELECT g FROM Game g", Game.class);
-        return (List<Game>) q.getResultList();
+        return em.createQuery("SELECT g FROM Game g", Game.class)
+                .getResultList();
     }
 
     @Override
     public List<Game> showVerifiedGames() {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class);
-        return (List<Game>) q.getResultList();
+        return em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE", Game.class)
+                .getResultList();
     }
 
     @Override
     public Game verifyGame(Long id) {
-        Game g = (Game)em.createQuery("SELECT g FROM Game g WHERE g.id = :id", Game.class)
-                .setParameter("id", id)
-                .getSingleResult();
-        g.setVerified(true);
-        em.persist(g);
-        return g;
+        try {
+            Game g = em.createQuery("SELECT g FROM Game g WHERE g.id = :id", Game.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            g.setVerified(true);
+            em.persist(g);
+            return g;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public Game gameByTitle(String title) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class);
-        q.setParameter("title", title);
-        return (Game)q.getSingleResult();
+        try {
+            return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
+                    .setParameter("title", title).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public Game gameById(Long id) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
-                .setParameter("id", id);
-        return (Game)q.getSingleResult();
+        try {
+            return em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public String searchFiveGames(String query) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :query AND g.verified = TRUE",Game.class)
-                .setParameter("query", query+'%')
-                .setMaxResults(5);
-        return reduceGameToTitleAndId(q.getResultList());
+            List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title AND g.verified = TRUE",Game.class)
+                    .setParameter("title", query+'%')
+                    .setMaxResults(5)
+                    .getResultList();
+            return reduceGameToTitleAndId(results);
     }
 
     @Override
@@ -73,10 +83,10 @@ public class GameService implements GameDataAccess {
 
     @Override
     public List<Game> getTopRatedGames(Integer limit, Integer page) {
-        Query q = em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE order by g.average_rating", Game.class)
-                .setFirstResult((page-1) * limit)
-                .setMaxResults(limit);
-        return (List<Game>)q.getResultList();
+            return em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE ORDER BY g.averageRating DESC", Game.class)
+                    .setFirstResult((page-1) * limit)
+                    .setMaxResults(limit)
+                    .getResultList();
     }
 
     private String reduceGameToTitleAndId(List<Game> gameList) {

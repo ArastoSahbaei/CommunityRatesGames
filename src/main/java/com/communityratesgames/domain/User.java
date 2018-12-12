@@ -1,7 +1,5 @@
 package com.communityratesgames.domain;
 import com.communityratesgames.model.UserModel;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
 import org.picketlink.idm.model.annotation.Unique;
 
 import javax.persistence.*;
@@ -11,9 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.math.BigInteger;
 
-@ToString
 @Entity
-@AllArgsConstructor
 @Table(name = "user_entity")
 public class User implements Serializable {
 
@@ -44,6 +40,10 @@ public class User implements Serializable {
         this.email = email;
         this.encryptPassword(password);
         this.role = "user";
+    }
+
+    public String toJMS() {
+        return this.getUserName();
     }
 
     public Timestamp getTimestamp() {
@@ -132,7 +132,19 @@ public class User implements Serializable {
     }
 
     public void setRole(String role) {
-        this.role = "user";
+        this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userCreated=" + userCreated +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
