@@ -121,9 +121,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         }
       });
     this.search.setValue('');
-
-    //SELECT COUNT(DISTINCT(logintime)), user from amountoflogins where user =
-
   }
 
   openDialog(data: string): void {
