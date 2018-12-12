@@ -12,25 +12,25 @@
         <mat-toolbar>LOGOTYPE</mat-toolbar>
         <mat-nav-list>
 
-          <div class="signIn">
+          <div class="signIn1">
             <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
           </div>
 
-          <div class="loggedInUser">
+          <div class="loggedInUser1">
             <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
           </div>
           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
-          <div class="navigationButtonHome">
+          <div class="navigationButtonHome1">
             <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
           </div>
 
-          <div class="navigationButtonGame">
+          <div class="navigationButtonGame1">
             <button mat-button [matMenuTriggerFor]="games">
               <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span> </button>
           </div>
 
-          <span class="social">
+          <span class="social1">
         <ul>
             <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
             <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
