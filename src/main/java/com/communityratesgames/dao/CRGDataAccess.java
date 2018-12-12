@@ -1,8 +1,8 @@
 package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
-import com.communityratesgames.user.AuthToken;
-import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.model.GameModel;
+import com.communityratesgames.model.UnverifiedGameModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
 import org.apache.log4j.Logger;
@@ -33,29 +33,46 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     @Inject
     private UserDataAccess userDataAccess;
 
+    @Inject
+    private UnverifiedGameDataAccess unverifiedGameDataAccess;
+
 
     //PlatformInterface Access
     public List<Platform> showAllPlatforms() {return platformDataAccess.showAllPlatforms();}
     public Platform createPlatform(String name, int releaseYear, Long companyId) {return platformDataAccess.createPlatform(name, releaseYear, companyId);}
 
     //GameInterface Access
-    public List<Game> showAllGames() {return gameDataAccess.showAllGames();}
-    public List<Game> showVerifiedGames() {return gameDataAccess.showVerifiedGames();}
-    public Game verifyGame(Long id) {return gameDataAccess.verifyGame(id);}
-    public Game gameByTitle(String title) {
+    public List<GameModel> showAllGames() {
+        return gameDataAccess.showAllGames();
+    }
+    public GameModel gameByTitle(String title) {
         return gameDataAccess.gameByTitle(title);
     }
-    public Game gameById(Long id) {
+    public GameModel gameById(Long id) {
         return gameDataAccess.gameById(id);
     }
     public String searchFiveGames(String query) {
         return gameDataAccess.searchFiveGames(query);
     }
-    public Game createNewGame(Game newGame) {
-        return gameDataAccess.createNewGame(newGame);
+    public void createNewGame(Game newGame) {
+        gameDataAccess.createNewGame(newGame);
     }
-    public List<Game> getTopRatedGames(Integer limit, Integer page) {
+    public List<GameModel> getTopRatedGames(Integer limit, Integer page) {
         return gameDataAccess.getTopRatedGames(limit, page);
+    }
+
+    //Unverified Games
+    public void addUnverifiedGame(UnverifiedGameModel model) {
+        unverifiedGameDataAccess.addUnverifiedGame(model);
+    }
+    public void deleteUnverifiedGame(Long id) {
+        unverifiedGameDataAccess.deleteUnverifiedGame(id);
+    }
+    public void verifyGame(Long id) {
+        unverifiedGameDataAccess.verifyGame(id);
+    }
+    public List<UnverifiedGameModel> getAllUnverifiedGames() {
+        return unverifiedGameDataAccess.getAllUnverifiedGames();
     }
 
     //User

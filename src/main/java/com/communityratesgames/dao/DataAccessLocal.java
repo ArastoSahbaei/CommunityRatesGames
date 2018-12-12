@@ -1,9 +1,9 @@
 package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
-import com.communityratesgames.model.CompanyModel;
-import com.communityratesgames.user.AuthToken;
+import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.RatingModel;
+import com.communityratesgames.model.UnverifiedGameModel;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -37,12 +37,16 @@ public interface DataAccessLocal {
 
 
     //Game
-    public List<Game> showAllGames();
-    public List<Game> showVerifiedGames();
-    public Game verifyGame(Long id);
-    public Game gameByTitle(String title);
-    public Game gameById(Long id);
+    public List<GameModel> showAllGames();
+    public GameModel gameByTitle(String title);
+    public GameModel gameById(Long id);
     public String searchFiveGames(String query);
-    public Game createNewGame(Game newGame);
-    public List<Game> getTopRatedGames(Integer limit, Integer page);
+    public void createNewGame(Game newGame);
+    public List<GameModel> getTopRatedGames(Integer limit, Integer page);
+
+    //Unverified Game
+    public void addUnverifiedGame(UnverifiedGameModel model);
+    public void deleteUnverifiedGame(Long id);
+    public void verifyGame(Long id);
+    public List<UnverifiedGameModel> getAllUnverifiedGames();
 }
