@@ -3,6 +3,7 @@ package com.communityratesgames.transactions;
 import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.user.*;
+import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
@@ -29,7 +30,12 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User register(User user) {
+    public User register(User user) throws JsonError {
+        if (em.createNativeQuery("SELECT * FROM user_entity where email = ?")
+                .setParameter(1, user.getEmail())
+                .getResultList().size() != 0) {
+            throw new JsonError(3, "email already registered");
+        }
         em.persist(user);
         return user;
     }

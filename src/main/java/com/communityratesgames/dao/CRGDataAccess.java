@@ -5,6 +5,7 @@ import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
+import com.communityratesgames.util.JsonError;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
@@ -60,7 +61,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     //User
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User register(User user) { return userDataAccess.register(user); }
+    public User register(User user) throws JsonError { return userDataAccess.register(user); }
     public User login(User user) {return userDataAccess.login(user);}
     public boolean logout(Long token) {return userDataAccess.logout(token);}
 

@@ -4,6 +4,7 @@ import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.RatingModel;
+import com.communityratesgames.util.JsonError;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -32,7 +33,7 @@ public interface DataAccessLocal {
     public List<User> showAllUsers();
     public User login(User user);
     public boolean logout(Long token);
-    public User register(User user);
+    public User register(User user) throws JsonError;
 
 
     //Game
