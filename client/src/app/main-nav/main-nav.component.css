@@ -113,12 +113,14 @@
   }
 
   .signIn {
+    display: none;
     justify-self: center;
     grid-column: 2/2;
     grid-row: 1/1;
   }
 
   .loggedInUser {
+    display: none;
     justify-self: start;
     align-self: center;
     grid-column: 2/2;
@@ -131,6 +133,7 @@
   }
 
   .navigationButtonHome {
+    display: none;
     justify-self: end;
     align-self: center;
     grid-column: 4/4;
@@ -138,6 +141,7 @@
   }
 
   .navigationButtonGame {
+    display: none;
     justify-self: start;
     align-self: center;
     grid-column: 5/5;
@@ -145,7 +149,7 @@
   }
 
   .searchBar {
-    grid-column: 6/12;
+    grid-column: 3/12;
     grid-row: 1/1;
   }
 
