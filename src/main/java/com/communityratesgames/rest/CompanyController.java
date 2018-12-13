@@ -24,17 +24,6 @@ public class CompanyController {
 
     private CompanyModel companyModel = new CompanyModel();
 
- //   @POST
- //   @Produces({"application/JSON"})
- //   @Consumes({"application/JSON"})
- //   public Response registerNewCompany(CompanyModel companyModel) {
- //       try {
- //           dal.registerNewCompany(companyModel);
- //       } catch (ServiceUnavailableException e ) {
- //           return Response.status(410).build();
- //       }
- //       return Response.status(200).build();
- //   }
 
     @GET
     @Produces({"application/JSON"})
@@ -60,6 +49,22 @@ public class CompanyController {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
+    @GET
+    @Path("/byname")
+    @Produces("application/json")
+    @Consumes
+    public Response findCompanyByCompanyName(@QueryParam("companyName") String companyName){
+        try {
+            Company result = dal.findCompanyByCompanyName(companyName);
+            if (result == null) {
+                return Response.status(Status.NOT_FOUND).entity("null").build();
+            }
+            return Response.ok(result).build();
+        }catch (PersistenceException e){
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 }
