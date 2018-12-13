@@ -16,8 +16,16 @@ public class RatingModel implements Serializable {
 
     public RatingModel(Rating rating) {
         this.id = rating.getId();
-        this.user = rating.getUser().getUserName();
-        this.game = rating.getGame().getTitle();
+        if (rating.getUser() != null) {
+            this.user = rating.getUser().getUserName();
+        } else {
+            this.user = null;
+        }
+        if (rating.getGame() != null) {
+            this.game = rating.getGame().getTitle();
+        } else {
+            this.game = null;
+        }
         this.rating = rating.getRating();
         this.creationDate = rating.getCreationDate();
     }

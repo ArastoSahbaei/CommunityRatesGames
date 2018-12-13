@@ -1,15 +1,15 @@
 
-package com.communityratesgames.util.json;
+package com.communityratesgames.util;
 
-public class JsonGetException extends Exception {
-    private int error;
-    private String message;
+public class JsonError extends Exception {
+    public int error;
+    public String message;
 
-    public JsonGetException() {
+    public JsonError() {
         super();
     }
 
-    public JsonGetException(int error, String message) {
+    public JsonError(int error, String message) {
         super(message);
         this.error = error;
         this.message = message;

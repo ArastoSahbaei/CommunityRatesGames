@@ -3,6 +3,7 @@ package com.communityratesgames.dao;
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.RatingModel;
+import com.communityratesgames.util.JsonError;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface DataAccessLocal {
     public List<RatingModel> findRatingsByGameId(String gameTitle);
     public float getAverageOfGame(String gameTitle);
     public RatingModel findByGameIdAndUserId(String gameTitle, String username);
-    public void addNewRating(RatingModel rating);
+    public RatingModel addNewRating(RatingModel rating);
     public List<RatingModel> findAllUserRatings(String username);
 
 
@@ -32,7 +33,7 @@ public interface DataAccessLocal {
     public List<User> showAllUsers();
     public User login(User user);
     public boolean logout(Long token);
-    public User register(User user);
+    public User register(User user) throws JsonError;
 
 
     //Game
@@ -40,7 +41,6 @@ public interface DataAccessLocal {
     public GameModel gameByTitle(String title);
     public GameModel gameById(Long id);
     public String searchFiveGames(String query);
-    public void createNewGame(GameModel newGame);
     public List<GameModel> getTopRatedGames(Integer limit, Integer page);
 
     //Unverified Game

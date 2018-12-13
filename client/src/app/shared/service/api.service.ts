@@ -57,6 +57,11 @@ export class ApiService {
     );
   }
 
+  postRating(body: AddGame) {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getRating(), body, {headers: Headers.HeaderJSON()}
+    );
+  }
+
   getTop100(){
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
   }

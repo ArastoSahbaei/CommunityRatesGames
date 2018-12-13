@@ -4,14 +4,9 @@ import com.communityratesgames.domain.Game;
 import com.communityratesgames.model.GameModel;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.StoredProcedureQuery;
+import javax.persistence.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -34,20 +29,28 @@ public class GameService implements GameDataAccess {
 
     @Override
     public GameModel gameByTitle(String title) {
-        return new GameModel(
-                em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
-                .setParameter("title", title)
-                .getSingleResult()
-        );
+        try {
+            return new GameModel(
+                    em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
+                            .setParameter("title", title)
+                            .getSingleResult()
+            );
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public GameModel gameById(Long id) {
-        return new GameModel(
-                em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
-                .setParameter("id", id)
-                .getSingleResult()
-        );
+        try {
+            return new GameModel(
+                    em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
+                            .setParameter("id", id)
+                            .getSingleResult()
+            );
+        }catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
@@ -57,10 +60,6 @@ public class GameService implements GameDataAccess {
                     .setMaxResults(5)
                     .getResultList();
             return reduceGameToTitleAndId(results);
-    }
-
-    @Override
-    public void createNewGame(GameModel newGame) {
     }
 
     @Override
