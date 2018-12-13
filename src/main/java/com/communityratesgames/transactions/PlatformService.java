@@ -6,9 +6,7 @@ import com.communityratesgames.domain.Platform;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 @Stateless
@@ -28,20 +26,21 @@ public class PlatformService implements PlatformDataAccess {
     @Override
     public Platform createPlatform(String name, int releaseYear, Long companyId) {
         Platform platform;
-        if (companyId != null) {
-            Company company = (Company)em.createQuery("SELECT c FROM Company c WHERE c.id = :id")
-                .setParameter("id", companyId)
-                .getSingleResult();
-            if (company == null) {
-                return null;
+        try {
+            if (companyId != null) {
+                Company company = (Company)em.createQuery("SELECT c FROM Company c WHERE c.id = :id")
+                    .setParameter("id", companyId)
+                    .getSingleResult();
+                platform = new Platform(name, releaseYear, company, null);
+            } else {
+                platform = new Platform(name, releaseYear, null, null);
             }
-            platform = new Platform(name, releaseYear, company, null);
-        } else {
-            platform = new Platform(name, releaseYear, null, null);
-        }
 
-        em.persist(platform);
-        return platform;
+            em.persist(platform);
+            return platform;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 /*
     @Autowired
