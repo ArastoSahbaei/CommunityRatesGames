@@ -38,7 +38,6 @@ public class CompanyController {
 
     @POST
     @Produces("application/json")
-    @Consumes("application/json")
     public Response createCompany(String compis){
         try {
             Company toEntity = companyModel.jsonPtoEntity(compis);
@@ -55,8 +54,7 @@ public class CompanyController {
     @GET
     @Path("/byname")
     @Produces("application/json")
-    @Consumes
-    public Response findCompanyByCompanyName(@QueryParam("companyName") String companyName){
+    public Response findCompanyByCompanyName(@QueryParam("name") String companyName){
         try {
             Company result = dal.findCompanyByCompanyName(companyName);
             if (result == null) {
