@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {ApiService} from "../shared/service/api.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { ApiService } from "../shared/service/api.service";
 
 @Component({
   selector: 'app-dialog',
@@ -23,7 +23,7 @@ export class DialogComponent implements OnInit {
   private totalAmountOfLogins: number;
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: string,
+              @Inject(MAT_DIALOG_DATA) public data: object,
               private formBuilder: FormBuilder,
               private api: ApiService) {
 
@@ -40,12 +40,10 @@ export class DialogComponent implements OnInit {
     let clone = JSON.parse(JSON.stringify(this.barChartData));
 
     clone[0].data = newData;
-    clone[0].label = this.data;
+    clone[0].label = this.data["user"];
 
     this.barChartData = clone;
-
-    console.log(this.data);
-
+    
   }
 
   ngOnInit() {}

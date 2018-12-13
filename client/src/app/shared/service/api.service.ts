@@ -82,7 +82,7 @@ export class ApiService {
       });
   }
 
-  getStatisticOnAUser(user: string): Observable<any> {
+  getStatisticOnAUser(user: object): Observable<any> {
     return this.httpClient.post(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getStatistic(),
             user, {headers: Headers.HeaderJSON()
     });
