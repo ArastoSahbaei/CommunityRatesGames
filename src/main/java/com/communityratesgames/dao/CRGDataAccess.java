@@ -75,8 +75,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public RatingModel findByGameIdAndUserId(String gameTitle, String username) {
         return ratingDataAccess.findByGameIdAndUserId( gameTitle, username);
     }
-    public void addNewRating(RatingModel rating) {
-        ratingDataAccess.addNewRating(rating);
+    public RatingModel addNewRating(RatingModel rating) {
+        return ratingDataAccess.addNewRating(rating);
     }
     public List<RatingModel> findAllUserRatings(String username) {
         return ratingDataAccess.findAllUserRatings(username);

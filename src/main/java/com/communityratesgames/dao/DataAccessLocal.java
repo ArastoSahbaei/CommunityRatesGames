@@ -20,7 +20,7 @@ public interface DataAccessLocal {
     public List<RatingModel> findRatingsByGameId(String gameTitle);
     public float getAverageOfGame(String gameTitle);
     public RatingModel findByGameIdAndUserId(String gameTitle, String username);
-    public void addNewRating(RatingModel rating);
+    public RatingModel addNewRating(RatingModel rating);
     public List<RatingModel> findAllUserRatings(String username);
 
 
