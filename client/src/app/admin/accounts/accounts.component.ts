@@ -156,7 +156,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    console.log(this.userForm.value);
     const user = {} as Register;
     user.email = this.userForm.value.email;
     user.username = this.userForm.value.user;
@@ -168,7 +167,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     }
 
     this.api.registerUser(user).subscribe((response) => {
-        console.log(response);
       },
       error => {
         console.log(error);
