@@ -12,7 +12,14 @@ export class DialogComponent implements OnInit {
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
   };
   public barChartLabels:string[] = ['Antal Inloggningar'];
   public barChartType:string = 'bar';
@@ -43,7 +50,7 @@ export class DialogComponent implements OnInit {
     clone[0].label = this.data["user"];
 
     this.barChartData = clone;
-    
+
   }
 
   ngOnInit() {}
@@ -51,4 +58,10 @@ export class DialogComponent implements OnInit {
   public chartHovered(e:any):void {
     console.log(e);
   }
+
+  public chartColors: any[] = [
+    {
+      backgroundColor:["#FFFFFF"],
+    }
+  ];
 }
