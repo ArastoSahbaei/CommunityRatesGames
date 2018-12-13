@@ -114,7 +114,7 @@ public class JsonObject implements JsonThing {
     public JsonThing get(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
-            throw new JsonGetException("No such key '" + key + "'");
+            throw new JsonGetException(20, "No such key '" + key + "'");
         }
         return thing;
     }
@@ -122,9 +122,9 @@ public class JsonObject implements JsonThing {
     public String getString(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
-            throw new JsonGetException("No such key '" + key + "'");
+            throw new JsonGetException(20, "No such key '" + key + "'");
         } else if (thing.getType() != Type.JSON_STRING) {
-            throw new JsonGetException("Invalid type; expected string for key '" + key + "'");
+            throw new JsonGetException(21, "Invalid type; expected string for key '" + key + "'");
         }
         return thing.toString();
     }
@@ -132,9 +132,9 @@ public class JsonObject implements JsonThing {
     public double getNumber(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
-            throw new JsonGetException("No such key '" + key + "'");
+            throw new JsonGetException(20, "No such key '" + key + "'");
         } else if (thing.getType() != Type.JSON_NUMBER) {
-            throw new JsonGetException("Invalid type; expected number for key '" + key + "'");
+            throw new JsonGetException(21, "Invalid type; expected number for key '" + key + "'");
         }
         return ((JsonNumber)thing).number;
     }
@@ -142,9 +142,9 @@ public class JsonObject implements JsonThing {
     public boolean getBoolean(String key) throws JsonGetException {
         JsonThing thing = this.fields.get(key);
         if (thing == null) {
-            throw new JsonGetException("No such key '" + key + "'");
+            throw new JsonGetException(20, "No such key '" + key + "'");
         } else if (thing.getType() != Type.JSON_BOOLEAN) {
-            throw new JsonGetException("Invalid type; expected boolean for key '" + key + "'");
+            throw new JsonGetException(21, "Invalid type; expected boolean for key '" + key + "'");
         }
         return ((JsonBoolean)thing).state;
     }
