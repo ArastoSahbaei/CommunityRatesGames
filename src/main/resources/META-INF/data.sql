@@ -8,7 +8,7 @@ VALUES
 
 INSERT INTO game_entity(id, title, company_id, verified)
 VALUES
-(1, 'Halo', 1, false),
+(1, 'Halo', 1, true),
 (2, 'Hallå', 2, false),
 (3, 'Hallon', 2, false),
 (4, 'Haloeller', 2, false),
@@ -18,7 +18,7 @@ VALUES
 (8, 'Mario party', 4, true),
 (9, 'Final Fantasy 1337', 3, false);
 
-INSERT INTO platform_entity(id, name, release_year, company_id)
+INSERT INTO platform_entity(id, name, releaseYear, company_id)
 VALUES
 (1, 'XBox', 2001, 1),
 (2, 'PC', 2002, 4),
@@ -31,3 +31,15 @@ VALUES
 (2, 2, 1, 3),
 (3, 3, 1, 0),
 (4, 4, 1, 3);
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SEARCH_FIVE_GAMES`(in query varchar(255))
+  begin
+    SELECT *
+    FROM game_entity
+    WHERE title = query+'%'
+    AND verified = true
+    LIMIT 5;
+  end
+$$
+DELIMITER ;
