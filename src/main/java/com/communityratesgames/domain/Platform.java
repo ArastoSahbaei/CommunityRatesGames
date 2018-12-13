@@ -29,22 +29,14 @@ public class Platform implements Serializable {
     @ManyToMany(mappedBy="platforms")
     private List<Game> games;
 
+    @ManyToMany(mappedBy="platforms")
+    private List<Game> unverifiedGames;
+
     public Platform(String name, int releaseYear, Company company, List<Game> games) {
         this.name = name;
         this.releaseYear = releaseYear;
         this.company = company;
         this.games = games;
-    }
-
-    public Platform(PlatformModel model) {
-        this.id = model.getId();
-        this.name = model.getName();
-        this.releaseYear = model.getReleaseYear();
-        this.company = new Company(model.getCompany());
-        this.games = new ArrayList<Game>();
-        for (GameModel game : model.getGames()) {
-            this.games.add(new Game(game));
-        }
     }
 
     protected Platform() { }
@@ -83,5 +75,13 @@ public class Platform implements Serializable {
 
     public void setGames(List<Game> games) {
         this.games = games;
+    }
+
+    public List<Game> getUnverifiedGames() {
+        return unverifiedGames;
+    }
+
+    public void setUnverifiedGames(List<Game> unverifiedGames) {
+        this.unverifiedGames = unverifiedGames;
     }
 }
