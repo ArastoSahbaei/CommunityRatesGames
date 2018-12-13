@@ -21,8 +21,6 @@ public class UserModel implements Serializable {
     private String email;
     private String password;
     private String role;
-    private String emailSubject;
-    private String emailText;
 
     public UserModel() {
     }
@@ -68,7 +66,6 @@ public class UserModel implements Serializable {
         user.setEmail(email);
         user.setUserName(username);
         user.setRole(role);
-      //  user.setRole("User");
         user.setUserCreated(userCreated);
         user.setId(id);
 
@@ -84,15 +81,6 @@ public class UserModel implements Serializable {
         um.role = user.getRole();
 
         return um;
-    }
-
-    public UserModel(User user) {
-        this.id = user.getId();
-        this.username = user.getUserName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.role = user.getRole();
-        this.userCreated = user.getUserCreated();
     }
 
     public Long getId() {
