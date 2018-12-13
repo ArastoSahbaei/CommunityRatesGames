@@ -30,10 +30,7 @@
         <mat-form-field>
           <input id="game" matInput placeholder="Game Title" formControlName="game" class="form-control" type="game" required>
         </mat-form-field>
-        <mat-card-actions>
-          <button mat-raised-button type="button" (click)="addRating()" color="primary">Add Rating</button>
           <bar-rating [(ngModel)]="rate" [max]="max" (rateChange)="hoveringOver($event)"></bar-rating>
-        </mat-card-actions>
         </mat-card>
       </section>
     </div>

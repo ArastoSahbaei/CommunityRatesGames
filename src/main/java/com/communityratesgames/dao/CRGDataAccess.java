@@ -83,10 +83,18 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
         return ratingDataAccess.findAllUserRatings(username);
     }
 
-
     //Company Access
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();
     }
-    public Company registerNewCompany(Company companyModel){ return companyDataAccess.registerNewCompany(companyModel); }
+
+    public Company registerNewCompany(Company companyModel){
+        return companyDataAccess.registerNewCompany(companyModel);
+    }
+
+    public Company findCompanyByCompanyName(String companyName){
+        return companyDataAccess.findCompanyByCompanyName(companyName);
+    }
 }
+
+
