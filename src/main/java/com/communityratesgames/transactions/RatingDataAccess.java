@@ -13,6 +13,6 @@ public interface RatingDataAccess {
     public abstract float getAverageOfGame(String gameTitle);
     public abstract List<RatingModel> findRatingsByGameId(String gameTitle);
     public abstract RatingModel findByGameIdAndUserId(String gameTitle, String username);
-    public abstract void addNewRating(RatingModel rating);
+    public abstract RatingModel addNewRating(RatingModel rating);
     public abstract List<RatingModel> findAllUserRatings(String username);
 }

@@ -1,6 +1,7 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.Company;
+import com.communityratesgames.util.JsonError;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -25,13 +26,25 @@ public class CompanyModel implements Serializable {
         return jsonObject;
     }
 
-    public Company jsonPtoEntity(String companyEntity){
+    public Company jsonPtoEntity(String companyEntity) throws JsonError {
         JsonObject jsonP = jsonObjectFromString(companyEntity);
         Company company = new Company();
 
-        companyName = jsonP.getString("companyName");
-        country = jsonP.getString("country");
-        city = jsonP.getString("city");
+        companyName = jsonP.getString("companyName", null);
+        if (companyName == null) {
+            throw new JsonError(1, "company name not specified");
+        }
+
+        country = jsonP.getString("country", null);
+        if (country == null) {
+            throw new JsonError(1, "country name not specified");
+        }
+
+        city = jsonP.getString("city", null);
+        if (city == null) {
+            throw new JsonError(1, "city name not specified");
+        }
+
         id = company.getId();
 
         company.setCompanyName(companyName);
