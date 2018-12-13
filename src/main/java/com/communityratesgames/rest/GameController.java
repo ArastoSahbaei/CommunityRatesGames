@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.Status;
 import java.util.List;
 
 @NoArgsConstructor
@@ -26,8 +28,8 @@ public class GameController {
         try {
             Game result = dal.createNewGame(newGame);
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -37,9 +39,13 @@ public class GameController {
     public Response verifyGame(@QueryParam("id") Long id) {
         try {
             Game result = dal.verifyGame(id);
+            if (result == null) {
+                // This is technically correct JSON.
+                return Response.status(Status.NOT_FOUND).entity("null").build();
+            }
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -50,8 +56,8 @@ public class GameController {
         try {
             List<Game> result = dal.showAllGames();
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -61,8 +67,8 @@ public class GameController {
         try {
             List<Game> result = dal.showVerifiedGames();
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -71,11 +77,14 @@ public class GameController {
     @Produces({"application/JSON"})
     public Response getOneGamebyTitle(@QueryParam("title") String title) {
         try {
-           Game result = dal.gameByTitle(title);
+            Game result = dal.gameByTitle(title);
+            if (result == null) {
+                // This is technically correct JSON.
+                return Response.status(Status.NOT_FOUND).entity("null").build();
+            }
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
-
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
 
     }
@@ -87,9 +96,13 @@ public class GameController {
     public Response getOneGamebyId(@QueryParam("id") Long id) {
         try {
             Game result = dal.gameById(id);
+            if (result == null) {
+                // This is technically correct JSON.
+                return Response.status(Status.NOT_FOUND).entity("null").build();
+            }
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -100,8 +113,8 @@ public class GameController {
         try {
             String result = dal.searchFiveGames(q);
             return Response.ok(result).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 
@@ -114,8 +127,8 @@ public class GameController {
         try {
             List<Game> topRatedGames = dal.getTopRatedGames(limit,page);
             return Response.ok(topRatedGames).build();
-        } catch (Exception e) {
-            return Response.status(414).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
         }
 
     }

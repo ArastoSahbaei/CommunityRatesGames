@@ -7,9 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -35,34 +33,52 @@ public class GameService implements GameDataAccess {
 
     @Override
     public Game verifyGame(Long id) {
-        Game g = em.createQuery("SELECT g FROM Game g WHERE g.id = :id", Game.class)
-                .setParameter("id", id)
-                .getSingleResult();
-        g.setVerified(true);
-        em.persist(g);
-        return g;
+        try {
+            Game g = em.createQuery("SELECT g FROM Game g WHERE g.id = :id", Game.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            g.setVerified(true);
+            em.persist(g);
+            return g;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public Game gameByTitle(String title) {
-        return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
-                .setParameter("title", title).getSingleResult();
+        try {
+            return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
+                    .setParameter("title", title).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public Game gameById(Long id) {
-        return em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        try {
+            return em.createQuery("SELECT g FROM Game g WHERE g.id = :id",Game.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public String searchFiveGames(String query) {
+        StoredProcedureQuery searchForFiveGamesByTitle =
+                em.createNamedStoredProcedureQuery("searchForFiveGamesByTitle");
+
+        StoredProcedureQuery sp =
+                searchForFiveGamesByTitle.setParameter("query",query);
+        /*
             List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title AND g.verified = TRUE",Game.class)
                     .setParameter("title", query+'%')
                     .setMaxResults(5)
-                    .getResultList();
-            return reduceGameToTitleAndId(results);
+                    .getResultList();*/
+            return reduceGameToTitleAndId(sp.getResultList());
     }
 
     @Override

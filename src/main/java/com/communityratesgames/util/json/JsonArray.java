@@ -101,7 +101,7 @@ public class JsonArray implements JsonThing {
     public JsonThing get(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
-            throw new JsonGetException("No such index '" + index + "'");
+            throw new JsonGetException(22, "No such index '" + index + "'");
         }
         return thing;
     }
@@ -109,9 +109,9 @@ public class JsonArray implements JsonThing {
     public String getString(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
-            throw new JsonGetException("No such index '" + index + "'");
+            throw new JsonGetException(22, "No such index '" + index + "'");
         } else if (thing.getType() != Type.JSON_STRING) {
-            throw new JsonGetException("Invalid type; expected string for index '" + index + "'");
+            throw new JsonGetException(21, "Invalid type; expected string for index '" + index + "'");
         }
         return thing.toString();
     }
@@ -119,9 +119,9 @@ public class JsonArray implements JsonThing {
     public double getNumber(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
-            throw new JsonGetException("No such index '" + index + "'");
+            throw new JsonGetException(22, "No such index '" + index + "'");
         } else if (thing.getType() != Type.JSON_NUMBER) {
-            throw new JsonGetException("Invalid type; expected number for index '" + index + "'");
+            throw new JsonGetException(21, "Invalid type; expected number for index '" + index + "'");
         }
         return ((JsonNumber)thing).number;
     }
@@ -129,9 +129,9 @@ public class JsonArray implements JsonThing {
     public boolean getBoolean(int index) throws JsonGetException {
         JsonThing thing = this.items.get(index);
         if (thing == null) {
-            throw new JsonGetException("No such index '" + index + "'");
+            throw new JsonGetException(22, "No such index '" + index + "'");
         } else if (thing.getType() != Type.JSON_BOOLEAN) {
-            throw new JsonGetException("Invalid type; expected boolean for index '" + index + "'");
+            throw new JsonGetException(21, "Invalid type; expected boolean for index '" + index + "'");
         }
         return ((JsonBoolean)thing).state;
     }

@@ -33,7 +33,7 @@ public class UserModel implements Serializable {
         return object;
     }
 
-    public User toEntity(String input) throws JsonError {
+    public User toEntity(String input, boolean encryptPassword) throws JsonError {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
@@ -47,9 +47,12 @@ public class UserModel implements Serializable {
             throw new JsonError(2, "password not specified");
         }
 
+        if (encryptPassword) {
+            password = user.encryptPassword(json.getString("password"));
+        }
+
         if (json.containsKey("username")) {
             username = json.getString("username");
-            password = user.encryptPassword(json.getString("password"));
             userCreated = user.getTimestamp();
         } else {
             username = user.getUserName();

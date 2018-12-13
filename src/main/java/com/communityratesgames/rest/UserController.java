@@ -50,7 +50,7 @@ public class UserController {
     @Consumes("application/json")
     public Response register(String credentials) {
         try {
-            User toEntity = userModel.toEntity(credentials);
+            User toEntity = userModel.toEntity(credentials, true);
             User user2 = dal.register(toEntity);
             UserModel toModel = userModel.toModel(user2);
             return Response.ok(toModel).build();
@@ -67,7 +67,7 @@ public class UserController {
     @Consumes({"application/JSON"})
     public Response login(String credentials) {
         try {
-            User toEntity = userModel.toEntity(credentials);
+            User toEntity = userModel.toEntity(credentials, false);
             User user2 = dal.login(toEntity);
             if (user2 == null) {
                 return Response.status(Status.NOT_FOUND).entity("{\"error\":\"invalid username and/or password\"}").build();
