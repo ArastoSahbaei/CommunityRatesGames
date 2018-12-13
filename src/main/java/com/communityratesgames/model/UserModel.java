@@ -2,6 +2,7 @@ package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
 import com.communityratesgames.util.JsonError;
+import lombok.ToString;
 import org.apache.log4j.Logger;
 
 import javax.json.*;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.io.StringReader;
 import java.sql.Timestamp;
 
+@ToString
 public class UserModel implements Serializable {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.model.UserModel.class);
@@ -54,14 +56,15 @@ public class UserModel implements Serializable {
         if (json.containsKey("username")) {
             username = json.getString("username");
             userCreated = user.getTimestamp();
+            role = json.getString("role");
         } else {
             username = user.getUserName();
             user.setPassword(password);
             userCreated = null;
+            role = null;
         }
 
         id = user.getId();
-        role = user.getRole();
         user.setEmail(email);
         user.setUserName(username);
         user.setRole(role);
