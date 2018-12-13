@@ -38,7 +38,7 @@ export class AuthService {
 
     this.api.checkCredentials(user).subscribe(response => {
         this.credentials = Object.values(response);
-        if ( this.credentials[5] === 'admin' ) {
+        if ( this.credentials[5] === 'Admin' ) {
          this.loggedInAdmin$.next(true);
          this.router.navigate(['start/admin']);
          this.storage.setItem('admin', this.credentials[2]);

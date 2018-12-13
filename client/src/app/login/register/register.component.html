@@ -17,6 +17,7 @@
     <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required. Minimum 8 characters long</mat-error>
   </mat-form-field>
 
+  <span *ngIf="failedLogin">{{errorMessage}}</span>
   <p>
     <mat-checkbox id="login" formControlName="login" color="primary">
       Log in

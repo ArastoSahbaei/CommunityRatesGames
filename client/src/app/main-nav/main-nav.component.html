@@ -1,57 +1,35 @@
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-<div class="wrapper">
-<mat-toolbar color="primary" class="mat-elevation-z8 header">
-  <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+                   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                   [mode]="(isHandset$ | async) ? 'push' : 'push'"
+                   [opened]="!(isHandset$ | async)">
 
-  <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+        <!-- SIDEBAR -->
+        <mat-toolbar>LOGOTYPE</mat-toolbar>
+        <mat-nav-list>
 
-  <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+          <div class="signIn1">
+            <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
+          </div>
 
-  <mat-menu #admin="matMenu">
-    <span>ADMIN</span>
-    <hr>
-    <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
-    <hr>
-    <button mat-menu-item routerLink="start/admin/accounts"><mat-icon>perm_contact_calendar</mat-icon> Accounts</button>
-  </mat-menu>
+          <div class="loggedInUser1">
+            <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+          </div>
+          <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
-  <mat-menu #user="matMenu">
+          <div class="navigationButtonHome1">
+            <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
+          </div>
 
-    <div class="titleForLoggedInUsers">
-    <span>ACCOUNT</span>
-    </div>
+          <div class="navigationButtonGame1">
+            <button mat-button [matMenuTriggerFor]="games">
+              <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span> </button>
+          </div>
 
-    <hr>
-    <button mat-menu-item routerLink="start/user/profile">       <mat-icon>account_circle</mat-icon>             Profile</button>
-    <button mat-menu-item routerLink="start/user/my-games">      <mat-icon>favorite</mat-icon>                   My Games</button>
-
-    <hr>
-    <div class="titleForLoggedInUsers">
-    <span class="titleForLoggedInUsers">COMMUNITY</span>
-    </div>
-    <hr>
-
-    <button mat-menu-item routerLink="start/user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>               Add Game</button>
-    <button mat-menu-item routerLink="start/user/report-a-bug">  <mat-icon>bug_report</mat-icon>                 Report a Bug</button>
-    <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/XrXsmVy')">  <mat-icon>textsms</mat-icon>      Discord</button>
-    <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>            Contact</button>
-  </mat-menu>
-
-  <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">                     Home</span> </button>
-
-  <button mat-button [matMenuTriggerFor]="games">
-    <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
-  </button>
-  <mat-menu #games="matMenu">
-    <button mat-menu-item routerLink="start/game/rating">       <mat-icon>star_border</mat-icon>                 Rating</button>
-    <button mat-menu-item routerLink="start/game/platform">     <mat-icon>videogame_asset</mat-icon>             PlatformInterface</button>
-    <button mat-menu-item routerLink="start/game/top100">       <mat-icon>signal_cellular_alt</mat-icon>         Top 100</button>
-  </mat-menu>
-
-  <span class="fill-remaining-space"><app-searchgame></app-searchgame></span>
-      <span>
+          <span class="social1">
         <ul>
             <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
             <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
@@ -59,8 +37,93 @@
             <li><a href="/404">     <i class="fa fa-github"       aria-hidden="true"></i></a></li>
         </ul>
       </span>
-  <span id="logo">LOGOTYPE</span>
+
+        </mat-nav-list>
+      </mat-sidenav>
+      <!-- SIDEBAR END -->
+
+      <mat-sidenav-content>
+        <mat-toolbar titleForLoggedInUsers="primary" class="wrapper">
+          <button class="hamburgerButton"
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+
+          <div class="signIn">
+            <button mat-raised-button color="primary" (click)="logInOut()">{{buttonText}}</button>
+          </div>
+
+          <div class="loggedInUser">
+            <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+          </div>
+           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+
+          <mat-menu #admin="matMenu">
+            <span>ADMIN</span>
+            <hr>
+            <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
+            <hr>
+            <button mat-menu-item routerLink="start/admin/accounts">      <mat-icon>perm_contact_calendar</mat-icon>         Accounts</button>
+          </mat-menu>
+
+          <mat-menu #user="matMenu">
+
+            <div class="titleForLoggedInUsers">
+              <span>ACCOUNT</span>
+            </div>
+
+            <hr>
+            <button mat-menu-item routerLink="start/user/profile">             <mat-icon>account_circle</mat-icon>                 Profile</button>
+            <button mat-menu-item routerLink="start/user/my-games">            <mat-icon>favorite</mat-icon>                       My Games</button>
+
+            <hr>
+            <div class="titleForLoggedInUsers">
+              <span class="titleForLoggedInUsers">COMMUNITY</span>
+            </div>
+            <hr>
+
+            <button mat-menu-item routerLink="start/user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>                   Add Game</button>
+            <button mat-menu-item routerLink="start/user/report-a-bug">  <mat-icon>bug_report</mat-icon>                     Report a Bug</button>
+            <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/XrXsmVy')">  <mat-icon>textsms</mat-icon>      Discord</button>
+            <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>                Contact</button>
+            <hr>
+            <button mat-menu-item routerLink="/#404">           <mat-icon>accessible</mat-icon>                       Sign Out</button>
+          </mat-menu>
+
+          <div class="navigationButtonHome">
+            <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">                      Home</span> </button>
+          </div>
+
+          <div class="navigationButtonGame">
+            <button mat-button [matMenuTriggerFor]="games">
+              <mat-icon>games</mat-icon><span class="aligned-with-icon">Games</span>
+            </button>
+          </div>
+
+          <mat-menu #games="matMenu">
+            <button mat-menu-item routerLink="start/game/rating">              <mat-icon>star_border</mat-icon>                    Rating</button>
+            <button mat-menu-item routerLink="start/game/platform">            <mat-icon>videogame_asset</mat-icon>                Platforms</button>
+            <button mat-menu-item routerLink="start/game/top100">              <mat-icon>signal_cellular_alt</mat-icon>            Top 100</button>
+          </mat-menu>
+
+          <span class="searchBar"><app-searchgame></app-searchgame></span>
+
+          <span class="social">
+        <ul>
+            <li><a href="/404">     <i class="fa fa-youtube"      aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-facebook"     aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-instagram"    aria-hidden="true"></i></a></li>
+            <li><a href="/404">     <i class="fa fa-github"       aria-hidden="true"></i></a></li>
+        </ul>
+      </span>
+
+          <h1 class="logo">LOGOTYPE</h1>
 
 
-</mat-toolbar>
-</div>
+          </mat-toolbar>
+        <ng-content></ng-content>
+      </mat-sidenav-content>
+    </mat-sidenav-container>

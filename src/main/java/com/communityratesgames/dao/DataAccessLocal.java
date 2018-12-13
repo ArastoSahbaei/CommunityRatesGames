@@ -4,6 +4,7 @@ import com.communityratesgames.domain.*;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.RatingModel;
+import com.communityratesgames.util.JsonError;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -16,11 +17,12 @@ public interface DataAccessLocal {
 
 
     //Rating
-    public List<Rating> showAllRatings();
-    public List<Rating> findRatingsByGameId(String gameTitle);
+    public List<RatingModel> showAllRatings();
+    public List<RatingModel> findRatingsByGameId(String gameTitle);
     public float getAverageOfGame(String gameTitle);
-    public Rating findByGameIdAndUserId(String gameTitle, String username);
-    public void addNewRating(RatingModel rating);
+    public RatingModel findByGameIdAndUserId(String gameTitle, String username);
+    public RatingModel addNewRating(RatingModel rating);
+    public List<RatingModel> findAllUserRatings(String username);
 
 
     //Platform
@@ -32,7 +34,7 @@ public interface DataAccessLocal {
     public List<User> showAllUsers();
     public User login(User user);
     public boolean logout(Long token);
-    public User register(User user);
+    public User register(User user) throws JsonError;
 
 
     //Game

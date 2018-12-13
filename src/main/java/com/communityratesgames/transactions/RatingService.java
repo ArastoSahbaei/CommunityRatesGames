@@ -7,13 +7,12 @@ import com.communityratesgames.model.RatingModel;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Stateless
 @Default
@@ -23,38 +22,61 @@ public class RatingService implements RatingDataAccess {
     private EntityManager em;
 
     @Override
-    public List<Rating> showAllRatings() {
-        Query q = em.createNativeQuery("SELECT * FROM rating_entity", Rating.class);
-        List<Rating> rating = q.getResultList();
-        return rating;
+    public List<RatingModel> showAllRatings() {
+        return convertListEntityToModel(
+            em.createQuery("SELECT r FROM Rating r", Rating.class)
+                .getResultList()
+        );
+    }
+
+    @Override
+    public List<RatingModel> findRatingsByGameId(String gameTitle) {
+        return convertListEntityToModel(
+            em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
+                    .setParameter("game",gameTitle).getResultList()
+        );
+    }
+
+    public List<RatingModel> findAllUserRatings(String username) {
+        return convertListEntityToModel(
+            em.createQuery("SELECT r FROM Rating r WHERE r.user.userName = :user", Rating.class)
+                    .setParameter("user", username)
+                    .getResultList()
+        );
     }
 
     @Override
     public float getAverageOfGame(String gameTitle) {
-        return em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.title = :game",Double.class)
-                .setParameter("game",gameTitle).getSingleResult().floatValue();
+        Object o = em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.title = :game",Double.class)
+                .setParameter("game",gameTitle).getSingleResult();
+        if (o == null) {
+            return -1.0f;
+        } else {
+            // For some reason, createQuery ignores the second parameter for Double, so we need to forcibly check this.
+            if (o instanceof Double) {
+                return ((Double)o).floatValue();
+            } else {
+                return (int)((Integer)o);
+            }
+        }
     }
 
     @Override
-    public List<Rating> findRatingsByGameId(String gameTitle) {
-        return em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :game",Rating.class)
-                .setParameter("game",gameTitle).getResultList();
-    }
-
-    @Override
-    public Rating findByGameIdAndUserId(String title, String username) {
+    public RatingModel findByGameIdAndUserId(String title, String username) {
         try {
-            return (Rating) em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username")
+            return new RatingModel(
+                em.createQuery("SELECT r FROM Rating r WHERE r.game.title = :title AND r.user.userName = :username", Rating.class)
                     .setParameter("title",title)
                     .setParameter("username",username)
-                    .getSingleResult();
-        }catch (Exception e) {
+                    .getSingleResult()
+            );
+        } catch (NoResultException e) {
             return null;
         }
     }
 
     @Override
-    public void addNewRating(RatingModel rating) {
+    public RatingModel addNewRating(RatingModel rating) {
         try {
             rating.setCreationDate(Timestamp.from(Instant.now()));
             Rating newRating = ratingModelToEntity(rating);
@@ -76,19 +98,17 @@ public class RatingService implements RatingDataAccess {
                     .setParameter("average",getAverageOfGame(rating.getGame()))
                     .setParameter("game", rating.getGame())
                     .executeUpdate();
-        } catch (Exception e){
-            System.out.println("Problem writing to database : " + e );
+            return new RatingModel(newRating);
+        } catch (NoResultException e) {
+            return null;
         }
     }
 
-    private Rating ratingModelToEntity(RatingModel model) throws Exception{
+    private Rating ratingModelToEntity(RatingModel model) {
         Rating entity = new Rating();
-        try {
-            entity.setGame(getGameFromTitle(model.getGame()));
-            entity.setUser(getUserFromUsername(model.getUser()));
-        }catch (Exception e) {
-            throw new Exception("Failed to set entities: " + e.getMessage(), e);
-        }
+        entity.setGame(getGameFromTitle(model.getGame()));
+        entity.setUser(getUserFromUsername(model.getUser()));
+
         entity.setRating(model.getRating());
         if(model.getCreationDate() != null) {
             entity.setCreationDate(Timestamp.from(Instant.now()));
@@ -98,25 +118,21 @@ public class RatingService implements RatingDataAccess {
         return entity;
     }
 
-    private User getUserFromUsername(String name) throws Exception {
-        try {
-            return em.createQuery("SELECT u FROM User u WHERE u.userName = :username",User.class)
-                    .setParameter("username",name)
-                    .getSingleResult();
-        }catch (Exception e) {
-            throw new SQLException("Failed to get user : " + e.getMessage(), e);
-        }
+    private User getUserFromUsername(String name) {
+        return em.createQuery("SELECT u FROM User u WHERE u.userName = :username",User.class)
+                .setParameter("username",name)
+                .getSingleResult();
 
     }
 
-    private Game getGameFromTitle(String title) throws Exception {
-        try {
-            return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
-                    .setParameter("title",title)
-                    .getSingleResult();
-        }catch (Exception e) {
-            throw new SQLException("Failed to get game : " + e.getMessage(), e);
-        }
+    private Game getGameFromTitle(String title) {
+        return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
+                .setParameter("title",title)
+                .getSingleResult();
+    }
+
+    private List<RatingModel> convertListEntityToModel (List<Rating> entityList) {
+        return entityList.stream().map(entity -> ((entity == null) ? null : new RatingModel(entity))).collect(Collectors.toList());
     }
 }
 

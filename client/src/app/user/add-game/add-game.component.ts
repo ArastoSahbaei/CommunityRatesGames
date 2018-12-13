@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AddGame} from "../../shared/interface/add-game.interface";
 import {ApiService} from "../../shared/service/api.service";
 
+
 @Component({
   selector: 'app-add-game',
   templateUrl: './add-game.component.html',
@@ -11,6 +12,12 @@ import {ApiService} from "../../shared/service/api.service";
 export class AddGameComponent implements OnInit {
 
   addGames : FormGroup;
+  ratings : FormGroup;
+
+  max: number = 10;
+  rate: number = 2;
+  star: number;
+
 
   constructor(private api: ApiService, private formBuilder: FormBuilder) { }
 
@@ -19,6 +26,12 @@ export class AddGameComponent implements OnInit {
       'title': ['', [Validators.required]],
       'companyId': ['', Validators.required],
      'allPlatformId': ['', Validators.required]
+    });
+
+    this.ratings = this.formBuilder.group({
+      'user': ['',[Validators.required]],
+      'game': ['', Validators.required],
+      'rating': [ , Validators.required]
     });
   }
 
@@ -35,6 +48,28 @@ export class AddGameComponent implements OnInit {
 
   }
 
+  addRating(star: number){
+    const rate = {} as AddGame;
+    rate.user = this.ratings.value.user;
+    rate.game = this.ratings.value.game;
+ //   rate.rating = this.ratings.value.rating;
+    rate.rating = this.star;
+    console.log(rate)
+
+    this.api.postRating(rate).subscribe((response) =>{
+      console.log(response);
+
+
+    });
+
+  }
+
+  hoveringOver(value: number): void {
+    this.star = value;
+    console.log(this.star)
+    this.addRating(this.star);
+  }
+
   get title(){
     return this.addGames.get('title')
   }
@@ -45,5 +80,17 @@ export class AddGameComponent implements OnInit {
 
   get allPlatformId(){
     return this.addGames.get('allPlatformId')
+  }
+
+  get user(){
+    return this.addGames.get('user')
+  }
+
+  get game(){
+    return this.addGames.get('game')
+  }
+
+  get rating(){
+    return this.addGames.get('rating')
   }
 }

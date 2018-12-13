@@ -5,6 +5,7 @@ import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
+import com.communityratesgames.util.JsonError;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
@@ -60,23 +61,26 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     //User
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
-    public User register(User user) { return userDataAccess.register(user); }
+    public User register(User user) throws JsonError { return userDataAccess.register(user); }
     public User login(User user) {return userDataAccess.login(user);}
     public boolean logout(Long token) {return userDataAccess.logout(token);}
 
     //Rating Access
-    public List<Rating> showAllRatings() {return ratingDataAccess.showAllRatings();}
-    public List<Rating> findRatingsByGameId(String gameTitle) {
+    public List<RatingModel> showAllRatings() {return ratingDataAccess.showAllRatings();}
+    public List<RatingModel> findRatingsByGameId(String gameTitle) {
         return ratingDataAccess.findRatingsByGameId(gameTitle);
     }
     public float getAverageOfGame(String gameTitle) {
         return ratingDataAccess.getAverageOfGame(gameTitle);
     }
-    public Rating findByGameIdAndUserId(String gameTitle, String username) {
+    public RatingModel findByGameIdAndUserId(String gameTitle, String username) {
         return ratingDataAccess.findByGameIdAndUserId( gameTitle, username);
     }
-    public void addNewRating(RatingModel rating) {
-        ratingDataAccess.addNewRating(rating);
+    public RatingModel addNewRating(RatingModel rating) {
+        return ratingDataAccess.addNewRating(rating);
+    }
+    public List<RatingModel> findAllUserRatings(String username) {
+        return ratingDataAccess.findAllUserRatings(username);
     }
 
 

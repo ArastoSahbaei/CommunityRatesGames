@@ -10,6 +10,7 @@ import com.communityratesgames.model.PlatformModel;
 
 @Entity
 @Table(name = "game_entity")
+
 public class Game {
 
     @Id

@@ -34,6 +34,8 @@ import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ChartModule } from "./shared/chart/chart.module";
+import { BarRatingModule } from "ngx-bar-rating";
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { ChartModule } from "./shared/chart/chart.module";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule
+    ChartModule,
+    BarRatingModule
   ],
   entryComponents: [DialogComponent],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],

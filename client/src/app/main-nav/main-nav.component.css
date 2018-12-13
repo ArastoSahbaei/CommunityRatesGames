@@ -1,18 +1,172 @@
-.wrapper {
-  display: grid;
-  grid-gap: 30px;
-}
-
-.fill-remaining-space {
-  flex: 1 1 auto;
-}
 .titleForLoggedInUsers {
-  font-family:arial;
+  font-family: arial;
   font-size: 17px;
   letter-spacing: 3px;
   text-shadow: 0.2px 0.2px whitesmoke;
   text-align: center;
 }
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  display: none;
+}
+
+.hamburgerButton {
+  display: none;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 65px;
+  background: #424242;
+}
+
+.signIn {
+  justify-self: center;
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
+
+.loggedInUser {
+  justify-self: start;
+  align-self: center;
+  grid-column: 2/2;
+  grid-row: 1/1;
+  font-family: arial;
+  font-size: 17px;
+  letter-spacing: 3px;
+  text-shadow: 0.2px 0.2px whitesmoke;
+  text-align: center;
+}
+
+.navigationButtonHome {
+  justify-self: end;
+  align-self: center;
+  grid-column: 4/4;
+  grid-row: 1/1;
+}
+
+.navigationButtonGame {
+  justify-self: start;
+  align-self: center;
+  grid-column: 5/5;
+  grid-row: 1/1;
+
+}
+
+.searchBar {
+  grid-column: 6/10;
+  grid-row: 1/1;
+}
+
+.social {
+  align-self: center;
+  align-self: center;
+  grid-column: 11/11;
+  grid-row: 1/2;
+}
+
+.logo {
+  align-self: end;
+  align-self: center;
+  grid-column: 12/12;
+  grid-row: 1/1;
+}
+
+@media only screen and (max-width: 1250px) {
+
+  .searchBar {
+    grid-column: 6/11;
+    grid-row: 1/1;
+  }
+
+  .social {
+    display: none;
+  }
+}
+
+/* FOR TABLETS */
+@media only screen and (max-width: 900px) {
+  .sidenav {
+    width: 250px;
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+    display: unset;
+  }
+
+  .wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 65px;
+    background: #424242;
+  }
+
+  .hamburgerButton {
+    grid-column: 1/1;
+    grid-row: 1/1;
+    display: unset;
+  }
+
+  .signIn {
+    display: none;
+    justify-self: center;
+    grid-column: 2/2;
+    grid-row: 1/1;
+  }
+
+  .loggedInUser {
+    display: none;
+    justify-self: start;
+    align-self: center;
+    grid-column: 2/2;
+    grid-row: 1/1;
+    font-family: arial;
+    font-size: 17px;
+    letter-spacing: 3px;
+    text-shadow: 0.2px 0.2px whitesmoke;
+    text-align: center;
+  }
+
+  .navigationButtonHome {
+    display: none;
+    justify-self: end;
+    align-self: center;
+    grid-column: 4/4;
+    grid-row: 1/1;
+  }
+
+  .navigationButtonGame {
+    display: none;
+    justify-self: start;
+    align-self: center;
+    grid-column: 5/5;
+    grid-row: 1/1;
+  }
+
+  .searchBar {
+    grid-column: 3/12;
+    grid-row: 1/1;
+  }
+
+  .social {
+    display: none;
+  }
+
+  .logo {
+   display: none;
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -28,7 +182,6 @@
 
 ul {
   display: flex;
-  position: relative;
 }
 
 ul li {
@@ -93,20 +246,4 @@ ul li:nth-child(3) a:before {
 
 ul li:nth-child(4) a:before {
   background: #333;
-}
-
-.bottomFooter {
-  font-size: 0.9em;
-  position: relative;
-  width: 100%;
-  height: 110px;
-  color: #ffffff;
-}
-.bottomFooter {
-  font-size: 0.9em;
-  position: relative;
-  width: 100%;
-  height: 110px;
-  right: -10px;
-  color: #ffffff;
 }
