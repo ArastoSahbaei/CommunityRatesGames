@@ -4,72 +4,67 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import com.communityratesgames.domain.Game;
 import com.communityratesgames.domain.Platform;
+import com.communityratesgames.domain.UnverifiedGame;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class GameModel implements Serializable {
 
     private Long id;
     private Timestamp releaseDate;
     private String title;
-    private CompanyModel company;
-    private List<PlatformModel> platforms;
-    private boolean verified;
-    private float averageRating;
+    private String company;
+    private List<String> platforms;
 
-    public GameModel(String title, CompanyModel company, List<PlatformModel> platforms) {
-        this.title = title;
-        this.company = company;
-        this.platforms = platforms;
-        this.verified = false;
-    }
+    public GameModel toModel(String input) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<String> list = new ArrayList<>();
+        try {
+            JsonNode root = objectMapper.readTree(input);
+            GameModel gameModel = new GameModel();
+            gameModel.setReleaseDate(Timestamp.valueOf(root.get("releaseDate").asText()));
+            gameModel.setTitle(root.get("title").asText());
+            gameModel.setCompany(root.get("company").asText());
+            JsonNode jn = root.get("platforms");
+            for (JsonNode n : jn
+            ) {
+                list.add(n.asText());
+            }
+            gameModel.setPlatforms(list);
 
-    public GameModel(Game game) {
-        this(game, 0.0f);
-    }
 
-    public GameModel(Game game, float average) {
-        this.id = game.getId();
-        this.releaseDate = game.getReleaseDate();
-        this.title = game.getTitle();
-        this.company = new CompanyModel(game.getCompany());
-        this.platforms = new ArrayList<PlatformModel>();
-        for (Platform platform : game.getPlatforms()) {
-            this.platforms.add(new PlatformModel(platform));
+            return gameModel;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        this.verified = true;
-        this.averageRating = average;
     }
 
-    protected GameModel() { }
+    public GameModel(Game entity) {
+        this.id = entity.getId();
+        this.releaseDate = entity.getReleaseDate();
+        this.title = entity.getTitle();
+        this.company = entity.getCompany().getCompanyName();
+        this.platforms = entity.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
+    }
+
+    public GameModel(UnverifiedGame entity) {
+        this(new Game(entity,true));
+    }
+
+    public GameModel() {
+    }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
-    public String getTitle() {
-        return this.title;
-    }
-
-    public CompanyModel getCompany() {
-        return this.company;
-    }
-
-    public List<PlatformModel> getPlatforms() {
-        return this.platforms;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setCompany(CompanyModel company) {
-        this.company = company;
-    }
-
-    public void setPlatforms(List<PlatformModel> platforms) {
-        this.platforms = platforms;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Timestamp getReleaseDate() {
@@ -80,19 +75,27 @@ public class GameModel implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public boolean isVerified() {
-        return this.verified;
+    public String getTitle() {
+        return title;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public float getAverageRating() {
-        return this.averageRating;
+    public String getCompany() {
+        return company;
     }
 
-    public void setAverageRating(float average) {
-        this.averageRating = average;
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public List<String> getPlatforms() {
+        return platforms;
+    }
+
+    public void setPlatforms(List<String> platforms) {
+        this.platforms = platforms;
     }
 }

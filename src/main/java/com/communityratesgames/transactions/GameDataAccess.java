@@ -1,18 +1,15 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.Game;
+import com.communityratesgames.model.GameModel;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
 public interface GameDataAccess {
-    public abstract List<Game> showAllGames();
-    public List<Game> showVerifiedGames();
-    public Game verifyGame(Long id);
-    public abstract Game gameByTitle(String title);
-    public abstract Game gameById(Long id);
+    public abstract List<GameModel> showAllGames();
+    public abstract GameModel gameByTitle(String title);
+    public abstract GameModel gameById(Long id);
     public abstract String searchFiveGames(String query);
-    public abstract Game createNewGame(Game newGame);
-    public abstract List<Game> getTopRatedGames(Integer limit, Integer page);
+    public abstract List<GameModel> getTopRatedGames(Integer limit, Integer page);
 }

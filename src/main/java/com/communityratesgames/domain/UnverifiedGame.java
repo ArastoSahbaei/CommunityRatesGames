@@ -1,51 +1,47 @@
 package com.communityratesgames.domain;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.ArrayList;
-
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.PlatformModel;
-import org.picketlink.idm.model.annotation.Unique;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "game_entity")
-
-public class Game {
+@Table(name = "unverified_game_entity")
+public class UnverifiedGame implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Timestamp releaseDate;
 
     @Column
-    @Unique
     private String title;
 
     @JoinColumn
     @ManyToOne
     private Company company;
 
-    @JoinTable(name="game_platform",
-        joinColumns={ @JoinColumn(name="game_id") },
+    @Column(nullable=false)
+    @JoinTable(name="unverified_game_platform",
+        joinColumns={ @JoinColumn(name="unverified_game_id") },
         inverseJoinColumns={ @JoinColumn(name="platform_id") }
     )
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
-    @Column(name="average_rating")
-    private Float averageRating;
+    public UnverifiedGame() {}
 
-    public Game() {}
-
-    public Game(UnverifiedGame unverifiedGame, boolean withId) {
-        if (withId){this.id = unverifiedGame.getId();}
-        this.releaseDate = unverifiedGame.getReleaseDate();
-        this.title = unverifiedGame.getTitle();
-        this.company = unverifiedGame.getCompany();
-        this.platforms = unverifiedGame.getPlatforms();
-        this.averageRating = 0f;
+    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+        this.releaseDate = releaseDate;
+        this.title = title;
+        this.company = company;
+        this.platforms = platforms;
     }
 
     public Long getId() {
@@ -82,13 +78,5 @@ public class Game {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public Float getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(Float averageRating) {
-        this.averageRating = averageRating;
     }
 }
