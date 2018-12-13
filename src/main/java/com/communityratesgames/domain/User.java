@@ -39,7 +39,7 @@ public class User implements Serializable {
         this.userName = username;
         this.email = email;
         this.encryptPassword(password);
-        this.role = "user";
+        this.role = "User";
     }
 
     public String toJMS() {
