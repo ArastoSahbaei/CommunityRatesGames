@@ -16,7 +16,10 @@ public class UnverifiedGame implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private Timestamp releaseDate;
+
     @Column
     private String title;
 
@@ -25,25 +28,20 @@ public class UnverifiedGame implements Serializable {
     private Company company;
 
     @Column(nullable=false)
-
-    @JoinTable(name="game_platform",
-        joinColumns={ @JoinColumn(name="game_id") },
+    @JoinTable(name="unverified_game_platform",
+        joinColumns={ @JoinColumn(name="unverified_game_id") },
         inverseJoinColumns={ @JoinColumn(name="platform_id") }
     )
-    @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
-    protected UnverifiedGame() {}
+    public UnverifiedGame() {}
 
-    public UnverifiedGame(GameModel gameModel) {
-        this.id = gameModel.getId();
-        this.releaseDate = gameModel.getReleaseDate();
-        this.title = gameModel.getTitle();
-        this.company = new Company(gameModel.getCompany());
-        this.platforms = new ArrayList<Platform>();
-        for (PlatformModel platform : gameModel.getPlatforms()) {
-            this.platforms.add(new Platform(platform));
-        }
+    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+        this.releaseDate = releaseDate;
+        this.title = title;
+        this.company = company;
+        this.platforms = platforms;
     }
 
     public Long getId() {

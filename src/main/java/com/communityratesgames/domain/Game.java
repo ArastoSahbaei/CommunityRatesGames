@@ -7,23 +7,10 @@ import java.util.ArrayList;
 
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.PlatformModel;
+import org.picketlink.idm.model.annotation.Unique;
 
 @Entity
 @Table(name = "game_entity")
-@NamedStoredProcedureQueries({
-    @NamedStoredProcedureQuery(
-        name = "searchForFiveGamesByTitle",
-        procedureName = "SEARCH_FIVE_GAMES",
-        resultClasses = {Game.class},
-        parameters = {
-            @StoredProcedureParameter(
-                name = "query",
-                type = String.class,
-                mode = ParameterMode.IN
-            )
-        }
-    )
-})
 
 public class Game {
 
@@ -31,15 +18,14 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp releaseDate;
+
     @Column
+    @Unique
     private String title;
 
     @JoinColumn
     @ManyToOne
     private Company company;
-
-    @Column(nullable=false)
-    private boolean verified = false;
 
     @JoinTable(name="game_platform",
         joinColumns={ @JoinColumn(name="game_id") },
@@ -51,19 +37,15 @@ public class Game {
     @Column(name="average_rating")
     private Float averageRating;
 
-    protected Game() {}
+    public Game() {}
 
-    public Game(GameModel gameModel) {
-        this.id = gameModel.getId();
-        this.releaseDate = gameModel.getReleaseDate();
-        this.title = gameModel.getTitle();
-        this.company = new Company(gameModel.getCompany());
-        this.platforms = new ArrayList<Platform>();
-        for (PlatformModel platform : gameModel.getPlatforms()) {
-            this.platforms.add(new Platform(platform));
-        }
-        this.averageRating = gameModel.getAverageRating();
-        this.verified = false;
+    public Game(UnverifiedGame unverifiedGame, boolean withId) {
+        if (withId){this.id = unverifiedGame.getId();}
+        this.releaseDate = unverifiedGame.getReleaseDate();
+        this.title = unverifiedGame.getTitle();
+        this.company = unverifiedGame.getCompany();
+        this.platforms = unverifiedGame.getPlatforms();
+        this.averageRating = 0f;
     }
 
     public Long getId() {
@@ -92,14 +74,6 @@ public class Game {
 
     public void setPlatforms(List<Platform> platforms) {
         this.platforms = platforms;
-    }
-
-    public boolean isVerified() {
-        return this.verified;
-    }
-
-    public void setVerified(boolean verified) {
-        this.verified = verified;
     }
 
     public Timestamp getReleaseDate() {

@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
+import com.communityratesgames.domain.UnverifiedGame;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,6 +42,18 @@ public class GameModel implements Serializable {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public GameModel(Game entity) {
+        this.id = entity.getId();
+        this.releaseDate = entity.getReleaseDate();
+        this.title = entity.getTitle();
+        this.company = entity.getCompany().getCompanyName();
+        this.platforms = entity.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
+    }
+
+    public GameModel(UnverifiedGame entity) {
+        this(new Game(entity,true));
     }
 
     public GameModel() {

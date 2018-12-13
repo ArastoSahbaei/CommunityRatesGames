@@ -2,7 +2,6 @@ package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
 import com.communityratesgames.model.GameModel;
-import com.communityratesgames.model.UnverifiedGameModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
 import org.apache.log4j.Logger;
@@ -54,7 +53,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public String searchFiveGames(String query) {
         return gameDataAccess.searchFiveGames(query);
     }
-    public void createNewGame(Game newGame) {
+    public void createNewGame(GameModel newGame) {
         gameDataAccess.createNewGame(newGame);
     }
     public List<GameModel> getTopRatedGames(Integer limit, Integer page) {
@@ -62,7 +61,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     }
 
     //Unverified Games
-    public void addUnverifiedGame(UnverifiedGameModel model) {
+    public void addUnverifiedGame(GameModel model) {
         unverifiedGameDataAccess.addUnverifiedGame(model);
     }
     public void deleteUnverifiedGame(Long id) {
@@ -71,7 +70,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public void verifyGame(Long id) {
         unverifiedGameDataAccess.verifyGame(id);
     }
-    public List<UnverifiedGameModel> getAllUnverifiedGames() {
+    public List<GameModel> getAllUnverifiedGames() {
         return unverifiedGameDataAccess.getAllUnverifiedGames();
     }
 

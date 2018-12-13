@@ -36,7 +36,8 @@ public class GameService implements GameDataAccess {
     public GameModel gameByTitle(String title) {
         return new GameModel(
                 em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
-                .setParameter("title", title).getSingleResult()
+                .setParameter("title", title)
+                .getSingleResult()
         );
     }
 
@@ -51,7 +52,7 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
-            List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title AND g.verified = TRUE",Game.class)
+            List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title",Game.class)
                     .setParameter("title", query+'%')
                     .setMaxResults(5)
                     .getResultList();
@@ -59,13 +60,13 @@ public class GameService implements GameDataAccess {
     }
 
     @Override
-    public void createNewGame(Game newGame) {
+    public void createNewGame(GameModel newGame) {
     }
 
     @Override
     public List<GameModel> getTopRatedGames(Integer limit, Integer page) {
         return convertListEntityToModel(
-                em.createQuery("SELECT g FROM Game g WHERE g.verified = TRUE ORDER BY g.averageRating DESC", Game.class)
+                em.createQuery("SELECT g FROM Game g ORDER BY g.averageRating DESC", Game.class)
                     .setFirstResult((page-1) * limit)
                     .setMaxResults(limit)
                     .getResultList()
@@ -92,6 +93,12 @@ public class GameService implements GameDataAccess {
             e.printStackTrace();
         }
         return outputStream.toString();
+    }
+
+    private Game gameModelToEntity(GameModel model) {
+        return em.createQuery("SELECT g FROM Game g WHERE g.title = :title",Game.class)
+                .setParameter("title", model.getTitle())
+                .getSingleResult();
     }
 
     private List<GameModel> convertListEntityToModel (List<Game> entityList) {
