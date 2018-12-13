@@ -29,7 +29,7 @@ public class CompanyService implements CompanyDataAccess {
     @Override
     public Company findCompanyByCompanyName(String companyName) {
         try {
-            return em.createQuery("SELECT c FROM Company c WHERE c.company.name = :company", Company.class)
+            return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :company", Company.class)
                     .setParameter("company", companyName).getSingleResult();
         } catch (NoResultException e) {
             return null;
