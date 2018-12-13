@@ -14,6 +14,7 @@ public interface DataAccessLocal {
 
     public Company registerNewCompany(Company company);
     public List<Company> showAllCompanies();
+    public Company findCompanyByCompanyName(String companyName);
 
 
     //Rating
