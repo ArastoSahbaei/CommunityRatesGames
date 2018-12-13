@@ -19,18 +19,6 @@ public class GameController {
     @Inject
     private DataAccessLocal dal;
 
-    @POST
-    @Path("/create")
-    @Produces({"application/JSON"})
-    public Response createNewGame(GameModel newGame) {
-        try {
-            dal.createNewGame(newGame);
-            return Response.ok().build();
-        } catch (PersistenceException e) {
-            return Response.status(Status.BAD_REQUEST).build();
-        }
-    }
-
     @GET
     @Path("/all")
     @Produces({"application/JSON"})

@@ -76,4 +76,12 @@ public class Platform implements Serializable {
     public void setGames(List<Game> games) {
         this.games = games;
     }
+
+    public List<Game> getUnverifiedGames() {
+        return unverifiedGames;
+    }
+
+    public void setUnverifiedGames(List<Game> unverifiedGames) {
+        this.unverifiedGames = unverifiedGames;
+    }
 }

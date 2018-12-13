@@ -32,7 +32,7 @@ public class UnverifiedGame implements Serializable {
         joinColumns={ @JoinColumn(name="unverified_game_id") },
         inverseJoinColumns={ @JoinColumn(name="platform_id") }
     )
-    @ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
     public UnverifiedGame() {}

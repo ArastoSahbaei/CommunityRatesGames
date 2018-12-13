@@ -60,11 +60,27 @@ public class UnverifiedGameService implements UnverifiedGameDataAccess{
                 .getSingleResult();
     }
     private List<Platform> getPlatformEntity(List<String> platformList){
-        return em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
+        List<Platform> derp = em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
                 .setParameter("list", platformList)
                 .getResultList();
+        for (Platform p:derp
+             ) {
+            System.out.println("####PLATFORMENTITY####");
+            System.out.println(p.getName());
+        }
+        return derp;
     }
     private List<GameModel> convertListEntityToModel (List<UnverifiedGame> entityList) {
+        for (UnverifiedGame g: entityList
+             ) {
+            System.out.println("########");
+            System.out.println(g.getTitle());
+            for (Platform p: g.getPlatforms()
+                 ) {
+                System.out.println(p.getName());
+            }
+
+        }
         return entityList.stream().map(GameModel::new).collect(Collectors.toList());
     }
 }

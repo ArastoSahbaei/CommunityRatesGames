@@ -31,7 +31,7 @@ public class Game {
         joinColumns={ @JoinColumn(name="game_id") },
         inverseJoinColumns={ @JoinColumn(name="platform_id") }
     )
-    @ManyToMany(cascade={ CascadeType.ALL },fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
     @Column(name="average_rating")
