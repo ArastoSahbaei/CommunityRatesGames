@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
 
   public registerForm: FormGroup;
   private failedLogin: boolean = false;
+  public errorMessage: string = "";
 
   constructor(private fb: FormBuilder,
               private api: ApiService,
@@ -49,7 +50,12 @@ export class RegisterComponent implements OnInit {
         }
       }
     }, error => {
-      throw error;
+      if (error.status == 400) {
+        this.errorMessage = error.error.message;
+        this.failedLogin = true;
+      } else {
+        throw error;
+      }
     });
 
   }
