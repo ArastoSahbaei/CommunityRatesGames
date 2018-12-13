@@ -1,21 +1,41 @@
 <mat-card [formGroup]="addGames">
   <mat-card-title>Fill in empty spaces to add a game</mat-card-title>
   <mat-form-field>
-    <p>Title:</p>
-    <input id="title" matInput placeholder="" formControlName="title" class="form-control" type="title" required>
-    <span *ngIf="(title.dirty || title.touched) && title.invalid">Title is required</span>
+    <input id="title" matInput placeholder="Title" formControlName="title" class="form-control" type="title" required>
+    <mat-error *ngIf="(title.dirty || title.touched) && title.invalid">Title required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <p>CompanyInterface:</p>
-    <input id="companyId" matInput placeholder="" type="companyId" formControlName="companyId" class="form-control" required >
-    <span *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">CompanyInterface is required</span>
+    <input id="companyId" matInput placeholder="Company" formControlName="companyId" class="form-control" type="companyId" required>
+    <mat-error *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">Company required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <p>Platforms/PlatformInterface:</p>
-    <input id="allPlatformId" matInput placeholder="" type="allPlatformId" formControlName="allPlatformId" class="form-control" required >
-    <span *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">PlatformInterface is required</span>
+    <input id="allPlatformId" matInput placeholder="Platform" formControlName="allPlatformId" class="form-control" type="allPlatformId" required>
+    <mat-error *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">Platform required</mat-error>
   </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>
   </mat-card-actions>
 </mat-card>
+
+
+<div class="stars container">
+  <div class="row">
+    <div class="col-md-4">
+      <section>
+        <b>Rate Game Here</b>
+        <mat-card [formGroup]="ratings">
+        <mat-form-field>
+          <input id="user" matInput placeholder="Username" formControlName="user" class="form-control" type="user" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="game" matInput placeholder="Game Title" formControlName="game" class="form-control" type="game" required>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-raised-button type="button" (click)="addRating()" color="primary">Add Rating</button>
+          <bar-rating [(ngModel)]="rate" [max]="max" (rateChange)="hoveringOver($event)"></bar-rating>
+        </mat-card-actions>
+        </mat-card>
+      </section>
+    </div>
+    </div>
+  </div>

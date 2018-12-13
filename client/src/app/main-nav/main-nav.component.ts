@@ -4,6 +4,8 @@ import {StorageService} from "../shared/service/storage.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../shared/service/auth.service";
 import {Observable} from "rxjs";
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-nav',
@@ -19,9 +21,15 @@ export class MainNavComponent implements OnInit {
   public isLoggedInAdmin$: Observable<boolean>;
   private name: string = "";
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
+
   constructor(private storage: StorageService,
               private auth: AuthService,
-              private route: Router) {
+              private route: Router,
+              private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit() {
