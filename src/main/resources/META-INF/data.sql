@@ -31,15 +31,3 @@ VALUES
 (2, 2, 1, 3),
 (3, 3, 1, 0),
 (4, 4, 1, 3);
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SEARCH_FIVE_GAMES`(in query varchar(255))
-  begin
-    SELECT *
-    FROM game_entity
-    WHERE title = query+'%'
-    AND verified = true
-    LIMIT 5;
-  end
-$$
-DELIMITER ;
