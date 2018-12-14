@@ -1,6 +1,7 @@
 package com.communityratesgames.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import org.picketlink.idm.model.annotation.Unique;
 @Entity
 @Table(name = "game_entity")
 
-public class Game {
+public class Game implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
