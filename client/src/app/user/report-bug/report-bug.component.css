@@ -1,0 +1,18 @@
+textarea{
+  resize: none;
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 10px auto 0;
+}
+
+mat-error {
+  color: red;
+}
+
+button{
+  color: greenyellow;
+}

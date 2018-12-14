@@ -8,6 +8,7 @@ import {User} from "../interface/user.interface";
 import {Observable} from "rxjs";
 import {Company} from "../interface/company.interface";
 import {Contact} from "../interface/contact.interface";
+import {Report} from "../interface/report.interface";
 
 
 
@@ -76,6 +77,10 @@ export class ApiService {
   }
 
   addNewContactMessage(message: Contact) {
+    return this.httpClient.post(this.url.getMongoUrl(), message);
+  }
+
+  reportBug(message: Report) {
     return this.httpClient.post(this.url.getMongoUrl(), message);
   }
 
