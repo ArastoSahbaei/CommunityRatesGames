@@ -78,6 +78,20 @@ export class ApiService {
   addNewContactMessage(message: Contact) {
     return this.httpClient.post(this.url.getMongoUrl(), message);
   }
+
+  // For admin view that is connected to Logging EE server
+  searchUser(user: string):Observable<any> {
+    return this.httpClient.get(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getSearch(),
+      { headers: Headers.HeaderJSON(),
+        params: { name: user }
+      });
+  }
+
+  getStatisticOnAUser(user: object): Observable<any> {
+    return this.httpClient.post(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getStatistic(),
+            user, {headers: Headers.HeaderJSON()
+    });
+  }
 }
 
 

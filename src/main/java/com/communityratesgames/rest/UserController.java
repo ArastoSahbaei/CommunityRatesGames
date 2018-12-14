@@ -74,6 +74,7 @@ public class UserController {
             }
             UserModel toModel = userModel.toModel(user2);
             sender.registerLog(user2.toJMS());
+            System.out.println(toModel.toString());
             return Response.ok(toModel).build();
         } catch (JsonError e) {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();

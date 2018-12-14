@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
@@ -28,11 +28,14 @@ import { UrlService } from "./shared/service/url.service";
 import { StorageService } from "./shared/service/storage.service";
 import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
-import {GlobalErrorHandlingService} from "./shared/service/global-error-handling.service";
+import { GlobalErrorHandlingService } from "./shared/service/global-error-handling.service";
 import { AdminComponent } from './admin/admin.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
-import {BarRatingModule} from "ngx-bar-rating";
+import { DialogComponent } from './dialog/dialog.component';
+import { ChartModule } from "./shared/chart/chart.module";
+import { BarRatingModule } from "ngx-bar-rating";
+
 
 @NgModule({
   declarations: [
@@ -58,7 +61,8 @@ import {BarRatingModule} from "ngx-bar-rating";
     GamePageComponent,
     AdminComponent,
     AccountsComponent,
-    CrgComponent
+    CrgComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,8 +72,10 @@ import {BarRatingModule} from "ngx-bar-rating";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartModule,
     BarRatingModule
   ],
+  entryComponents: [DialogComponent],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
   bootstrap: [AppComponent]
 })

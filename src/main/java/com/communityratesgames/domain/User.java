@@ -39,7 +39,7 @@ public class User implements Serializable {
         this.userName = username;
         this.email = email;
         this.encryptPassword(password);
-        this.role = "user";
+        this.role = "User";
     }
 
     public String toJMS() {
@@ -135,16 +135,4 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userCreated=" + userCreated +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }

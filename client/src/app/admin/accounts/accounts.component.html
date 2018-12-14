@@ -1,13 +1,30 @@
 <mat-drawer-container class="container">
-  <mat-drawer mode="side" opened class="dashboard">
-    <mat-checkbox value="1" color="primary" [checked]="checkbox" (change)="showAllUsers($event)">Show all users</mat-checkbox>
-    <mat-checkbox value="1" color="primary" [checked]="checkbox" (change)="addUsers($event)">Add user</mat-checkbox>
+  <mat-drawer mode="side" opened class="dashboard" #drawer>
+    <mat-radio-button color="primary" (change)="dashboardSelection(1)">Show all users</mat-radio-button>
+    <mat-radio-button color="primary" (change)="dashboardSelection(2)">Add user</mat-radio-button>
+    <mat-radio-button color="primary" (change)="dashboardSelection(3)">Search User</mat-radio-button>
   </mat-drawer>
 
   <mat-drawer-content>
 
     <ng-container *ngIf="!choice; else showUsers"></ng-container>
     <ng-container *ngIf="!addUser; else addAdmin"></ng-container>
+    <ng-container *ngIf="!showStatisticOnUser; else showUser"></ng-container>
+
+<!-- Show statistic about a certain user -->
+    <ng-template #showUser>
+      <mat-card [formGroup]="showUserForm">
+        <mat-card-header>Search user</mat-card-header>
+
+          <div class="searchFieldAndIcon inputIconBg">
+            <input type="text" placeholder="Search user" [matAutocomplete]="auto" [formControl]="search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userSearch($event.option.value)">
+              <mat-option *ngFor="let user of usersFound" [value]="user.user">{{user.user}}</mat-option>
+            </mat-autocomplete>
+          </div>
+      </mat-card>
+    </ng-template>
 
 <!-- Add a new user or admin -->
     <ng-template #addAdmin>

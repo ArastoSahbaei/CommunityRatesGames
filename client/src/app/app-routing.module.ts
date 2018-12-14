@@ -49,7 +49,7 @@ const routes: Routes = [
       ]},
   {path: 'error', component: ErrorComponent},
   {path: 'register', component: RegisterComponent},
-  { path: '**', component: PageNotFoundComponent }
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
