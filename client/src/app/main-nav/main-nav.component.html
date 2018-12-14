@@ -58,18 +58,17 @@
 
           <div class="loggedInUser">
             <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
-          </div>
-           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+            <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
           <mat-menu #admin="matMenu">
             <span>ADMIN</span>
             <hr>
-            <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
+            <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>                   Add Company</button>
             <hr>
-            <button mat-menu-item routerLink="start/admin/accounts">      <mat-icon>perm_contact_calendar</mat-icon>         Accounts</button>
+            <button mat-menu-item routerLink="start/admin/accounts">      <mat-icon>perm_contact_calendar</mat-icon>               Accounts</button>
           </mat-menu>
-
           <mat-menu #user="matMenu">
+            </div>
 
             <div class="titleForLoggedInUsers">
               <span>ACCOUNT</span>
@@ -85,16 +84,16 @@
             </div>
             <hr>
 
-            <button mat-menu-item routerLink="start/user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>                   Add Game</button>
-            <button mat-menu-item routerLink="start/user/report-a-bug">  <mat-icon>bug_report</mat-icon>                     Report a Bug</button>
-            <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/XrXsmVy')">  <mat-icon>textsms</mat-icon>      Discord</button>
-            <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>                Contact</button>
+            <button mat-menu-item routerLink="start/user/add-a-game">    <mat-icon>thumb_up_alt</mat-icon>                        Add Game</button>
+            <button mat-menu-item routerLink="start/user/report-a-bug">  <mat-icon>bug_report</mat-icon>                          Report a Bug</button>
+            <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/XrXsmVy')">  <mat-icon>textsms</mat-icon>     Discord</button>
+            <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>                     Contact</button>
             <hr>
-            <button mat-menu-item routerLink="/#404">           <mat-icon>accessible</mat-icon>                       Sign Out</button>
+            <button mat-menu-item routerLink="/#404">           <mat-icon>accessible</mat-icon>                                   Sign Out</button>
           </mat-menu>
 
           <div class="navigationButtonHome">
-            <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">                      Home</span> </button>
+            <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">                           Home</span> </button>
           </div>
 
           <div class="navigationButtonGame">
