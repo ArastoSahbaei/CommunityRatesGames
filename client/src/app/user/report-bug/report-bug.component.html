@@ -1,3 +1,22 @@
-<p>
-  report-bug works!
-</p>
+<mat-card [formGroup]="report" novalidate>
+  <mat-card-title>Report a Bug</mat-card-title>
+
+  <mat-form-field>
+    <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+    <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="username" matInput placeholder="Username" formControlName="username" class="form-control" type="username" required>
+    <mat-error *ngIf="(username.dirty || username.touched) && username.invalid">Username required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput rows="10" cols="62" id="message" placeholder="Message" formControlName="message" class="form-control" required ></textarea>
+    <mat-error *ngIf="(message.dirty || message.touched) && message.invalid">Message required</mat-error>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <button mat-raised-button type="button" [disabled]="!report.valid" (click)="onSubmit()" color="primary">Report Bug</button>
+  </mat-card-actions>
+</mat-card>
