@@ -5,21 +5,38 @@
   grid-gap: 10px;
 }
 
-.lista2{
-  grid-column: 2 / 1;
+.lista{
+  grid-column: 1 / 1;
   grid-row: 1 / 1;
+  justify-self: center;
+}
+
+.lista2{
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
+  justify-self: center;
+}
+
+.lista3{
+  grid-column: 3 / 3;
+  grid-row: 1 / 1;
+  justify-self: center;
 }
 
 .rubrik{
   text-align: center;
 }
+
+.games{
+  height: 200px;
+}
 .example-game {
   max-width: 400px;
 }
-
 .example-header-image {
   background-image: url('../../assets/images/mariocart.jpg');
   background-size: cover;
+
 }
 .example-header-image3 {
    background-image: url('../../assets/images/halo.jpg');
