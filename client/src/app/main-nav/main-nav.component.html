@@ -58,9 +58,10 @@
 
           <div class="loggedInUser">
             <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
-          </div>
-           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
+           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+          </div>
+          
           <mat-menu #admin="matMenu">
             <span>ADMIN</span>
             <hr>
@@ -90,7 +91,7 @@
             <button mat-menu-item onClick="MyWindow=window.open('https://discord.gg/XrXsmVy')">  <mat-icon>textsms</mat-icon>      Discord</button>
             <button mat-menu-item routerLink="start/user/contact">       <mat-icon>contact_support</mat-icon>                Contact</button>
             <hr>
-            <button mat-menu-item routerLink="/#404">           <mat-icon>accessible</mat-icon>                       Sign Out</button>
+            <button mat-menu-item routerLink="/">           <mat-icon>accessible</mat-icon>                                   Sign Out</button>
           </mat-menu>
 
           <div class="navigationButtonHome">
