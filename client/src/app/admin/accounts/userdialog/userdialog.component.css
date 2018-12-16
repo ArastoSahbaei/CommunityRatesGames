@@ -1,0 +1,14 @@
+mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10px auto 0;
+}
+
+span {
+  color: red;
+}
+
+mat-radio-button {
+  margin-right: 10px;
+}

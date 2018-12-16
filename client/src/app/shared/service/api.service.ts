@@ -27,10 +27,8 @@ export class ApiService {
   }
 
   searchGame(game : string) : Observable<any> {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getSearch(),
-      { headers: Headers.HeaderJSON(),
-                params: { q : game}
-      });
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getUser(),
+      { headers: Headers.HeaderJSON()});
   }
 
   searchGameByTitle() {
@@ -41,12 +39,33 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
+  getUserDetails(user: string): Observable<any> {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getCertainUser(),
+      { headers: Headers.HeaderJSON(),
+        params: { name: user }
+      });
+  }
+
   checkCredentials(body: User) {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON()});
   }
 
   registerUser(body: Register) {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getRegister(), body, {headers: Headers.HeaderJSON()});
+  }
+
+  updateUser(body: User) {
+    return this.httpClient.put(this.url.getBaseUrl() + this.url.getUser() + this.url.getUpdate(), body, {headers: Headers.HeaderJSON()});
+  }
+
+  deleteUser(name: string) {
+    return this.httpClient.request('delete', this.url.getBaseUrl() + this.url.getUser() + this.url.getDelete(),
+      {
+        body: {
+          name,
+          headers: Headers.HeaderJSON()
+        }
+      });
   }
 
   createCompany(company: Company) {

@@ -29,13 +29,14 @@ public interface DataAccessLocal {
     public List<Platform> showAllPlatforms();
     public Platform createPlatform(String name, int releaseYear, Long companyId);
 
-
     //User
     public List<User> showAllUsers();
     public User login(User user);
     public boolean logout(Long token);
     public User register(User user) throws JsonError;
-
+    public User detailsAboutAUser(String user);
+    public User deleteAUser(User user);
+    public User updateAUser(User user);
 
     //Game
     public List<GameModel> showAllGames();

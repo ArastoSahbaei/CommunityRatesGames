@@ -12,9 +12,12 @@ export class UrlService {
   private rating: string = "/rating/new";
   private top100: string = "/toprated";
   private games: string = "/game";
+  private user: string = "/user";
+  private certainUser: string = "/certainUser";
   private login: string = "/login";
   private register: string = "/register";
-  private user: string = "/user";
+  private update: string = "/update";
+  private delete: string = "/delete";
   private credential: string = "/credential";
   private searchGameByTitle: string = "/game/search?q=";
   private oneGamebyTitle: string = "/title";
@@ -24,6 +27,18 @@ export class UrlService {
   private statistic: string = "/statistic";
 
   constructor() {
+  }
+
+  getCertainUser() {
+    return this.certainUser;
+  }
+
+  getUpdate() {
+    return this.update;
+  }
+
+  getDelete() {
+    return this.delete;
   }
 
   getMongoUrl() {

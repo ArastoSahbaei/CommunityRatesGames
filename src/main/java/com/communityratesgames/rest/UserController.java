@@ -83,17 +83,37 @@ public class UserController {
         }
     }
 
+    @GET
+    @Path("/certainUser")
+    @Produces({"application/JSON"})
+    @Consumes({"application/JSON"})
+    public Response userDetails(@QueryParam("name") String user) {
+        try {
+            User toEntity = dal.detailsAboutAUser(user);
+            return Response.ok(toEntity).build();
+        } catch ( Exception e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+
+
+    @PUT
+    @Path("/update")
+    @Produces({"application/JSON"})
+    @Consumes({"application/JSON"})
+    public Response update(String user) {
+        System.out.println(user);
+        return null;
+    }
+
     @DELETE
-    @Path("/logout")
+    @Path("/delete")
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
-    public Response logout(@QueryParam("token") Long token) {
+    public Response logout(String user) {
         try {
-            if (dal.logout(token)) {
-                return Response.status(Status.OK).build();
-            } else {
-                return Response.status(Status.BAD_REQUEST).build();
-            }
+            System.out.println(user);
+            return null;
         } catch (PersistenceException e) {
             return Response.status(Status.UNAUTHORIZED).entity(e.getMessage()).build();
         }

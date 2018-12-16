@@ -67,7 +67,7 @@
 
         <ng-container matColumnDef="userName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
-          <td mat-cell *matCellDef="let element">{{element.userName}}</td>
+          <td mat-cell *matCellDef="let element"><button mat-button (click)="openDetails(element.userName)">{{element.userName}}</button></td>
         </ng-container>
 
         <ng-container matColumnDef="email">

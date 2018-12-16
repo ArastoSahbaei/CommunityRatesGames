@@ -63,6 +63,24 @@ public class UserService implements UserDataAccess {
         }
     }
 
+    @Override
+    public User deleteAUser(User user) {
+        return null;
+    }
+
+    @Override
+    public User updateAUser(User user) {
+        return null;
+    }
+
+    @Override
+    public User detailsAboutAUser(String user) {
+        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = :user", User.class)
+                .setParameter("user", user)
+                .getSingleResult();
+        return u;
+    }
+
     public boolean logout(Long token) {
         return AuthToken.close(token);
     }

@@ -12,5 +12,8 @@ public interface UserDataAccess {
     public abstract List<User> showAllUsers();
     public abstract User register(User user) throws JsonError;
     public abstract User login(User user);
-    public boolean logout(Long token);
+    public abstract boolean logout(Long token);
+    public abstract User detailsAboutAUser(String user);
+    public abstract User deleteAUser(User user);
+    public abstract User updateAUser(User user);
 }
