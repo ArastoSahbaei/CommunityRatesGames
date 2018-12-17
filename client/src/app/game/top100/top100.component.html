@@ -1,17 +1,19 @@
-<div class ="container">
-<mat-list>
-  <h3 mat-subheader>Top 100 Games</h3>
-  <mat-divider></mat-divider>
-  <mat-list-item *ngFor="let game of games">
-    <mat-icon mat-list-icon>games</mat-icon>
-    <h4 mat-line>{{game.title}}</h4>
-    <p mat-line>{{game.platform}}</p>
-    <p mat-line>{{game.company}}</p>
-    <p mat-line> {{game.updated | date}}</p>
-  </mat-list-item>
-  <mat-divider></mat-divider>
-  <mat-card-actions>
-    <button mat-raised-button type="button" (click)="getTopGames()" color="primary">Next</button>
-  </mat-card-actions>
-</mat-list>
-</div>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>>
+      <mat-cell *matCellDef="let games">{{games.title}}</mat-cell>>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>>
+        <mat-cell *matCellDef="let games">{{games.company}}</mat-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="100" [pageSize]="10" [showFirstLastButtons]></mat-paginator>
+

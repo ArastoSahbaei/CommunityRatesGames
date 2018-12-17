@@ -10,7 +10,7 @@ export class UrlService {
   private mongoUrl: string ="http://localhost:4000/message/add";
   private loggingUrl: string = "http://localhost:8080/communityratesgameslogging";
   private rating: string = "/rating/new";
-  private top100: string = "/toprated";
+  private top100: string = "/top100";
   private games: string = "/game";
   private user: string = "/user";
   private certainUser: string = "/certainUser";

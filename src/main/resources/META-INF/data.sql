@@ -89,7 +89,7 @@ VALUES
 ('Metal Gear', 13),
 ('Dragon Ball', 13),
 ('Dark Souls', 13),
-('Tom Calncys Rainbow Six Siege', 14),
+('Tom Clancys Rainbow Six Siege', 14),
 ('Watch Dogs', 14),
 ('The Crew', 14),
 ('Watch Dogs 2', 14),
