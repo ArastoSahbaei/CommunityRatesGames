@@ -27,8 +27,10 @@ export class ApiService {
   }
 
   searchGame(game : string) : Observable<any> {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getUser(),
-      { headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getSearch(),
+      { headers: Headers.HeaderJSON(),
+        params: { q : game}
+      });
   }
 
   searchGameByTitle() {
@@ -82,7 +84,9 @@ export class ApiService {
   }
 
   getTop100(){
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
+    console.log("in top100");
+    console.log(this.url.getBaseUrl() + this.url.getGames() + this.url.getTop100());
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
   }
 
   getOneGameByTitle(title: string) {
