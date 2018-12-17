@@ -72,6 +72,15 @@ public class GameService implements GameDataAccess {
         );
     }
 
+    @Override
+    public List<GameModel> getTop100Games() {
+        return convertListEntityToModel(
+                em.createQuery("SELECT g FROM Game g ORDER BY g.averageRating DESC", Game.class)
+                        .setMaxResults(100)
+                        .getResultList()
+        );
+    }
+
     private String reduceGameToTitleAndId(List<Game> gameList) {
         JsonFactory factory = new JsonFactory();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

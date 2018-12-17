@@ -76,6 +76,19 @@ public class GameController {
     }
 
     @GET
+    @Path("/top100")
+    @Produces({"application/JSON"})
+    public Response getTopRatedGames() {
+        try {
+            List<GameModel> top100 = dal.getTop100Games();
+            return Response.ok(top100).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+
+    }
+
+    @GET
     @Path("/toprated")
     @Produces({"application/JSON"})
     public Response getTopRatedGames(
