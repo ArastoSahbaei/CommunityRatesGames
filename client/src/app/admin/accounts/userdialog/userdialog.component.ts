@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../shared/service/api.service";
+import {User} from "../../../shared/interface/user.interface";
 
 
 @Component({
@@ -36,8 +37,16 @@ export class UserdialogComponent implements OnInit {
       )
   }
   onSubmit(){
-//    this.api.getUserDetails()
-    console.log(this.userDetails.value);
+    const user = {} as User;
+
+    user.email = this.userDetails.value.mail;
+    user.username = this.userDetails.value.name;
+
+    if ( this.userDetails.value.action == 1 ) {
+      this.api.updateUser(user).subscribe((response) => console.log(response));
+    } else {
+      this.api.deleteUser(user.username).subscribe((response) => console.log(response));
+    }
   }
 
   get mail() {

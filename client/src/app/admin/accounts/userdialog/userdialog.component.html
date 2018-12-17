@@ -1,4 +1,4 @@
-<mat-card [formGroup]="userDetails" novalidate>
+<mat-card [formGroup]="userDetails">
   <mat-card-title>Edit user</mat-card-title>
 
   <mat-form-field>
@@ -11,12 +11,12 @@
     <mat-error *ngIf="(name.dirty || name.touched) && name.invalid">Username required</mat-error>
   </mat-form-field>
 
-  <mat-radio-group>
+  <mat-radio-group formControlName="action">
     <mat-radio-button name="action" color="primary" value="1">Update</mat-radio-button>
     <mat-radio-button name="action" color="primary" value="2">Delete</mat-radio-button>
   </mat-radio-group>
 
   <mat-card-actions>
-    <button mat-raised-button [disabled]="!userDetails.valid" (click)="onSubmit()" color="primary">Send</button>
+    <button mat-raised-button (click)="onSubmit()" color="primary">Send</button>
   </mat-card-actions>
 </mat-card>

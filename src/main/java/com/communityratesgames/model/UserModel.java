@@ -37,14 +37,18 @@ public class UserModel implements Serializable {
         JsonObject json = jsonFromString(input);
         User user = new User();
 
+        System.out.println(json);
+
         email = json.getString("email", null);
         if (email == null) {
             throw new JsonError(1, "email not specified");
         }
 
-        password = json.getString("password", null);
-        if (password == null) {
-            throw new JsonError(2, "password not specified");
+        if (json.containsKey("password")) {
+            password = json.getString("password", null);
+            if (password == null) {
+                throw new JsonError(2, "password not specified");
+            }
         }
 
         if (encryptPassword) {
@@ -54,7 +58,9 @@ public class UserModel implements Serializable {
         if (json.containsKey("username")) {
             username = json.getString("username");
             userCreated = user.getTimestamp();
-            role = json.getString("role");
+            if (json.containsKey("role")) {
+                role = json.getString("role");
+            }
         } else {
             username = user.getUserName();
             user.setPassword(password);
@@ -68,6 +74,8 @@ public class UserModel implements Serializable {
         user.setRole(role);
         user.setUserCreated(userCreated);
         user.setId(id);
+
+        System.out.println(user.toString());
 
         return user;
     }

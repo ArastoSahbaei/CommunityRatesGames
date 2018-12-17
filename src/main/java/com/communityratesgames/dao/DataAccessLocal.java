@@ -35,8 +35,8 @@ public interface DataAccessLocal {
     public boolean logout(Long token);
     public User register(User user) throws JsonError;
     public User detailsAboutAUser(String user);
-    public User deleteAUser(User user);
-    public User updateAUser(User user);
+    public Boolean deleteAUser(User user);
+    public Integer updateAUser(User user);
 
     //Game
     public List<GameModel> showAllGames();

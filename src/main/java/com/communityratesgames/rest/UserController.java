@@ -102,20 +102,32 @@ public class UserController {
     @Produces({"application/JSON"})
     @Consumes({"application/JSON"})
     public Response update(String user) {
-        System.out.println(user);
-        return null;
+        try {
+            User um = userModel.toEntity(user, false);
+            System.out.println(um);
+            Integer answer = dal.updateAUser(um);
+            return Response.status(Status.OK).build();
+        } catch( PersistenceException e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        } catch ( JsonError e) {
+            return Response.status(Status.BAD_GATEWAY).entity(e.toString()).build();
+        }
     }
 
     @DELETE
     @Path("/delete")
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
-    public Response logout(String user) {
+    public Response logout(String name) {
         try {
-            System.out.println(user);
+            User um = userModel.toEntity(name, false);
+            System.out.println(um);
+            Boolean answer = dal.deleteAUser(um);
             return null;
-        } catch (PersistenceException e) {
-            return Response.status(Status.UNAUTHORIZED).entity(e.getMessage()).build();
+        } catch( PersistenceException e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        } catch ( JsonError e) {
+            return Response.status(Status.BAD_GATEWAY).entity(e.toString()).build();
         }
     }
 }

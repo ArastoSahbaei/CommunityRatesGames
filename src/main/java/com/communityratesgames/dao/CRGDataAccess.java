@@ -78,8 +78,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public User login(User user) {return userDataAccess.login(user);}
     public boolean logout(Long token) {return userDataAccess.logout(token);}
     public User detailsAboutAUser(String user) {return userDataAccess.detailsAboutAUser(user);}
-    public User deleteAUser(User user) {return userDataAccess.deleteAUser(user);}
-    public User updateAUser(User user) {return userDataAccess.updateAUser(user);}
+    public Boolean deleteAUser(User user) {return userDataAccess.deleteAUser(user);}
+    public Integer updateAUser(User user) {return userDataAccess.updateAUser(user);}
 
     //Rating Access
     public List<RatingModel> showAllRatings() {return ratingDataAccess.showAllRatings();}

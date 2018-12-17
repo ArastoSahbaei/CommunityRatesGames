@@ -14,6 +14,6 @@ public interface UserDataAccess {
     public abstract User login(User user);
     public abstract boolean logout(Long token);
     public abstract User detailsAboutAUser(String user);
-    public abstract User deleteAUser(User user);
-    public abstract User updateAUser(User user);
+    public abstract Boolean deleteAUser(User user);
+    public abstract Integer updateAUser(User user);
 }

@@ -63,14 +63,27 @@ public class UserService implements UserDataAccess {
         }
     }
 
-    @Override
-    public User deleteAUser(User user) {
-        return null;
+    private User findUserId(User user) {
+        User um = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE email = :user", User.class)
+                .setParameter("user", user.getEmail())
+                .getSingleResult();
+        return um;
     }
 
     @Override
-    public User updateAUser(User user) {
-        return null;
+    public Boolean deleteAUser(User user) {
+        return false;
+    }
+
+    @Override
+    public Integer updateAUser(User user) {
+        User u = findUserId(user);
+        Integer newUser = em.createNativeQuery("UPDATE user_entity SET userName = :user WHERE email = :email", User.class)
+                .setParameter("user", user.getUserName())
+                .setParameter("email", u.getEmail())
+                .executeUpdate();
+        System.out.println(newUser);
+        return newUser;
     }
 
     @Override
