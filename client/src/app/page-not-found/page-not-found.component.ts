@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.css'],
-  template: `
-    <h1>404 ¯\\_(ツ)_/¯</h1>
-  `
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
+    this.router.navigate(['/error'], {fragment: '404'});
   }
 
   ngOnInit() {
