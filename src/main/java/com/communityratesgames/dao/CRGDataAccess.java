@@ -57,6 +57,9 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public List<GameModel> getTopRatedGames(Integer limit, Integer page) {
         return gameDataAccess.getTopRatedGames(limit, page);
     }
+    public List<GameModel> getTop100Games() {
+        return gameDataAccess.getTop100Games();
+    }
 
     //Unverified Games
     public void addUnverifiedGame(GameModel model) {

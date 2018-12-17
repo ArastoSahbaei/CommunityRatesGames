@@ -44,6 +44,7 @@ public interface DataAccessLocal {
     public GameModel gameById(Long id);
     public String searchFiveGames(String query);
     public List<GameModel> getTopRatedGames(Integer limit, Integer page);
+    public List<GameModel> getTop100Games();
 
     //Unverified Game
     public void addUnverifiedGame(GameModel model);
