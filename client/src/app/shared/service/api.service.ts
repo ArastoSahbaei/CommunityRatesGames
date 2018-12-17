@@ -84,8 +84,6 @@ export class ApiService {
   }
 
   getTop100(){
-    console.log("in top100");
-    console.log(this.url.getBaseUrl() + this.url.getGames() + this.url.getTop100());
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getGames() + this.url.getTop100(),{headers: Headers.HeaderJSON()});
   }
 

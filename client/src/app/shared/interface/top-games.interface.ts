@@ -1,10 +1,9 @@
 export interface TopGames {
 
   title: string;
-  platform: string;
-  //platform: number;
+  platform?: string;
   company: string;
-  updated: Date;
+  updated?: Date;
 
 
 }
