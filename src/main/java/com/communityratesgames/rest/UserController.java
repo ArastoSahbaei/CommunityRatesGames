@@ -83,19 +83,54 @@ public class UserController {
         }
     }
 
+    @GET
+    @Path("/certainUser")
+    @Produces({"application/JSON"})
+    @Consumes({"application/JSON"})
+    public Response userDetails(@QueryParam("name") String user) {
+        try {
+            User toEntity = dal.detailsAboutAUser(user);
+            return Response.ok(toEntity).build();
+        } catch ( Exception e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+
+
+    @PUT
+    @Path("/update")
+    @Produces({"application/JSON"})
+    @Consumes({"application/JSON"})
+    public Response update(String user) {
+        try {
+            User um = userModel.toEntity(user, false);
+            System.out.println(um);
+            Integer answer = dal.updateAUser(um);
+            return Response.status(Status.OK).build();
+        } catch( PersistenceException e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        } catch ( JsonError e) {
+            return Response.status(Status.BAD_GATEWAY).entity(e.toString()).build();
+        }
+    }
+
     @DELETE
-    @Path("/logout")
+    @Path("/delete")
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
-    public Response logout(@QueryParam("token") Long token) {
+    public Response delete(String username) {
         try {
-            if (dal.logout(token)) {
+            User um = userModel.toEntity(username, false);
+            Boolean answer = dal.deleteAUser(um);
+            if ( answer == true ) {
                 return Response.status(Status.OK).build();
             } else {
-                return Response.status(Status.BAD_REQUEST).build();
+                return Response.status(Status.NOT_FOUND).build();
             }
-        } catch (PersistenceException e) {
-            return Response.status(Status.UNAUTHORIZED).entity(e.getMessage()).build();
+        } catch( PersistenceException e ) {
+            return Response.status(Status.BAD_REQUEST).build();
+        } catch ( JsonError e) {
+            return Response.status(Status.BAD_GATEWAY).entity(e.toString()).build();
         }
     }
 }

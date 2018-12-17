@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Register} from "../../shared/interface/register.interface";
 import {SearchuserService} from "../../shared/service/searchuser.service";
 import {DialogComponent} from "../../dialog/dialog.component";
+import {UserdialogComponent} from "./userdialog/userdialog.component";
 
 @Component({
   selector: 'app-accounts',
@@ -173,5 +174,16 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         throw error;
       }
     );
+  }
+
+  openDetails(event: string) {
+    const dialogRef = this.dialog.open(UserdialogComponent, {
+      width: '550px',
+      height: '500px',
+      data: {user: event}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

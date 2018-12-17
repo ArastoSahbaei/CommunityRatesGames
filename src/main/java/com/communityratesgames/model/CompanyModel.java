@@ -28,6 +28,7 @@ public class CompanyModel implements Serializable {
 
     public Company jsonPtoEntity(String companyEntity) throws JsonError {
         JsonObject jsonP = jsonObjectFromString(companyEntity);
+
         Company company = new Company();
 
         companyName = jsonP.getString("companyName", null);

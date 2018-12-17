@@ -63,6 +63,45 @@ public class UserService implements UserDataAccess {
         }
     }
 
+    private User findUserId(User user) {
+        User um = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE email = :user", User.class)
+                .setParameter("user", user.getEmail())
+                .getSingleResult();
+        return um;
+    }
+
+    @Override
+    public Boolean deleteAUser(User user) {
+        Integer success = em.createNativeQuery("DELETE FROM user_entity WHERE userName = :user", User.class)
+                .setParameter("user", user.getUserName())
+                .executeUpdate();
+
+        if (success == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Integer updateAUser(User user) {
+        User u = findUserId(user);
+        Integer newUser = em.createNativeQuery("UPDATE user_entity SET userName = :user WHERE email = :email", User.class)
+                .setParameter("user", user.getUserName())
+                .setParameter("email", u.getEmail())
+                .executeUpdate();
+        System.out.println(newUser);
+        return newUser;
+    }
+
+    @Override
+    public User detailsAboutAUser(String user) {
+        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = :user", User.class)
+                .setParameter("user", user)
+                .getSingleResult();
+        return u;
+    }
+
     public boolean logout(Long token) {
         return AuthToken.close(token);
     }
