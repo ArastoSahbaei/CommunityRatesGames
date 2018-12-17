@@ -72,7 +72,15 @@ public class UserService implements UserDataAccess {
 
     @Override
     public Boolean deleteAUser(User user) {
-        return false;
+        Integer success = em.createNativeQuery("DELETE FROM user_entity WHERE userName = :user", User.class)
+                .setParameter("user", user.getUserName())
+                .executeUpdate();
+
+        if (success == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

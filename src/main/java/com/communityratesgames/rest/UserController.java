@@ -118,12 +118,15 @@ public class UserController {
     @Path("/delete")
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
-    public Response logout(String name) {
+    public Response delete(String username) {
         try {
-            User um = userModel.toEntity(name, false);
-            System.out.println(um);
+            User um = userModel.toEntity(username, false);
             Boolean answer = dal.deleteAUser(um);
-            return null;
+            if ( answer == true ) {
+                return Response.status(Status.OK).build();
+            } else {
+                return Response.status(Status.NOT_FOUND).build();
+            }
         } catch( PersistenceException e ) {
             return Response.status(Status.BAD_REQUEST).build();
         } catch ( JsonError e) {

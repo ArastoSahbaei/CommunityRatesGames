@@ -58,12 +58,11 @@ export class ApiService {
     return this.httpClient.put(this.url.getBaseUrl() + this.url.getUser() + this.url.getUpdate(), body, {headers: Headers.HeaderJSON()});
   }
 
-  deleteUser(name: string) {
+  deleteUser(username: string) {
     return this.httpClient.request('delete', this.url.getBaseUrl() + this.url.getUser() + this.url.getDelete(),
       {
         body: {
-          name,
-          headers: Headers.HeaderJSON()
+          username
         }
       });
   }
