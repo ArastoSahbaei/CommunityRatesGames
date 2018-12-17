@@ -55,7 +55,6 @@ public class CompanyController {
     @GET
     @Path("/byname")
     @Produces("application/json")
-    @Consumes
     public Response findCompanyByCompanyName(@QueryParam("companyName") String companyName){
         try {
             Company result = dal.findCompanyByCompanyName(companyName);
