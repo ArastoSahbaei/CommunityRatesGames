@@ -1,6 +1,9 @@
 <mat-card>
   <mat-grid-list cols="4" rowHeight="200px">
-    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.background">
+    <mat-grid-tile *ngFor="let tile of tiles"
+                   [colspan]="tile.cols"
+                   [rowspan]="tile.rows"
+                   [style.background]="tile.background">
 
       <mat-card class="image" *ngIf="tile.index === 2">
         <img mat-card-image src="assets/images/gurka.gif" />
