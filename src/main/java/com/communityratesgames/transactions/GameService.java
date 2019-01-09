@@ -55,11 +55,13 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
-            List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title",Game.class)
-                    .setParameter("title", query+'%')
-                    .setMaxResults(5)
-                    .getResultList();
-            return reduceGameToTitleAndId(results);
+        StoredProcedureQuery searchForFiveGamesByTitle =
+                em.createNamedStoredProcedureQuery("searchForFiveGamesByTitle");
+
+        StoredProcedureQuery sp =
+                searchForFiveGamesByTitle.setParameter("query",query);
+
+            return reduceGameToTitleAndId(sp.getResultList());
     }
 
     @Override

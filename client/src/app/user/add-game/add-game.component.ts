@@ -58,8 +58,6 @@ export class AddGameComponent implements OnInit {
 
     this.api.postRating(rate).subscribe((response) =>{
       console.log(response);
-
-
     });
 
   }
