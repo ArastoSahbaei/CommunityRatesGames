@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Rating;
+import com.communityratesgames.domain.User;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.util.json.*;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.persistence.NoResultException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
 
 import java.io.IOException;
@@ -29,6 +30,19 @@ public class RatingController {
 
     @Inject
     private DataAccessLocal dal;
+
+    private Long getHeaderToken(HttpHeaders header) {
+        List<String> toklist = header.getRequestHeader("Authorization");
+        if (toklist == null || toklist.size() == 0) {
+            return null;
+        }
+
+        try {
+            return Long.parseLong(toklist.get(0));
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 
     @GET
     @Produces({"application/JSON"})
@@ -104,11 +118,17 @@ public class RatingController {
     @POST
     @Path("/new")
     @Consumes({"application/JSON"})
-    public Response createNewRating(String rating) {
+    public Response createNewRating(@Context HttpHeaders header, String rating) {
+        Long token = getHeaderToken(header);
+        if (header == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
         try {
+            User u = dal.getUserToken(token);
             JsonObject json = new JsonObject(rating);
             RatingModel model = new RatingModel();
-            model.setUser(json.getString("user"));
+            model.setUser(u.getUserName());
             model.setGame(json.getString("game"));
             model.setRating((int)json.getNumber("rating"));
             model.setCreationDate(new Timestamp(System.currentTimeMillis()));
