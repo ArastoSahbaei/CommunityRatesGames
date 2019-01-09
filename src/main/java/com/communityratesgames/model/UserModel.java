@@ -15,6 +15,7 @@ public class UserModel implements Serializable {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.model.UserModel.class);
 
+    private Long token;
     private Long id;
     private Timestamp userCreated;
     private String username;
@@ -78,15 +79,24 @@ public class UserModel implements Serializable {
         return user;
     }
 
-    public UserModel toModel(User user) {
+    public UserModel toModel(User user, Long token) {
         UserModel um = new UserModel();
 
         um.username = user.getUserName();
         um.userCreated = user.getUserCreated();
         um.email = user.getEmail();
         um.role = user.getRole();
+        um.token = token;
 
         return um;
+    }
+
+    public Long getToken() {
+        return token;
+    }
+
+    public void setToke(Long token) {
+        this.token = token;
     }
 
     public Long getId() {

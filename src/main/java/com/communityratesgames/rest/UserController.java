@@ -52,7 +52,7 @@ public class UserController {
         try {
             User toEntity = userModel.toEntity(credentials, true);
             User user2 = dal.register(toEntity);
-            UserModel toModel = userModel.toModel(user2);
+            UserModel toModel = userModel.toModel(user2, null);
             return Response.ok(toModel).build();
         } catch (JsonError e) {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
@@ -68,12 +68,17 @@ public class UserController {
     public Response login(String credentials) {
         try {
             User toEntity = userModel.toEntity(credentials, false);
-            User user2 = dal.login(toEntity);
-            if (user2 == null) {
+            Long token = dal.login(toEntity);
+            if (token == null) {
                 return Response.status(Status.NOT_FOUND).entity("{\"error\":\"invalid username and/or password\"}").build();
             }
-            UserModel toModel = userModel.toModel(user2);
-            sender.registerLog(user2.toJMS());
+
+            User u = dal.getUserToken(token);
+            if (u == null) {
+                return Response.status(Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"corrupted token in database\"}").build();
+            }
+            UserModel toModel = userModel.toModel(u, token);
+            sender.registerLog(u.toJMS());
             System.out.println(toModel.toString());
             return Response.ok(toModel).build();
         } catch (JsonError e) {

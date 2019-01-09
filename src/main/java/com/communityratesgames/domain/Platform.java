@@ -30,7 +30,7 @@ public class Platform implements Serializable {
     private List<Game> games;
 
     @ManyToMany(mappedBy="platforms")
-    private List<Game> unverifiedGames;
+    private List<UnverifiedGame> unverifiedGames;
 
     public Platform(String name, int releaseYear, Company company, List<Game> games) {
         this.name = name;
@@ -77,11 +77,11 @@ public class Platform implements Serializable {
         this.games = games;
     }
 
-    public List<Game> getUnverifiedGames() {
+    public List<UnverifiedGame> getUnverifiedGames() {
         return unverifiedGames;
     }
 
-    public void setUnverifiedGames(List<Game> unverifiedGames) {
+    public void setUnverifiedGames(List<UnverifiedGame> unverifiedGames) {
         this.unverifiedGames = unverifiedGames;
     }
 }
