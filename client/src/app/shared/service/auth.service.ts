@@ -16,6 +16,7 @@ export class AuthService {
   private credentials: Object;
   private logged: boolean = false;
   private failedLogin$ = new BehaviorSubject<boolean>(false);
+  private token: number;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -37,22 +38,23 @@ export class AuthService {
   public login(user: User) {
 
     this.api.checkCredentials(user).subscribe(response => {
+        console.log(response);
         this.credentials = Object.values(response);
-        if ( this.credentials[5] === 'Admin' ) {
-         this.loggedInAdmin$.next(true);
-         this.router.navigate(['start/admin']);
-         this.storage.setItem('admin', this.credentials[2]);
-         this.logged = true;
-         this.failedLogin$.next(false);
+        if ( response['role'] === 'Admin' ) {
+          this.loggedInAdmin$.next(true);
+          this.router.navigate(['start/admin']);
+          this.storage.setItem('admin', response['username']);
         } else {
           this.loggedIn$.next(true);
           this.router.navigate(['/']);
-          this.storage.setItem('name', this.credentials[2]);
-          this.logged = true;
-          this.failedLogin$.next(false);
+          this.storage.setItem('name', response['username']);
         }
+        this.logged = true;
+        this.failedLogin$.next(false);
+        this.token = response['token'];
       },
       error => {
+        console.log(error);
         this.failedLogin$.next(true);
       }
     );
@@ -60,6 +62,13 @@ export class AuthService {
   }
 
   public logout() {
+    this.api.logout(this.token).subscribe(response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);

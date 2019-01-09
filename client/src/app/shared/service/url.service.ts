@@ -16,6 +16,7 @@ export class UrlService {
   private certainUser: string = "/certainUser";
   private login: string = "/login";
   private register: string = "/register";
+  private logout: string = "/logout";
   private update: string = "/update";
   private delete: string = "/delete";
   private credential: string = "/credential";
@@ -93,6 +94,10 @@ export class UrlService {
     return this.login;
   }
 
+  getLogout() {
+    return this.logout;
+  }
+
   getUser() {
     return this.user;
   }
@@ -105,9 +110,3 @@ export class UrlService {
     return this.loggingUrl;
   }
 }
-
-
-
-
-
-
