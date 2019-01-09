@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
 import java.util.List;
 
@@ -85,6 +85,28 @@ public class UserController {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
+    @DELETE
+    @Path("/logout")
+    @Produces({"application/json"})
+    @Consumes({"application/JSON"})
+    public Response logout(@Context HttpHeaders header) {
+        List<String> toklist = header.getRequestHeader("Authorization");
+        if (toklist == null || toklist.size() == 0) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"no auth token available in header\"}").build();
+        }
+
+        try {
+            Long token = Long.parseLong(toklist.get(0));
+            if (!AuthToken.close(token)) {
+                return Response.status(Status.NOT_FOUND).entity("{\"error\":\"invalid token\"}").build();
+            }
+
+            return Response.status(Status.OK).build();
+        } catch (NumberFormatException e) {
+            return Response.status(Status.BAD_REQUEST).entity("{\"error\":\"token cannot be parsed; is not a number\"}").build();
         }
     }
 
