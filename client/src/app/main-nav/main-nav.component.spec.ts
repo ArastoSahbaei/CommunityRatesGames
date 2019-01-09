@@ -4,9 +4,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { MainNavComponent } from './main-nav.component';
-import {MaterialModule} from "../shared/material/material.module";
-import {SearchgameComponent} from "../searchgame/searchgame.component";
-import {ApiService} from "../shared/service/api.service";
+import { MaterialModule } from "../shared/material/material.module";
+import { SearchgameComponent } from "../searchgame/searchgame.component";
+import { ApiService } from "../shared/service/api.service";
+import { ReactiveFormsModule } from "@angular/forms";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('MainNavComponent', () => {
   let component: MainNavComponent;
@@ -20,7 +22,9 @@ describe('MainNavComponent', () => {
       imports: [
         NoopAnimationsModule,
         LayoutModule,
-        MaterialModule
+        MaterialModule,
+        ReactiveFormsModule,
+        RouterTestingModule
       ],
       providers: [{provide: ApiService}]
     }).compileComponents();

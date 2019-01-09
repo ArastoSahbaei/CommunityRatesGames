@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddGameComponent } from './add-game.component';
-import {ApiService} from "../../shared/service/api.service";
-import {MaterialModule} from "../../shared/material/material.module";
-import {ReactiveFormsModule} from "@angular/forms";
-import {RouterTestingModule} from "@angular/router/testing";
-import {BarRatingModule} from "ngx-bar-rating";
+import { ApiService } from "../../shared/service/api.service";
+import { MaterialModule } from "../../shared/material/material.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RouterTestingModule } from "@angular/router/testing";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('AddGameComponent', () => {
   let component: AddGameComponent;
@@ -14,9 +14,10 @@ describe('AddGameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, ReactiveFormsModule, RouterTestingModule, BarRatingModule],
+      imports: [MaterialModule, ReactiveFormsModule, FormsModule, RouterTestingModule],
       declarations: [ AddGameComponent ],
-      providers: [{provide: ApiService}, {provide: BarRatingModule}]
+      schemas:[NO_ERRORS_SCHEMA],
+      providers: [{provide: ApiService}]
     })
     .compileComponents();
   }));
