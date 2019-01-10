@@ -16,7 +16,6 @@ export class AuthService {
   private credentials: Object;
   private logged: boolean = false;
   private failedLogin$ = new BehaviorSubject<boolean>(false);
-  private token: number;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -51,7 +50,7 @@ export class AuthService {
         }
         this.logged = true;
         this.failedLogin$.next(false);
-        this.token = response['token'];
+        this.api.setToken(response['token']);
       },
       error => {
         console.log(error);
@@ -62,13 +61,14 @@ export class AuthService {
   }
 
   public logout() {
-    this.api.logout(this.token).subscribe(response => {
+    this.api.logout().subscribe(response => {
         console.log(response);
       },
       error => {
         console.log(error);
       }
     );
+    this.api.setToken(null);
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);
