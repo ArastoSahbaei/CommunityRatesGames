@@ -1,14 +1,22 @@
 <div class="container">
-<div class="image" *ngIf="response.id === 7">
-      <img mat-card-image src="assets/images/mariocart.jpg"/>
+<div class="image" *ngIf="response.id === 142">
+      <img mat-card-image src="assets/images/{{response.title}}.jpg"/>
 </div>
     <div class="första">
     <mat-card> Title : {{response.title}}</mat-card>
     </div>
     <div class="andra">
-    <mat-card> Company : {{response.company.companyName}}</mat-card>
+    <mat-card> Company : {{response.company}}</mat-card>
     </div>
     <div class="tredje">
-    <mat-card> City : {{response.company.city}}</mat-card>
+    <mat-card> Release Year : {{response.company.city}}</mat-card>
     </div>
+    <div class="tredje">
+        <mat-card> Rating : {{response.company.city}}</mat-card>
+        </div>
 </div>
+
+console.log({{response.title}}); <br>
+console.log({{response.company}}); <br>
+console.log({{response.releaseDate}}); <br>
+
