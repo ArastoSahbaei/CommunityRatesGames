@@ -5,6 +5,7 @@ import com.communityratesgames.domain.Rating;
 import com.communityratesgames.domain.User;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.util.json.*;
+import com.communityratesgames.util.AuthUtils;
 import lombok.NoArgsConstructor;
 import org.apache.log4j.Logger;
 
@@ -30,19 +31,6 @@ public class RatingController {
 
     @Inject
     private DataAccessLocal dal;
-
-    private Long getHeaderToken(HttpHeaders header) {
-        List<String> toklist = header.getRequestHeader("Authorization");
-        if (toklist == null || toklist.size() == 0) {
-            return null;
-        }
-
-        try {
-            return Long.parseLong(toklist.get(0));
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
 
     @GET
     @Produces({"application/JSON"})
@@ -119,7 +107,7 @@ public class RatingController {
     @Path("/new")
     @Consumes({"application/JSON"})
     public Response createNewRating(@Context HttpHeaders header, String rating) {
-        Long token = getHeaderToken(header);
+        Long token = AuthUtils.getHeaderToken(header);
         if (header == null) {
             return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
         }

@@ -5,6 +5,7 @@ import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
+import com.communityratesgames.util.AuthUtils;
 import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -26,19 +27,6 @@ public class UserController {
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
     private UserModel userModel = new UserModel();
-
-    private Long getHeaderToken(HttpHeaders header) {
-        List<String> toklist = header.getRequestHeader("Authorization");
-        if (toklist == null || toklist.size() == 0) {
-            return null;
-        }
-
-        try {
-            return Long.parseLong(toklist.get(0));
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
 
     @Inject
     JMSSender sender;
@@ -106,7 +94,7 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response logout(@Context HttpHeaders header) {
-        Long token = getHeaderToken(header);
+        Long token = AuthUtils.getHeaderToken(header);
         if (token == null) {
             return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
         }
@@ -122,7 +110,7 @@ public class UserController {
     @Produces({"application/JSON"})
     public Response activeUser(@Context HttpHeaders header) {
         try {
-            Long token = getHeaderToken(header);
+            Long token = AuthUtils.getHeaderToken(header);
             if (token == null) {
                 return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
             }
@@ -158,7 +146,7 @@ public class UserController {
     @Produces({"application/JSON"})
     @Consumes({"application/JSON"})
     public Response update(@Context HttpHeaders header, String user) {
-        Long token = getHeaderToken(header);
+        Long token = AuthUtils.getHeaderToken(header);
         if (token == null) {
             return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
         }
@@ -185,7 +173,7 @@ public class UserController {
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
     public Response delete(@Context HttpHeaders header, String username) {
-        Long token = getHeaderToken(header);
+        Long token = AuthUtils.getHeaderToken(header);
         if (token == null) {
             return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
         }
