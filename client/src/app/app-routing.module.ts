@@ -11,7 +11,7 @@ import {AddGameComponent} from "./user/add-game/add-game.component";
 import {ContactComponent} from "./user/contact/contact.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {UserComponent} from "./user/user.component";
-import {SearchgameComponent} from "./searchgame/searchgame.component";
+import {SearchgameComponent} from "./main-nav/searchgame/searchgame.component";
 import {Top100Component} from "./game/top100/top100.component";
 import {PlatformComponent} from "./game/platform/platform.component";
 import {MygamesComponent} from "./user/mygames/mygames.component";
