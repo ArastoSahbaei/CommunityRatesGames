@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CompanyComponent } from './admin/company/company.component';
 import { PlatformComponent } from './game/platform/platform.component';
 import { RatingComponent } from './game/rating/rating.component';
@@ -36,6 +36,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ChartModule } from "./shared/chart/chart.module";
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
+import { AuthInterceptor } from './auth-interceptor';
 
 
 @NgModule({
@@ -78,7 +79,14 @@ import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.comp
     BarRatingModule
   ],
   entryComponents: [DialogComponent, UserdialogComponent],
-  providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
+  providers: [
+    ApiService,
+    UrlService,
+    StorageService,
+    GlobalErrorHandlingService,
+    {provide: ErrorHandler, useClass: GlobalErrorHandlingService},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

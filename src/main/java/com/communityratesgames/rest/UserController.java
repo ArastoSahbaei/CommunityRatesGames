@@ -53,7 +53,7 @@ public class UserController {
         try {
             User toEntity = userModel.toEntity(credentials, true);
             User user2 = dal.register(toEntity);
-            UserModel toModel = userModel.toModel(user2, null);
+            UserModel toModel = userModel.toModel(user2);
             return Response.ok(toModel).build();
         } catch (JsonError e) {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
@@ -78,10 +78,10 @@ public class UserController {
             if (u == null) {
                 return Response.status(Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"corrupted token in database\"}").build();
             }
-            UserModel toModel = userModel.toModel(u, token);
+            UserModel toModel = userModel.toModel(u);
             sender.registerLog(u.toJMS());
             System.out.println(toModel.toString());
-            return Response.ok(toModel).build();
+            return Response.ok(toModel).header("Authorization", token.toString()).header("Access-Control-Expose-Headers", "Authorization").build();
         } catch (JsonError e) {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
         } catch (PersistenceException e) {
@@ -120,7 +120,7 @@ public class UserController {
                 return Response.status(Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"corrupted token in database\"}").build();
             }
 
-            UserModel model = userModel.toModel(u, token);
+            UserModel model = userModel.toModel(u);
             return Response.ok(model).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();

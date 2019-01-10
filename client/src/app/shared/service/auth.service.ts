@@ -16,6 +16,7 @@ export class AuthService {
   private credentials: Object;
   private logged: boolean = false;
   private failedLogin$ = new BehaviorSubject<boolean>(false);
+  private static token: string = null;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -38,19 +39,19 @@ export class AuthService {
 
     this.api.checkCredentials(user).subscribe(response => {
         console.log(response);
-        this.credentials = Object.values(response);
-        if ( response['role'] === 'Admin' ) {
+        this.credentials = Object.values(response.body);
+        if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
           this.router.navigate(['start/admin']);
-          this.storage.setItem('admin', response['username']);
+          this.storage.setItem('admin', response.body['username']);
         } else {
           this.loggedIn$.next(true);
           this.router.navigate(['/']);
-          this.storage.setItem('name', response['username']);
+          this.storage.setItem('name', response.body['username']);
         }
         this.logged = true;
         this.failedLogin$.next(false);
-        this.api.setToken(response['token']);
+        AuthService.token = response.headers.get('Authorization');
       },
       error => {
         console.log(error);
@@ -68,9 +69,13 @@ export class AuthService {
         console.log(error);
       }
     );
-    this.api.setToken(null);
+    AuthService.token = null;
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);
+  }
+
+  public static getToken(): string {
+    return AuthService.token;
   }
 }
