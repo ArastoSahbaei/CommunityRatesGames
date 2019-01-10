@@ -36,9 +36,7 @@ export class AuthService {
   }
 
   public login(user: User) {
-
     this.api.checkCredentials(user).subscribe(response => {
-        console.log(response);
         this.credentials = Object.values(response.body);
         if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
@@ -54,7 +52,6 @@ export class AuthService {
         AuthService.token = response.headers.get('Authorization');
       },
       error => {
-        console.log(error);
         this.failedLogin$.next(true);
       }
     );

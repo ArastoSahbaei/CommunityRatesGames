@@ -8,7 +8,6 @@ export class AuthInterceptor implements HttpInterceptor{
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req);
     var authReq;
     if (AuthService.getToken() == null) {
       return next.handle(req);
