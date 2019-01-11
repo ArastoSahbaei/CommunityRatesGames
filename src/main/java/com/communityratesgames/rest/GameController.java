@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import static javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.Response.Status;
 import java.util.List;
 
 @NoArgsConstructor

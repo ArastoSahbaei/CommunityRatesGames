@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserdialogComponent } from './userdialog.component';
-import {ApiService} from "../../../shared/service/api.service";
-import {MaterialModule} from "../../../shared/material/material.module";
+import { DialogComponent } from './dialog.component';
+import {MaterialModule} from "../shared/material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {ApiService} from "../shared/service/api.service";
+import {ChartsModule} from "ng2-charts";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {of} from "rxjs";
 
-describe('UserdialogComponent', () => {
-  let component: UserdialogComponent;
-  let fixture: ComponentFixture<UserdialogComponent>;
+describe('DialogComponent', () => {
+  let component: DialogComponent;
+  let fixture: ComponentFixture<DialogComponent>;
   let apiService: ApiService;
   let dialog: MatDialog;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MaterialModule, ReactiveFormsModule],
-      declarations: [ UserdialogComponent ],
+      imports: [MaterialModule, ReactiveFormsModule, ChartsModule],
+      declarations: [ DialogComponent ],
       providers: [{provide: ApiService},
         {provide: MatDialogRef, useValue: {}},
         {provide: MAT_DIALOG_DATA, useValue: {}
@@ -28,7 +28,7 @@ describe('UserdialogComponent', () => {
   beforeEach(() => {
     apiService = TestBed.get(ApiService);
     dialog = TestBed.get(MatDialog);
-    fixture = TestBed.createComponent(UserdialogComponent);
+    fixture = TestBed.createComponent(DialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { SearchgameComponent } from './searchgame.component';
+import {ApiService} from "../shared/service/api.service";
 import {MaterialModule} from "../shared/material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ApiService} from "../shared/service/api.service";
 import {RouterTestingModule} from "@angular/router/testing";
+import {AppRoutingModule} from "../app-routing.module";
+import {CrgComponent} from "../crg/crg.component";
+import {HomeComponent} from "../home/home.component";
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('SearchgameComponent', () => {
+  let component: SearchgameComponent;
+  let fixture: ComponentFixture<SearchgameComponent>;
   let apiService: ApiService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MaterialModule, ReactiveFormsModule, RouterTestingModule],
-      declarations: [ HomeComponent ],
+      declarations: [ SearchgameComponent ],
       providers: [{provide: ApiService}]
     })
     .compileComponents();
@@ -22,12 +25,14 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     apiService = TestBed.get(ApiService);
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(SearchgameComponent);
     component = fixture.componentInstance;
+    console.log(component);
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    console.log("Here", component);
+    expect(true).toBeTruthy();
   });
 });

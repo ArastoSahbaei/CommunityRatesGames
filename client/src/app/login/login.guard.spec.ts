@@ -1,11 +1,15 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 
 import { LoginGuard } from './login.guard';
+import {RouterTestingModule} from "@angular/router/testing";
+import {ApiService} from "../shared/service/api.service";
 
 describe('LoginGuard', () => {
+  let apiService: ApiService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LoginGuard]
+      imports: [RouterTestingModule],
+      providers: [LoginGuard, {provide: ApiService}],
     });
   });
 
