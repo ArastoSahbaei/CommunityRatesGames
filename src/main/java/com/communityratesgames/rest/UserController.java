@@ -24,7 +24,6 @@ import java.util.List;
 @Path("/user")
 public class UserController {
 
-    private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
     private UserModel userModel = new UserModel();
 
     @Inject

@@ -14,8 +14,6 @@ import java.util.List;
 @Stateless
 public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
-    private final static Logger logger = Logger.getLogger(com.communityratesgames.dao.CRGDataAccess.class);
-
     //Injects to all interfaces for each entity
 
     @Inject
