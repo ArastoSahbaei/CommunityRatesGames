@@ -1,0 +1,33 @@
+{
+  "companies":[
+    {"id":1, "companyName":"id Software", "country":"CountryName", "city":"CityName"},
+    {"id":2, "companyName":"Microsoft", "country":"CountryName", "city":"CityName"}
+  ],
+  "platforms":[
+    {
+      "name":"Windows",
+      "releaseYear":1995,
+      "company":"Microsoft"
+    }
+  ],
+  "games":[
+      {
+        "releaseDate": null,
+        "title": "Yellon",
+        "company": "Microsoft",
+        "platforms": [
+          "Windows",
+          "Xbox"
+        ]
+      },
+    {
+      "releaseDate": null,
+      "title": "Doom 64",
+      "company": "id Software",
+      "platforms": [
+        "Windows",
+        "Xbox"
+      ]
+    }
+    ]
+}
