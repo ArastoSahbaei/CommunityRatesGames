@@ -1,6 +1,8 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
 import com.communityratesgames.model.GameModel;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -113,5 +115,29 @@ public class GameService implements GameDataAccess {
 
     private List<GameModel> convertListEntityToModel (List<Game> entityList) {
         return entityList.stream().map(GameModel::new).collect(Collectors.toList());
+    }
+
+    //NOTE: Intended for test data
+    public void addGame(GameModel model) {
+        em.persist(createGameEntity(model));
+    }
+
+    private Game createGameEntity(GameModel model) {
+        return new Game(
+                model.getReleaseDate(),
+                model.getTitle(),
+                getCompanyEntity(model.getCompany()),
+                getPlatformEntity(model.getPlatforms())
+        );
+    }
+    private Company getCompanyEntity(String companyname) {
+        return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :name",Company.class)
+                .setParameter("name", companyname)
+                .getSingleResult();
+    }
+    private List<Platform> getPlatformEntity(List<String> platformList){
+        return em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
+                .setParameter("list", platformList)
+                .getResultList();
     }
 }

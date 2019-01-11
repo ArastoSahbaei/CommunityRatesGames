@@ -1,28 +1,60 @@
 {
   "companies":[
-    {"id":1, "companyName":"id Software", "country":"CountryName", "city":"CityName"},
-    {"id":2, "companyName":"Microsoft", "country":"CountryName", "city":"CityName"}
+    {"companyName":"id Software", "country":"CountryName", "city":"CityName"},
+    {"companyName":"Microsoft", "country":"CountryName", "city":"CityName"},
+    {"companyName":"Valve", "country":"CountryName", "city":"CityName"},
+    {"companyName":"Nintendo", "country":"Japan", "city":"CityName"}
   ],
   "platforms":[
     {
       "name":"Windows",
       "releaseYear":1995,
-      "company":"Microsoft"
+      "company":2
+    },
+    {
+      "name":"Nintendo 64",
+      "releaseYear":2000,
+      "company":4
+    },
+    {
+      "name":"Xbox",
+      "releaseYear":1995,
+      "company":2
     }
   ],
   "games":[
-      {
-        "releaseDate": null,
-        "title": "Yellon",
-        "company": "Microsoft",
-        "platforms": [
-          "Windows",
-          "Xbox"
-        ]
-      },
     {
-      "releaseDate": null,
       "title": "Doom 64",
+      "company": "id Software",
+      "platforms": [
+        "Windows",
+        "Nintendo 64"
+      ]
+    },
+    {
+      "title": "Commander Keen",
+      "company": "id Software",
+      "platforms": [
+        "Windows"
+      ]
+    },
+    {
+      "title": "Wolfenstein 3D",
+      "company": "id Software",
+      "platforms": [
+        "Windows"
+      ]
+    },
+    {
+      "title": "Doom",
+      "company": "id Software",
+      "platforms": [
+        "Windows",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Quake",
       "company": "id Software",
       "platforms": [
         "Windows",
