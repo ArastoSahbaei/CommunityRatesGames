@@ -1,4 +1,4 @@
-package com.communityratesgames;
+package com.communityratesgames.archive;
 
 import com.communityratesgames.dao.CRGDataAccess;
 import com.communityratesgames.dao.DataAccessLocal;
@@ -7,33 +7,14 @@ import com.communityratesgames.domain.*;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.*;
 import com.communityratesgames.rest.UserController;
-
 import com.communityratesgames.transactions.*;
 import com.communityratesgames.util.JsonError;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.extension.rest.client.ArquillianResteasyResource;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
-import java.net.URL;
-import java.util.List;
+public class Shrink {
 
-
-@RunWith(Arquillian.class)
-public class UserTest {
-
-    @Inject
-    private UserDataAccess userService;
-
-    @Deployment
     public static WebArchive createDeployment()
     {
         return
@@ -49,12 +30,4 @@ public class UserTest {
                         .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-
-    @Test
-    public void getAllUsers() {
-        final List<User> result = userService.showAllUsers();
-
-        Assert.assertNotNull("List ok", result);
-    }
-
 }
