@@ -2,7 +2,11 @@ package com.communityratesgames.datainit;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Company;
+import com.communityratesgames.domain.User;
 import com.communityratesgames.model.GameModel;
+import com.communityratesgames.model.RatingModel;
+import com.communityratesgames.model.UserModel;
+import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.inject.Inject;
@@ -27,12 +31,15 @@ public class DataInitListener implements javax.servlet.ServletContextListener {
     public void TestDataInitializer() {
         ObjectMapper mapper = new ObjectMapper();
         try {
+            System.out.println("### Starting initialization of test data ###");
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             InputStream is = classloader.getResourceAsStream("testdata.json");
             DataCollection dataHolder = mapper.readValue(is, DataCollection.class);
             createCompanies(dataHolder.companies);
             createPlatforms(dataHolder.platforms);
             createGames(dataHolder.games);
+            createUser(dataHolder.users);
+            createRatings(dataHolder.ratings);
         }catch(Exception e) {
         }
     }
@@ -55,10 +62,29 @@ public class DataInitListener implements javax.servlet.ServletContextListener {
             games.forEach(g -> dal.addGame(g));
     }
 
+    private void createUser(List<UserModel> users){
+            users.forEach(u -> {
+                try {
+                    System.out.println(u.toString());
+                    User user = new User(u);
+                    user.encryptPassword(u.getPassword());
+                    dal.register(user);
+                } catch (JsonError jsonError) {
+                    jsonError.printStackTrace();
+                }
+            });
+    }
+
+    private void createRatings(List<RatingModel> ratings) {
+        ratings.forEach(r -> dal.addNewRating(r));
+    }
+
     static class DataCollection {
         List<Company> companies;
         List<Map<String,Object>> platforms;
         List<GameModel> games;
+        List<RatingModel> ratings;
+        List<UserModel> users;
 
         public DataCollection() {
         }
@@ -85,6 +111,22 @@ public class DataInitListener implements javax.servlet.ServletContextListener {
 
         public void setGames(List<GameModel> games) {
             this.games = games;
+        }
+
+        public List<RatingModel> getRatings() {
+            return ratings;
+        }
+
+        public void setRatings(List<RatingModel> ratings) {
+            this.ratings = ratings;
+        }
+
+        public List<UserModel> getUsers() {
+            return users;
+        }
+
+        public void setUsers(List<UserModel> users) {
+            this.users = users;
         }
     }
 }

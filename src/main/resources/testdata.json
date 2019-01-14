@@ -5,6 +5,17 @@
     {"companyName":"Valve", "country":"CountryName", "city":"CityName"},
     {"companyName":"Nintendo", "country":"Japan", "city":"CityName"}
   ],
+  "users":[
+    {"username":"admin", "email":"admin@somewhere.now", "password":"admin", "role":"admin"},
+    {"username":"testuser1", "email":"email1@somewhere.now", "password":"test", "role":"user"},
+    {"username":"testuser2", "email":"email2@somewhere.now", "password":"test", "role":"user"},
+    {"username":"testuser3", "email":"email3@somewhere.now", "password":"test", "role":"user"}
+  ],
+  "ratings":[
+    {"user": "testuser1","game": "Doom","rating": 0},
+    {"user": "testuser2","game": "Doom","rating": 2},
+    {"user": "testuser3","game": "Doom","rating": 5}
+  ],
   "platforms":[
     {
       "name":"Windows",
