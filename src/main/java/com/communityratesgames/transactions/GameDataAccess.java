@@ -13,4 +13,5 @@ public interface GameDataAccess {
     public abstract String searchFiveGames(String query);
     public abstract List<GameModel> getTopRatedGames(Integer limit, Integer page);
     public abstract List<GameModel> getTop100Games();
+    public abstract void addGame(GameModel model);
 }

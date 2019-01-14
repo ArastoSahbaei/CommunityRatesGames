@@ -40,6 +40,13 @@ public class Game implements Serializable {
 
     public Game() {}
 
+    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+        this.releaseDate = releaseDate;
+        this.title = title;
+        this.company = company;
+        this.platforms = platforms;
+    }
+
     public Game(UnverifiedGame unverifiedGame, boolean withId) {
         if (withId){this.id = unverifiedGame.getId();}
         this.releaseDate = unverifiedGame.getReleaseDate();
