@@ -6,10 +6,10 @@
     {"companyName":"Nintendo", "country":"Japan", "city":"CityName"}
   ],
   "users":[
-    {"username":"admin", "email":"admin@somewhere.now", "password":"admin", "role":"admin"},
-    {"username":"testuser1", "email":"email1@somewhere.now", "password":"test", "role":"user"},
-    {"username":"testuser2", "email":"email2@somewhere.now", "password":"test", "role":"user"},
-    {"username":"testuser3", "email":"email3@somewhere.now", "password":"test", "role":"user"}
+    {"username":"admin", "email":"admin@somewhere.now", "password":"admin", "role":"Admin"},
+    {"username":"testuser1", "email":"email1@somewhere.now", "password":"test", "role":"User"},
+    {"username":"testuser2", "email":"email2@somewhere.now", "password":"test", "role":"User"},
+    {"username":"testuser3", "email":"email3@somewhere.now", "password":"test", "role":"User"}
   ],
   "ratings":[
     {"user": "testuser1","game": "Doom","rating": 0},
