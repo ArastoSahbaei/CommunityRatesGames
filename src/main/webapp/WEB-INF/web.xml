@@ -10,5 +10,10 @@
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-
+    <!--
+    Uncomment to initialize test data.
+    <listener>
+        <listener-class>com.communityratesgames.datainit.DataInitListener</listener-class>
+    </listener>
+    -->
 </web-app>

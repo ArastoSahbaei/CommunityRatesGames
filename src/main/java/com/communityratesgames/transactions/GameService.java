@@ -1,6 +1,8 @@
 package com.communityratesgames.transactions;
 
+import com.communityratesgames.domain.Company;
 import com.communityratesgames.domain.Game;
+import com.communityratesgames.domain.Platform;
 import com.communityratesgames.model.GameModel;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -55,13 +57,11 @@ public class GameService implements GameDataAccess {
 
     @Override
     public String searchFiveGames(String query) {
-        StoredProcedureQuery searchForFiveGamesByTitle =
-                em.createNamedStoredProcedureQuery("searchForFiveGamesByTitle");
-
-        StoredProcedureQuery sp =
-                searchForFiveGamesByTitle.setParameter("query",query);
-
-            return reduceGameToTitleAndId(sp.getResultList());
+        List<Game> results = em.createQuery("SELECT g FROM Game g WHERE g.title LIKE :title",Game.class)
+                .setParameter("title", query+'%')
+                .setMaxResults(5)
+                .getResultList();
+        return reduceGameToTitleAndId(results);
     }
 
     @Override
@@ -113,5 +113,29 @@ public class GameService implements GameDataAccess {
 
     private List<GameModel> convertListEntityToModel (List<Game> entityList) {
         return entityList.stream().map(GameModel::new).collect(Collectors.toList());
+    }
+
+    //NOTE: Intended for test data
+    public void addGame(GameModel model) {
+        em.persist(createGameEntity(model));
+    }
+
+    private Game createGameEntity(GameModel model) {
+        return new Game(
+                model.getReleaseDate(),
+                model.getTitle(),
+                getCompanyEntity(model.getCompany()),
+                getPlatformEntity(model.getPlatforms())
+        );
+    }
+    private Company getCompanyEntity(String companyname) {
+        return em.createQuery("SELECT c FROM Company c WHERE c.companyName = :name",Company.class)
+                .setParameter("name", companyname)
+                .getSingleResult();
+    }
+    private List<Platform> getPlatformEntity(List<String> platformList){
+        return em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
+                .setParameter("list", platformList)
+                .getResultList();
     }
 }
