@@ -37,6 +37,7 @@ import { ChartModule } from "./shared/chart/chart.module";
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
 import { FooterComponent } from './main-nav/footer/footer.component';
+import { VotingComponent } from './game/game-page/voting/voting.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { FooterComponent } from './main-nav/footer/footer.component';
     CrgComponent,
     DialogComponent,
     UserdialogComponent,
-    FooterComponent
+    FooterComponent,
+    VotingComponent
   ],
   imports: [
     BrowserModule,
