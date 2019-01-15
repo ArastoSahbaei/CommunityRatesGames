@@ -16,23 +16,3 @@
     <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>
   </mat-card-actions>
 </mat-card>
-
-
-<div class="stars container">
-  <div class="row">
-    <div class="col-md-4">
-      <section>
-        <b>Rate Game Here</b>
-        <mat-card [formGroup]="ratings">
-        <mat-form-field>
-          <input id="user" matInput placeholder="Username" formControlName="user" class="form-control" type="text" required>
-        </mat-form-field>
-        <mat-form-field>
-          <input id="game" matInput placeholder="Game Title" formControlName="game" class="form-control" type="text" required>
-        </mat-form-field>
-          <bar-rating [max]="max" (rateChange)="hoveringOver($event)"></bar-rating>
-        </mat-card>
-      </section>
-    </div>
-    </div>
-  </div>
