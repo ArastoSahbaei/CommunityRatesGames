@@ -31,7 +31,7 @@ public class UserTest {
         Assert.assertNotNull(result);
     }
 
-    @Test
+    @Test @Ignore
     public void getOneUser() {
         final User user = userDataAccess.detailsAboutAUser("Bjorn");
         Assert.assertEquals("Bjorn", user.getUserName());
