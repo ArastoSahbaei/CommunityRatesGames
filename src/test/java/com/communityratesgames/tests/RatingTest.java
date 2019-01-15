@@ -29,7 +29,7 @@ public class RatingTest {
         Assert.assertNull(rm);
     }
 
-    @Test
+    @Test @Ignore
     public void temp() {
        float rating = ratingDataAccess.getAverageOfGame("Halo");
 
