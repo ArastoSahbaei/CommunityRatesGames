@@ -2,18 +2,19 @@ import {Injectable,Injector} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import {AuthService} from './shared/service/auth.service'
+import {StorageService} from "./shared/service/storage.service";
+import {Storage} from "./shared/interface/storage.interface";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor{
-  constructor() { }
+  constructor(private storage: StorageService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    var authReq;
-    if (AuthService.getToken() == null) {
+    var token: string = this.storage.getItem('token');
+    if (token == null) {
       return next.handle(req);
     } else {
-      // I can't get the token any other way, so just do a hack to get it working.
-      return next.handle(req.clone({ headers: req.headers.set("Authorization", AuthService.getToken())}));
+      return next.handle(req.clone({ headers: req.headers.set("Authorization", token)}));
     }
   }
 }

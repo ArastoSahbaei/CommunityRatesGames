@@ -16,7 +16,6 @@ export class AuthService {
   private credentials: Object;
   private logged: boolean = false;
   private failedLogin$ = new BehaviorSubject<boolean>(false);
-  private static token: string = null;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -49,7 +48,7 @@ export class AuthService {
         }
         this.logged = true;
         this.failedLogin$.next(false);
-        AuthService.token = response.headers.get('Authorization');
+        this.storage.setItem('token', response.headers.get('Authorization'));
       },
       error => {
         this.failedLogin$.next(true);
@@ -66,13 +65,9 @@ export class AuthService {
         console.log(error);
       }
     );
-    AuthService.token = null;
+    this.storage.removeItem('token');
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);
-  }
-
-  public static getToken(): string {
-    return AuthService.token;
   }
 }
