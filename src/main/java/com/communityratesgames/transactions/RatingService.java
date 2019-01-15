@@ -50,7 +50,6 @@ public class RatingService implements RatingDataAccess {
         Object o = em.createQuery("SELECT AVG(r.rating) FROM Rating r WHERE r.game.title = :game",Double.class)
                 .setParameter("game",gameTitle).getSingleResult();
         if (o == null) {
-            System.out.println("### no ratings ###");
             return 0f;
         } else {
             // For some reason, createQuery ignores the second parameter for Double, so we need to forcibly check this.
