@@ -36,7 +36,6 @@ export class VotingComponent implements OnInit {
   getTheGames(){
     this.route.queryParams.subscribe(queryParam => {
       this.api.getOneGameByTitle(queryParam.title).subscribe(response =>{
-        console.log(response);
         this.response = response;
       });
     });
