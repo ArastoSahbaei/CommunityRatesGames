@@ -11,14 +11,10 @@ import {Contact} from "../interface/contact.interface";
 import {Report} from "../interface/report.interface";
 import {Voting} from "../interface/voting.interface";
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
   constructor(private httpClient: HttpClient,
               private url: UrlService) {
   }
@@ -55,7 +51,11 @@ export class ApiService {
   }
 
   checkCredentials(body: User) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON()});
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON(), observe: 'response'});
+  }
+
+  logout() {
+    return this.httpClient.delete(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogout(), {headers: Headers.HeaderJSON()});
   }
 
   registerUser(body: Register) {
@@ -129,11 +129,3 @@ export class ApiService {
     });
   }
 }
-
-
-
-
-
-
-
-

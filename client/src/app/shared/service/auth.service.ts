@@ -35,22 +35,20 @@ export class AuthService {
   }
 
   public login(user: User) {
-
     this.api.checkCredentials(user).subscribe(response => {
-        this.credentials = Object.values(response);
-        if ( this.credentials[5] === 'Admin' ) {
-         this.loggedInAdmin$.next(true);
-         this.router.navigate(['start/admin']);
-         this.storage.setItem('admin', this.credentials[2]);
-         this.logged = true;
-         this.failedLogin$.next(false);
+        this.credentials = Object.values(response.body);
+        if ( response.body['role'] === 'Admin' ) {
+          this.loggedInAdmin$.next(true);
+          this.router.navigate(['start/admin']);
+          this.storage.setItem('admin', response.body['username']);
         } else {
           this.loggedIn$.next(true);
           this.router.navigate(['/']);
-          this.storage.setItem('name', this.credentials[2]);
-          this.logged = true;
-          this.failedLogin$.next(false);
+          this.storage.setItem('name', response.body['username']);
         }
+        this.logged = true;
+        this.failedLogin$.next(false);
+        this.storage.setItem('token', response.headers.get('Authorization'));
       },
       error => {
         this.failedLogin$.next(true);
@@ -60,6 +58,14 @@ export class AuthService {
   }
 
   public logout() {
+    this.api.logout().subscribe(response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    this.storage.removeItem('token');
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);

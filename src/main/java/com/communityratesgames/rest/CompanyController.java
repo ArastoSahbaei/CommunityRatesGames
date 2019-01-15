@@ -3,6 +3,7 @@ package com.communityratesgames.rest;
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Company;
 import com.communityratesgames.model.CompanyModel;
+import com.communityratesgames.util.AuthUtils;
 import com.communityratesgames.util.JsonError;
 
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
 import java.util.List;
 
@@ -39,7 +40,12 @@ public class CompanyController {
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response createCompany(String compis){
+    public Response createCompany(@Context HttpHeaders header, String compis){
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
         try {
             Company toEntity = companyModel.jsonPtoEntity(compis);
             Company company2 = dal.registerNewCompany(toEntity);

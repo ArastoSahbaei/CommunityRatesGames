@@ -16,7 +16,6 @@ import { map } from 'rxjs/operators';
 export class MainNavComponent implements OnInit {
 
   public buttonText: string = "Sign In";
-  public isLoggedIn: boolean = false;
   public isLoggedIn$: Observable<boolean>;
   public isLoggedInAdmin$: Observable<boolean>;
   private name: string = "";
@@ -34,21 +33,19 @@ export class MainNavComponent implements OnInit {
 
   ngOnInit() {
     this.storage.watchStorage().subscribe((data: string) => {
-      if (this.isLoggedIn == false) {
+      var token = this.storage.getItem('token');
+      if (token != null) {
         if (this.storage.getItem('admin')) {
           this.name = this.storage.getItem('admin');
-          this.isLoggedIn = true;
           this.buttonText = "Sign Out";
           this.isLoggedInAdmin$ = this.auth.isLoggedInAdmin;
         }
         else if (this.storage.getItem('name')) {
           this.name = this.storage.getItem('name');
-          this.isLoggedIn = true;
           this.buttonText = "Sign Out";
           this.isLoggedIn$ = this.auth.isLoggedIn;
         }
       } else {
-        this.isLoggedIn = false;
         this.buttonText = "Sign In";
       }
     });
@@ -56,7 +53,8 @@ export class MainNavComponent implements OnInit {
   }
 
   public logInOut() {
-    if (this.isLoggedIn === false) {
+    var token = this.storage.getItem('token');
+    if (token == null) {
       this.route.navigateByUrl('start/login');
     }
     else {

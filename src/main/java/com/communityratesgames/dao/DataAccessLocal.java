@@ -31,7 +31,8 @@ public interface DataAccessLocal {
 
     //User
     public List<User> showAllUsers();
-    public User login(User user);
+    public Long login(User user);
+    public User getUserToken(Long token);
     public boolean logout(Long token);
     public User register(User user) throws JsonError;
     public User detailsAboutAUser(String user);
