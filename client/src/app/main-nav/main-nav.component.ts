@@ -55,6 +55,10 @@ export class MainNavComponent implements OnInit {
 
   }
 
+  public adminView() {
+    this.route.navigateByUrl('start/admin');
+  }
+
   public logInOut() {
     if (this.isLoggedIn === false) {
       this.route.navigateByUrl('start/login');

@@ -27,11 +27,8 @@ import {CrgComponent} from "./crg/crg.component";
 const routes: Routes = [
   {path: '', component: CrgComponent},
   {path: 'start', component: HomeComponent, children: [
-        {path: 'login', component: LoginComponent},
-        {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
-          {path: 'company', component: CompanyComponent},
-          {path: 'accounts', component: AccountsComponent}
-        ]},
+      {path: 'login', component: LoginComponent},
+      {path: 'admin', component: AdminComponent},
       {path: 'user', component: UserComponent, canActivate: [LoginGuard], children: [
           {path: 'profile', component: ProfileComponent},
           {path: 'report-a-bug', component: ReportBugComponent},

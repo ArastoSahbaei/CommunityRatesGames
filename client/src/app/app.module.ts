@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
 import { HttpClientModule } from "@angular/common/http";
-import { CompanyComponent } from './admin/company/company.component';
 import { PlatformComponent } from './game/platform/platform.component';
 import { RatingComponent } from './game/rating/rating.component';
 import { UserComponent } from './user/user.component';
@@ -30,7 +29,6 @@ import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
 import { GlobalErrorHandlingService } from "./shared/service/global-error-handling.service";
 import { AdminComponent } from './admin/admin.component';
-import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
 import { DialogComponent } from './admin/dialog/dialog.component';
 import { ChartModule } from "./shared/chart/chart.module";
@@ -38,13 +36,13 @@ import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
 import { FooterComponent } from './main-nav/footer/footer.component';
 import { VotingComponent } from './game/game-page/voting/voting.component';
+import {AdminModule} from "./admin/admin.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GameComponent,
-    CompanyComponent,
     PlatformComponent,
     RatingComponent,
     UserComponent,
@@ -63,9 +61,7 @@ import { VotingComponent } from './game/game-page/voting/voting.component';
     ErrorComponent,
     GamePageComponent,
     AdminComponent,
-    AccountsComponent,
     CrgComponent,
-    DialogComponent,
     UserdialogComponent,
     FooterComponent,
     VotingComponent
@@ -79,7 +75,8 @@ import { VotingComponent } from './game/game-page/voting/voting.component';
     FormsModule,
     ReactiveFormsModule,
     ChartModule,
-    BarRatingModule
+    BarRatingModule,
+    AdminModule
   ],
   entryComponents: [DialogComponent, UserdialogComponent],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
