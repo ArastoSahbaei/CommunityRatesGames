@@ -49,6 +49,8 @@ export class AuthService {
         this.logged = true;
         this.failedLogin$.next(false);
         this.storage.setItem('token', response.headers.get('Authorization'));
+        this.storage.setItem('userCreated', response.body['userCreated']);
+        this.storage.setItem('role', response.body['role']);
       },
       error => {
         this.failedLogin$.next(true);
