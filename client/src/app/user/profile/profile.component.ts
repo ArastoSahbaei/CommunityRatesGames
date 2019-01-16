@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StorageService} from '../../shared/service/storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  
+  private uname: string;
+  private regdate: Date;
 
-  constructor() { }
+  constructor(private storage: StorageService) {
+    this.uname = storage.getItem('name');
+    this.regdate = new Date(null);
+    this.regdate.setSeconds(Number(storage.getItem('userCreated')));
+  }
 
   ngOnInit() {
   }
