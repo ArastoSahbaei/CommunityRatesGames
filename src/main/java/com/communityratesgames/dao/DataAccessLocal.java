@@ -1,6 +1,7 @@
 package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
+import com.communityratesgames.model.AdminContactModel;
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.util.JsonError;
@@ -51,4 +52,11 @@ public interface DataAccessLocal {
     public void deleteUnverifiedGame(Long id);
     public void verifyGame(Long id);
     public List<GameModel> getAllUnverifiedGames();
+
+    //AdminContact
+    public void newMessage(AdminContactModel model);
+    public AdminContact adminGetMessage(Long id);
+    public List<AdminContact> adminGetAllMessages();
+    public List<AdminContactModel> userMessages(String email);
+    public void updateEntry(AdminContact contact);
 }

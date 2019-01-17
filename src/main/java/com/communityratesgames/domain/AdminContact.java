@@ -1,5 +1,6 @@
 package com.communityratesgames.domain;
 
+import com.communityratesgames.model.AdminContactModel;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -27,12 +28,17 @@ public class AdminContact {
     public AdminContact() {
     }
 
+    public AdminContact(AdminContactModel model) {
+        this.creationDate = model.getCreationDate()==null ? Timestamp.from(Instant.now()) : model.getCreationDate();
+        this.email = model.getEmail();
+        this.admin = model.getAdmin();
+        this.userMessage = model.getUserMessage();
+        this.responseMessage = model.getResponseMessage();
+        this.read = model.isRead();
+    }
+
     public AdminContact(Timestamp creationDate, String email, String admin, String userMessage, String responseMessage, String flaggedForAdmin, boolean read, boolean urgent) {
-        if(creationDate==null){
-            this.creationDate = (Timestamp.from(Instant.now()));
-        }else{
-            this.creationDate = creationDate;
-        }
+        this.creationDate = creationDate==null ? Timestamp.from(Instant.now()) : creationDate;
         this.email = email;
         this.admin = admin;
         this.userMessage = userMessage;

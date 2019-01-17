@@ -11,5 +11,6 @@ public interface AdminContactDataAccess {
     public abstract void newMessage(AdminContactModel model);
     public abstract AdminContact adminGetMessage(Long id);
     public abstract List<AdminContact> adminGetAllMessages();
-
+    public abstract List<AdminContactModel> userMessages(String email);
+    public abstract void updateEntry(AdminContact contact);
 }
