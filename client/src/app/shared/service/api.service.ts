@@ -38,6 +38,11 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
+  getAverageRatingByTitle(image:string) {
+    console.log(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image);
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image, {headers: Headers.HeaderJSON()});
+  }
+
   getUserDetails(user: string): Observable<any> {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getCertainUser(),
       { headers: Headers.HeaderJSON(),

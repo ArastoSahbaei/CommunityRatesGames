@@ -76,9 +76,6 @@ public class RatingController {
         }
         try {
             float result = dal.getAverageOfGame(gameTitle);
-            if (result == -1.0f) {
-                return Response.status(Status.NOT_FOUND).build();
-            }
             return Response.ok(result).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).build();
