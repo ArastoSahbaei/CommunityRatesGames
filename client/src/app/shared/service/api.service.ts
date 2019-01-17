@@ -11,14 +11,10 @@ import {Contact} from "../interface/contact.interface";
 import {Report} from "../interface/report.interface";
 import {Voting} from "../interface/voting.interface";
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
   constructor(private httpClient: HttpClient,
               private url: UrlService) {
   }
@@ -42,6 +38,11 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
+  getAverageRatingByTitle(image:string) {
+    console.log(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image);
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image, {headers: Headers.HeaderJSON()});
+  }
+
   getUserDetails(user: string): Observable<any> {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getCertainUser(),
       { headers: Headers.HeaderJSON(),
@@ -50,7 +51,11 @@ export class ApiService {
   }
 
   checkCredentials(body: User) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON()});
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogin(), body, {headers: Headers.HeaderJSON(), observe: 'response'});
+  }
+
+  logout() {
+    return this.httpClient.delete(this.url.getBaseUrl() + this.url.getUser() + this.url.getLogout(), {headers: Headers.HeaderJSON()});
   }
 
   registerUser(body: Register) {
@@ -75,7 +80,7 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUnverifiedGame(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
@@ -123,12 +128,5 @@ export class ApiService {
             user, {headers: Headers.HeaderJSON()
     });
   }
+
 }
-
-
-
-
-
-
-
-

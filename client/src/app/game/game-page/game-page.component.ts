@@ -11,7 +11,7 @@ export class GamePageComponent implements OnInit {
 
   response : any = {};
   image : string = "";
-
+  ratingData : Object;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {
     this.getTheGames();
@@ -23,20 +23,24 @@ export class GamePageComponent implements OnInit {
         console.log(response);
         this.showImage(response);
         this.response = response;
+        this.getAverageRating(response['title']);
       });
     });
   }
 
-  showImage(response) {
-    console.log(Object.values(response)[2].toString().replace(/\s/g, "").toLowerCase());
-    this.image = Object.values(response)[2].toString().replace(/\s/g, "").toLowerCase();
-    console.log(this.image);
+  getAverageRating(image:string) {
+    console.log(image);
+    this.api.getAverageRatingByTitle(image).subscribe(ratingData =>{
+      console.log(ratingData);
+      this.ratingData = ratingData;
+    });
   }
 
-
+  showImage(response) {
+    this.image = Object.values(response)[2].toString().replace(/\s/g, "").toLowerCase();
+  }
 
   ngOnInit() {
-
 
   }
 }

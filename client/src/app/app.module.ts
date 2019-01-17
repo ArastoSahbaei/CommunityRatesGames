@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { PlatformComponent } from './game/platform/platform.component';
 import { RatingComponent } from './game/rating/rating.component';
 import { UserComponent } from './user/user.component';
@@ -32,6 +32,7 @@ import { CrgComponent } from './crg/crg.component';
 import { DialogComponent } from './admin/dialog/dialog.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
+import { AuthInterceptor } from './auth-interceptor';
 import { FooterComponent } from './main-nav/footer/footer.component';
 import { VotingComponent } from './game/game-page/voting/voting.component';
 import {AdminModule} from "./admin/admin.module";
@@ -75,7 +76,14 @@ import {AdminModule} from "./admin/admin.module";
     AppRoutingModule
   ],
   entryComponents: [DialogComponent, UserdialogComponent],
-  providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
+  providers: [
+    ApiService,
+    UrlService,
+    StorageService,
+    GlobalErrorHandlingService,
+    {provide: ErrorHandler, useClass: GlobalErrorHandlingService},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

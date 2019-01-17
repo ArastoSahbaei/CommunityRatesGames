@@ -31,26 +31,28 @@ public class AuthToken {
     
     private static int find(Long token) {
         // Assume that the auth table is sorted.
-        int index = logins.size() / 2;
-        int step = index / 2;
-        long current = 0;
+        int index;
+        long current;
+        int upper = logins.size();
+        int lower = 0;
         
         if (logins.size() == 0) {
             return -1;
         }
 
-        do {
+        while (lower < upper) {
+            index = (upper + lower) / 2;
+
             // Binary search
             current = logins.get(index).token;
             if (current == token) {
                 return index;
             } else if (current < token) {
-                index += step;
+                lower = index + 1;
             } else if (current > token) {
-                index -= step;
+                upper = index - 1;
             }
-            step /= 2;
-        } while (step != 0);
+        }
         return -1;
     }
 

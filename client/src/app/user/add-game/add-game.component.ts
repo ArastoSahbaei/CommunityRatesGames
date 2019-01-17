@@ -18,42 +18,38 @@ export class AddGameComponent implements OnInit {
   ngOnInit() {
     this.addGames = this.formBuilder.group({
       'title': ['', [Validators.required]],
-      'companyId': ['', Validators.required],
-     'allPlatformId': ['', Validators.required]
+      'company': ['', Validators.required],
+      'releaseYear': ['', Validators.required]
     });
   }
 
   addGame(){
-    const game = {} as AddGame;
+    let game = {} as AddGame;
     game.title = this.addGames.value.title;
-    game.companyId = this.addGames.value.companyId;
-    game.allPlatformId = [];
+    game.company = this.addGames.value.company;
+    game.releaseYear = this.addGames.value.releaseYear;
+
+    console.log(game);
 
     this.api.postGame(game).subscribe((response) =>{
       console.log(response);
-
     });
 
   }
-
 
   get title(){
     return this.addGames.get('title')
   }
 
-  get companyId(){
-    return this.addGames.get('companyId')
-  }
-
-  get allPlatformId(){
-    return this.addGames.get('allPlatformId')
-  }
-
-  get user(){
-    return this.addGames.get('user')
+  get company(){
+    return this.addGames.get('company')
   }
 
   get game(){
     return this.addGames.get('game')
+  }
+
+  get releaseYear(){
+    return this.addGames.get('releaseYear')
   }
 }

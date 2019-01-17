@@ -11,7 +11,8 @@ import java.util.List;
 public interface UserDataAccess {
     public abstract List<User> showAllUsers();
     public abstract User register(User user) throws JsonError;
-    public abstract User login(User user);
+    public abstract Long login(User user);
+    public abstract User getUserToken(Long token);
     public abstract boolean logout(Long token);
     public abstract User detailsAboutAUser(String user);
     public abstract Boolean deleteAUser(User user);

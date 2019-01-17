@@ -1,6 +1,6 @@
 <div class="container">
 
-      <img mat-card-image src="../../../assets/images/{{image}}.jpg"/>
+      <img mat-card-image src="../../../assets/gameImages/{{image}}.jpg"/>
 
     <div class="första">
     <mat-card> Title : {{response.title}}</mat-card>
@@ -12,10 +12,12 @@
     <mat-card> Release Year : {{response.company.city}}</mat-card>
     </div>
     <div class="tredje">
-        <mat-card> Rating : {{response.company.city}}</mat-card>
+        <mat-card> Rating : {{ratingData}}</mat-card>
         </div>
   <app-voting>
   </app-voting>
 </div>
 
-
+<h1>{{response.title}}</h1>
+<h1>{{response.company}}</h1>
+<h1>{{ratingData}}</h1>

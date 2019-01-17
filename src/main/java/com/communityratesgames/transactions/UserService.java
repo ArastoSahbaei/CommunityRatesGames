@@ -46,18 +46,35 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User login(User user) {
+    public Long login(User user) {
         try {
             User u = (User)em.createQuery("SELECT u FROM User u WHERE u.email = :email")
                 .setParameter("email", user.getEmail())
                 .getSingleResult();
             String password = User.hashPassword(user.getPassword(), u.getPasswordHash());
             if (u.getPassword().equals(password)) {
-                //Long token = AuthToken.generateNewToken(u.getId());
-                return u;
+                Long token = AuthToken.generateNewToken(u.getId());
+                return token;
             } else {
                 return null;
             }
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public User getUserToken(Long token) {
+        try {
+            Long uid = AuthToken.getUserId(token);
+            if (uid == -1L) {
+                return null;
+            }
+
+            User u = (User)em.createQuery("SELECT u FROM User u WHERE u.id = :id", User.class)
+                .setParameter("id", uid)
+                .getSingleResult();
+            return u;
         } catch (NoResultException e) {
             return null;
         }

@@ -63,6 +63,14 @@
         "Windows",
         "Xbox"
       ]
+    },
+    {
+      "title": "Halo",
+      "company": "id Software",
+      "platforms": [
+        "Windows",
+        "Xbox"
+      ]
     }
     ]
 }
