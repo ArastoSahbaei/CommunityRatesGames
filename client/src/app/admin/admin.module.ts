@@ -7,9 +7,10 @@ import {AdminRoutingModule} from "./admin-routing.module";
 import {MaterialModule} from "../shared/material/material.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChartsModule} from "ng2-charts";
+import {AdminComponent} from "./admin.component";
 
 @NgModule({
-  declarations: [AccountsComponent, CompanyComponent, DialogComponent],
+  declarations: [AccountsComponent, CompanyComponent, DialogComponent, AdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

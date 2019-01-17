@@ -28,10 +28,8 @@ import { StorageService } from "./shared/service/storage.service";
 import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
 import { GlobalErrorHandlingService } from "./shared/service/global-error-handling.service";
-import { AdminComponent } from './admin/admin.component';
 import { CrgComponent } from './crg/crg.component';
 import { DialogComponent } from './admin/dialog/dialog.component';
-import { ChartModule } from "./shared/chart/chart.module";
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
 import { FooterComponent } from './main-nav/footer/footer.component';
@@ -60,7 +58,6 @@ import {AdminModule} from "./admin/admin.module";
     MygamesComponent,
     ErrorComponent,
     GamePageComponent,
-    AdminComponent,
     CrgComponent,
     UserdialogComponent,
     FooterComponent,
@@ -71,12 +68,11 @@ import {AdminModule} from "./admin/admin.module";
     MaterialModule,
     HttpClientModule,
     LayoutModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartModule,
     BarRatingModule,
-    AdminModule
+    AdminModule,
+    AppRoutingModule
   ],
   entryComponents: [DialogComponent, UserdialogComponent],
   providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
