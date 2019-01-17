@@ -38,13 +38,18 @@ public class Game implements Serializable {
     @Column(name="average_rating")
     private Float averageRating;
 
+    @Lob
+    @Column
+    private String description;
+
     public Game() {}
 
-    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.company = company;
         this.platforms = platforms;
+        this.description = description;
     }
 
     public Game(UnverifiedGame unverifiedGame, boolean withId) {
@@ -53,6 +58,7 @@ public class Game implements Serializable {
         this.title = unverifiedGame.getTitle();
         this.company = unverifiedGame.getCompany();
         this.platforms = unverifiedGame.getPlatforms();
+        this.description = unverifiedGame.getDescription();
         this.averageRating = 0f;
     }
 
@@ -98,5 +104,13 @@ public class Game implements Serializable {
 
     public void setAverageRating(Float averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

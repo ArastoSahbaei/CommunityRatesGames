@@ -19,6 +19,7 @@ public class GameModel implements Serializable {
     private String title;
     private String company;
     private List<String> platforms;
+    private String description;
 
     public GameModel toModel(String input) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -50,6 +51,7 @@ public class GameModel implements Serializable {
         this.title = entity.getTitle();
         this.company = entity.getCompany().getCompanyName();
         this.platforms = entity.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
+        this.description = entity.getDescription();
     }
 
     public GameModel(UnverifiedGame entity) {
@@ -97,5 +99,13 @@ public class GameModel implements Serializable {
 
     public void setPlatforms(List<String> platforms) {
         this.platforms = platforms;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
