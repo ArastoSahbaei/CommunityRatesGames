@@ -1,3 +1,4 @@
+<!--
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened class="dashboard" #drawer>
     <mat-radio-button color="primary" (change)="dashboardSelection(1)">Show all users</mat-radio-button>
@@ -11,7 +12,7 @@
     <ng-container *ngIf="!addUser; else addAdmin"></ng-container>
     <ng-container *ngIf="!showStatisticOnUser; else showUser"></ng-container>
 
-<!-- Show statistic about a certain user -->
+
     <ng-template #showUser>
       <mat-card [formGroup]="showUserForm">
         <mat-card-header>Search user</mat-card-header>
@@ -26,7 +27,6 @@
       </mat-card>
     </ng-template>
 
-<!-- Add a new user or admin -->
     <ng-template #addAdmin>
       <mat-card [formGroup]="userForm" novalidate>
         <mat-card-header>Add a user</mat-card-header>
@@ -57,7 +57,6 @@
       </mat-card>
     </ng-template>
 
-<!--    Show all users in mat table   -->
     <ng-template #showUsers>
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -92,3 +91,6 @@
   </mat-drawer-content>
 
 </mat-drawer-container>
+-->
+
+<router-outlet></router-outlet>

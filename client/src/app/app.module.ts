@@ -31,11 +31,11 @@ import { GlobalErrorHandlingService } from "./shared/service/global-error-handli
 import { CrgComponent } from './crg/crg.component';
 import { DialogComponent } from './admin/dialog/dialog.component';
 import { BarRatingModule } from "ngx-bar-rating";
-import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
-import { AuthInterceptor } from './auth-interceptor';
+import { UserdialogComponent } from './admin/user/userdialog/userdialog.component';
+import { AuthInterceptor } from './shared/interceptors/auth-interceptor';
 import { FooterComponent } from './main-nav/footer/footer.component';
 import { VotingComponent } from './game/game-page/voting/voting.component';
-import {AdminModule} from "./admin/admin.module";
+import { AdminModule } from "./admin/admin.module";
 
 
 @NgModule({

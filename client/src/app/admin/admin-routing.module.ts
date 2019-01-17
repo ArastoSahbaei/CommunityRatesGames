@@ -2,12 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
 import { CompanyComponent } from "./company/company.component";
-import { AccountsComponent } from "./accounts/accounts.component";
+import { UserComponent } from "./user/user.component";
+import { AddUserComponent } from "./user/adduser/add-user.component";
+import { EditUserComponent } from "./user/edituser/edit-user.component";
 
 const routes: Routes = [
   {path: 'admin', component: AdminComponent, children: [
       { path: 'company', component: CompanyComponent },
-      { path: 'accounts', component: AccountsComponent }
+      { path: 'user', component: UserComponent, children: [
+          { path: 'adduser', component: AddUserComponent },
+          { path: 'edituser', component: EditUserComponent }
+        ]},
       ]}
 ];
 

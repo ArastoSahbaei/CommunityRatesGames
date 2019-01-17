@@ -10,10 +10,10 @@ import {UserdialogComponent} from "./userdialog/userdialog.component";
 
 @Component({
   selector: 'app-accounts',
-  templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class AccountsComponent implements OnInit, AfterViewInit {
+export class UserComponent implements OnInit, AfterViewInit {
 
   public search: FormControl = new FormControl();
   public usersFound = <object>[];
@@ -28,7 +28,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource(this.users);
   tableColumns: string[] = ['userName', 'email', 'userCreated'];
 
-  @ViewChild('drawer') drawer: MatDrawer;
+//  @ViewChild('drawer') drawer: MatDrawer;
 
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     this.paginator = mp;
