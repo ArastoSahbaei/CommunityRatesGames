@@ -11,7 +11,7 @@ export class GamePageComponent implements OnInit {
 
   response : any = {};
   image : string = "";
-  ratingData : any;
+  ratingData : Object;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {
     this.getTheGames();
