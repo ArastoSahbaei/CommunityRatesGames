@@ -15,15 +15,13 @@ import {UserdialogComponent} from "./userdialog/userdialog.component";
 })
 export class UserComponent implements OnInit, AfterViewInit {
 
-  public search: FormControl = new FormControl();
-  public usersFound = <object>[];
+
+
   private paginator: MatPaginator;
   private sort: MatSort;
-  public userForm: FormGroup;
-  public showUserForm: FormGroup;
+
+
   choice: boolean = false;
-  addUser: boolean = false;
-  showStatisticOnUser: boolean = false;
   users: User[] = [];
   dataSource = new MatTableDataSource(this.users);
   tableColumns: string[] = ['userName', 'email', 'userCreated'];
@@ -52,16 +50,9 @@ export class UserComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.userForm = this.fb.group({
-      'user': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email]],
-      'password': ['', Validators.required],
-      'role': ['', Validators.required]
-    });
 
-    this.showUserForm = this.fb.group({
-      'email': ['', [Validators.required, Validators.email]]
-    })
+
+
   }
 
   ngAfterViewInit() {
@@ -83,46 +74,6 @@ export class UserComponent implements OnInit, AfterViewInit {
     });
   }
 
-  addUsers() {
-    this.addUser = true;
-  }
-
-  reset() {
-    this.addUser = false;
-    this.choice = false;
-    this.showStatisticOnUser = false;
-  }
-
-  dashboardSelection(value: number) {
-    switch (value) {
-      case 1:
-        this.reset();
-        this.showAllUsers();
-        break;
-      case 2:
-        this.reset();
-        this.addUsers();
-        break;
-      case 3:
-        this.reset();
-        this.showUser();
-        break;
-    }
-  }
-
-  showUser() {
-    this.showStatisticOnUser = true;
-    this.search.valueChanges.subscribe(
-      user => {
-        if ( user != '' ) {
-          this.searchUser.searchUser(user).subscribe(
-            data => {
-              this.usersFound = data as any[];
-            })
-        }
-      });
-    this.search.setValue('');
-  }
 
   openDialog(data: string): void {
 
@@ -134,46 +85,6 @@ export class UserComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-  }
-
-  userSearch(event) {
-    this.openDialog(event);
-  }
-
-  get email() {
-    return this.userForm.get('email');
-  }
-
-  get password() {
-    return this.userForm.get('password');
-  }
-
-  get role() {
-    return this.userForm.get('role');
-  }
-
-  get user() {
-    return this.userForm.get('user');
-  }
-
-  onSubmit() {
-    const user = {} as Register;
-    user.email = this.userForm.value.email;
-    user.username = this.userForm.value.user;
-    user.password = this.userForm.value.password;
-    if (this.userForm.value.role == 1) {
-      user.role = 'User';
-    } else {
-      user.role = 'Admin';
-    }
-
-    this.api.registerUser(user).subscribe((response) => {
-      },
-      error => {
-        console.log(error);
-        throw error;
-      }
-    );
   }
 
   openDetails(event: string) {

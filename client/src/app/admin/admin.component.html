@@ -5,8 +5,12 @@
   <button class="header" mat-raised-button color="primary" matBadge="8" matBadgeColor="warn" matBadgePosition="after"><mat-icon>contact_mail</mat-icon> Mails</button>
   <button class="header" mat-raised-button color="primary" matBadge="1" matBadgeColor="primary" matBadgePosition="after"><mat-icon>notes</mat-icon> News</button>
   <button class="header" mat-raised-button color="primary"><mat-icon>computer</mat-icon> Platform</button>
-  <button class="header" mat-raised-button color="primary"><mat-icon>pie_chart</mat-icon> Statistics</button>
+  <button class="header" mat-raised-button color="primary" [matMenuTriggerFor]="statistic"><mat-icon>pie_chart</mat-icon> Statistics</button>
   <button class="header" mat-raised-button color="primary" [matMenuTriggerFor]="users"><mat-icon>face</mat-icon> User</button>
+
+  <mat-menu #statistic="matMenu">
+    <button mat-menu-item routerLink="/admin/statistic">       <mat-icon>important_devices</mat-icon>             Statistic</button>
+  </mat-menu>
 
   <mat-menu #admin="matMenu">
     <button mat-menu-item routerLink="/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>

@@ -53,7 +53,7 @@ export class MainNavComponent implements OnInit {
   }
 
   public adminView() {
-    this.route.navigateByUrl('start/admin');
+    this.route.navigateByUrl('/admin');
   }
 
   public logInOut() {

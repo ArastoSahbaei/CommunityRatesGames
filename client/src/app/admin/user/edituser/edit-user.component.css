@@ -1,0 +1,49 @@
+mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+}
+
+mat-paginator {
+  width: 60%;
+}
+
+input[type=text] {
+  width: 70%;
+  border: 2px solid #aaa;
+  border-radius: 13px;
+  margin: 16px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: .5s;
+  background-color: #424242;
+}
+
+input[type=text]:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 10px 0 #ffffff;
+}
+
+.searchFieldAndIcon input[type=text] {
+  padding-left: 40px;
+}
+
+.searchFieldAndIcon {
+  position: relative;
+}
+
+.searchFieldAndIcon i {
+  position: absolute;
+  left: 1px;
+  top: 14px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: .5s;
+
+}
+
+.searchFieldAndIcon input[type=text]:focus + i {
+  color: #ffffff;
+}

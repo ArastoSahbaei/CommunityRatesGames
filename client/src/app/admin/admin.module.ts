@@ -10,6 +10,7 @@ import {ChartsModule} from "ng2-charts";
 import {AdminComponent} from "./admin.component";
 import { AddUserComponent } from './user/adduser/add-user.component';
 import { EditUserComponent } from './user/edituser/edit-user.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EditUserComponent } from './user/edituser/edit-user.component';
     DialogComponent,
     AdminComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    StatisticComponent
   ],
   imports: [
     CommonModule,
