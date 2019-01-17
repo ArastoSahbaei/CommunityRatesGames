@@ -5,6 +5,7 @@ import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
+import com.communityratesgames.util.AuthUtils;
 import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
 import java.util.List;
 
@@ -24,7 +25,6 @@ import java.util.List;
 @Path("/user")
 public class UserController {
 
-    private final static Logger logger = Logger.getLogger(com.communityratesgames.rest.UserController.class);
     private UserModel userModel = new UserModel();
 
     @Inject
@@ -68,16 +68,59 @@ public class UserController {
     public Response login(String credentials) {
         try {
             User toEntity = userModel.toEntity(credentials, false);
-            User user2 = dal.login(toEntity);
-            if (user2 == null) {
+            Long token = dal.login(toEntity);
+            if (token == null) {
                 return Response.status(Status.NOT_FOUND).entity("{\"error\":\"invalid username and/or password\"}").build();
             }
-            UserModel toModel = userModel.toModel(user2);
-            sender.registerLog(user2.toJMS());
+
+            User u = dal.getUserToken(token);
+            if (u == null) {
+                return Response.status(Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"corrupted token in database\"}").build();
+            }
+            UserModel toModel = userModel.toModel(u);
+            sender.registerLog(u.toJMS());
             System.out.println(toModel.toString());
-            return Response.ok(toModel).build();
+            return Response.ok(toModel).header("Authorization", token.toString()).header("Access-Control-Expose-Headers", "Authorization").build();
         } catch (JsonError e) {
             return Response.status(Status.BAD_REQUEST).entity(e.toString()).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+        }
+    }
+
+    @DELETE
+    @Path("/logout")
+    @Produces({"application/json"})
+    @Consumes({"application/JSON"})
+    public Response logout(@Context HttpHeaders header) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
+        if (!AuthToken.close(token)) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+        return Response.status(Status.OK).build();
+    }
+
+    @GET
+    @Path("/active")
+    @Produces({"application/JSON"})
+    public Response activeUser(@Context HttpHeaders header) {
+        try {
+            Long token = AuthUtils.getHeaderToken(header);
+            if (token == null) {
+                return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+            }
+
+            User u = dal.getUserToken(token);
+            if (u == null) {
+                return Response.status(Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"corrupted token in database\"}").build();
+            }
+
+            UserModel model = userModel.toModel(u);
+            return Response.ok(model).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
@@ -101,7 +144,17 @@ public class UserController {
     @Path("/update")
     @Produces({"application/JSON"})
     @Consumes({"application/JSON"})
-    public Response update(String user) {
+    public Response update(@Context HttpHeaders header, String user) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
+        User u = dal.getUserToken(token);
+        if (u.getRole() != "Admin") {
+            return Response.status(Status.FORBIDDEN).entity("{\"error\":\"/update may only be used by admin users\"}").build();
+        }
+
         try {
             User um = userModel.toEntity(user, false);
             System.out.println(um);
@@ -118,8 +171,18 @@ public class UserController {
     @Path("/delete")
     @Produces({"application/json"})
     @Consumes({"application/JSON"})
-    public Response delete(String username) {
+    public Response delete(@Context HttpHeaders header, String username) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
         try {
+            User u = dal.getUserToken(token);
+            if (u.getRole() != "Admin") {
+                return Response.status(Status.FORBIDDEN).entity("{\"error\":\"/delete may only be used by admin users\"}").build();
+            }
+
             User um = userModel.toEntity(username, false);
             Boolean answer = dal.deleteAUser(um);
             if ( answer == true ) {

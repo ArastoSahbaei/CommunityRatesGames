@@ -15,8 +15,6 @@ import java.util.List;
 @Stateless
 public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
-    private final static Logger logger = Logger.getLogger(com.communityratesgames.dao.CRGDataAccess.class);
-
     //Injects to all interfaces for each entity
 
     @Inject
@@ -64,6 +62,9 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public List<GameModel> getTop100Games() {
         return gameDataAccess.getTop100Games();
     }
+    public void addGame(GameModel model) {gameDataAccess.addGame(model);
+
+    }
 
     //Unverified Games
     public void addUnverifiedGame(GameModel model) {
@@ -82,7 +83,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     //User
     public List<User> showAllUsers() {return userDataAccess.showAllUsers();}
     public User register(User user) throws JsonError { return userDataAccess.register(user); }
-    public User login(User user) {return userDataAccess.login(user);}
+    public Long login(User user) {return userDataAccess.login(user);}
+    public User getUserToken(Long token) {return userDataAccess.getUserToken(token);}
     public boolean logout(Long token) {return userDataAccess.logout(token);}
     public User detailsAboutAUser(String user) {return userDataAccess.detailsAboutAUser(user);}
     public Boolean deleteAUser(User user) {return userDataAccess.deleteAUser(user);}

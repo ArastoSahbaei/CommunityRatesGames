@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
 import { MaterialModule } from "./shared/material/material.module";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CompanyComponent } from './admin/company/company.component';
 import { PlatformComponent } from './game/platform/platform.component';
 import { RatingComponent } from './game/rating/rating.component';
@@ -18,7 +18,7 @@ import { AddGameComponent } from './user/add-game/add-game.component';
 import { ContactComponent } from './user/contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SearchgameComponent } from './searchgame/searchgame.component';
+import { SearchgameComponent } from './main-nav/searchgame/searchgame.component';
 import { LoginComponent } from "./login/login.component";
 import { ProfileComponent } from "./user/profile/profile.component";
 import { Top100Component } from './game/top100/top100.component';
@@ -32,11 +32,13 @@ import { GlobalErrorHandlingService } from "./shared/service/global-error-handli
 import { AdminComponent } from './admin/admin.component';
 import { AccountsComponent } from './admin/accounts/accounts.component';
 import { CrgComponent } from './crg/crg.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './admin/dialog/dialog.component';
 import { ChartModule } from "./shared/chart/chart.module";
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/accounts/userdialog/userdialog.component';
+import { AuthInterceptor } from './auth-interceptor';
 import { FooterComponent } from './main-nav/footer/footer.component';
+import { VotingComponent } from './game/game-page/voting/voting.component';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { FooterComponent } from './main-nav/footer/footer.component';
     CrgComponent,
     DialogComponent,
     UserdialogComponent,
-    FooterComponent
+    FooterComponent,
+    VotingComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,14 @@ import { FooterComponent } from './main-nav/footer/footer.component';
     BarRatingModule
   ],
   entryComponents: [DialogComponent, UserdialogComponent],
-  providers: [ApiService, UrlService, StorageService, GlobalErrorHandlingService, {provide: ErrorHandler, useClass: GlobalErrorHandlingService}],
+  providers: [
+    ApiService,
+    UrlService,
+    StorageService,
+    GlobalErrorHandlingService,
+    {provide: ErrorHandler, useClass: GlobalErrorHandlingService},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

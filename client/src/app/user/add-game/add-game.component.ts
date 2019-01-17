@@ -12,83 +12,44 @@ import {ApiService} from "../../shared/service/api.service";
 export class AddGameComponent implements OnInit {
 
   addGames : FormGroup;
-  ratings : FormGroup;
-
-  max: number = 10;
-  rate: number = 2;
-  star: number;
-
 
   constructor(private api: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.addGames = this.formBuilder.group({
       'title': ['', [Validators.required]],
-      'companyId': ['', Validators.required],
-     'allPlatformId': ['', Validators.required]
-    });
-
-    this.ratings = this.formBuilder.group({
-      'user': ['',[Validators.required]],
-      'game': ['', Validators.required],
-      'rating': [ , Validators.required]
+      'company': ['', Validators.required],
+      'releaseYear': ['', Validators.required]
     });
   }
 
   addGame(){
-    const game = {} as AddGame;
+    let game = {} as AddGame;
     game.title = this.addGames.value.title;
-    game.companyId = this.addGames.value.companyId;
-    game.allPlatformId = [];
+    game.company = this.addGames.value.company;
+    game.releaseYear = this.addGames.value.releaseYear;
+
+    console.log(game);
 
     this.api.postGame(game).subscribe((response) =>{
       console.log(response);
-
     });
 
-  }
-
-  addRating(star: number){
-    const rate = {} as AddGame;
-    rate.user = this.ratings.value.user;
-    rate.game = this.ratings.value.game;
- //   rate.rating = this.ratings.value.rating;
-    rate.rating = this.star;
-    console.log(rate)
-
-    this.api.postRating(rate).subscribe((response) =>{
-      console.log(response);
-    });
-
-  }
-
-  hoveringOver(value: number): void {
-    this.star = value;
-    console.log(this.star)
-    this.addRating(this.star);
   }
 
   get title(){
     return this.addGames.get('title')
   }
 
-  get companyId(){
-    return this.addGames.get('companyId')
-  }
-
-  get allPlatformId(){
-    return this.addGames.get('allPlatformId')
-  }
-
-  get user(){
-    return this.addGames.get('user')
+  get company(){
+    return this.addGames.get('company')
   }
 
   get game(){
     return this.addGames.get('game')
   }
 
-  get rating(){
-    return this.addGames.get('rating')
+  get releaseYear(){
+    return this.addGames.get('releaseYear')
   }
 }

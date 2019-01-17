@@ -27,10 +27,9 @@ public class UnverifiedGame implements Serializable {
     @ManyToOne
     private Company company;
 
-    @Column(nullable=false)
     @JoinTable(name="unverified_game_platform",
         joinColumns={ @JoinColumn(name="unverified_game_id") },
-        inverseJoinColumns={ @JoinColumn(name="platform_id") }
+        inverseJoinColumns={ @JoinColumn(name="unverified_platform_id") }
     )
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;

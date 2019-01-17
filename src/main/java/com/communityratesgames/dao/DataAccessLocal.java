@@ -32,7 +32,8 @@ public interface DataAccessLocal {
 
     //User
     public List<User> showAllUsers();
-    public User login(User user);
+    public Long login(User user);
+    public User getUserToken(Long token);
     public boolean logout(Long token);
     public User register(User user) throws JsonError;
     public User detailsAboutAUser(String user);
@@ -46,6 +47,7 @@ public interface DataAccessLocal {
     public String searchFiveGames(String query);
     public List<GameModel> getTopRatedGames(Integer limit, Integer page);
     public List<GameModel> getTop100Games();
+    public void addGame(GameModel model);
 
     //Unverified Game
     public void addUnverifiedGame(GameModel model);

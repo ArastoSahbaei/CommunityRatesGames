@@ -13,21 +13,6 @@ import org.picketlink.idm.model.annotation.Unique;
 @Entity
 @Table(name = "game_entity")
 
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(
-                name = "searchForFiveGamesByTitle",
-                procedureName = "SEARCH_FIVE_GAMES",
-                resultClasses = {Game.class},
-                parameters = {
-                        @StoredProcedureParameter(
-                                name = "query",
-                                type = String.class,
-                                mode = ParameterMode.IN
-                        )
-                }
-        )
-})
-
 public class Game implements Serializable {
 
     @Id
@@ -54,6 +39,13 @@ public class Game implements Serializable {
     private Float averageRating;
 
     public Game() {}
+
+    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+        this.releaseDate = releaseDate;
+        this.title = title;
+        this.company = company;
+        this.platforms = platforms;
+    }
 
     public Game(UnverifiedGame unverifiedGame, boolean withId) {
         if (withId){this.id = unverifiedGame.getId();}

@@ -2,8 +2,10 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Rating;
+import com.communityratesgames.domain.User;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.util.json.*;
+import com.communityratesgames.util.AuthUtils;
 import lombok.NoArgsConstructor;
 import org.apache.log4j.Logger;
 
@@ -12,7 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.persistence.NoResultException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
 
 import java.io.IOException;
@@ -74,9 +76,6 @@ public class RatingController {
         }
         try {
             float result = dal.getAverageOfGame(gameTitle);
-            if (result == -1.0f) {
-                return Response.status(Status.NOT_FOUND).build();
-            }
             return Response.ok(result).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).build();
@@ -104,11 +103,17 @@ public class RatingController {
     @POST
     @Path("/new")
     @Consumes({"application/JSON"})
-    public Response createNewRating(String rating) {
+    public Response createNewRating(@Context HttpHeaders header, String rating) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (header == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
         try {
+            User u = dal.getUserToken(token);
             JsonObject json = new JsonObject(rating);
             RatingModel model = new RatingModel();
-            model.setUser(json.getString("user"));
+            model.setUser(u.getUserName());
             model.setGame(json.getString("game"));
             model.setRating((int)json.getNumber("rating"));
             model.setCreationDate(new Timestamp(System.currentTimeMillis()));

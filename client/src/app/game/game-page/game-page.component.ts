@@ -10,7 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 export class GamePageComponent implements OnInit {
 
   response : any = {};
-
+  image : string = "";
+  ratingData : Object;
 
   constructor(private route: ActivatedRoute, private api: ApiService) {
     this.getTheGames();
@@ -20,13 +21,26 @@ export class GamePageComponent implements OnInit {
     this.route.queryParams.subscribe(queryParam => {
       this.api.getOneGameByTitle(queryParam.title).subscribe(response =>{
         console.log(response);
+        this.showImage(response);
         this.response = response;
+        this.getAverageRating(response['title']);
       });
     });
   }
 
-  ngOnInit() {
+  getAverageRating(image:string) {
+    console.log(image);
+    this.api.getAverageRatingByTitle(image).subscribe(ratingData =>{
+      console.log(ratingData);
+      this.ratingData = ratingData;
+    });
+  }
 
+  showImage(response) {
+    this.image = Object.values(response)[2].toString().replace(/\s/g, "").toLowerCase();
+  }
+
+  ngOnInit() {
 
   }
 }

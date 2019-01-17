@@ -1,38 +1,17 @@
 <mat-card [formGroup]="addGames">
-  <mat-card-title>Fill in empty spaces to add a game</mat-card-title>
+  <mat-card-title>Add Game To Website</mat-card-title>
   <mat-form-field>
-    <input id="title" matInput placeholder="Title" formControlName="title" class="form-control" type="text" required>
+    <input id="title" matInput placeholder="Game Title" formControlName="title" class="form-control" type="text" required>
     <mat-error *ngIf="(title.dirty || title.touched) && title.invalid">Title required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input id="companyId" matInput placeholder="Company" formControlName="companyId" class="form-control" type="text" required>
-    <mat-error *ngIf="(companyId.dirty || companyId.touched) && companyId.invalid">Company required</mat-error>
+    <input id="company" matInput placeholder="Publisher" formControlName="company" class="form-control" type="text" required>
+    <mat-error *ngIf="(company.dirty || company.touched) && company.invalid">Company required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input id="allPlatformId" matInput placeholder="Platform" formControlName="allPlatformId" class="form-control" type="text" required>
-    <mat-error *ngIf="(allPlatformId.dirty || allPlatformId.touched) && allPlatformId.invalid">Platform required</mat-error>
+    <input id="releaseYear" matInput placeholder="Release Year" formControlName="releaseYear" class="form-control" type="text" required>
   </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>
   </mat-card-actions>
 </mat-card>
-
-
-<div class="stars container">
-  <div class="row">
-    <div class="col-md-4">
-      <section>
-        <b>Rate Game Here</b>
-        <mat-card [formGroup]="ratings">
-        <mat-form-field>
-          <input id="user" matInput placeholder="Username" formControlName="user" class="form-control" type="text" required>
-        </mat-form-field>
-        <mat-form-field>
-          <input id="game" matInput placeholder="Game Title" formControlName="game" class="form-control" type="text" required>
-        </mat-form-field>
-          <bar-rating [max]="max" (rateChange)="hoveringOver($event)"></bar-rating>
-        </mat-card>
-      </section>
-    </div>
-    </div>
-  </div>
