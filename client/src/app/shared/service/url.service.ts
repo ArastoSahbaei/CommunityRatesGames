@@ -25,7 +25,8 @@ export class UrlService {
   private searchGame: string = "/search";
   private company: string = "/company";
   private logs: string = "/logs";
-  private statistic: string = "/statistic";
+  private statistic: string = "/statistic"
+  private unverifiedGame: string = "/unverifiedgame/create";
 
   constructor() {
   }
@@ -108,5 +109,9 @@ export class UrlService {
 
   getBaseUrlLogs() {
     return this.loggingUrl;
+  }
+
+  getUnverifiedGame(){
+    return this.unverifiedGame;
   }
 }

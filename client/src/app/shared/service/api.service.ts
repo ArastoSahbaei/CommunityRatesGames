@@ -75,7 +75,7 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUnverifiedGame(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
@@ -123,4 +123,5 @@ export class ApiService {
             user, {headers: Headers.HeaderJSON()
     });
   }
+
 }
