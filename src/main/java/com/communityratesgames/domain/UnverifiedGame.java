@@ -1,12 +1,8 @@
 package com.communityratesgames.domain;
 
-import com.communityratesgames.model.GameModel;
-import com.communityratesgames.model.PlatformModel;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,13 +30,18 @@ public class UnverifiedGame implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
+    @Lob
+    @Column
+    private String description;
+
     public UnverifiedGame() {}
 
-    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.company = company;
         this.platforms = platforms;
+        this.description = description;
     }
 
     public Long getId() {
@@ -77,5 +78,13 @@ public class UnverifiedGame implements Serializable {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
