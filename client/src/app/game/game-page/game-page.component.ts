@@ -21,10 +21,9 @@ export class GamePageComponent implements OnInit {
     this.route.queryParams.subscribe(queryParam => {
       this.api.getOneGameByTitle(queryParam.title).subscribe(response =>{
         console.log(response);
-        console.log(Object.values(response)[2]);
         this.showImage(response);
         this.response = response;
-        this.getAverageRating(Object.values(response)[2]);
+        this.getAverageRating(response['title']);
       });
     });
   }
