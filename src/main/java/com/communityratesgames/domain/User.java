@@ -1,19 +1,29 @@
 package com.communityratesgames.domain;
+
 import com.communityratesgames.model.UserModel;
 import lombok.ToString;
 import org.picketlink.idm.model.annotation.Unique;
 
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
+import com.communityratesgames.util.IImageEntity;
+import com.communityratesgames.util.ImageUtils;
+
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.servlet.ServletContext;
+import java.io.*;
 import java.sql.Timestamp;
 import java.nio.charset.StandardCharsets;
+import java.nio.ByteBuffer;
+import java.nio.file.Paths;
 import java.security.*;
 import java.math.BigInteger;
+import java.util.Properties;
 
 @Entity
 @ToString
 @Table(name = "user_entity")
-public class User implements Serializable {
+public class User implements Serializable, IImageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +36,8 @@ public class User implements Serializable {
     private String passwordHash;
     private String password;
     private String role;
+    private static String imageDir;
+    private static Long fileSizeLimit;
 
     public User(UserModel userModel) {
         this.id = userModel.getId();
@@ -137,4 +149,50 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public void prepareImageStorage(ServletContext context) throws IOException {
+        if (imageDir != null) {
+            return;
+        }
+
+        Properties props = new Properties();
+        props.load(context.getResourceAsStream("/WEB-INF/image.properties"));
+        imageDir = props.getProperty("image.directory");
+        if (imageDir == null) {
+            throw new IOException("image storage path is not set");
+        }
+
+        String limit = props.getProperty("image.maxSize");
+        if (limit == null) {
+            fileSizeLimit = 512L * 1024L;
+        } else {
+            try {
+                fileSizeLimit = Long.parseLong(limit) * 1024L;
+            } catch (NumberFormatException e) {
+                fileSizeLimit = 512L * 1024L;
+            }
+        }
+    }
+
+    @Override
+    public void storeImage(byte[] data) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+        if (data.length > fileSizeLimit) {
+            throw new FileLimitReachedException("file size limit reached");
+        }
+
+        // This is expected to throw an exception; use this to validate the file format.
+        ImageUtils.getFormat(data);
+        DataOutputStream stream = new DataOutputStream(new FileOutputStream(Paths.get(imageDir, this.userName).toString()));
+        stream.write(data, 0, data.length);
+        stream.close();
+    }
+
+    @Override
+    public byte[] loadImage() throws IOException {
+        FileInputStream file = new FileInputStream(Paths.get(imageDir, this.userName).toString());
+        DataInputStream stream = new DataInputStream(file);
+        byte[] data = new byte[file.available()];
+        stream.read(data);
+        stream.close();
+        return data;
+    }
 }

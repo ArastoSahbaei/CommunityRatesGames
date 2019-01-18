@@ -3,6 +3,8 @@ package com.communityratesgames.transactions;
 import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.user.*;
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
 import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
@@ -10,12 +12,18 @@ import org.apache.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.*;
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
 @Default
 public class UserService implements UserDataAccess {
+
+    @Context
+    private ServletContext servlet;
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.transactions.UserService.class);
 
@@ -121,5 +129,12 @@ public class UserService implements UserDataAccess {
 
     public boolean logout(Long token) {
         return AuthToken.close(token);
+    }
+
+    @Override
+    public User setUserAvatar(User user, byte[] image) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+        user.prepareImageStorage(servlet);
+        user.storeImage(image);
+        return user;
     }
 }
