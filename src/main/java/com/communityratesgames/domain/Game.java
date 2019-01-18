@@ -44,12 +44,13 @@ public class Game implements Serializable {
 
     public Game() {}
 
-    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description) {
+    public Game(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description, Float averageRating) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.company = company;
         this.platforms = platforms;
         this.description = description;
+        this.averageRating = averageRating;
     }
 
     public Game(UnverifiedGame unverifiedGame, boolean withId) {
