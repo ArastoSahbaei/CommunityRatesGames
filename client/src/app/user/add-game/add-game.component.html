@@ -9,7 +9,15 @@
     <mat-error *ngIf="(company.dirty || company.touched) && company.invalid">Company required</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input id="releaseYear" matInput placeholder="Release Year" formControlName="releaseYear" class="form-control" type="text" required>
+    <input id="releaseDate" matInput placeholder="Release Year" formControlName="releaseDate" class="form-control" type="text" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input id="platforms" matInput placeholder="Game Platform" formControlName="platforms" class="form-control" type="text" required>
+    <mat-error *ngIf="(platforms.dirty || platforms.touched) && platforms.invalid">Platform required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="10" cols="62" id="description" placeholder="Game Description" formControlName="description" class="form-control" required ></textarea>
+    <mat-error *ngIf="(description.dirty || description.touched) && description.invalid">Description required</mat-error>
   </mat-form-field>
   <mat-card-actions>
     <button mat-raised-button type="button" (click)="addGame()" color="primary">Add Game</button>

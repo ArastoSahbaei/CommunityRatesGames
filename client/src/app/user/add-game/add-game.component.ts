@@ -19,15 +19,20 @@ export class AddGameComponent implements OnInit {
     this.addGames = this.formBuilder.group({
       'title': ['', [Validators.required]],
       'company': ['', Validators.required],
-      'releaseYear': ['', Validators.required]
+      'releaseDate': ['', Validators.required],
+      'platforms': ['',Validators.required],
+      'description': ['', Validators.required]
     });
   }
 
   addGame(){
     let game = {} as AddGame;
+    game.platforms = [];
     game.title = this.addGames.value.title;
     game.company = this.addGames.value.company;
-    game.releaseYear = this.addGames.value.releaseYear;
+    game.releaseDate = this.addGames.value.releaseDate;
+    game.platforms.push(this.addGames.value.platforms);
+    game.description = this.addGames.value.description;
 
     console.log(game);
 
@@ -49,7 +54,15 @@ export class AddGameComponent implements OnInit {
     return this.addGames.get('game')
   }
 
-  get releaseYear(){
-    return this.addGames.get('releaseYear')
+  get releaseDate(){
+    return this.addGames.get('releaseDate')
+  }
+
+  get platforms(){
+    return this.addGames.get('platforms')
+  }
+
+  get description(){
+    return this.addGames.get('description')
   }
 }
