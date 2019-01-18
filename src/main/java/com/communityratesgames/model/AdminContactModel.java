@@ -8,10 +8,10 @@ public class AdminContactModel {
     private Long id;
     private Timestamp creationDate;
     private String email;
-    private String admin;
+    private String administredBy;
     private String userMessage;
     private String responseMessage;
-    private boolean read;
+    private boolean seen;
 
     public AdminContactModel() {
     }
@@ -20,10 +20,10 @@ public class AdminContactModel {
         this.id = entity.getId();
         this.creationDate = entity.getCreationDate();
         this.email = entity.getEmail();
-        this.admin = entity.getAdmin();
+        this.administredBy = entity.getAdministredBy();
         this.userMessage = entity.getUserMessage();
         this.responseMessage = entity.getResponseMessage();
-        this.read = entity.isRead();
+        this.seen = entity.isSeen();
     }
 
     public Long getId() {
@@ -50,14 +50,6 @@ public class AdminContactModel {
         this.email = email;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
-
     public String getUserMessage() {
         return userMessage;
     }
@@ -74,11 +66,19 @@ public class AdminContactModel {
         this.responseMessage = responseMessage;
     }
 
-    public boolean isRead() {
-        return read;
+    public String getAdministredBy() {
+        return administredBy;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
+    public void setAdministredBy(String administredBy) {
+        this.administredBy = administredBy;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 }

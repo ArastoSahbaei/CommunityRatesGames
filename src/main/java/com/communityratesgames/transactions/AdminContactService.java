@@ -5,8 +5,7 @@ import com.communityratesgames.model.AdminContactModel;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +43,8 @@ public class AdminContactService implements AdminContactDataAccess{
     @Override
     public void updateEntry(AdminContact contact) {
         AdminContact oldContact = em.find(AdminContact.class, contact.getId());
-        oldContact.setAdmin(contact.getAdmin());
-        oldContact.setRead(contact.isRead());
+        oldContact.setAdministredBy(contact.getAdministredBy());
+        oldContact.setSeen(contact.isSeen());
         oldContact.setResponseMessage(contact.getResponseMessage());
         oldContact.setFlaggedForAdmin(contact.getFlaggedForAdmin());
         oldContact.setUrgent(contact.isUrgent());

@@ -68,7 +68,7 @@ public class AdminContactController {
     }
 
     @PUT
-    @Path("/all")
+    @Path("/update")
     @Produces({"application/JSON"})
     public Response update(AdminContact entity) {
         try {

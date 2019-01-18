@@ -4,7 +4,6 @@ import com.communityratesgames.model.AdminContactModel;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -12,18 +11,18 @@ import java.time.Instant;
 @Entity
 @ToString
 @Table(name = "admincontact_entity")
-public class AdminContact implements Serializable {
+public class AdminContact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp creationDate;
     private String email;
-    private String admin;
+    private String administredBy;
     private String userMessage;
     private String responseMessage;
     private String flaggedForAdmin;
-    private boolean read;
+    private boolean seen;
     private boolean urgent;
 
     public AdminContact() {
@@ -32,18 +31,18 @@ public class AdminContact implements Serializable {
     public AdminContact(AdminContactModel model) {
         this.creationDate = model.getCreationDate()==null ? Timestamp.from(Instant.now()) : model.getCreationDate();
         this.email = model.getEmail();
-        this.admin = model.getAdmin();
+        this.administredBy = model.getAdministredBy();
         this.userMessage = model.getUserMessage();
         this.responseMessage = model.getResponseMessage();
-        this.read = model.isRead();
+        this.seen = model.isSeen();
     }
 
-    public AdminContact(Timestamp creationDate, String email, String admin, String userMessage, String responseMessage, String flaggedForAdmin, boolean read, boolean urgent) {
+    public AdminContact(Timestamp creationDate, String email, String admin, String userMessage, String responseMessage, String flaggedForAdmin, boolean seen, boolean urgent) {
         this.creationDate = creationDate==null ? Timestamp.from(Instant.now()) : creationDate;
         this.email = email;
-        this.admin = admin;
+        this.administredBy = admin;
         this.userMessage = userMessage;
-        this.read = read;
+        this.seen = seen;
         this.responseMessage = responseMessage;
         this.flaggedForAdmin = flaggedForAdmin;
         this.urgent = urgent;
@@ -73,14 +72,6 @@ public class AdminContact implements Serializable {
         this.email = email;
     }
 
-    public String getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(String admin) {
-        this.admin = admin;
-    }
-
     public String getUserMessage() {
         return userMessage;
     }
@@ -89,12 +80,20 @@ public class AdminContact implements Serializable {
         this.userMessage = userMessage;
     }
 
-    public boolean isRead() {
-        return read;
+    public String getAdministredBy() {
+        return administredBy;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
+    public void setAdministredBy(String administredBy) {
+        this.administredBy = administredBy;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 
     public String getResponseMessage() {
