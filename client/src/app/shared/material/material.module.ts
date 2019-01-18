@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
+  MatBadgeModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -50,6 +51,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule { }

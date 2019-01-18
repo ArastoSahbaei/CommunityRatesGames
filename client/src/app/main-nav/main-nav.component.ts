@@ -52,6 +52,10 @@ export class MainNavComponent implements OnInit {
 
   }
 
+  public adminView() {
+    this.route.navigateByUrl('/admin');
+  }
+
   public logInOut() {
     var token = this.storage.getItem('token');
     if (token == null) {

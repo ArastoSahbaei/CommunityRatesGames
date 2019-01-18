@@ -39,7 +39,7 @@ export class AuthService {
         this.credentials = Object.values(response.body);
         if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
-          this.router.navigate(['start/admin']);
+          this.router.navigate(['/admin']);
           this.storage.setItem('admin', response.body['username']);
         } else {
           this.loggedIn$.next(true);
