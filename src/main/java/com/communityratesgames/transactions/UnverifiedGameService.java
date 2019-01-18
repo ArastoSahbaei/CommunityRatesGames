@@ -51,7 +51,8 @@ public class UnverifiedGameService implements UnverifiedGameDataAccess{
                 model.getReleaseDate(),
                 model.getTitle(),
                 getCompanyEntity(model.getCompany()),
-                getPlatformEntity(model.getPlatforms())
+                getPlatformEntity(model.getPlatforms()),
+                model.getDescription()
         );
     }
     private Company getCompanyEntity(String companyname) {
