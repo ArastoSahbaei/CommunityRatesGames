@@ -18,6 +18,7 @@ public class GameModel implements Serializable {
     private Timestamp releaseDate;
     private String title;
     private String company;
+    private Float averageRating;
     private List<String> platforms;
     private String description;
 
@@ -30,6 +31,7 @@ public class GameModel implements Serializable {
             gameModel.setReleaseDate(Timestamp.valueOf(root.get("releaseDate").asText()));
             gameModel.setTitle(root.get("title").asText());
             gameModel.setCompany(root.get("company").asText());
+            gameModel.setAverageRating(root.get("averageRating").floatValue());
             JsonNode jn = root.get("platforms");
             for (JsonNode n : jn
             ) {
@@ -52,6 +54,7 @@ public class GameModel implements Serializable {
         this.company = entity.getCompany().getCompanyName();
         this.platforms = entity.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
         this.description = entity.getDescription();
+        this.averageRating = entity.getAverageRating();
     }
 
     public GameModel(UnverifiedGame entity) {
@@ -59,6 +62,14 @@ public class GameModel implements Serializable {
     }
 
     public GameModel() {
+    }
+
+    public Float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Float averageRating) {
+        this.averageRating = averageRating;
     }
 
     public Long getId() {

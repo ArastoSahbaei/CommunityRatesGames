@@ -12,7 +12,7 @@ export class Top100Component implements OnInit, AfterViewInit {
 
   games: TopGames[] = [];
   dataSource = new MatTableDataSource(this.games);
-  tableColumns: string[] = ['title', 'company'];
+  tableColumns: string[] = ['title', 'company', 'genre', 'rating'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,6 +20,7 @@ export class Top100Component implements OnInit, AfterViewInit {
   constructor(private api: ApiService) {
     this.api.getTop100().subscribe((response) =>{
       this.games = Object.values(response);
+      console.log(response);
       this.dataSource.data = this.games;
     }, error => {
       throw error;
