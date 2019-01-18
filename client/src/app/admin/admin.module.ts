@@ -12,6 +12,9 @@ import { AddUserComponent } from './user/adduser/add-user.component';
 import { EditUserComponent } from './user/edituser/edit-user.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { AllUsersComponent } from './user/allusers/all-users.component';
+import { OverallComponent } from './statistic/overall/overall.component';
+import { UserStatisticComponent } from './statistic/userstatistic/userstatistic.component';
+import { SiteStatisticComponent } from './statistic/sitestatistic/sitestatistic.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { AllUsersComponent } from './user/allusers/all-users.component';
     AddUserComponent,
     EditUserComponent,
     StatisticComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    OverallComponent,
+    UserStatisticComponent,
+    SiteStatisticComponent
   ],
   imports: [
     CommonModule,

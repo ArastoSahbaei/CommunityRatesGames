@@ -33,11 +33,7 @@ export class DialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: object,
               private formBuilder: FormBuilder,
               private api: ApiService) {
-
-    this.api.getStatisticOnAUser(this.data).subscribe((response) => {
-      this.totalAmountOfLogins = response;
-      this.logins(this.totalAmountOfLogins)
-    });
+      console.log(this.data);
   }
 
   logins(login: number) {

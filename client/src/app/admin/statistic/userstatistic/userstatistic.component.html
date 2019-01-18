@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+
+    <div class="searchFieldAndIcon inputIconBg">
+      <input type="text" placeholder="Search user" [matAutocomplete]="auto" [formControl]="search">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUser($event.option.value)">
+        <mat-option *ngFor="let user of usersFound" [value]="user.user">{{user.user}}</mat-option>
+      </mat-autocomplete>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+      [colors]="chartColors"
+      (chartHover)="chartHovered($event)">
+    </canvas>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+
+</mat-card>
