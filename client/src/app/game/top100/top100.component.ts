@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {TopGames} from "../../shared/interface/top-games.interface";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../shared/service/api.service";
 import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
