@@ -20,6 +20,8 @@ import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
+import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UnknownFormatConversionException;
@@ -143,11 +145,25 @@ public class UserController {
         }
     }
 
+    @GET
+    @Path("/avatar/{user}")
+    @Produces({"image/png", "image/jpeg", "image/tiff"})
+    public Response getAvatar(@PathParam("user") String user) {
+        try {
+            User u = dal.detailsAboutAUser(user);
+            File data = dal.getUserAvatar(u);
+            return Response.ok(data).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @POST
     @Path("/avatar")
     @Produces({"application/JSON"})
     @Consumes({"image/png", "image/jpeg", "image/tiff"})
-    public Response setAvatar(@Context HttpHeaders header, byte[] imagedata) {
+    public Response setAvatar(@Context HttpHeaders header, InputStream imagedata) {
         Long token = AuthUtils.getHeaderToken(header);
         if (token == null) {
             return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
@@ -162,6 +178,7 @@ public class UserController {
         } catch (InvalidFileFormatException e) {
             return Response.status(Status.BAD_REQUEST).entity("{\"error\":\"image invalid; only png, jpeg and tiff are supported\"}").build();
         } catch (IOException e) {
+            e.printStackTrace();
             return Response.status(Status.INTERNAL_SERVER_ERROR).build();
         }
     }

@@ -14,6 +14,8 @@ import javax.enterprise.inject.Default;
 import javax.persistence.*;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
+import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -121,8 +123,8 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User detailsAboutAUser(String user) {
-        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = :user", User.class)
-                .setParameter("user", user)
+        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = ?1", User.class)
+                .setParameter(1, user)
                 .getSingleResult();
         return u;
     }
@@ -132,9 +134,15 @@ public class UserService implements UserDataAccess {
     }
 
     @Override
-    public User setUserAvatar(User user, byte[] image) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+    public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException {
         user.prepareImageStorage(servlet);
         user.storeImage(image);
         return user;
+    }
+
+    @Override
+    public File getUserAvatar(User user) throws IOException {
+        user.prepareImageStorage(servlet);
+        return user.loadImage();
     }
 }

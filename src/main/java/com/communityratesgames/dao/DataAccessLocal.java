@@ -8,6 +8,8 @@ import com.communityratesgames.util.InvalidFileFormatException;
 import com.communityratesgames.util.JsonError;
 
 import javax.ejb.Local;
+import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -41,7 +43,8 @@ public interface DataAccessLocal {
     public User detailsAboutAUser(String user);
     public Boolean deleteAUser(User user);
     public Integer updateAUser(User user);
-    public User setUserAvatar(User user, byte[] image) throws IOException, FileLimitReachedException, InvalidFileFormatException;
+    public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException;
+    public File getUserAvatar(User user) throws IOException;
 
     //Game
     public List<GameModel> showAllGames();

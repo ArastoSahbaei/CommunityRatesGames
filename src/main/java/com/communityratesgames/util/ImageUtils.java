@@ -2,8 +2,6 @@ package com.communityratesgames.util;
 
 import com.communityratesgames.util.InvalidFileFormatException;
 
-import java.nio.ByteBuffer;
-
 public class ImageUtils {
     public enum Format {
         IMAGE_PNG,

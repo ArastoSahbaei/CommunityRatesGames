@@ -174,25 +174,53 @@ public class User implements Serializable, IImageEntity {
     }
 
     @Override
-    public void storeImage(byte[] data) throws IOException, FileLimitReachedException, InvalidFileFormatException {
-        if (data.length > fileSizeLimit) {
-            throw new FileLimitReachedException("file size limit reached");
-        }
+    public void storeImage(InputStream data) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+        byte[] magic = new byte[4];
+        int in;
 
         // This is expected to throw an exception; use this to validate the file format.
-        ImageUtils.getFormat(data);
-        DataOutputStream stream = new DataOutputStream(new FileOutputStream(Paths.get(imageDir, this.userName).toString()));
-        stream.write(data, 0, data.length);
-        stream.close();
+        data.read(magic);
+        ImageUtils.getFormat(magic);
+
+        // Write to a temporary file, in case something goes wrong during the write.
+        File file = new File(Paths.get(imageDir, this.userName + ".tmp").toString());
+        DataOutputStream stream = new DataOutputStream(new FileOutputStream(file));
+        stream.write(magic);
+        for (int i = 4; i < fileSizeLimit; i++) {
+            // Pass all data from the stream to the file directly, without using RAM.
+            // This will prevent out-of-memory on large files.
+            in = data.read();
+            if (in == -1) {
+                stream.close();
+                File result = new File(Paths.get(imageDir, this.userName).toString());
+                if (!file.renameTo(result)) {
+                    throw new IOException("failed to replace old avatar");
+                }
+                return;
+            }
+
+            stream.write(in);
+        }
+
+        file.delete();
+        throw new FileLimitReachedException("file size limit reached");
     }
 
     @Override
-    public byte[] loadImage() throws IOException {
-        FileInputStream file = new FileInputStream(Paths.get(imageDir, this.userName).toString());
-        DataInputStream stream = new DataInputStream(file);
-        byte[] data = new byte[file.available()];
-        stream.read(data);
-        stream.close();
-        return data;
+    public File loadImage() throws IOException {
+        File file = new File(Paths.get(imageDir, this.userName).toString());
+        if (!file.exists()) {
+            // TODO: Fall back to a default avatar if no custom one is set.
+            return null;
+        }
+
+        if (!file.canRead()) {
+            throw new FileNotFoundException("no read access to file");
+        }
+
+        if (file.isDirectory()) {
+            throw new FileNotFoundException("cannot open directory");
+        }
+        return file;
     }
 }

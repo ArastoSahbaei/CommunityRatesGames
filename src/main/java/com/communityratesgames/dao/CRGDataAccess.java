@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -88,7 +90,8 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public User detailsAboutAUser(String user) {return userDataAccess.detailsAboutAUser(user);}
     public Boolean deleteAUser(User user) {return userDataAccess.deleteAUser(user);}
     public Integer updateAUser(User user) {return userDataAccess.updateAUser(user);}
-    public User setUserAvatar(User user, byte[] image) throws IOException, FileLimitReachedException, InvalidFileFormatException {return userDataAccess.setUserAvatar(user, image);}
+    public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException {return userDataAccess.setUserAvatar(user, image);}
+    public File getUserAvatar(User user) throws IOException {return userDataAccess.getUserAvatar(user);}
 
     //Rating Access
     public List<RatingModel> showAllRatings() {return ratingDataAccess.showAllRatings();}
