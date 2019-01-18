@@ -21,7 +21,7 @@
     {"user": "testuser3","game": "Quake","rating": 5}
   ],
   "platforms":[
-    {"name":"Windows", "releaseYear":1995, "company":2},
+    {"name":"PC", "releaseYear":1995, "company":2},
     {"name":"Nintendo 64", "releaseYear":1996, "company":4},
     {"name":"Xbox", "releaseYear":2001,"company":2}
   ],
@@ -30,7 +30,7 @@
       "title": "Doom 64",
       "company": "id Software",
       "platforms": [
-        "Windows",
+        "PC",
         "Nintendo 64"
       ]
     },
@@ -38,21 +38,21 @@
       "title": "Commander Keen",
       "company": "id Software",
       "platforms": [
-        "Windows"
+        "PC"
       ]
     },
     {
       "title": "Wolfenstein 3D",
       "company": "id Software",
       "platforms": [
-        "Windows"
+        "PC"
       ]
     },
     {
       "title": "Doom",
       "company": "id Software",
       "platforms": [
-        "Windows",
+        "PC",
         "Xbox"
       ]
     },
@@ -60,7 +60,7 @@
       "title": "Quake",
       "company": "id Software",
       "platforms": [
-        "Windows",
+        "PC",
         "Xbox"
       ]
     },
@@ -68,7 +68,7 @@
       "title": "Halo",
       "company": "id Software",
       "platforms": [
-        "Windows",
+        "PC",
         "Xbox"
       ]
     }

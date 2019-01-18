@@ -1,0 +1,28 @@
+<mat-card [formGroup]="userForm">
+  <mat-card-header>Add a user</mat-card-header>
+
+  <mat-form-field>
+    <input id="user" formControlName="user" matInput placeholder="Name" />
+    <mat-error *ngIf="(user.dirty || user.touched) && user.invalid">Name required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
+    <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input id="password" matInput placeholder="Password" type="password" formControlName="password" class="form-control" required >
+    <mat-error *ngIf="(password.dirty || password.touched) && password.invalid">Password required</mat-error>
+  </mat-form-field>
+
+  <mat-radio-group formControlName="role">
+    <mat-radio-button name="role"  color="primary" value="1">User</mat-radio-button>
+    <mat-radio-button name="role"  color="primary" value="3">Moderator</mat-radio-button>
+    <mat-radio-button name="role"  color="primary" value="2">Admin</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-card-actions>
+    <button mat-raised-button type="button" [disabled]="!userForm.valid" (click)="onSubmit()" color="primary">Add User</button>
+  </mat-card-actions>
+</mat-card>

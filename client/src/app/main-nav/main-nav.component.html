@@ -18,7 +18,7 @@
           <div class="loggedInUser1">
             <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
           </div>
-          <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+            <button mat-button *ngIf="isLoggedInAdmin$ | async"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
           <div class="navigationButtonHome1">
             <button mat-button routerLink=""> <mat-icon>home</mat-icon><span class="aligned-with-icon">              Home</span> </button>
@@ -59,16 +59,9 @@
           <div class="loggedInUser">
             <button mat-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="user"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
 
-           <button mat-button *ngIf="isLoggedInAdmin$ | async" [matMenuTriggerFor]="admin"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
+           <button mat-button *ngIf="isLoggedInAdmin$ | async" (click)="adminView()"><mat-icon>face</mat-icon><span class="aligned-with-icon">{{name}}</span></button>
           </div>
 
-          <mat-menu #admin="matMenu">
-            <span>ADMIN</span>
-            <hr>
-            <button mat-menu-item routerLink="start/admin/company">       <mat-icon>important_devices</mat-icon>             Add Company</button>
-            <hr>
-            <button mat-menu-item routerLink="start/admin/accounts">      <mat-icon>perm_contact_calendar</mat-icon>         Accounts</button>
-          </mat-menu>
 
           <mat-menu #user="matMenu">
 
