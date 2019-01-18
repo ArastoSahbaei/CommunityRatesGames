@@ -9,7 +9,7 @@
   <button class="header" mat-raised-button color="primary" [matMenuTriggerFor]="users"><mat-icon>face</mat-icon> User</button>
 
   <mat-menu #statistic="matMenu">
-    <button mat-menu-item routerLink="/admin/statistic/user">       <mat-icon>important_devices</mat-icon>             Statistic</button>
+
   </mat-menu>
 
   <mat-menu #admin="matMenu">
@@ -18,7 +18,8 @@
 
   <mat-menu #users="matMenu">
     <button mat-menu-item routerLink="/admin/user/adduser">      <mat-icon>perm_contact_calendar</mat-icon>         Add User</button>
-    <button mat-menu-item routerLink="/admin/user/edituser">      <mat-icon>perm_contact_calendar</mat-icon>         Edit User</button>
+    <button mat-menu-item routerLink="/admin/user/edituser">     <mat-icon>perm_contact_calendar</mat-icon>        Edit User</button>
+    <button mat-menu-item routerLink="/admin/user/alluser">    <mat-icon>important_devices</mat-icon>          All Users</button>
   </mat-menu>
 </mat-card>
 <router-outlet></router-outlet>

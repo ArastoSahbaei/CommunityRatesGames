@@ -4,11 +4,11 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/mat
 import {User} from "../../../shared/interface/user.interface";
 
 @Component({
-  selector: 'app-user-stats',
-  templateUrl: './user-stats.component.html',
-  styleUrls: ['./user-stats.component.css']
+  selector: 'app-all-users',
+  templateUrl: './all-users.component.html',
+  styleUrls: ['./all-users.component.css']
 })
-export class UserStatsComponent implements OnInit, AfterViewInit {
+export class AllUsersComponent implements OnInit, AfterViewInit {
 
   users: User[] = [];
   dataSource = new MatTableDataSource(this.users);

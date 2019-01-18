@@ -11,7 +11,7 @@ import {AdminComponent} from "./admin.component";
 import { AddUserComponent } from './user/adduser/add-user.component';
 import { EditUserComponent } from './user/edituser/edit-user.component';
 import { StatisticComponent } from './statistic/statistic.component';
-import { UserStatsComponent } from './statistic/user-stats/user-stats.component';
+import { AllUsersComponent } from './user/allusers/all-users.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { UserStatsComponent } from './statistic/user-stats/user-stats.component'
     AddUserComponent,
     EditUserComponent,
     StatisticComponent,
-    UserStatsComponent
+    AllUsersComponent
   ],
   imports: [
     CommonModule,
