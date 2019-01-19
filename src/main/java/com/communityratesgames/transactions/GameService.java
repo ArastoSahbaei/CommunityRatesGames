@@ -126,7 +126,8 @@ public class GameService implements GameDataAccess {
                 model.getTitle(),
                 getCompanyEntity(model.getCompany()),
                 getPlatformEntity(model.getPlatforms()),
-                model.getDescription()
+                model.getDescription(),
+                model.getAverageRating()
         );
     }
     private Company getCompanyEntity(String companyname) {
