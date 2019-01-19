@@ -29,7 +29,6 @@ import { ErrorComponent } from './error/error.component';
 import { GamePageComponent } from './game/game-page/game-page.component';
 import { GlobalErrorHandlingService } from "./shared/service/global-error-handling.service";
 import { CrgComponent } from './crg/crg.component';
-import { DialogComponent } from './admin/dialog/dialog.component';
 import { BarRatingModule } from "ngx-bar-rating";
 import { UserdialogComponent } from './admin/user/userdialog/userdialog.component';
 import { AuthInterceptor } from './shared/interceptors/auth-interceptor';
@@ -75,7 +74,7 @@ import { AdminModule } from "./admin/admin.module";
     AdminModule,
     AppRoutingModule
   ],
-  entryComponents: [DialogComponent, UserdialogComponent],
+  entryComponents: [ UserdialogComponent ],
   providers: [
     ApiService,
     UrlService,
