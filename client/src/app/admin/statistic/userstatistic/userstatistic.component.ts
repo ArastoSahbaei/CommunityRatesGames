@@ -126,7 +126,7 @@ export class UserStatisticComponent implements OnInit {
 
   public chartColors: any[] = [
     {
-      backgroundColor:["#FFFFFF"],
+      backgroundColor:["#FFFFFF", "#FF00FF", "#00F00F", "#E3E3E3", "#A21D12", "#AAAAAA", "#CCCCCC", "#D3D3D3", "#FFFF00", "#00FFFF", "#4B4B4B", "#222111"],
     }
   ];
 

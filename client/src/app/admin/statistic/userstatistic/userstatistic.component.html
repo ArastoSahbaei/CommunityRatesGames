@@ -40,3 +40,20 @@
     </canvas>
   </mat-card-content>
 </mat-card>
+<mat-card>
+  <mat-card-header>
+    Logins per weekday
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+      baseChart
+      [datasets]="weeklyData"
+      [labels]="weeklyLabels"
+      [options]="weeklyLogins"
+      [legend]="weeklyLegend"
+      [chartType]="weeklyType"
+      [colors]="chartColors"
+      (chartHover)="chartHovered($event)">
+    </canvas>
+  </mat-card-content>
+</mat-card>
