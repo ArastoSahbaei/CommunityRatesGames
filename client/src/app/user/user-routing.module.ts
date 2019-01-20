@@ -8,7 +8,7 @@ import { AddGameComponent } from "./add-game/add-game.component";
 import { ContactComponent } from "./contact/contact.component";
 
 const routes: Routes = [
-  { path: '', component: UserComponent, children: [
+  { path: 'user', component: UserComponent, children: [
       {path: 'profile', component: ProfileComponent},
       {path: 'report-a-bug', component: ReportBugComponent},
       {path: 'my-games', component: MygamesComponent},

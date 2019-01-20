@@ -15,12 +15,12 @@ import { RegisterComponent } from "../login/register/register.component";
   ],
   imports: [
     CommonModule,
-    CrgRoutingModule,
-    AdminModule,
-    UserModule,
     ReactiveFormsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    UserModule,
+    AdminModule,
+    CrgRoutingModule,
   ]
 })
 export class CrgModule { }
