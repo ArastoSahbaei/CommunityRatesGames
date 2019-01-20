@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>Site statistics</mat-card-header>
+
+  <mat-grid-list [cols]="4" rowHeight="175px">
+    <mat-grid-tile
+      *ngFor="let thumbnail of thumbnails"
+      [colspan]="thumbnail.cols"
+      [rowspan]="thumbnail.rows"
+    >
+      <mat-card class="thumbnail">
+        <a routerLink={{thumbnail.link}}><img matTooltip={{thumbnail.tooltip}} mat-card-image src={{thumbnail.picture}} /></a>
+      </mat-card>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
