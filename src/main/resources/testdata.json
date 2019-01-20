@@ -32,21 +32,27 @@
       "platforms": [
         "PC",
         "Nintendo 64"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Commander Keen",
       "company": "id Software",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Wolfenstein 3D",
       "company": "id Software",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Doom",
@@ -54,7 +60,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Quake",
@@ -62,7 +70,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Halo",
@@ -70,7 +80,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     }
     ]
 }
