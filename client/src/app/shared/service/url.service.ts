@@ -26,7 +26,8 @@ export class UrlService {
   private searchGame: string = "/search";
   private company: string = "/company";
   private logs: string = "/logs";
-  private statistic: string = "/statistic"
+  private statistic: string = "/statistic";
+  private onOneUser: string = "OnOneUser";
   private unverifiedGame: string = "/unverifiedgame/create";
 
   constructor() {
@@ -118,5 +119,9 @@ export class UrlService {
 
   getUnverifiedGame(){
     return this.unverifiedGame;
+  }
+
+  getOnOneUser() {
+    return this.onOneUser;
   }
 }

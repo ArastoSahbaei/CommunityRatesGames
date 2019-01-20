@@ -21,7 +21,7 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
     this.showUserForm = this.fb.group({
       'email': ['', [Validators.required, Validators.email]]
-    })
+    });
 
     this.showUser();
   }

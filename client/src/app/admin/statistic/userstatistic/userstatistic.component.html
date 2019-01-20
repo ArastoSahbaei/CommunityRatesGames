@@ -1,0 +1,59 @@
+<div class="searchBar">
+  <input type="text" placeholder="Search user" [matAutocomplete]="auto" [formControl]="search">
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedUser($event.option.value)">
+    <mat-option *ngFor="let user of usersFound" [value]="user.user">{{user.user}}</mat-option>
+  </mat-autocomplete>
+
+  <p>Statistics about {{userSelected}}.</p>
+</div>
+<mat-card>
+  <mat-card-header>
+    Amount of logins
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+      baseChart
+      [datasets]="totalData"
+      [labels]="totalLabels"
+      [options]="totalLogins"
+      [legend]="totalLegend"
+      [chartType]="totalType"
+      [colors]="chartColors"
+      (chartHover)="chartHovered($event)">
+    </canvas>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    Logins per month
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+      baseChart
+      [datasets]="monthlyData"
+      [labels]="monthlyLabels"
+      [options]="monthlyLogins"
+      [legend]="monthlyLegend"
+      [chartType]="monthlyType"
+      [colors]="chartColors"
+      (chartHover)="chartHovered($event)">
+    </canvas>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    Logins per weekday
+  </mat-card-header>
+  <mat-card-content>
+    <canvas
+      baseChart
+      [datasets]="weeklyData"
+      [labels]="weeklyLabels"
+      [options]="weeklyLogins"
+      [legend]="weeklyLegend"
+      [chartType]="weeklyType"
+      [colors]="chartColors"
+      (chartHover)="chartHovered($event)">
+    </canvas>
+  </mat-card-content>
+</mat-card>

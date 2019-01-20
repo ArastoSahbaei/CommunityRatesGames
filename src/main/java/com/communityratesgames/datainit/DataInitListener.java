@@ -37,8 +37,8 @@ public class DataInitListener implements javax.servlet.ServletContextListener {
             DataCollection dataHolder = mapper.readValue(is, DataCollection.class);
             createCompanies(dataHolder.companies);
             createPlatforms(dataHolder.platforms);
-            createGames(dataHolder.games);
             createUser(dataHolder.users);
+            createGames(dataHolder.games);
             createRatings(dataHolder.ratings);
         }catch(Exception e) {
         }

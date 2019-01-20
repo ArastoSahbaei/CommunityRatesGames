@@ -18,32 +18,11 @@ public class GameModel implements Serializable {
     private Timestamp releaseDate;
     private String title;
     private String company;
+    private Float averageRating;
     private List<String> platforms;
     private String description;
-
-    public GameModel toModel(String input) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<String> list = new ArrayList<>();
-        try {
-            JsonNode root = objectMapper.readTree(input);
-            GameModel gameModel = new GameModel();
-            gameModel.setReleaseDate(Timestamp.valueOf(root.get("releaseDate").asText()));
-            gameModel.setTitle(root.get("title").asText());
-            gameModel.setCompany(root.get("company").asText());
-            JsonNode jn = root.get("platforms");
-            for (JsonNode n : jn
-            ) {
-                list.add(n.asText());
-            }
-            gameModel.setPlatforms(list);
-
-
-            return gameModel;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    private String submittedBy;
+    private String genre;
 
     public GameModel(Game entity) {
         this.id = entity.getId();
@@ -52,6 +31,9 @@ public class GameModel implements Serializable {
         this.company = entity.getCompany().getCompanyName();
         this.platforms = entity.getPlatforms().stream().map(Platform::getName).collect(Collectors.toList());
         this.description = entity.getDescription();
+        this.averageRating = entity.getAverageRating();
+        this.submittedBy = entity.getSubmittedBy().getUserName();
+        this.genre = entity.getGenre().toString();
     }
 
     public GameModel(UnverifiedGame entity) {
@@ -59,6 +41,14 @@ public class GameModel implements Serializable {
     }
 
     public GameModel() {
+    }
+
+    public Float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Float averageRating) {
+        this.averageRating = averageRating;
     }
 
     public Long getId() {
@@ -107,5 +97,21 @@ public class GameModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(String submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
