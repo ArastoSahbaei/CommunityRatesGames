@@ -16,8 +16,8 @@ import { RegisterComponent } from "../login/register/register.component";
   imports: [
     CommonModule,
     CrgRoutingModule,
-   // AdminModule,
-   // UserModule,
+    AdminModule,
+    UserModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule
