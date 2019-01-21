@@ -1,8 +1,7 @@
 <mat-card>
   Admin page
-
   <button class="header" mat-raised-button color="primary" [matMenuTriggerFor]="admin"><mat-icon>store_mall_directory</mat-icon> Company</button>
-  <button class="header" mat-raised-button color="primary" matBadge="8" matBadgeColor="warn" matBadgePosition="after"><mat-icon>contact_mail</mat-icon> Mails</button>
+  <button class="header" mat-raised-button color="primary" routerLink="/admin/contact" matBadge="{{amountOfMails}}" matBadgeColor="warn" matBadgePosition="after"><mat-icon>contact_mail</mat-icon> Mails</button>
   <button class="header" mat-raised-button color="primary" matBadge="1" matBadgeColor="primary" matBadgePosition="after"><mat-icon>notes</mat-icon> News</button>
   <button class="header" mat-raised-button color="primary"><mat-icon>computer</mat-icon> Platform</button>
   <button class="header" mat-raised-button color="primary" [matMenuTriggerFor]="statistic"><mat-icon>pie_chart</mat-icon> Statistics</button>

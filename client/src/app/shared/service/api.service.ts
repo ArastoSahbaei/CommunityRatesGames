@@ -39,7 +39,6 @@ export class ApiService {
   }
 
   getAverageRatingByTitle(image:string) {
-    console.log(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image);
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image, {headers: Headers.HeaderJSON()});
   }
 
@@ -133,6 +132,10 @@ export class ApiService {
     return this.httpClient.post(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getStatistic() + this.url.getOnOneUser(),
       user, {headers: Headers.HeaderJSON()
       });
+  }
+
+  getAdminAllMails() {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
   }
 
 }

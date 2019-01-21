@@ -30,6 +30,7 @@ export class UrlService {
   private onOneUser: string = "OnOneUser";
   private unverifiedGame: string = "/unverifiedgame/create";
   private adminContact: string = "/admincontact";
+  private adminAll: string ="/adminall";
 
   constructor() {
   }
@@ -128,5 +129,9 @@ export class UrlService {
 
   getOnOneUser() {
     return this.onOneUser;
+  }
+
+  getAdminAll() {
+    return this.adminAll;
   }
 }

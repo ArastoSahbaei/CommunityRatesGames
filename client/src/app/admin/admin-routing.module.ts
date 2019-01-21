@@ -10,6 +10,7 @@ import { AllUsersComponent } from "./user/allusers/all-users.component";
 import { OverallComponent } from "./statistic/overall/overall.component";
 import { SiteStatisticComponent } from "./statistic/sitestatistic/sitestatistic.component";
 import { UserStatisticComponent } from "./statistic/userstatistic/userstatistic.component";
+import {ContactComponent} from "./contact/contact.component";
 
 const routes: Routes = [
   {path: 'admin', component: AdminComponent, children: [
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'statistic', component: StatisticComponent, children: [
           { path: 'overall', component: OverallComponent }
         ] },
+      { path: 'contact', component: ContactComponent },
       { path: 'user', component: UserComponent, children: [
           { path: 'adduser', component: AddUserComponent },
           { path: 'edituser', component: EditUserComponent },

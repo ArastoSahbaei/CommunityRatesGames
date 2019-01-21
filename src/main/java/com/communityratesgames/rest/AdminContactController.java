@@ -60,6 +60,7 @@ public class AdminContactController {
     @Produces({"application/JSON"})
     public Response newMessage(AdminContactModel model) {
         try {
+
             dal.newMessage(model);
             return Response.ok().build();
         } catch (PersistenceException e) {

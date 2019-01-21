@@ -37,7 +37,6 @@ export class AuthService {
   public login(user: User) {
     this.api.checkCredentials(user).subscribe(response => {
         this.credentials = Object.values(response.body);
-        console.log(this.credentials);
         if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
           this.router.navigateByUrl('/admin');
@@ -66,6 +65,8 @@ export class AuthService {
       }
     );
     this.storage.removeItem('token');
+    this.storage.removeItem("email");
+    this.storage.removeItem("name");
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);
