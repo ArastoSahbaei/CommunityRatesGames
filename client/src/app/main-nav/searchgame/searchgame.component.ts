@@ -31,6 +31,6 @@ export class SearchgameComponent implements OnInit {
   }
 
   selectedGame(event) {
-    this.router.navigate(['start/game/gamepage'], {queryParams: {title: event}});
+    this.router.navigate(['/game/gamepage'], {queryParams: {title: event}});
   }
 }
