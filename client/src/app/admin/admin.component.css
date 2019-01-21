@@ -8,10 +8,11 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(1, 1fr);
-  grid-gap: 12px;
+  grid-gap: 20px;
 }
 
 .company {
+  border-radius: px;
   grid-column: 3 / 4;
   grid-row: 1 / 1;
   background-color: #90a4ae;
