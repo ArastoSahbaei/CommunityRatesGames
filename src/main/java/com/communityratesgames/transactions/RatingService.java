@@ -62,6 +62,14 @@ public class RatingService implements RatingDataAccess {
     }
 
     @Override
+    public float getCountOfRatings(String gameTitle) {
+        return em.createQuery("SELECT COUNT(r) FROM Rating r WHERE r.game.title = :game", Long.class)
+                .setParameter("game", gameTitle)
+                .getSingleResult()
+                .floatValue();
+    }
+
+    @Override
     public RatingModel findByGameIdAndUserId(String title, String username) {
         try {
             return new RatingModel(
