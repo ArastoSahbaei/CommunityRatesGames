@@ -71,6 +71,809 @@
         "PC",
         "Xbox"
       ]
+    },
+    {
+      "title": "Age Of Empires",
+      "company": "Ensemble Studios",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Assasins Creed",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Battle Breakers",
+      "company": "Gameloft INC",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Battlefield",
+      "company": "DICE",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Brix",
+      "company": "Gameloft INC",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Contra",
+      "company": "Gameloft INC",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Dark Souls",
+      "company": "From Software",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Dead Rising",
+      "company": "Gameloft INC",
+      "platforms": [
+        "PC",
+        "Xbox"
+      ]
+    },
+    {
+      "title": "Destiny",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Destiny 2",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Final Fantasy",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 2",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 3",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 4",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 5",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 6",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 7",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Final Fantasy 8",
+      "company": "Square Enix",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Fort Honor",
+      "company": "Ubisoft Montreal",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Fortnite",
+      "company": "p12 INC",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Frogger",
+      "company": "toad yo inc",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Kingdom Hearts",
+      "company": "u mad bro",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Kingdom Hearts 2",
+      "company": "he mad",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Marathon",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Metal Gear Solid",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Monster Trucks",
+      "company": "Rednecks company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Rage",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Skull & Bones",
+      "company": "Blue Byte Software",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Street Fighter",
+      "company": "K.O BITCH",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Tomb Raider",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Pro Evolution Soccer",
+      "company": "Sony",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Octapath Traveler",
+      "company": "Microsoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Fifa 18",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Fort 17",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Fifa 16",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "World Of Warcraft",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Starcraft",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Overwatch",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Diablo III",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Hearthstone",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Starcraft II",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Call Of Duty",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Warcraft",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Warcraft II",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Warcraft III",
+      "company": "Blizzard Entertainment",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Portal",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Portal 2",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Portal",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Portal II",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Super Mario Bros",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Super Mario Bros 2",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Super Mario Bros 3",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Super Mario Bros 4",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Gold",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Red",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Green",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Yellow",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Crystal",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Ruby",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Pokemon Faceroll",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Grand Theft Auto",
+      "company": "Rockstar",
+      "platforms": [
+        "PC",
+        "Xbox",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Grand Theft Auto II",
+      "company": "Rockstar",
+      "platforms": [
+        "PC",
+        "Xbox",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Grand Theft Auto III",
+      "company": "Rockstar",
+      "platforms": [
+        "PC",
+        "Xbox",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Grand Theft Auto IV",
+      "company": "Rockstar",
+      "platforms": [
+        "PC",
+        "Xbox",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Grand Theft Auto V",
+      "company": "Rockstar",
+      "platforms": [
+        "PC",
+        "Xbox",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Read Dead Redemption",
+      "company": "Rockstar",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Read Dead Redemption II",
+      "company": "Rockstar",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Dragon Ball",
+      "company": "drakarna inc",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Microsoft Gold 98",
+      "company": "Microsoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Microsoft Pinball Arcade",
+      "company": "Microsoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Sonic",
+      "company": "Nintendo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Dogs Life",
+      "company": "snoop doggy dawg",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Counter Strike",
+      "company": "Valve",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Counter Strike: Source",
+      "company": "Valve",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Counter Strike: Global Offensive",
+      "company": "Valve",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Teenage Mutant Ninja Turtles",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Abuse",
+      "company": "Rockstar",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "The Settlers Online",
+      "company": "online yo",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Oni",
+      "company": "Rockstar",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Star Wars Battlefront",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Star Wars Battlefront 2",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Mirrors Edge",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Mirrors Edge 2",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "NHL 16",
+      "company": "EA Sports",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "NHL 17",
+      "company": "EA Sports",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "NHL 18",
+      "company": "EA Sports",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Baseball 3D",
+      "company": "EA Sports",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Resident Evil",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Resident Evil 2",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Resident Evil 3",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Resident Evil 4",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC"
+      ]
+    },
+    {
+      "title": "Spyro",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Crash",
+      "company": "Naughty Dog",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Crash Racing",
+      "company": "Naughty Dog",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Crash Bash",
+      "company": "Naughty Dog",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Player Unknown Battleground",
+      "company": "Naughty Dog",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Minesweeper",
+      "company": "Swiper",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "EyeToy: Groove",
+      "company": "Valve",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Dynamic Cop",
+      "company": "Blizzard INC",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "The Phantom Plain",
+      "company": "Ubisoft",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Tom Clancys Rainbow Six Siege",
+      "company": "Sony",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel 2",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel 3",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel 4",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel 5",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
+    },
+    {
+      "title": "Testspel SIX",
+      "company": "Test company",
+      "platforms": [
+        "PC",
+        "PS4"
+      ]
     }
     ]
 }
