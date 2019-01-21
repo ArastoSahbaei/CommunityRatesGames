@@ -103,12 +103,16 @@ export class ApiService {
   }
 
   addNewContactMessage(message: Contact) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getNew(), message, {headers: Headers.HeaderJSON()});
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getNew(), message, { headers: Headers.HeaderJSON()});
   }
 
   voteGame(voting: string):Observable<any> {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getRating(),  {headers: Headers.HeaderJSON(),
      params: {voting: voting}});
+  }
+
+  reportBug(message: Report) {
+    return null;
   }
 
   // For admin view that is connected to Logging EE server
