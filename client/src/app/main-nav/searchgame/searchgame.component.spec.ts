@@ -1,13 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchgameComponent } from './searchgame.component';
-import {ApiService} from "../shared/service/api.service";
-import {MaterialModule} from "../shared/material/material.module";
+import {MaterialModule} from "../../shared/material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
-import {AppRoutingModule} from "../app-routing.module";
-import {CrgComponent} from "../crg/crg.component";
-import {HomeComponent} from "../home/home.component";
+import {ApiService} from "../../shared/service/api.service";
 
 describe('SearchgameComponent', () => {
   let component: SearchgameComponent;
