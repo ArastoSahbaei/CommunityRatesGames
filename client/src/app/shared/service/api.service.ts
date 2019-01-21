@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   getRating() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating() + this.url.getNew(), {headers: Headers.HeaderJSON()});
   }
 
   getAverageRatingByTitle(image:string) {
@@ -103,16 +103,12 @@ export class ApiService {
   }
 
   addNewContactMessage(message: Contact) {
-    return this.httpClient.post(this.url.getMongoUrl(), message);
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getNew(), message, {headers: Headers.HeaderJSON()});
   }
 
   voteGame(voting: string):Observable<any> {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getRating(),  {headers: Headers.HeaderJSON(),
      params: {voting: voting}});
-  }
-
-  reportBug(message: Report) {
-    return this.httpClient.post(this.url.getMongoUrl(), message);
   }
 
   // For admin view that is connected to Logging EE server
