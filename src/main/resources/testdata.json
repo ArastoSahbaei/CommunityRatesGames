@@ -3,7 +3,13 @@
     {"companyName":"id Software", "country":"USA", "city":"CityName"},
     {"companyName":"Microsoft", "country":"USA", "city":"CityName"},
     {"companyName":"Valve", "country":"USA", "city":"CityName"},
-    {"companyName":"Nintendo", "country":"Japan", "city":"CityName"}
+    {"companyName":"Nintendo", "country":"Japan", "city":"CityName"},
+    {"companyName":"Ubisoft", "country":"USA", "city":"CityName"},
+    {"companyName":"Blizzard Entertainment", "country":"USA", "city":"CityName"},
+    {"companyName":"EA Sports", "country":"USA", "city":"CityName"},
+    {"companyName":"Square Enix", "country":"USA", "city":"CityName"},
+    {"companyName":"Rockstar", "country":"USA", "city":"CityName"},
+    {"companyName":"Sony", "country":"USA", "city":"CityName"}
   ],
   "users":[
     {"username":"admin", "email":"admin@somewhere.now", "password":"admin", "role":"Admin"},
@@ -86,7 +92,7 @@
     },
     {
       "title": "Age Of Empires",
-      "company": "Ensemble Studios",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -96,7 +102,7 @@
     },
     {
       "title": "Assasins Creed",
-      "company": "Ubisoft",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -106,7 +112,7 @@
     },
     {
       "title": "Battle Breakers",
-      "company": "Gameloft INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -116,7 +122,7 @@
     },
     {
       "title": "Battlefield",
-      "company": "DICE",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -126,7 +132,7 @@
     },
     {
       "title": "Brix",
-      "company": "Gameloft INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -136,7 +142,7 @@
     },
     {
       "title": "Contra",
-      "company": "Gameloft INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -146,7 +152,7 @@
     },
     {
       "title": "Dark Souls",
-      "company": "From Software",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -156,7 +162,7 @@
     },
     {
       "title": "Dead Rising",
-      "company": "Gameloft INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "Xbox"
@@ -166,7 +172,7 @@
     },
     {
       "title": "Destiny",
-      "company": "Blizzard Entertainment",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -176,7 +182,7 @@
     },
     {
       "title": "Destiny 2",
-      "company": "Blizzard Entertainment",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -195,7 +201,7 @@
     },
     {
       "title": "Final Fantasy 2",
-      "company": "Square Enix",
+      "company": "id Software",
       "platforms": [
         "PC"
       ],
@@ -258,7 +264,7 @@
     },
     {
       "title": "Fort Honor",
-      "company": "Ubisoft Montreal",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -268,7 +274,7 @@
     },
     {
       "title": "Fortnite",
-      "company": "p12 INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -278,7 +284,7 @@
     },
     {
       "title": "Frogger",
-      "company": "toad yo inc",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -288,7 +294,7 @@
     },
     {
       "title": "Kingdom Hearts",
-      "company": "u mad bro",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -298,7 +304,7 @@
     },
     {
       "title": "Kingdom Hearts 2",
-      "company": "he mad",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -328,7 +334,7 @@
     },
     {
       "title": "Monster Trucks",
-      "company": "Rednecks company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -348,7 +354,7 @@
     },
     {
       "title": "Skull & Bones",
-      "company": "Blue Byte Software",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -358,7 +364,7 @@
     },
     {
       "title": "Street Fighter",
-      "company": "K.O BITCH",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -407,7 +413,7 @@
       "genre": "shooter"
     },
     {
-      "title": "Fort 17",
+      "title": "Fifa 17",
       "company": "Ubisoft",
       "platforms": [
         "PC",
@@ -455,7 +461,7 @@
     },
     {
       "title": "Diablo III",
-      "company": "Blizzard Entertainment",
+      "company": "id Software",
       "platforms": [
         "PC"
       ],
@@ -657,8 +663,7 @@
       "company": "Rockstar",
       "platforms": [
         "PC",
-        "Xbox",
-        "PS4"
+        "Xbox"
       ],
       "submittedBy": "testuser1",
       "genre": "shooter"
@@ -668,8 +673,7 @@
       "company": "Rockstar",
       "platforms": [
         "PC",
-        "Xbox",
-        "PS4"
+        "Xbox"
       ],
       "submittedBy": "testuser1",
       "genre": "shooter"
@@ -727,7 +731,7 @@
     },
     {
       "title": "Dragon Ball",
-      "company": "drakarna inc",
+      "company": "id Software",
       "platforms": [
         "PC"
       ],
@@ -763,7 +767,7 @@
     },
     {
       "title": "Dogs Life",
-      "company": "snoop doggy dawg",
+      "company": "id Software",
       "platforms": [
         "PC"
       ],
@@ -817,7 +821,7 @@
     },
     {
       "title": "The Settlers Online",
-      "company": "online yo",
+      "company": "id Software",
       "platforms": [
         "PC"
       ],
@@ -953,7 +957,7 @@
     },
     {
       "title": "Crash",
-      "company": "Naughty Dog",
+      "company": "Sony",
       "platforms": [
         "PC",
         "PS4"
@@ -963,7 +967,7 @@
     },
     {
       "title": "Crash Racing",
-      "company": "Naughty Dog",
+      "company": "Sony",
       "platforms": [
         "PC",
         "PS4"
@@ -973,7 +977,7 @@
     },
     {
       "title": "Crash Bash",
-      "company": "Naughty Dog",
+      "company": "Sony",
       "platforms": [
         "PC",
         "PS4"
@@ -983,7 +987,7 @@
     },
     {
       "title": "Player Unknown Battleground",
-      "company": "Naughty Dog",
+      "company": "Sony",
       "platforms": [
         "PC",
         "PS4"
@@ -993,7 +997,7 @@
     },
     {
       "title": "Minesweeper",
-      "company": "Swiper",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1013,7 +1017,7 @@
     },
     {
       "title": "Dynamic Cop",
-      "company": "Blizzard INC",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1043,7 +1047,7 @@
     },
     {
       "title": "Testspel",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1053,17 +1057,17 @@
     },
     {
       "title": "Testspel 2",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
       ],
       "submittedBy": "testuser1",
-      "genre": "not shooter"
+      "genre": "shooter"
     },
     {
       "title": "Testspel 3",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1073,7 +1077,7 @@
     },
     {
       "title": "Testspel 4",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1083,7 +1087,7 @@
     },
     {
       "title": "Testspel 5",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
@@ -1093,13 +1097,13 @@
     },
     {
       "title": "Testspel SIX",
-      "company": "Test company",
+      "company": "id Software",
       "platforms": [
         "PC",
         "PS4"
       ],
       "submittedBy": "testuser1",
-      "genre": "not shooter"
+      "genre": "shooter"
     }
-    ]
+  ]
 }
