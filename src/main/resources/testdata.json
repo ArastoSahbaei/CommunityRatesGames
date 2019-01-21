@@ -32,21 +32,27 @@
       "platforms": [
         "PC",
         "Nintendo 64"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Commander Keen",
       "company": "id Software",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Wolfenstein 3D",
       "company": "id Software",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Doom",
@@ -54,7 +60,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Quake",
@@ -62,7 +70,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Halo",
@@ -70,7 +80,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Age Of Empires",
@@ -78,7 +90,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Assasins Creed",
@@ -86,7 +100,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Battle Breakers",
@@ -94,7 +110,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Battlefield",
@@ -102,7 +120,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Brix",
@@ -110,7 +130,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Contra",
@@ -118,7 +140,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Dark Souls",
@@ -126,7 +150,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Dead Rising",
@@ -134,7 +160,9 @@
       "platforms": [
         "PC",
         "Xbox"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Destiny",
@@ -142,7 +170,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Destiny 2",
@@ -150,63 +180,81 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 2",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 3",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 4",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 5",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 6",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 7",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Final Fantasy 8",
       "company": "Square Enix",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Fort Honor",
@@ -214,7 +262,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Fortnite",
@@ -222,7 +272,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Frogger",
@@ -230,7 +282,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Kingdom Hearts",
@@ -238,7 +292,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Kingdom Hearts 2",
@@ -246,7 +302,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Marathon",
@@ -254,7 +312,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Metal Gear Solid",
@@ -262,7 +322,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Monster Trucks",
@@ -270,7 +332,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Rage",
@@ -278,7 +342,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Skull & Bones",
@@ -286,7 +352,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Street Fighter",
@@ -294,7 +362,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Tomb Raider",
@@ -302,7 +372,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pro Evolution Soccer",
@@ -310,7 +382,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Octapath Traveler",
@@ -318,7 +392,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Fifa 18",
@@ -326,7 +402,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Fort 17",
@@ -334,7 +412,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Fifa 16",
@@ -342,49 +422,63 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "World Of Warcraft",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Starcraft",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Overwatch",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Diablo III",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Hearthstone",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Starcraft II",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Call Of Duty",
@@ -392,133 +486,171 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Warcraft",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Warcraft II",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Warcraft III",
       "company": "Blizzard Entertainment",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Portal",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Portal 2",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Portal",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Portal II",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Super Mario Bros",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Super Mario Bros 2",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Super Mario Bros 3",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Super Mario Bros 4",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Gold",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Red",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Green",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Yellow",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Crystal",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Ruby",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Pokemon Faceroll",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Grand Theft Auto",
@@ -527,7 +659,9 @@
         "PC",
         "Xbox",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Grand Theft Auto II",
@@ -536,7 +670,9 @@
         "PC",
         "Xbox",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Grand Theft Auto III",
@@ -545,7 +681,9 @@
         "PC",
         "Xbox",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Grand Theft Auto IV",
@@ -554,7 +692,9 @@
         "PC",
         "Xbox",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Grand Theft Auto V",
@@ -563,189 +703,243 @@
         "PC",
         "Xbox",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Read Dead Redemption",
       "company": "Rockstar",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Read Dead Redemption II",
       "company": "Rockstar",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Dragon Ball",
       "company": "drakarna inc",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Microsoft Gold 98",
       "company": "Microsoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Microsoft Pinball Arcade",
       "company": "Microsoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Sonic",
       "company": "Nintendo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Dogs Life",
       "company": "snoop doggy dawg",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Counter Strike",
       "company": "Valve",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Counter Strike: Source",
       "company": "Valve",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Counter Strike: Global Offensive",
       "company": "Valve",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Teenage Mutant Ninja Turtles",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Abuse",
       "company": "Rockstar",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "The Settlers Online",
       "company": "online yo",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Oni",
       "company": "Rockstar",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Star Wars Battlefront",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Star Wars Battlefront 2",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Mirrors Edge",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Mirrors Edge 2",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "NHL 16",
       "company": "EA Sports",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "NHL 17",
       "company": "EA Sports",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "NHL 18",
       "company": "EA Sports",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Baseball 3D",
       "company": "EA Sports",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Resident Evil",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Resident Evil 2",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Resident Evil 3",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Resident Evil 4",
       "company": "Ubisoft",
       "platforms": [
         "PC"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Spyro",
@@ -753,7 +947,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Crash",
@@ -761,7 +957,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Crash Racing",
@@ -769,7 +967,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Crash Bash",
@@ -777,7 +977,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Player Unknown Battleground",
@@ -785,7 +987,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Minesweeper",
@@ -793,7 +997,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "EyeToy: Groove",
@@ -801,7 +1007,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Dynamic Cop",
@@ -809,7 +1017,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "The Phantom Plain",
@@ -817,7 +1027,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Tom Clancys Rainbow Six Siege",
@@ -825,7 +1037,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel",
@@ -833,7 +1047,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel 2",
@@ -841,7 +1057,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel 3",
@@ -849,7 +1067,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel 4",
@@ -857,7 +1077,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel 5",
@@ -865,7 +1087,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     },
     {
       "title": "Testspel SIX",
@@ -873,7 +1097,9 @@
       "platforms": [
         "PC",
         "PS4"
-      ]
+      ],
+      "submittedBy": "testuser1",
+      "genre": "shooter"
     }
     ]
 }
