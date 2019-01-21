@@ -23,6 +23,7 @@ public interface DataAccessLocal {
     public RatingModel findByGameIdAndUserId(String gameTitle, String username);
     public RatingModel addNewRating(RatingModel rating);
     public List<RatingModel> findAllUserRatings(String username);
+    public float getCountOfRatings(String gameTitle);
 
 
     //Platform
