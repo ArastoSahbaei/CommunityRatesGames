@@ -34,14 +34,23 @@ public class UnverifiedGame implements Serializable {
     @Column
     private String description;
 
+    @ManyToOne
+    private User submittedBy;
+
+    @Enumerated
+    @Column(columnDefinition = "smallint")
+    private Genre genre;
+
     public UnverifiedGame() {}
 
-    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description) {
+    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description, User submittedBy, Genre genre) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.company = company;
         this.platforms = platforms;
         this.description = description;
+        this.submittedBy = submittedBy;
+        this.genre = genre;
     }
 
     public Long getId() {
@@ -86,5 +95,21 @@ public class UnverifiedGame implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(User submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

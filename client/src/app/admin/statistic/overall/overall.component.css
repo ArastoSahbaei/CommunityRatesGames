@@ -1,0 +1,10 @@
+mat-card {
+  margin: 0 auto;
+  width: 70%;
+  background-color: black;
+}
+
+.thumbnail {
+  width: 6rem;
+  background-color: black;
+}
