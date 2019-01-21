@@ -1,9 +1,15 @@
 package com.communityratesgames.util;
 
+import com.communityratesgames.dao.DataAccessLocal;
+
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.core.HttpHeaders;
 
 public class AuthUtils {
+    @Inject
+    private DataAccessLocal dal;
+
     public static Long getHeaderToken(HttpHeaders header) {
         List<String> toklist = header.getRequestHeader("Authorization");
         if (toklist == null || toklist.size() == 0) {
@@ -15,5 +21,8 @@ public class AuthUtils {
         } catch (NumberFormatException e) {
             return null;
         }
+    }
+    public boolean hasAuthorization(Long token, String authLevel) {
+        return dal.getUserToken(token).getRole().equalsIgnoreCase(authLevel);
     }
 }
