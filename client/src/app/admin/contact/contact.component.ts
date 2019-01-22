@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../shared/service/api.service";
-import {MatOptionSelectionChange} from "@angular/material";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { MatCheckboxChange, MatOptionSelectionChange } from "@angular/material";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-contact',
@@ -13,6 +13,7 @@ export class ContactComponent implements OnInit {
   public message: FormGroup;
   public mails: object;
   public selectedMail: object;
+  public adminEmail: boolean = true;
 
   constructor(private api: ApiService,
               private fb: FormBuilder) { }
@@ -27,7 +28,7 @@ export class ContactComponent implements OnInit {
       'user': [{value: '', disabled: true}],
       'answer': ['', Validators.required],
       'flagged': this.fb.array([]),
-      'admin':['', [Validators.required, Validators.email]],
+      'admin':[{value: '', disabled: this.adminEmail}, [Validators.required, Validators.email]],
     });
     this.message.controls['userMessage'].disable();
   }
@@ -40,7 +41,14 @@ export class ContactComponent implements OnInit {
       user: this.selectedMail['email'],
       userMessage: this.selectedMail['userMessage']
     });
+  }
 
+  toggle(event: MatCheckboxChange) {
+    if (event.checked === true){
+      this.message.controls['admin'].enable();
+    } else {
+      this.message.controls['admin'].disable();
+    }
   }
 
   get answer() {

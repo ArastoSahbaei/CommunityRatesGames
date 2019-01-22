@@ -21,14 +21,14 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="answer" formControlName="answer"></textarea>
+      <textarea matInput placeholder="answer" formControlName="answer" required></textarea>
       <mat-error *ngIf="(answer.dirty || answer.touched)">Answer required</mat-error>
     </mat-form-field>
 
-    <mat-checkbox [formControlName]="flagged" color="primary">Urgent</mat-checkbox>
+    <mat-checkbox [formControlName]="flagged" color="primary" (change)="toggle($event)">Urgent</mat-checkbox>
 
     <mat-form-field>
-      <input matInput placeholder="Which admin" formControlName="admin">
+      <input matInput placeholder="Which admin" formControlName="admin" required>
     </mat-form-field>
   </mat-card-content>
   <mat-card-actions>
