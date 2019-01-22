@@ -2,7 +2,6 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.AdminContact;
-import com.communityratesgames.domain.User;
 import com.communityratesgames.model.AdminContactModel;
 import com.communityratesgames.util.AuthUtils;
 import lombok.NoArgsConstructor;
@@ -26,10 +25,14 @@ public class AdminContactController {
     @GET
     @Path("/adminall")
     @Produces({"application/JSON"})
-    public Response adminGetAll() {
+    public Response adminGetAll(@Context HttpHeaders header) {
         try {
-            List<AdminContact> result = dal.adminGetAllMessages();
-            return Response.ok(result).build();
+            if (securityCheck(header,"Admin")) {
+                List<AdminContact> result = dal.adminGetAllMessages();
+                return Response.ok(result).build();
+            }else {
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
         } catch (PersistenceException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -42,30 +45,30 @@ public class AdminContactController {
             @QueryParam("id") Long id,
             @Context HttpHeaders header) {
         try {
-            Long token = AuthUtils.getHeaderToken(header);
-            if (token != null){
-                if (hasAuthorization(token,"Admin")) {
-                    AdminContact result = dal.adminGetMessage(id);
-                    return Response.ok(result).build();
-                }
-                return Response.status(Response.Status.FORBIDDEN).entity("{\"Not authorized for this action\"}").build();
+            if(securityCheck(header,"Admin")){
+                AdminContact result = dal.adminGetMessage(id);
+                return Response.ok(result).build();
             }else {
-                return Response.status(Response.Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+                return Response.status(Response.Status.UNAUTHORIZED).build();
             }
-
         } catch (PersistenceException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
-
     }
 
     @GET
     @Path("/userall")
     @Produces({"application/JSON"})
-    public Response userMessages(@QueryParam("email") String email) {
+    public Response userMessages(
+            @QueryParam("email") String email,
+            @Context HttpHeaders header) {
         try {
-            List<AdminContactModel> result = dal.userMessages(email);
-            return Response.ok(result).build();
+            if (securityCheck(header,"User")){
+                List<AdminContactModel> result = dal.userMessages(email);
+                return Response.ok(result).build();
+            }else {
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
         } catch (PersistenceException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -74,10 +77,16 @@ public class AdminContactController {
     @POST
     @Path("/new")
     @Produces({"application/JSON"})
-    public Response newMessage(AdminContactModel model) {
+    public Response newMessage(
+            AdminContactModel model,
+            @Context HttpHeaders header) {
         try {
-            dal.newMessage(model);
-            return Response.ok().build();
+            if (securityCheck(header,"User")){
+                dal.newMessage(model);
+                return Response.ok().build();
+            }else {
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
         } catch (PersistenceException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -86,27 +95,25 @@ public class AdminContactController {
     @PUT
     @Path("/update")
     @Produces({"application/JSON"})
-    public Response update(AdminContact entity) {
+    public Response update(
+            AdminContact entity,
+            @Context HttpHeaders header) {
         try {
-            dal.updateEntry(entity);
-            return Response.ok().build();
+            if (securityCheck(header,"Admin")){
+                dal.updateEntry(entity);
+                return Response.ok().build();
+            }else {
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
         } catch (PersistenceException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-    private Response securityCheck(HttpHeaders header, String authlevel){
-        Response.ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+    private boolean securityCheck(HttpHeaders header, String authlevel){
         Long token = AuthUtils.getHeaderToken(header);
         if(token==null){
-            builder.status(Response.Status.UNAUTHORIZED);
-            builder.entity("User not logged in");
-        }else if(!hasAuthorization(token, authlevel)){
-            builder.status(Response.Status.FORBIDDEN);
-            builder.entity("User not authorized for this action");
-        }else {
-            return null;
-        }
-        return builder.build();
+        return false;
+        }else return hasAuthorization(token, authlevel);
     }
     private boolean hasAuthorization(Long token, String authLevel) {
         return dal.getUserToken(token).getRole().equalsIgnoreCase(authLevel);
