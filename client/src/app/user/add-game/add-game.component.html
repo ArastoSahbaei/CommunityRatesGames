@@ -16,6 +16,10 @@
     <mat-error *ngIf="(platforms.dirty || platforms.touched) && platforms.invalid">Platform required</mat-error>
   </mat-form-field>
   <mat-form-field>
+    <input id="genre" matInput placeholder="Genre" formControlName="genre" class="form-control" type="text" required>
+    <mat-error *ngIf="(genre.dirty || genre.touched) && genre.invalid">Genre required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <textarea matInput rows="10" cols="62" id="description" placeholder="Game Description" formControlName="description" class="form-control" required ></textarea>
     <mat-error *ngIf="(description.dirty || description.touched) && description.invalid">Description required</mat-error>
   </mat-form-field>
