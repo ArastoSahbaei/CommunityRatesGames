@@ -12,7 +12,7 @@ export class Top100Component implements OnInit, AfterViewInit {
 
   games: TopGames[] = [];
   dataSource = new MatTableDataSource(this.games);
-  tableColumns: string[] = ['title', 'company', 'genre', 'rating'];
+  tableColumns: string[] = ['rank', 'title', 'rating', 'genre', 'company'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;

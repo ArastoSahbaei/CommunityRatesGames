@@ -1,5 +1,10 @@
   <mat-table class="mat-elevation-z8" [dataSource]="dataSource" matSort>
 
+    <ng-container matColumnDef="rank">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rank</mat-header-cell>>
+      <mat-cell *matCellDef="let games">{{games.rank}}</mat-cell>>
+    </ng-container>
+
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>>
       <mat-cell *matCellDef="let games">{{games.title}}</mat-cell>>
