@@ -1,3 +1,16 @@
-<p>
-  contact works!
-</p>
+<mat-card class="list">
+  <mat-card-header>Unread mail</mat-card-header>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let mail of mails" value="mail.email" (onSelectionChange)="onChange($event)">
+        {{mail.email}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+<mat-card class="message">
+  <mat-card-header>Message</mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
