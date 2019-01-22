@@ -14,8 +14,9 @@ import javax.servlet.ServletContext;
 import java.io.*;
 import java.sql.Timestamp;
 import java.nio.charset.StandardCharsets;
-import java.nio.ByteBuffer;
 import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.security.*;
 import java.math.BigInteger;
 import java.util.Properties;
@@ -37,6 +38,7 @@ public class User implements Serializable, IImageEntity {
     private String password;
     private String role;
     private static String imageDir;
+    private static String defaultImage;
     private static Long fileSizeLimit;
 
     public User(UserModel userModel) {
@@ -161,6 +163,8 @@ public class User implements Serializable, IImageEntity {
             throw new IOException("image storage path is not set");
         }
 
+        defaultImage = props.getProperty("image.default");
+
         String limit = props.getProperty("image.maxSize");
         if (limit == null) {
             fileSizeLimit = 512L * 1024L;
@@ -177,6 +181,15 @@ public class User implements Serializable, IImageEntity {
     public void storeImage(InputStream data) throws IOException, FileLimitReachedException, InvalidFileFormatException {
         byte[] magic = new byte[4];
         int in;
+
+        if (data == null) {
+            try {
+                Files.delete(Paths.get(imageDir, this.userName));
+            } catch (NoSuchFileException e) {
+                // Ignore; this happend when no avatar is set for the user.
+            }
+            return;
+        }
 
         // This is expected to throw an exception; use this to validate the file format.
         data.read(magic);
@@ -210,8 +223,15 @@ public class User implements Serializable, IImageEntity {
     public File loadImage() throws IOException {
         File file = new File(Paths.get(imageDir, this.userName).toString());
         if (!file.exists()) {
-            // TODO: Fall back to a default avatar if no custom one is set.
-            return null;
+            if (defaultImage == null) {
+                return null;
+            } else {
+                file = new File(defaultImage);
+                if (!file.exists()) {
+                    // If no default image exists, return NULL.
+                    return null;
+                }
+            }
         }
 
         if (!file.canRead()) {

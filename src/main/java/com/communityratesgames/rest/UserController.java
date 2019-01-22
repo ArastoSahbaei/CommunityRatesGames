@@ -183,6 +183,24 @@ public class UserController {
         }
     }
 
+    @DELETE
+    @Path("/avatar")
+    @Produces("application/json")
+    public Response deleteAvatar(@Context HttpHeaders header, InputStream imagedata) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
+        User u = dal.getUserToken(token);
+        try {
+            dal.deleteUserAvatar(u);
+            return Response.status(Status.OK).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
     @PUT
     @Path("/update")

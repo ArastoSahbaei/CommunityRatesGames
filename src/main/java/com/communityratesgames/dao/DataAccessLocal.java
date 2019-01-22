@@ -47,6 +47,7 @@ public interface DataAccessLocal {
     public Integer updateAUser(User user);
     public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException;
     public File getUserAvatar(User user) throws IOException;
+    public void deleteUserAvatar(User user) throws IOException;
 
     //Game
     public List<GameModel> showAllGames();

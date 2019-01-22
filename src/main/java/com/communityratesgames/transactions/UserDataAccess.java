@@ -24,4 +24,5 @@ public interface UserDataAccess {
     public abstract Integer updateAUser(User user);
     public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException;
     public File getUserAvatar(User user) throws IOException;
+    public void deleteUserAvatar(User user) throws IOException;
 }

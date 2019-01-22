@@ -96,6 +96,7 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public Integer updateAUser(User user) {return userDataAccess.updateAUser(user);}
     public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException {return userDataAccess.setUserAvatar(user, image);}
     public File getUserAvatar(User user) throws IOException {return userDataAccess.getUserAvatar(user);}
+    public void deleteUserAvatar(User user) throws IOException {userDataAccess.deleteUserAvatar(user);}
 
     //Rating Access
     public List<RatingModel> showAllRatings() {return ratingDataAccess.showAllRatings();}

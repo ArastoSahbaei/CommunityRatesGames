@@ -145,4 +145,17 @@ public class UserService implements UserDataAccess {
         user.prepareImageStorage(servlet);
         return user.loadImage();
     }
+
+    public void deleteUserAvatar(User user) throws IOException {
+        try {
+            user.prepareImageStorage(servlet);
+            user.storeImage(null);
+        } catch (FileLimitReachedException e) {
+            // user.storeImage() should not be able to throw FileLimitReachedException if NULL is passed as argument.
+            throw new IOException(e);
+        } catch (InvalidFileFormatException e) {
+            // user.storeImage() should not be able to throw InvalidFileFormatException if NULL is passed as argument.
+            throw new IOException(e);
+        }
+    }
 }
