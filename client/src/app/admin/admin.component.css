@@ -12,7 +12,6 @@
 }
 
 .company {
-  border-radius: px;
   grid-column: 3 / 4;
   grid-row: 1 / 1;
   background-color: #90a4ae;
@@ -46,4 +45,56 @@
   grid-column: 8 / 9;
   grid-row: 1 / 1;
   background-color: #37474f;
+}
+
+@media only screen and (max-width: 1582px) {
+.mat-card {
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 20px;
+}
+
+.company {
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+  background-color: #90a4ae;
+}
+
+.mail {
+  grid-column: 3 / 4;
+  grid-row: 1 / 1;
+  background-color: #78909c;
+}
+
+.news {
+  grid-column: 4 / 5;
+  grid-row: 1 / 1;
+  background-color: #607d8b;
+}
+
+.platform {
+  grid-column: 5 / 6;
+  grid-row: 1 / 1;
+  background-color: #546e7a;
+}
+
+.statistics {
+  grid-column: 6 / 7;
+  grid-row: 1 / 1;
+  background-color: #455a64;
+}
+
+.user {
+  grid-column: 7 / 8;
+  grid-row: 1 / 1;
+  background-color: #37474f;
+  align-self: stretch;
+}
 }
