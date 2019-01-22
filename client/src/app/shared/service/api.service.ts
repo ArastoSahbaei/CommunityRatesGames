@@ -38,6 +38,11 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
   }
 
+  getAverageRatingByTitle(image:string) {
+    console.log(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image);
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image, {headers: Headers.HeaderJSON()});
+  }
+
   getUserDetails(user: string): Observable<any> {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getUser() + this.url.getCertainUser(),
       { headers: Headers.HeaderJSON(),
@@ -75,7 +80,7 @@ export class ApiService {
   }
 
   postGame(body: AddGame) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getGames(), body, {headers: Headers.HeaderJSON()}
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUnverifiedGame(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
@@ -123,4 +128,11 @@ export class ApiService {
             user, {headers: Headers.HeaderJSON()
     });
   }
+
+  getAllStatisticOnAUser(user: object): Observable<any> {
+    return this.httpClient.post(this.url.getBaseUrlLogs() + this.url.getLogs() + this.url.getStatistic() + this.url.getOnOneUser(),
+      user, {headers: Headers.HeaderJSON()
+      });
+  }
+
 }

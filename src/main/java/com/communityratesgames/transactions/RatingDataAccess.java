@@ -11,6 +11,7 @@ public interface RatingDataAccess {
 
     public abstract List<RatingModel> showAllRatings();
     public abstract float getAverageOfGame(String gameTitle);
+    public abstract float getCountOfRatings(String gameTitle);
     public abstract List<RatingModel> findRatingsByGameId(String gameTitle);
     public abstract RatingModel findByGameIdAndUserId(String gameTitle, String username);
     public abstract RatingModel addNewRating(RatingModel rating);

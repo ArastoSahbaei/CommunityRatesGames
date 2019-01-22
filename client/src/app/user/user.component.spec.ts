@@ -6,7 +6,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RouterTestingModule} from "@angular/router/testing";
 import {ApiService} from "../shared/service/api.service";
 
-describe('UserComponent', () => {
+describe('AddUserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
   let apiService: ApiService;

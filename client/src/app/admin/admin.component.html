@@ -1,2 +1,26 @@
-<mat-card>Admin page</mat-card>
+<br>
+<mat-card class="container">
+
+  <button class="company" mat-raised-button color="primary" [matMenuTriggerFor]="admin"><mat-icon>store_mall_directory</mat-icon> Company</button>
+  <button class="mail" mat-raised-button color="primary" matBadge="8" matBadgeColor="warn" matBadgePosition="after"><mat-icon>contact_mail</mat-icon> Mails</button>
+  <button class="news" mat-raised-button color="primary" matBadge="1" matBadgeColor="primary" matBadgePosition="after"><mat-icon>notes</mat-icon> News</button>
+  <button class="platform" mat-raised-button color="primary"><mat-icon>computer</mat-icon> Platform</button>
+  <button class="statistics" mat-raised-button color="primary" [matMenuTriggerFor]="statistic"><mat-icon>pie_chart</mat-icon> Statistics</button>
+  <button class="user" mat-raised-button color="primary" [matMenuTriggerFor]="users"><mat-icon>face</mat-icon> User</button>
+
+  <mat-menu #statistic="matMenu">
+    <button mat-menu-item routerLink="/admin/statistic/overall">    <mat-icon>important_devices</mat-icon>           Overall</button>
+  </mat-menu>
+
+  <mat-menu #admin="matMenu">
+    <button mat-menu-item routerLink="/admin/company">              <mat-icon>important_devices</mat-icon>           Add Company</button>
+  </mat-menu>
+
+  <mat-menu #users="matMenu">
+    <button mat-menu-item routerLink="/admin/user/adduser">         <mat-icon>perm_contact_calendar</mat-icon>       Add User</button>
+    <button mat-menu-item routerLink="/admin/user/edituser">        <mat-icon>perm_contact_calendar</mat-icon>       Edit User</button>
+    <button mat-menu-item routerLink="/admin/user/alluser">         <mat-icon>important_devices</mat-icon>           All Users</button>
+  </mat-menu>
+</mat-card>
 <router-outlet></router-outlet>
+

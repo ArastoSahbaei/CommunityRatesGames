@@ -1,6 +1,7 @@
 package com.communityratesgames.dao;
 
 import com.communityratesgames.domain.*;
+import com.communityratesgames.model.AdminContactModel;
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
@@ -38,6 +39,9 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
 
     @Inject
     private UnverifiedGameDataAccess unverifiedGameDataAccess;
+
+    @Inject
+    private AdminContactDataAccess adminContactDataAccess;
 
 
     //PlatformInterface Access
@@ -110,19 +114,27 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public List<RatingModel> findAllUserRatings(String username) {
         return ratingDataAccess.findAllUserRatings(username);
     }
+    public float getCountOfRatings(String gameTitle) {
+        return ratingDataAccess.getCountOfRatings(gameTitle);
+    }
 
     //Company Access
     public List<Company> showAllCompanies() {
         return companyDataAccess.showAllCompanies();
     }
-
     public Company registerNewCompany(Company companyModel){
         return companyDataAccess.registerNewCompany(companyModel);
     }
-
     public Company findCompanyByCompanyName(String companyName){
         return companyDataAccess.findCompanyByCompanyName(companyName);
     }
+
+    //AdminContact
+    public void newMessage(AdminContactModel model){adminContactDataAccess.newMessage(model);}
+    public AdminContact adminGetMessage(Long id){return adminContactDataAccess.adminGetMessage(id);}
+    public List<AdminContact> adminGetAllMessages(){return adminContactDataAccess.adminGetAllMessages();}
+    public List<AdminContactModel> userMessages(String email){return adminContactDataAccess.userMessages(email);}
+    public void updateEntry(AdminContact contact){adminContactDataAccess.updateEntry(contact);}
 }
 
 

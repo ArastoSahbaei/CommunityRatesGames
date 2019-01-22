@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AddGame} from "../../shared/interface/add-game.interface";
 import {ApiService} from "../../shared/service/api.service";
+import {StorageService} from "../../shared/service/storage.service";
 
 
 @Component({
@@ -13,47 +14,68 @@ export class AddGameComponent implements OnInit {
 
   addGames : FormGroup;
 
-  constructor(private api: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private api: ApiService, private formBuilder: FormBuilder, private storage: StorageService) { }
 
   ngOnInit() {
     this.addGames = this.formBuilder.group({
       'title': ['', [Validators.required]],
-      'companyId': ['', Validators.required],
-     'allPlatformId': ['', Validators.required]
+      'company': ['', Validators.required],
+      'releaseDate': ['', Validators.required],
+      'platforms': ['',Validators.required],
+      'description': ['', Validators.required],
+      'genre': ['', Validators.required]
+
     });
   }
 
   addGame(){
-    const game = {} as AddGame;
+    let game = {} as AddGame;
+    game.platforms = [];
     game.title = this.addGames.value.title;
-    game.companyId = this.addGames.value.companyId;
-    game.allPlatformId = [];
+    game.company = this.addGames.value.company;
+    game.releaseDate = this.addGames.value.releaseDate;
+    game.platforms.push(this.addGames.value.platforms);
+    game.genre = this.addGames.value.genre;
+    game.description = this.addGames.value.description;
+    game.submittedBy = this.storage.getItem('name');
+
+    console.log(game);
 
     this.api.postGame(game).subscribe((response) =>{
       console.log(response);
-
     });
 
   }
-
 
   get title(){
     return this.addGames.get('title')
   }
 
-  get companyId(){
-    return this.addGames.get('companyId')
-  }
-
-  get allPlatformId(){
-    return this.addGames.get('allPlatformId')
-  }
-
-  get user(){
-    return this.addGames.get('user')
+  get company(){
+    return this.addGames.get('company')
   }
 
   get game(){
     return this.addGames.get('game')
+  }
+
+  get releaseDate(){
+    return this.addGames.get('releaseDate')
+  }
+
+  get platforms(){
+    return this.addGames.get('platforms')
+  }
+
+  get genre(){
+    return this.addGames.get('genre');
+  }
+
+  get description(){
+    return this.addGames.get('description')
+  }
+
+  get username(){
+    return this.addGames.get('username');
   }
 }

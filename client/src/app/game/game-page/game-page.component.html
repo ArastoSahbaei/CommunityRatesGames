@@ -1,21 +1,19 @@
 <div class="container">
 
-      <img mat-card-image src="../../../assets/images/{{image}}.jpg"/>
+    <div class="image">  <img mat-card-image src="../../../assets/gameImages/{{image}}.jpg" width="400" height="400"/> </div>
 
-    <div class="första">
-    <mat-card> Title : {{response.title}}</mat-card>
-    </div>
-    <div class="andra">
-    <mat-card> Company : {{response.company}}</mat-card>
-    </div>
-    <div class="tredje">
-    <mat-card> Release Year : {{response.company.city}}</mat-card>
-    </div>
-    <div class="tredje">
-        <mat-card> Rating : {{response.company.city}}</mat-card>
-        </div>
-  <app-voting>
-  </app-voting>
+          
+          <div class="title">         <h1> {{response.title}} (1997)    </h1>           <br> </div>
+          <div class="rating">        <h2> Average Rating: {{ratingData}} / 10  <br> Company: {{response.company}}      </h2>              <br> </div>
+          <div class="star">      <app-voting></app-voting>                             </div> 
+
+          <div class="description"> <h2>Description:</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab itaque reprehenderit facere amet. 
+            Numquam maxime distinctio neque repellendus quae nesciunt doloribus a soluta provident. Voluptatum distinctio enim expedita! Sit ipsam animi itaque
+             aut beatae architecto minus eius est id dolor?</p></div>
+
+
+     <!--  <div class="releaseDate">  <h2>  Release Year : {{response.company.city}} </h2>    <br> </div> -->
+              
 </div>
-
-
+<hr>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
+  MatBadgeModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
@@ -18,7 +19,8 @@ import {
   MatSidenavModule,
   MatSortModule,
   MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -50,6 +52,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatBadgeModule,
+    MatTooltipModule
   ],
 })
 export class MaterialModule { }

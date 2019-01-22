@@ -1,0 +1,11 @@
+<mat-card [formGroup]="showUserForm">
+  <mat-card-header>Search user</mat-card-header>
+
+  <div class="searchFieldAndIcon inputIconBg">
+    <input type="text" placeholder="Search user" [matAutocomplete]="auto" [formControl]="search">
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="userSearch($event.option.value)">
+      <mat-option *ngFor="let user of usersFound" [value]="user.user">{{user.user}}</mat-option>
+    </mat-autocomplete>
+  </div>
+</mat-card>

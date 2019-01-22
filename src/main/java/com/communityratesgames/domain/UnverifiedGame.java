@@ -1,12 +1,8 @@
 package com.communityratesgames.domain;
 
-import com.communityratesgames.model.GameModel;
-import com.communityratesgames.model.PlatformModel;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,13 +30,27 @@ public class UnverifiedGame implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Platform> platforms;
 
+    @Lob
+    @Column
+    private String description;
+
+    @ManyToOne
+    private User submittedBy;
+
+    @Enumerated
+    @Column(columnDefinition = "smallint")
+    private Genre genre;
+
     public UnverifiedGame() {}
 
-    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms) {
+    public UnverifiedGame(Timestamp releaseDate, String title, Company company, List<Platform> platforms, String description, User submittedBy, Genre genre) {
         this.releaseDate = releaseDate;
         this.title = title;
         this.company = company;
         this.platforms = platforms;
+        this.description = description;
+        this.submittedBy = submittedBy;
+        this.genre = genre;
     }
 
     public Long getId() {
@@ -77,5 +87,29 @@ public class UnverifiedGame implements Serializable {
 
     public void setReleaseDate(Timestamp releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getSubmittedBy() {
+        return submittedBy;
+    }
+
+    public void setSubmittedBy(User submittedBy) {
+        this.submittedBy = submittedBy;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

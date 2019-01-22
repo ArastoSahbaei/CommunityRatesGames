@@ -10,6 +10,7 @@ export class UrlService {
   private mongoUrl: string ="http://localhost:4000/message/add";
   private loggingUrl: string = "http://localhost:8080/communityratesgameslogging";
   private rating: string = "/rating/new";
+  private averageRatingByTitle: string = "/rating/average?title=";
   private top100: string = "/top100";
   private games: string = "/game";
   private user: string = "/user";
@@ -27,6 +28,8 @@ export class UrlService {
   private logs: string = "/logs";
   private statistic: string = "/statistic";
   private avatar: string = "/avatar";
+  private onOneUser: string = "OnOneUser";
+  private unverifiedGame: string = "/unverifiedgame/create";
 
   constructor() {
   }
@@ -79,6 +82,10 @@ export class UrlService {
     return this.statistic;
   }
 
+  getAverageRatingByTitle() {
+    return this.averageRatingByTitle;
+  }
+
   getRating() {
     return this.rating;
   }
@@ -113,5 +120,13 @@ export class UrlService {
 
   getAvatar() {
     return this.avatar;
+  }
+
+  getUnverifiedGame(){
+    return this.unverifiedGame;
+  }
+
+  getOnOneUser() {
+    return this.onOneUser;
   }
 }

@@ -1,9 +1,6 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.Company;
-import com.communityratesgames.domain.Game;
-import com.communityratesgames.domain.Platform;
-import com.communityratesgames.domain.UnverifiedGame;
+import com.communityratesgames.domain.*;
 import com.communityratesgames.model.GameModel;
 
 import javax.ejb.Stateless;
@@ -34,6 +31,7 @@ public class UnverifiedGameService implements UnverifiedGameDataAccess{
     @Override
     public void verifyGame(Long id) {
         UnverifiedGame game = em.find(UnverifiedGame.class,id);
+        //TODO: Use security to set verifiedBy
         em.persist(new Game(game,false));
         em.remove(game);
     }
@@ -51,7 +49,10 @@ public class UnverifiedGameService implements UnverifiedGameDataAccess{
                 model.getReleaseDate(),
                 model.getTitle(),
                 getCompanyEntity(model.getCompany()),
-                getPlatformEntity(model.getPlatforms())
+                getPlatformEntity(model.getPlatforms()),
+                model.getDescription(),
+                getUserEntity(model.getSubmittedBy()),
+                Genre.valueOf(model.getGenre().toUpperCase())
         );
     }
     private Company getCompanyEntity(String companyname) {
@@ -60,15 +61,18 @@ public class UnverifiedGameService implements UnverifiedGameDataAccess{
                 .getSingleResult();
     }
     private List<Platform> getPlatformEntity(List<String> platformList){
-        List<Platform> derp = em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
+        return em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
                 .setParameter("list", platformList)
                 .getResultList();
-        return derp;
+    }
+    private User getUserEntity(String user){
+        return em.createQuery("SELECT u  FROM User u WHERE u.userName =:user",User.class)
+                .setParameter("user",user)
+                .getSingleResult();
     }
     private List<GameModel> convertListEntityToModel (List<UnverifiedGame> entityList) {
         for (UnverifiedGame g: entityList
              ) {
-            System.out.println("########");
             System.out.println(g.getTitle());
             for (Platform p: g.getPlatforms()
                  ) {

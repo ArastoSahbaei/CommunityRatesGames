@@ -1,8 +1,6 @@
 package com.communityratesgames.transactions;
 
-import com.communityratesgames.domain.Company;
-import com.communityratesgames.domain.Game;
-import com.communityratesgames.domain.Platform;
+import com.communityratesgames.domain.*;
 import com.communityratesgames.model.GameModel;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -125,7 +123,11 @@ public class GameService implements GameDataAccess {
                 model.getReleaseDate(),
                 model.getTitle(),
                 getCompanyEntity(model.getCompany()),
-                getPlatformEntity(model.getPlatforms())
+                getPlatformEntity(model.getPlatforms()),
+                model.getDescription(),
+                model.getAverageRating(),
+                getUserEntity(model.getSubmittedBy()),
+                Genre.valueOf(model.getGenre().toUpperCase())
         );
     }
     private Company getCompanyEntity(String companyname) {
@@ -137,5 +139,10 @@ public class GameService implements GameDataAccess {
         return em.createQuery("SELECT p FROM Platform p WHERE p.name IN :list",Platform.class)
                 .setParameter("list", platformList)
                 .getResultList();
+    }
+    private User getUserEntity(String user){
+        return em.createQuery("SELECT u FROM User u WHERE u.userName =:user",User.class)
+                .setParameter("user",user)
+                .getSingleResult();
     }
 }

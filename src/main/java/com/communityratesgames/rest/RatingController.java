@@ -76,9 +76,20 @@ public class RatingController {
         }
         try {
             float result = dal.getAverageOfGame(gameTitle);
-            if (result == -1.0f) {
-                return Response.status(Status.NOT_FOUND).build();
-            }
+            return Response.ok(result).build();
+        } catch (PersistenceException e) {
+            return Response.status(Status.BAD_REQUEST).build();
+        }
+    }
+    @GET
+    @Path("/count")
+    @Produces({"application/JSON"})
+    public Response getCountOfRatings(@QueryParam("title") String gameTitle) {
+        if (gameTitle == null) {
+            return Response.status(Status.BAD_REQUEST).entity("{\"error\":1,\"message\":\"title is not specified\"}").build();
+        }
+        try {
+            float result = dal.getCountOfRatings(gameTitle);
             return Response.ok(result).build();
         } catch (PersistenceException e) {
             return Response.status(Status.BAD_REQUEST).build();

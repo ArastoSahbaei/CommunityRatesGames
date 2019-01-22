@@ -1,10 +1,13 @@
 export interface AddGame{
     title: String;
-    companyId: number;
-    allPlatformId: number[];
-    game: String;
-    user: String;
-    rating: number;
+    company: number;
+    platforms: any[];
+    game?: String;
+    submittedBy: String;
+    rating?: number;
+    releaseDate: number;
+    description: String;
+    genre: String;
 
   //  company: any;
 //  platforms: any;

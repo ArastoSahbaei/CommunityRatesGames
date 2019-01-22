@@ -33,7 +33,7 @@ export class MainNavComponent implements OnInit {
 
   ngOnInit() {
     this.storage.watchStorage().subscribe((data: string) => {
-      var token = this.storage.getItem('token');
+      let token = this.storage.getItem('token');
       if (token != null) {
         if (this.storage.getItem('admin')) {
           this.name = this.storage.getItem('admin');
@@ -52,10 +52,14 @@ export class MainNavComponent implements OnInit {
 
   }
 
+  public adminView() {
+    this.route.navigateByUrl('/admin');
+  }
+
   public logInOut() {
-    var token = this.storage.getItem('token');
+    let token = this.storage.getItem('token');
     if (token == null) {
-      this.route.navigateByUrl('start/login');
+      this.route.navigateByUrl('/login');
     }
     else {
       this.storage.removeItem('name');
