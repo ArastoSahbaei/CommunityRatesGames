@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.AdminContact;
+import com.communityratesgames.domain.UserRole;
 import com.communityratesgames.model.AdminContactModel;
 import com.communityratesgames.util.AuthUtils;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class AdminContactController {
     @Produces({"application/JSON"})
     public Response adminGetAll(@Context HttpHeaders header) {
         try {
-            if (securityCheck(header,"Admin")) {
+            if (securityCheck(header,UserRole.ADMIN)) {
                 List<AdminContact> result = dal.adminGetAllMessages();
                 return Response.ok(result).build();
             }else {
@@ -45,7 +46,7 @@ public class AdminContactController {
             @QueryParam("id") Long id,
             @Context HttpHeaders header) {
         try {
-            if(securityCheck(header,"Admin")){
+            if(securityCheck(header,UserRole.ADMIN)){
                 AdminContact result = dal.adminGetMessage(id);
                 return Response.ok(result).build();
             }else {
@@ -63,7 +64,7 @@ public class AdminContactController {
             @QueryParam("email") String email,
             @Context HttpHeaders header) {
         try {
-            if (securityCheck(header,"User")){
+            if (securityCheck(header,UserRole.USER)){
                 List<AdminContactModel> result = dal.userMessages(email);
                 return Response.ok(result).build();
             }else {
@@ -81,7 +82,7 @@ public class AdminContactController {
             AdminContactModel model,
             @Context HttpHeaders header) {
         try {
-            if (securityCheck(header,"User")){
+            if (securityCheck(header,UserRole.USER)){
                 dal.newMessage(model);
                 return Response.ok().build();
             }else {
@@ -99,7 +100,7 @@ public class AdminContactController {
             AdminContact entity,
             @Context HttpHeaders header) {
         try {
-            if (securityCheck(header,"Admin")){
+            if (securityCheck(header, UserRole.ADMIN)){
                 dal.updateEntry(entity);
                 return Response.ok().build();
             }else {
@@ -109,14 +110,13 @@ public class AdminContactController {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-    private boolean securityCheck(HttpHeaders header, String authlevel){
+    private boolean securityCheck(HttpHeaders header, UserRole authlevel){
         Long token = AuthUtils.getHeaderToken(header);
         if(token==null){
         return false;
         }else return hasAuthorization(token, authlevel);
     }
-    private boolean hasAuthorization(Long token, String authLevel) {
-        return dal.getUserToken(token).getRole().equalsIgnoreCase(authLevel);
-
+    private boolean hasAuthorization(Long token, UserRole authLevel) {
+        return dal.getUserToken(token).getRole().ordinal() >= authLevel.ordinal();
     }
 }

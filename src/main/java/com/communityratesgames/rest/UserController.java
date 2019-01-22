@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.User;
+import com.communityratesgames.domain.UserRole;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
@@ -151,7 +152,7 @@ public class UserController {
         }
 
         User u = dal.getUserToken(token);
-        if (u.getRole() != "Admin") {
+        if (u.getRole() != UserRole.ADMIN) {
             return Response.status(Status.FORBIDDEN).entity("{\"error\":\"/update may only be used by admin users\"}").build();
         }
 
@@ -179,7 +180,7 @@ public class UserController {
 
         try {
             User u = dal.getUserToken(token);
-            if (u.getRole() != "Admin") {
+            if (u.getRole() != UserRole.ADMIN) {
                 return Response.status(Status.FORBIDDEN).entity("{\"error\":\"/delete may only be used by admin users\"}").build();
             }
 

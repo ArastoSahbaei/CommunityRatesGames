@@ -22,7 +22,4 @@ public class AuthUtils {
             return null;
         }
     }
-    public boolean hasAuthorization(Long token, String authLevel) {
-        return dal.getUserToken(token).getRole().equalsIgnoreCase(authLevel);
-    }
 }

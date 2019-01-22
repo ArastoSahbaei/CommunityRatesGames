@@ -1,6 +1,7 @@
 package com.communityratesgames.model;
 
 import com.communityratesgames.domain.User;
+import com.communityratesgames.domain.UserRole;
 import com.communityratesgames.util.JsonError;
 import lombok.ToString;
 import org.apache.log4j.Logger;
@@ -71,7 +72,7 @@ public class UserModel implements Serializable {
         id = user.getId();
         user.setEmail(email);
         user.setUserName(username);
-        user.setRole(role);
+        user.setRole(role != null ? UserRole.valueOf(role.toUpperCase()):null);
         user.setUserCreated(userCreated);
         user.setId(id);
 
@@ -84,7 +85,7 @@ public class UserModel implements Serializable {
         um.username = user.getUserName();
         um.userCreated = user.getUserCreated();
         um.email = user.getEmail();
-        um.role = user.getRole();
+        um.role = user.getRole().toString();
 
         return um;
     }
