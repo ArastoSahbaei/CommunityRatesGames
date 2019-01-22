@@ -3,10 +3,11 @@ export interface AddGame{
     company: number;
     platforms: any[];
     game?: String;
-    user?: String;
+    submittedBy: String;
     rating?: number;
     releaseDate: number;
     description: String;
+    genre: String;
 
   //  company: any;
 //  platforms: any;
