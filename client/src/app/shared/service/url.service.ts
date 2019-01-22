@@ -26,6 +26,7 @@ export class UrlService {
   private company: string = "/company";
   private logs: string = "/logs";
   private statistic: string = "/statistic";
+  private avatar: string = "/avatar";
 
   constructor() {
   }
@@ -108,5 +109,9 @@ export class UrlService {
 
   getBaseUrlLogs() {
     return this.loggingUrl;
+  }
+
+  getAvatar() {
+    return this.avatar;
   }
 }
