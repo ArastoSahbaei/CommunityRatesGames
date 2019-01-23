@@ -21,12 +21,12 @@ public class Shrink {
                 ShrinkWrap.create(WebArchive.class, "test.war")
                         .addClasses(UserController.class)
                         .addClasses(JsonError.class)
-                        .addClasses(UserModel.class, CompanyModel.class, GameModel.class, PlatformModel.class, RatingModel.class)
-                        .addClasses(User.class, Company.class, Platform.class, Rating.class, UnverifiedGame.class, Game.class)
+                        .addClasses(UserModel.class, CompanyModel.class, GameModel.class, PlatformModel.class, RatingModel.class, AdminContactModel.class)
+                        .addClasses(User.class, Company.class, Platform.class, Rating.class, UnverifiedGame.class, Game.class, AdminContact.class, Genre.class)
                         .addClasses(JMSSender.class)
                         .addClasses(DataAccessLocal.class, CRGDataAccess.class, DataAccessRemote.class)
-                        .addClasses(CompanyService.class, GameService.class, PlatformService.class, RatingService.class, UnverifiedGameService.class, UserService.class)
-                        .addClasses(CompanyDataAccess.class, GameDataAccess.class, PlatformDataAccess.class, RatingDataAccess.class, UnverifiedGameDataAccess.class, UserDataAccess.class)
+                        .addClasses(CompanyService.class, GameService.class, PlatformService.class, RatingService.class, UnverifiedGameService.class, UserService.class, AdminContactService.class)
+                        .addClasses(CompanyDataAccess.class, GameDataAccess.class, PlatformDataAccess.class, RatingDataAccess.class, UnverifiedGameDataAccess.class, UserDataAccess.class, AdminContactDataAccess.class)
                         .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                         .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }

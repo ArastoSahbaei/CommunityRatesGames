@@ -14,6 +14,7 @@ import { AllUsersComponent } from './user/allusers/all-users.component';
 import { OverallComponent } from './statistic/overall/overall.component';
 import { UserStatisticComponent } from './statistic/userstatistic/userstatistic.component';
 import { SiteStatisticComponent } from './statistic/sitestatistic/sitestatistic.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SiteStatisticComponent } from './statistic/sitestatistic/sitestatistic.
     AllUsersComponent,
     OverallComponent,
     UserStatisticComponent,
-    SiteStatisticComponent
+    SiteStatisticComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,

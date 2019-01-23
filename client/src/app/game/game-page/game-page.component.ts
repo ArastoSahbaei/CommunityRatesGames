@@ -20,7 +20,6 @@ export class GamePageComponent implements OnInit {
   getTheGames(){
     this.route.queryParams.subscribe(queryParam => {
       this.api.getOneGameByTitle(queryParam.title).subscribe(response =>{
-        console.log(response);
         this.showImage(response);
         this.response = response;
         this.getAverageRating(response['title']);
@@ -29,9 +28,7 @@ export class GamePageComponent implements OnInit {
   }
 
   getAverageRating(image:string) {
-    console.log(image);
     this.api.getAverageRatingByTitle(image).subscribe(ratingData =>{
-      console.log(ratingData);
       this.ratingData = ratingData;
     });
   }

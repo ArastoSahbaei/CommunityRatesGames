@@ -44,6 +44,7 @@ export class AuthService {
         } else {
           this.loggedIn$.next(true);
           this.router.navigate(['/']);
+          this.storage.setItem('email', response.body['email']);
           this.storage.setItem('name', response.body['username']);
         }
         this.logged = true;
@@ -66,6 +67,8 @@ export class AuthService {
       }
     );
     this.storage.removeItem('token');
+    this.storage.removeItem("email");
+    this.storage.removeItem("name");
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);

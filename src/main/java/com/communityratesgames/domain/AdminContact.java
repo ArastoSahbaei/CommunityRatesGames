@@ -4,6 +4,7 @@ import com.communityratesgames.model.AdminContactModel;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.Instant;
 
@@ -11,7 +12,7 @@ import java.time.Instant;
 @Entity
 @ToString
 @Table(name = "admincontact_entity")
-public class AdminContact {
+public class AdminContact implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

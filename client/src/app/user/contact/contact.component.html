@@ -2,11 +2,6 @@
     <mat-card-title>Contact Us</mat-card-title>
 
    <mat-form-field>
-     <input id="email" matInput placeholder="Email" formControlName="email" class="form-control" type="email" required>
-     <mat-error *ngIf="(email.dirty || email.touched) && email.invalid">Email required</mat-error>
-   </mat-form-field>
-
-   <mat-form-field>
      <textarea matInput rows="10" cols="62" id="message" placeholder="Message" formControlName="message" class="form-control" required ></textarea>
      <mat-error *ngIf="(message.dirty || message.touched) && message.invalid">Message required</mat-error>
    </mat-form-field>

@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-card class="list">
+  <mat-card-header>Unread mail</mat-card-header>
+  <mat-form-field>
+    <mat-select>
+      <mat-option *ngFor="let mail of mails" value="mail.email" (onSelectionChange)="onChange($event, mail)">
+        {{mail.email}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-card>
+
+  <div class="innerGrid">
+<mat-card class="message" [formGroup]="message">
+  <mat-card-header>Conversation</mat-card-header>
+
+    <mat-form-field>
+      <input matInput placeholder="user" formControlName="user">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="message" formControlName="userMessage"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="answer" formControlName="answer" required></textarea>
+      <mat-error *ngIf="(answer.dirty || answer.touched)">Answer required</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox [formControlName]="flagged" color="primary" (change)="toggle($event)">Urgent</mat-checkbox>
+
+    <mat-form-field>
+      <input matInput placeholder="Which admin" formControlName="admin" required>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button type="button" [disabled]="!message.valid">Send</button>
+    </mat-card-actions>
+
+</mat-card>
+  </div>
+</div>

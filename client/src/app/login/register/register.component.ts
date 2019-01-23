@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ApiService } from "../../shared/service/api.service";
-import {Register} from "../../shared/interface/register.interface";
-import {AuthService} from "../../shared/service/auth.service";
-import {User} from "../../shared/interface/user.interface";
-import {Router} from "@angular/router";
+import { Register } from "../../shared/interface/register.interface";
+import { AuthService } from "../../shared/service/auth.service";
+import { User } from "../../shared/interface/user.interface";
 
 @Component({
   selector: 'app-register',

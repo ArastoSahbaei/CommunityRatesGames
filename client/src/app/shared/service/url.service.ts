@@ -7,9 +7,9 @@ export class UrlService {
 
   //private strings with base url and extensions
   private baseUrl: string = "http://localhost:8080/communityratesgames";
-  private mongoUrl: string ="http://localhost:4000/message/add";
   private loggingUrl: string = "http://localhost:8080/communityratesgameslogging";
-  private rating: string = "/rating/new";
+  private rating: string = "/rating";
+  private new: string = "/new";
   private averageRatingByTitle: string = "/rating/average?title=";
   private top100: string = "/top100";
   private games: string = "/game";
@@ -30,6 +30,8 @@ export class UrlService {
   private avatar: string = "/avatar";
   private onOneUser: string = "OnOneUser";
   private unverifiedGame: string = "/unverifiedgame/create";
+  private adminContact: string = "/admincontact";
+  private adminAll: string ="/adminall";
 
   constructor() {
   }
@@ -46,8 +48,12 @@ export class UrlService {
     return this.delete;
   }
 
-  getMongoUrl() {
-    return this.mongoUrl;
+  getAdminContact() {
+    return this.adminContact;
+  }
+
+  getNew() {
+    return this.new;
   }
 
   getCompany() {
@@ -128,5 +134,9 @@ export class UrlService {
 
   getOnOneUser() {
     return this.onOneUser;
+  }
+
+  getAdminAll() {
+    return this.adminAll;
   }
 }
