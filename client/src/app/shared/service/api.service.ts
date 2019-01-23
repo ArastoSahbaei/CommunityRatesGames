@@ -135,4 +135,12 @@ export class ApiService {
       });
   }
 
+  uploadAvatar(image: any): Observable<any> {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), image, {headers: Headers.HeaderJSON().set('Content-Type', 'image/png')});
+  }
+
+  deleteAvatar(): Observable<any> {
+    return this.httpClient.delete(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), {headers: Headers.HeaderJSON()});
+  }
+
 }
