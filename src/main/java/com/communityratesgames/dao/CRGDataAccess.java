@@ -5,11 +5,16 @@ import com.communityratesgames.model.AdminContactModel;
 import com.communityratesgames.model.GameModel;
 import com.communityratesgames.model.RatingModel;
 import com.communityratesgames.transactions.*;
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
 import com.communityratesgames.util.JsonError;
 import org.apache.log4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.File;
+import java.io.InputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Stateless
@@ -89,6 +94,9 @@ public class CRGDataAccess implements DataAccessLocal, DataAccessRemote {
     public User detailsAboutAUser(String user) {return userDataAccess.detailsAboutAUser(user);}
     public Boolean deleteAUser(User user) {return userDataAccess.deleteAUser(user);}
     public Integer updateAUser(User user) {return userDataAccess.updateAUser(user);}
+    public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException {return userDataAccess.setUserAvatar(user, image);}
+    public File getUserAvatar(User user) throws IOException {return userDataAccess.getUserAvatar(user);}
+    public void deleteUserAvatar(User user) throws IOException {userDataAccess.deleteUserAvatar(user);}
 
     //Rating Access
     public List<RatingModel> showAllRatings() {return ratingDataAccess.showAllRatings();}
