@@ -1,6 +1,6 @@
 export interface Reply {
   id: number;
-  administratedBy: string;
+  administredBy: string;
   flaggedForAdmin: string;
   urgent: boolean;
   seen: boolean;

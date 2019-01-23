@@ -58,14 +58,13 @@ export class ContactComponent implements OnInit {
     reply.id = this.selectedMail['id'];
     reply.responseMessage = this.message.value['answer'];
     reply.urgent = this.message.value['flagged'];
-    reply.administratedBy = this.storage.getItem('email');
+    reply.administredBy = this.storage.getItem('email');
     reply.seen = true;
     reply.flaggedForAdmin = this.message.value['admin'];
 
-    console.log(reply);
 
     this.api.answerUserMail(reply).subscribe((response) => {
-      console.log(response);
+      this.message.reset();
     }, error => {
       throw error;
     });

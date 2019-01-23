@@ -134,7 +134,7 @@ export class ApiService {
       user, {headers: Headers.HeaderJSON()
       });
   }
-  
+
   getAdminAllMails() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
   }
@@ -148,7 +148,6 @@ export class ApiService {
   }
 
   answerUserMail(message: Reply): Observable<object> {
-
     return this.httpClient.put(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
   }
 }
