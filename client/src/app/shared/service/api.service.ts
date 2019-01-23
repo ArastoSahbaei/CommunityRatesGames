@@ -10,6 +10,7 @@ import {Company} from "../interface/company.interface";
 import {Contact} from "../interface/contact.interface";
 import {Report} from "../interface/report.interface";
 import {Voting} from "../interface/voting.interface";
+import {Reply} from "../interface/reply.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -134,10 +135,10 @@ export class ApiService {
       });
   }
 
-
   getAdminAllMails() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
-    
+  }
+
   uploadAvatar(image: any): Observable<any> {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), image, {headers: Headers.HeaderJSON().set('Content-Type', 'image/png')});
   }
@@ -146,4 +147,7 @@ export class ApiService {
     return this.httpClient.delete(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), {headers: Headers.HeaderJSON()});
   }
 
+  answerUserMail(message: Reply): Observable<object> {
+    return this.httpClient.put(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
+  }
 }

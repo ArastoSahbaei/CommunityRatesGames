@@ -15,6 +15,7 @@ import { OverallComponent } from './statistic/overall/overall.component';
 import { UserStatisticComponent } from './statistic/userstatistic/userstatistic.component';
 import { SiteStatisticComponent } from './statistic/sitestatistic/sitestatistic.component';
 import { ContactComponent } from './contact/contact.component';
+import {StorageService} from "../shared/service/storage.service";
 
 @NgModule({
   declarations: [

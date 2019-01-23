@@ -40,6 +40,7 @@ export class AuthService {
         if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
           this.router.navigateByUrl('/admin');
+          this.storage.setItem('email', response.body['email']);
           this.storage.setItem('admin', response.body['username']);
         } else {
           this.loggedIn$.next(true);

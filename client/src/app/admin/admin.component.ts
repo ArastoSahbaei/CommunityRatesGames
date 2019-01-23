@@ -14,7 +14,6 @@ export class AdminComponent implements OnInit {
   constructor(private api: ApiService) {
     this.mails = this.api.getAdminAllMails().subscribe((response => {
       this.amountOfMails = Object.keys(response).length;
-      console.log(response);
     }));
   }
 
