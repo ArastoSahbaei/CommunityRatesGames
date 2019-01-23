@@ -3,6 +3,8 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Platform;
+import com.communityratesgames.domain.UserRole;
+import com.communityratesgames.util.AuthUtils;
 import com.communityratesgames.util.json.*;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import static javax.ws.rs.core.Response.Status;
 import java.io.IOException;
@@ -38,8 +42,11 @@ public class PlatformController {
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response postPlatform(String payload) {
+    public Response postPlatform(String payload,@Context HttpHeaders header) {
         try {
+            if (!securityCheck(header, UserRole.ADMIN)){
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
             JsonObject object = new JsonObject(payload);
             String name = object.getString("name");
             int releaseYear = (int)object.getNumber("releaseYear");
@@ -67,24 +74,13 @@ public class PlatformController {
             return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
-/*
-    private final PlatformService service;
-
-    @Autowired
-    public PlatformController(PlatformService service) {
-        this.service = service;
+    private boolean securityCheck(HttpHeaders header, UserRole authlevel){
+        Long token = AuthUtils.getHeaderToken(header);
+        if(token==null){
+            return false;
+        }else return hasAuthorization(token, authlevel);
     }
-
-    @GetMapping("/platform")
-    public ResponseEntity<List<PlatformModel>> getPlatforms() {
-        List<PlatformModel> platforms = service.getPlatforms();
-        return new ResponseEntity<>(platforms, HttpStatus.OK);
+    private boolean hasAuthorization(Long token, UserRole authLevel) {
+        return dal.getUserToken(token).getRole().ordinal() >= authLevel.ordinal();
     }
-
-    @PostMapping("/platform")
-    public ResponseEntity<List<PlatformModel>> postPlatform(@RequestBody PlatformModel payload) {
-        service.insertPlatform(payload);
-        return getPlatforms();
-    }
-*/
 }

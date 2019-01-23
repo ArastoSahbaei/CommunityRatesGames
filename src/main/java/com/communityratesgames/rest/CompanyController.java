@@ -2,6 +2,7 @@ package com.communityratesgames.rest;
 
 import com.communityratesgames.dao.DataAccessLocal;
 import com.communityratesgames.domain.Company;
+import com.communityratesgames.domain.UserRole;
 import com.communityratesgames.model.CompanyModel;
 import com.communityratesgames.util.AuthUtils;
 import com.communityratesgames.util.JsonError;
@@ -41,12 +42,10 @@ public class CompanyController {
     @Produces("application/json")
     @Consumes("application/json")
     public Response createCompany(@Context HttpHeaders header, String compis){
-        Long token = AuthUtils.getHeaderToken(header);
-        if (token == null) {
-            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
-        }
-
         try {
+            if (!securityCheck(header, UserRole.ADMIN)){
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            }
             Company toEntity = companyModel.jsonPtoEntity(compis);
             Company company2 = dal.registerNewCompany(toEntity);
             CompanyModel toCompany = companyModel.toCompany(company2);
@@ -71,5 +70,14 @@ public class CompanyController {
         }catch (PersistenceException e){
             return Response.status(Status.BAD_REQUEST).build();
         }
+    }
+    private boolean securityCheck(HttpHeaders header, UserRole authlevel){
+        Long token = AuthUtils.getHeaderToken(header);
+        if(token==null){
+            return false;
+        }else return hasAuthorization(token, authlevel);
+    }
+    private boolean hasAuthorization(Long token, UserRole authLevel) {
+        return dal.getUserToken(token).getRole().ordinal() >= authLevel.ordinal();
     }
 }
