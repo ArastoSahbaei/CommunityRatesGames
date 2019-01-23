@@ -27,6 +27,7 @@ export class UrlService {
   private company: string = "/company";
   private logs: string = "/logs";
   private statistic: string = "/statistic";
+  private avatar: string = "/avatar";
   private onOneUser: string = "OnOneUser";
   private unverifiedGame: string = "/unverifiedgame/create";
   private adminContact: string = "/admincontact";
@@ -121,6 +122,10 @@ export class UrlService {
 
   getBaseUrlLogs() {
     return this.loggingUrl;
+  }
+
+  getAvatar() {
+    return this.avatar;
   }
 
   getUnverifiedGame(){
