@@ -134,11 +134,11 @@ export class ApiService {
       user, {headers: Headers.HeaderJSON()
       });
   }
-
-
+  
   getAdminAllMails() {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
-    
+  }
+
   uploadAvatar(image: any): Observable<any> {
     return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), image, {headers: Headers.HeaderJSON().set('Content-Type', 'image/png')});
   }
