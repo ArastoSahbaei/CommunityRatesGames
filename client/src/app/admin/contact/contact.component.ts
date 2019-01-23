@@ -62,8 +62,10 @@ export class ContactComponent implements OnInit {
     reply.seen = true;
     reply.flaggedForAdmin = this.message.value['admin'];
 
-    this.api.answerUserMail(reply).subscribe((response) => {
+    console.log(reply);
 
+    this.api.answerUserMail(reply).subscribe((response) => {
+      console.log(response);
     }, error => {
       throw error;
     });

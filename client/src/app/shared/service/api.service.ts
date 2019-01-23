@@ -139,9 +139,8 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
   }
 
-  answerUserMail(message: Reply): Observable<any> {
-    console.log(message);
-    console.log(typeof message);
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
+  answerUserMail(message: Reply): Observable<object> {
+
+    return this.httpClient.put(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
   }
 }
