@@ -10,6 +10,7 @@ import {Company} from "../interface/company.interface";
 import {Contact} from "../interface/contact.interface";
 import {Report} from "../interface/report.interface";
 import {Voting} from "../interface/voting.interface";
+import {Reply} from "../interface/reply.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -138,4 +139,9 @@ export class ApiService {
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
   }
 
+  answerUserMail(message: Reply): Observable<any> {
+    console.log(message);
+    console.log(typeof message);
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
+  }
 }

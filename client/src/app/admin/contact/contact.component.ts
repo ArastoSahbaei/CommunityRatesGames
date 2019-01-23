@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../shared/service/api.service";
 import { MatCheckboxChange, MatOptionSelectionChange } from "@angular/material";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Reply } from "../../shared/interface/reply.interface";
+import { StorageService } from "../../shared/service/storage.service";
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +16,8 @@ export class ContactComponent implements OnInit {
   public mails: object;
   public selectedMail: object;
 
-  constructor(private api: ApiService,
+  constructor(private storage: StorageService,
+              private api: ApiService,
               private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -26,7 +29,7 @@ export class ContactComponent implements OnInit {
       'userMessage': ['', [Validators.required]],
       'user': [{value: '', disabled: true}, [Validators.required]],
       'answer': ['', Validators.required],
-      'flagged': [''],
+      'flagged': [false],
       'admin':[{value: '', disabled: true}, [Validators.required, Validators.email]],
     });
     this.message.controls['userMessage'].disable();
@@ -50,23 +53,23 @@ export class ContactComponent implements OnInit {
     }
   }
 
+  submit() {
+    const reply = {} as Reply;
+    reply.id = this.selectedMail['id'];
+    reply.responseMessage = this.message.value['answer'];
+    reply.urgent = this.message.value['flagged'];
+    reply.administratedBy = this.storage.getItem('email');
+    reply.seen = true;
+    reply.flaggedForAdmin = this.message.value['admin'];
+
+    this.api.answerUserMail(reply).subscribe((response) => {
+
+    }, error => {
+      throw error;
+    });
+  }
+
   get answer() {
     return this.message.get('answer');
-  }
-
-  get userMessage() {
-    return this.message.get('userMessage');
-  }
-
-  get user() {
-    return this.message.get('user');
-  }
-
-  get admin() {
-    return this.message.get('admin');
-  }
-
-  get flagged() {
-    return this.message.get('flagged');
   }
 }
