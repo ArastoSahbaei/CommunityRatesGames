@@ -1,14 +1,9 @@
 package com.communityratesgames.util;
 
-import com.communityratesgames.dao.DataAccessLocal;
-
 import java.util.List;
-import javax.inject.Inject;
 import javax.ws.rs.core.HttpHeaders;
 
 public class AuthUtils {
-    @Inject
-    private DataAccessLocal dal;
 
     public static Long getHeaderToken(HttpHeaders header) {
         List<String> toklist = header.getRequestHeader("Authorization");
