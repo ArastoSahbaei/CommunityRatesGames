@@ -12,7 +12,6 @@
 }
 
 .company {
-  border-radius: px;
   grid-column: 3 / 4;
   grid-row: 1 / 1;
   background-color: #90a4ae;

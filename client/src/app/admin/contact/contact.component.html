@@ -1,4 +1,5 @@
-<mat-card class="list">
+<div class="container">
+  <mat-card class="list">
   <mat-card-header>Unread mail</mat-card-header>
   <mat-form-field>
     <mat-select>
@@ -8,16 +9,17 @@
     </mat-select>
   </mat-form-field>
 </mat-card>
+
+  <div class="innerGrid">
 <mat-card class="message" [formGroup]="message">
   <mat-card-header>Conversation</mat-card-header>
-  <mat-card-content>
+
     <mat-form-field>
       <input matInput placeholder="user" formControlName="user">
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="message" formControlName="userMessage">
-      </textarea>
+      <textarea matInput placeholder="message" formControlName="userMessage"></textarea>
     </mat-form-field>
 
     <mat-form-field>
@@ -30,8 +32,11 @@
     <mat-form-field>
       <input matInput placeholder="Which admin" formControlName="admin" required>
     </mat-form-field>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button type="button" [disabled]="!message.valid">Send</button>
-  </mat-card-actions>
+
+    <mat-card-actions>
+      <button mat-raised-button type="button" [disabled]="!message.valid">Send</button>
+    </mat-card-actions>
+
 </mat-card>
+  </div>
+</div>

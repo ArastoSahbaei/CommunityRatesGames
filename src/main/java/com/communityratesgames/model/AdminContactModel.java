@@ -2,9 +2,10 @@ package com.communityratesgames.model;
 
 import com.communityratesgames.domain.AdminContact;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class AdminContactModel {
+public class AdminContactModel implements Serializable {
     private Long id;
     private Timestamp creationDate;
     private String email;

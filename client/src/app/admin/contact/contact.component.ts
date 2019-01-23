@@ -13,7 +13,6 @@ export class ContactComponent implements OnInit {
   public message: FormGroup;
   public mails: object;
   public selectedMail: object;
-  public adminEmail: boolean = true;
 
   constructor(private api: ApiService,
               private fb: FormBuilder) { }
@@ -24,11 +23,11 @@ export class ContactComponent implements OnInit {
     });
 
     this.message = this.fb.group({
-      'userMessage': [''],
-      'user': [{value: '', disabled: true}],
+      'userMessage': ['', [Validators.required]],
+      'user': [{value: '', disabled: true}, [Validators.required]],
       'answer': ['', Validators.required],
-      'flagged': this.fb.array([]),
-      'admin':[{value: '', disabled: this.adminEmail}, [Validators.required, Validators.email]],
+      'flagged': [''],
+      'admin':[{value: '', disabled: true}, [Validators.required, Validators.email]],
     });
     this.message.controls['userMessage'].disable();
   }
@@ -53,5 +52,21 @@ export class ContactComponent implements OnInit {
 
   get answer() {
     return this.message.get('answer');
+  }
+
+  get userMessage() {
+    return this.message.get('userMessage');
+  }
+
+  get user() {
+    return this.message.get('user');
+  }
+
+  get admin() {
+    return this.message.get('admin');
+  }
+
+  get flagged() {
+    return this.message.get('flagged');
   }
 }
