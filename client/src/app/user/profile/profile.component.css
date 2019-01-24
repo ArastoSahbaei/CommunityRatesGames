@@ -1,0 +1,24 @@
+mat-card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 10px auto 0;
+}
+mat-error {
+  color: red;
+}
+button{
+  color: greenyellow;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+p {
+  font-family: Lato;
+}

@@ -7,6 +7,8 @@ import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.model.UserModel;
 import com.communityratesgames.user.AuthToken;
 import com.communityratesgames.util.AuthUtils;
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
 import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,7 +21,11 @@ import javax.persistence.PersistenceException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import static javax.ws.rs.core.Response.Status;
+import java.io.File;
+import java.io.InputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.UnknownFormatConversionException;
 
 @NoArgsConstructor
 @Stateless
@@ -140,6 +146,62 @@ public class UserController {
         }
     }
 
+    @GET
+    @Path("/avatar/{user}")
+    @Produces({"image/png", "image/jpeg", "image/tiff"})
+    public Response getAvatar(@PathParam("user") String user) {
+        try {
+            User u = dal.detailsAboutAUser(user);
+            File data = dal.getUserAvatar(u);
+            return Response.ok(data).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @POST
+    @Path("/avatar")
+    @Produces({"application/JSON"})
+    @Consumes({"image/png", "image/jpeg", "image/tiff"})
+    public Response setAvatar(@Context HttpHeaders header, InputStream imagedata) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
+        User u = dal.getUserToken(token);
+        try {
+            u = dal.setUserAvatar(u, imagedata);
+            return Response.status(Status.OK).build();
+        } catch (FileLimitReachedException e) {
+            return Response.status(Status.BAD_REQUEST).entity("{\"error\":\"image exceeds file size limit\"}").build();
+        } catch (InvalidFileFormatException e) {
+            return Response.status(Status.BAD_REQUEST).entity("{\"error\":\"image invalid; only png, jpeg and tiff are supported\"}").build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @DELETE
+    @Path("/avatar")
+    @Produces("application/json")
+    public Response deleteAvatar(@Context HttpHeaders header, InputStream imagedata) {
+        Long token = AuthUtils.getHeaderToken(header);
+        if (token == null) {
+            return Response.status(Status.UNAUTHORIZED).entity("{\"error\":\"invalid auth token\"}").build();
+        }
+
+        User u = dal.getUserToken(token);
+        try {
+            dal.deleteUserAvatar(u);
+            return Response.status(Status.OK).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
     @PUT
     @Path("/update")

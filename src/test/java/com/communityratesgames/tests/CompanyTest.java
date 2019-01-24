@@ -7,6 +7,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -37,7 +38,7 @@ public class CompanyTest {
         return companies;
     }
 
-    @Test
+    @Test @Ignore
     public void thereIsCompanies() {
         final List<Company> result = companyDataAccess.showAllCompanies();
         final String[] companies = companies();
@@ -54,7 +55,7 @@ public class CompanyTest {
         Assert.assertArrayEquals(companies, companiesFromBackend);
     }
 
-    @Test
+    @Test @Ignore
     public void getACompany() {
         final Company company = companyDataAccess.findCompanyByCompanyName("Sega");
         Assert.assertEquals("Sega", company.getCompanyName());

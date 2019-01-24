@@ -40,15 +40,19 @@ export class AuthService {
         if ( response.body['role'] === 'Admin' ) {
           this.loggedInAdmin$.next(true);
           this.router.navigateByUrl('/admin');
+          this.storage.setItem('email', response.body['email']);
           this.storage.setItem('admin', response.body['username']);
         } else {
           this.loggedIn$.next(true);
           this.router.navigate(['/']);
+          this.storage.setItem('email', response.body['email']);
           this.storage.setItem('name', response.body['username']);
         }
         this.logged = true;
         this.failedLogin$.next(false);
         this.storage.setItem('token', response.headers.get('Authorization'));
+        this.storage.setItem('userCreated', response.body['userCreated']);
+        this.storage.setItem('role', response.body['role']);
       },
       error => {
         this.failedLogin$.next(true);
@@ -64,6 +68,8 @@ export class AuthService {
       }
     );
     this.storage.removeItem('token');
+    this.storage.removeItem("email");
+    this.storage.removeItem("name");
     this.loggedIn$.next(false);
     this.loggedInAdmin$.next(false);
     this.router.navigate(['/']);

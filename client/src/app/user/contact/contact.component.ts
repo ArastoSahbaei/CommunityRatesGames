@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../shared/service/api.service";
 import {Contact} from "../../shared/interface/contact.interface";
+import {StorageService} from "../../shared/service/storage.service";
 
 @Component({
   selector: 'app-contact',
@@ -13,17 +14,13 @@ export class ContactComponent implements OnInit {
   contact: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private api: ApiService) {}
+              private api: ApiService,
+              private storage: StorageService) {}
 
   ngOnInit() {
     this.contact = this.formBuilder.group({
-      'email': ['', [Validators.required, Validators.email]],
       'message': ['', Validators.required]
     });
-  }
-
-  get email(){
-    return this.contact.get('email')
   }
 
   get message(){
@@ -33,12 +30,11 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     const contactMessage = {} as Contact;
 
-    contactMessage.email = this.contact.value.email;
-    contactMessage.message = this.contact.value.message;
+    contactMessage.email = this.storage.getItem("email");
+    contactMessage.userMessage = this.contact.value.message;
 
     this.api.addNewContactMessage(contactMessage)
       .subscribe((response) => {
-        alert("Message sent");
         this.contact.reset();
       });
   }

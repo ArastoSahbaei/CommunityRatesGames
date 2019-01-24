@@ -10,6 +10,7 @@ import {Company} from "../interface/company.interface";
 import {Contact} from "../interface/contact.interface";
 import {Report} from "../interface/report.interface";
 import {Voting} from "../interface/voting.interface";
+import {Reply} from "../interface/reply.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +36,10 @@ export class ApiService {
   }
 
   getRating() {
-    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating(), {headers: Headers.HeaderJSON()});
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getRating() + this.url.getNew(), {headers: Headers.HeaderJSON()});
   }
 
   getAverageRatingByTitle(image:string) {
-    console.log(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image);
     return this.httpClient.get(this.url.getBaseUrl() + this.url.getAverageRatingByTitle() + image, {headers: Headers.HeaderJSON()});
   }
 
@@ -103,7 +103,7 @@ export class ApiService {
   }
 
   addNewContactMessage(message: Contact) {
-    return this.httpClient.post(this.url.getMongoUrl(), message);
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getNew(), message, { headers: Headers.HeaderJSON()});
   }
 
   voteGame(voting: string):Observable<any> {
@@ -112,7 +112,7 @@ export class ApiService {
   }
 
   reportBug(message: Report) {
-    return this.httpClient.post(this.url.getMongoUrl(), message);
+    return null;
   }
 
   // For admin view that is connected to Logging EE server
@@ -135,4 +135,19 @@ export class ApiService {
       });
   }
 
+  getAdminAllMails() {
+    return this.httpClient.get(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getAdminAll(), {headers: Headers.HeaderJSON()});
+  }
+
+  uploadAvatar(image: any): Observable<any> {
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), image, {headers: Headers.HeaderJSON().set('Content-Type', 'image/png')});
+  }
+
+  deleteAvatar(): Observable<any> {
+    return this.httpClient.delete(this.url.getBaseUrl() + this.url.getUser() + this.url.getAvatar(), {headers: Headers.HeaderJSON()});
+  }
+
+  answerUserMail(message: Reply): Observable<object> {
+    return this.httpClient.put(this.url.getBaseUrl() + this.url.getAdminContact() + this.url.getUpdate(), message, {headers: Headers.HeaderJSON()} );
+  }
 }

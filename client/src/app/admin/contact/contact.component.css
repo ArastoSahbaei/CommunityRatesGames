@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
+  grid-gap: 10px;
+}
+
+.list {
+  grid-column: 3/5;
+}
+
+.message {
+  grid-column: 6/10;
+}
+
+.innerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+mat-card {
+}

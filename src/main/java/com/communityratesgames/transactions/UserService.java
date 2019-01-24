@@ -3,6 +3,8 @@ package com.communityratesgames.transactions;
 import com.communityratesgames.domain.User;
 import com.communityratesgames.jms.JMSSender;
 import com.communityratesgames.user.*;
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
 import com.communityratesgames.util.JsonError;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
@@ -10,12 +12,20 @@ import org.apache.log4j.Logger;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.persistence.*;
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
+import java.io.File;
+import java.io.InputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 
 @Stateless
 @Default
 public class UserService implements UserDataAccess {
+
+    @Context
+    private ServletContext servlet;
 
     private final static Logger logger = Logger.getLogger(com.communityratesgames.transactions.UserService.class);
 
@@ -113,13 +123,39 @@ public class UserService implements UserDataAccess {
 
     @Override
     public User detailsAboutAUser(String user) {
-        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = :user", User.class)
-                .setParameter("user", user)
+        User u = (User)em.createNativeQuery("SELECT * FROM user_entity WHERE userName = ?1", User.class)
+                .setParameter(1, user)
                 .getSingleResult();
         return u;
     }
 
     public boolean logout(Long token) {
         return AuthToken.close(token);
+    }
+
+    @Override
+    public User setUserAvatar(User user, InputStream image) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+        user.prepareImageStorage(servlet);
+        user.storeImage(image);
+        return user;
+    }
+
+    @Override
+    public File getUserAvatar(User user) throws IOException {
+        user.prepareImageStorage(servlet);
+        return user.loadImage();
+    }
+
+    public void deleteUserAvatar(User user) throws IOException {
+        try {
+            user.prepareImageStorage(servlet);
+            user.storeImage(null);
+        } catch (FileLimitReachedException e) {
+            // user.storeImage() should not be able to throw FileLimitReachedException if NULL is passed as argument.
+            throw new IOException(e);
+        } catch (InvalidFileFormatException e) {
+            // user.storeImage() should not be able to throw InvalidFileFormatException if NULL is passed as argument.
+            throw new IOException(e);
+        }
     }
 }

@@ -1,19 +1,30 @@
 package com.communityratesgames.domain;
+
 import com.communityratesgames.model.UserModel;
 import lombok.ToString;
 import org.picketlink.idm.model.annotation.Unique;
 
+import com.communityratesgames.util.FileLimitReachedException;
+import com.communityratesgames.util.InvalidFileFormatException;
+import com.communityratesgames.util.IImageEntity;
+import com.communityratesgames.util.ImageUtils;
+
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.servlet.ServletContext;
+import java.io.*;
 import java.sql.Timestamp;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.security.*;
 import java.math.BigInteger;
+import java.util.Properties;
 
 @Entity
 @ToString
 @Table(name = "user_entity")
-public class User implements Serializable {
+public class User implements Serializable, IImageEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +39,9 @@ public class User implements Serializable {
     @Enumerated
     @Column(columnDefinition = "smallint")
     private UserRole role;
+    private static String imageDir;
+    private static String defaultImage;
+    private static Long fileSizeLimit;
 
     public User(UserModel userModel) {
         this.id = userModel.getId();
@@ -137,5 +151,98 @@ public class User implements Serializable {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public void prepareImageStorage(ServletContext context) throws IOException {
+        if (imageDir != null) {
+            return;
+        }
+
+        Properties props = new Properties();
+        props.load(context.getResourceAsStream("/WEB-INF/image.properties"));
+        imageDir = props.getProperty("image.directory");
+        if (imageDir == null) {
+            throw new IOException("image storage path is not set");
+        }
+
+        defaultImage = props.getProperty("image.default");
+
+        String limit = props.getProperty("image.maxSize");
+        if (limit == null) {
+            fileSizeLimit = 512L * 1024L;
+        } else {
+            try {
+                fileSizeLimit = Long.parseLong(limit) * 1024L;
+            } catch (NumberFormatException e) {
+                fileSizeLimit = 512L * 1024L;
+            }
+        }
+    }
+
+    @Override
+    public void storeImage(InputStream data) throws IOException, FileLimitReachedException, InvalidFileFormatException {
+        byte[] magic = new byte[4];
+        int in;
+
+        if (data == null) {
+            try {
+                Files.delete(Paths.get(imageDir, this.userName));
+            } catch (NoSuchFileException e) {
+                // Ignore; this happend when no avatar is set for the user.
+            }
+            return;
+        }
+
+        // This is expected to throw an exception; use this to validate the file format.
+        data.read(magic);
+        ImageUtils.getFormat(magic);
+
+        // Write to a temporary file, in case something goes wrong during the write.
+        File file = new File(Paths.get(imageDir, this.userName + ".tmp").toString());
+        DataOutputStream stream = new DataOutputStream(new FileOutputStream(file));
+        stream.write(magic);
+        for (int i = 4; i < fileSizeLimit; i++) {
+            // Pass all data from the stream to the file directly, without using RAM.
+            // This will prevent out-of-memory on large files.
+            in = data.read();
+            if (in == -1) {
+                stream.close();
+                File result = new File(Paths.get(imageDir, this.userName).toString());
+                if (!file.renameTo(result)) {
+                    throw new IOException("failed to replace old avatar");
+                }
+                return;
+            }
+
+            stream.write(in);
+        }
+
+        file.delete();
+        throw new FileLimitReachedException("file size limit reached");
+    }
+
+    @Override
+    public File loadImage() throws IOException {
+        File file = new File(Paths.get(imageDir, this.userName).toString());
+        if (!file.exists()) {
+            if (defaultImage == null) {
+                return null;
+            } else {
+                file = new File(defaultImage);
+                if (!file.exists()) {
+                    // If no default image exists, return NULL.
+                    return null;
+                }
+            }
+        }
+
+        if (!file.canRead()) {
+            throw new FileNotFoundException("no read access to file");
+        }
+
+        if (file.isDirectory()) {
+            throw new FileNotFoundException("cannot open directory");
+        }
+        return file;
     }
 }

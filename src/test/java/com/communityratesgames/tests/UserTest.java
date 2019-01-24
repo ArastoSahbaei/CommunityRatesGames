@@ -26,7 +26,7 @@ public class UserTest {
         return Shrink.createDeployment();
     }
 
-    @Test
+    @Test @Ignore
     public void getAllUsers() {
         final List<User> result = userDataAccess.showAllUsers();
         Assert.assertNotNull(result);
