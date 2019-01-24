@@ -85,7 +85,7 @@ export class ApiService {
   }
 
   postRating(body: Voting) {
-    return this.httpClient.post(this.url.getBaseUrl() + this.url.getRating(), body, {headers: Headers.HeaderJSON()}
+    return this.httpClient.post(this.url.getBaseUrl() + this.url.getRating() + this.url.getNew(), body, {headers: Headers.HeaderJSON()}
     );
   }
 
