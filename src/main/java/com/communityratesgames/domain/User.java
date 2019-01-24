@@ -36,7 +36,9 @@ public class User implements Serializable, IImageEntity {
     private String email;
     private String passwordHash;
     private String password;
-    private String role;
+    @Enumerated
+    @Column(columnDefinition = "smallint")
+    private UserRole role;
     private static String imageDir;
     private static String defaultImage;
     private static Long fileSizeLimit;
@@ -46,7 +48,7 @@ public class User implements Serializable, IImageEntity {
         this.userName = userModel.getUsername();
         this.email = userModel.getEmail();
         this.setPassword(userModel.getPassword());
-        this.role = userModel.getRole();
+        this.role = UserRole.valueOf(userModel.getRole().toUpperCase());
         this.userCreated = userModel.getUserCreated();
     }
 
@@ -55,7 +57,7 @@ public class User implements Serializable, IImageEntity {
         this.userName = username;
         this.email = email;
         this.encryptPassword(password);
-        this.role = "User";
+        this.role = UserRole.USER;
     }
 
     public String toJMS() {
@@ -143,11 +145,11 @@ public class User implements Serializable, IImageEntity {
         this.password = password;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
