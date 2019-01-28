@@ -27,6 +27,7 @@ import { FooterComponent } from './main-nav/footer/footer.component';
 import { VotingComponent } from './game/game-page/voting/voting.component';
 import { CrgModule } from "./crg/crg.module";
 import { CrgComponent } from "./crg/crg.component";
+import { YoutubePlayerModule} from "ngx-youtube-player";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { CrgComponent } from "./crg/crg.component";
     ReactiveFormsModule,
     BarRatingModule,
     CrgModule,
-    AppRoutingModule
+    AppRoutingModule,
+    YoutubePlayerModule
   ],
   entryComponents: [ UserdialogComponent ],
   providers: [
